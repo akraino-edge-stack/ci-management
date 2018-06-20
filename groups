@@ -2,5 +2,4 @@
 #
 ldap:cn=akraino-gerrit-att-early-access,ou=Groups,dc=freestandards,dc=org        	ldap/akraino-gerrit-att-early-access
 ldap:cn=akraino-gerrit-ci-management-committers,ou=Groups,dc=freestandards,dc=org	ldap/akraino-gerrit-ci-management-committers
-ldap:cn=akraino-gerrit-intel-early-access,ou=Groups,dc=freestandards,dc=org      	ldap/akraino-gerrit-intel-early-access
 ldap:cn=lf-collab-admins,ou=Groups,dc=freestandards,dc=org                       	ldap/lf-collab-admins
