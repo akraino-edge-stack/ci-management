@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28cb001e_5af38c19",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-23T18:50:14Z",
+      "side": 1,
+      "message": "This is extraneous and should not be in the commit message",
+      "range": {
+        "startLine": 7,
+        "startChar": 31,
+        "endLine": 7,
+        "endChar": 38
+      },
+      "revId": "377909f0897585a5048fb94f5ab8f64e7b346c71",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15b55506_af44f9ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-23T18:50:14Z",
+      "side": 1,
+      "message": "Commit message does not specify why / what is being changed in enough clarity.\n\nSee: https://docs.releng.linuxfoundation.org/en/latest/best-practices.html and https://chris.beams.io/posts/git-commit/ in particular on why writing good commit messages matter",
+      "revId": "377909f0897585a5048fb94f5ab8f64e7b346c71",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3914f698_00a8a38f",
+        "filename": "jjb/camunda_workflow/camunda_workflow.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-23T18:50:14Z",
+      "side": 1,
+      "message": "This line is not needed",
+      "revId": "377909f0897585a5048fb94f5ab8f64e7b346c71",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a4d5a86e_0948c226",
+        "filename": "jjb/portal_user_interface/portal_user_interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-23T18:50:14Z",
+      "side": 1,
+      "message": "This line is not needed",
+      "revId": "377909f0897585a5048fb94f5ab8f64e7b346c71",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
