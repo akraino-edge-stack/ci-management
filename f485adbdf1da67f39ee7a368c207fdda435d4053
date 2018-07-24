@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0430e4b_d39a7cc6",
+        "filename": "jjb/addon-onap/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:41:39Z",
+      "side": 1,
+      "message": "Dangling whitespace",
+      "range": {
+        "startLine": 4,
+        "startChar": 1,
+        "endLine": 4,
+        "endChar": 2
+      },
+      "revId": "f485adbdf1da67f39ee7a368c207fdda435d4053",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "803ee0c2_a63c0eeb",
+        "filename": "jjb/addon-onap/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:41:39Z",
+      "side": 1,
+      "message": "Dangling whitespace",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 8,
+        "endChar": 2
+      },
+      "revId": "f485adbdf1da67f39ee7a368c207fdda435d4053",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ee37cb8_5147d68b",
+        "filename": "jjb/addon-onap/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:41:39Z",
+      "side": 1,
+      "message": "Dangling whitespace",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 2
+      },
+      "revId": "f485adbdf1da67f39ee7a368c207fdda435d4053",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf1bec2e_05b40d5c",
+        "filename": "jjb/addon-onap/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:41:39Z",
+      "side": 1,
+      "message": "Please expand tabs to spaces. We use 4 space tabs in all JJB related scripting",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "f485adbdf1da67f39ee7a368c207fdda435d4053",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "876c2715_5567422d",
+        "filename": "jjb/addon-onap/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:41:39Z",
+      "side": 1,
+      "message": "Dangling whitespace",
+      "range": {
+        "startLine": 26,
+        "startChar": 38,
+        "endLine": 26,
+        "endChar": 39
+      },
+      "revId": "f485adbdf1da67f39ee7a368c207fdda435d4053",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
