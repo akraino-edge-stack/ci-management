@@ -1,0 +1,91 @@
+---
+#
+# Copyright (c) 2018 AT&T Intellectual Property. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License.
+#
+# You may obtain a copy of the License at
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+- project:
+    name: yaml_builds
+    project-name: yaml_builds
+    project: yaml_builds
+    global-settings-file: global-settings
+    build-node: centos7-builder-2c-1g
+    stream: master
+    maven-repo-url: 'https://nexus.akraino.org'
+    java-version: openjdk8
+    mvn-version: mvn35
+    mvn-opts: ''
+    mvn-params: ''
+    mvn-settings: yaml_builds-settings
+    nexus-shapshot-repo: snapshots
+    build-timeout: 60
+    submodule-recursive: true
+    group-id: org.akraino.yaml_builds
+    repo-id: snapshots
+    refspec: refs/heads/master
+    branch: master
+    upload-files-dir: '/tmp/tardir'
+    jobs:
+     - 'yaml_builds-{stream}-release-config'
+    views:
+      - common-view
+
+- job-template:
+    name: 'yaml_builds-{stream}-release-config'
+    project-type: freestyle
+    node: '{build-node}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          lftools-version: '{lftools-version}'
+      - lf-infra-maven-parameters:
+          mvn-opts: '{mvn-opts}'
+          mvn-params: '{mvn-params}'
+          mvn-version: '{mvn-version}'
+          staging-profile-id: '{staging-profile-id}'
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '{refspec}'
+          branch: '{branch}'
+          submodule-recursive: '{submodule-recursive}'
+          choosing-strategy: default
+
+    nexus-shapshot-repo: snapshots
+    builders:
+      - lf-maven-install:
+          mvn-version: '{mvn-version}'
+      - lf-update-java-alternatives:
+          java-version: '{java-version}'
+      - lf-provide-maven-settings:
+          global-settings-file: '{global-settings-file}'
+          settings-file: '{mvn-settings}'
+      - lf-infra-create-netrc:
+          server-id: '{mvn-staging-id}'
+      - inject:
+          properties-content: |
+              MAVEN_REPO_URL={maven-repo-url}
+              REPO_ID={repo-id}
+              GROUP_ID={group-id}
+              UPLOAD_FILES_PATH={upload-files-dir}
+      - shell: !include-raw-escape:
+          - ./make-tar.sh
+          - ../global-jjb/shell/common-variables.sh
+          - ../global-jjb/shell/lftools-install.sh
+          - ../global-jjb/shell/deploy-maven-file.sh
+      - lf-provide-maven-settings-cleanup
