@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "535c9eeb_c761dfb9",
+        "filename": "jjb/yaml_builds/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:48:15Z",
+      "side": 1,
+      "message": "This script is fairly similar to the one being used in change I13acbfec75c905a1ccf57724721c48d4bd4b9ccd It should be made more generic and moved into an Akraino wide base template.",
+      "revId": "3c815ae57fafcd1d5554bde64192e32c6f192165",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f435133_4cca36d0",
+        "filename": "jjb/yaml_builds/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:48:15Z",
+      "side": 1,
+      "message": "Dangling white space",
+      "range": {
+        "startLine": 4,
+        "startChar": 1,
+        "endLine": 4,
+        "endChar": 2
+      },
+      "revId": "3c815ae57fafcd1d5554bde64192e32c6f192165",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f38f21c9_35cafe37",
+        "filename": "jjb/yaml_builds/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:48:15Z",
+      "side": 1,
+      "message": "Dangling white space",
+      "range": {
+        "startLine": 8,
+        "startChar": 1,
+        "endLine": 8,
+        "endChar": 2
+      },
+      "revId": "3c815ae57fafcd1d5554bde64192e32c6f192165",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4b0b851_5097ef79",
+        "filename": "jjb/yaml_builds/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:48:15Z",
+      "side": 1,
+      "message": "Dangling white space",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 2
+      },
+      "revId": "3c815ae57fafcd1d5554bde64192e32c6f192165",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c31bf8b_8fb739d7",
+        "filename": "jjb/yaml_builds/yaml_builds.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-24T17:48:15Z",
+      "side": 1,
+      "message": "This is the fifth time I\u0027ve seen this job. Just named differently. The first was with change I13acbfec75c905a1ccf57724721c48d4bd4b9ccd\n\nInstead of replicating this it should be made generic and placed in jjb/akraino-templates/ and namespaced as akraino-{project}-{stream}-release-config",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "3c815ae57fafcd1d5554bde64192e32c6f192165",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
