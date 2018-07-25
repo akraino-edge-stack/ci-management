@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d14caa6_c06d2f2a",
+        "filename": "jjb/shell/make-tar.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-25T19:45:48Z",
+      "side": 1,
+      "message": "Are you really intending to hard code all projects that use this to the same version?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 22
+      },
+      "revId": "5fd69fbd2a6c89bc6139732ef0828f04c5d66bff",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
