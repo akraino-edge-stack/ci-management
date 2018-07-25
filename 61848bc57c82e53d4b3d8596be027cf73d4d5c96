@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f72634e_0f2a6f96",
+        "filename": "jjb/akraino-templates/akraino-jjb-templates.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-25T03:33:35Z",
+      "side": 1,
+      "message": "My apologies for requesting another change here, I didn\u0027t\nthink the naming out clearly enough when I suggested what I\ndid in the previous changes.\n\nThis would be best done in the following way:\n\nid: akraino-project-stream-release-config\nname: \u0027{project}-{stream}-release-config\u0027\n\nPlease note the lack of the {} in the first one. You would\nthen reference this job by defining in the jobs section as\nfollows:\n\njobs:\n  - akraino-project-stream-release-config\n\nNoting again, the lack of the {}.\n\nThis will then properly cause JJB to create your job using the defined name syntax which will thereby allow it to be\npicked up by the view for the project since all project\nviews are a regex of ^{project}-.* on the job names",
+      "revId": "61848bc57c82e53d4b3d8596be027cf73d4d5c96",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16815eb4_0d25583a",
+        "filename": "jjb/shell/make-tar.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-25T03:33:35Z",
+      "side": 1,
+      "message": "This is going to hard code your version into the build\nscripts. You should probably consider making this\nmore dynamic and driving by data in each project. It will also hard lock all of your jobs / projects to the same version which is probably something you don\u0027t want.\n\nONAP uses a concept of a version.properties file at the root of the project to do this. Alternatively, you could extract\nthe data out of your pom files.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 36
+      },
+      "revId": "61848bc57c82e53d4b3d8596be027cf73d4d5c96",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
