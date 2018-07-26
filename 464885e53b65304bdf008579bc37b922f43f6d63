@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d25a446f_558a1938",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-26T18:40:30Z",
+      "side": 1,
+      "message": "This command will end up failing.\n\nnexus3.akraino.org:10001 is a read-only repository metagroup that is comprised of the local docker.release and docker.io repositories.\n\nAs this contains staging artifacts in the containers they need to go to nexus3.akraino.org:10003 repository.",
+      "revId": "464885e53b65304bdf008579bc37b922f43f6d63",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
