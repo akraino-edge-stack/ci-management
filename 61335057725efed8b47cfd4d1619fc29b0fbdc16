@@ -22,6 +22,30 @@
       "revId": "61335057725efed8b47cfd4d1619fc29b0fbdc16",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90228eaa_c891ca6b",
+        "filename": "jjb/shell/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-31T21:17:57Z",
+      "side": 1,
+      "message": "I agree with that sentiment, unfortunately we also have to work with repos that may not be setting that :-/",
+      "parentUuid": "298f9e58_d6e0a49e",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 28
+      },
+      "revId": "61335057725efed8b47cfd4d1619fc29b0fbdc16",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
