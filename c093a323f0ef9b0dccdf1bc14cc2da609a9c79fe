@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ff2bf7d_123dcc80",
+        "filename": "jjb/postgres_db_schema/postgres_db_schema.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-07-31T17:28:53Z",
+      "side": 1,
+      "message": "This change is unrelated to the rest of the commit message and should be made as a separate change",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 19
+      },
+      "revId": "c093a323f0ef9b0dccdf1bc14cc2da609a9c79fe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ca13998_1825c3f9",
         "filename": "jjb/shell/build-docker.sh",
         "patchSetId": 1
