@@ -31,3 +31,5 @@
     branch: master
     jobs:
       - 'akraino-project-stream-docker'
+    views:
+      - common-view
