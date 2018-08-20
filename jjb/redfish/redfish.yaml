@@ -19,11 +19,14 @@
     project-name: redfish
     project: redfish
     build-node: centos7-builder-2c-1g
-    stream: master
+    stream:
+      - master:
+          branch: master
+      - development:
+          branch: development
     mvn-settings: redfish-settings
     group-id: org.akraino.redfish
     refspec: refs/heads/master
-    branch: master
     jobs:
       - akraino-project-stream-release-config
     views:

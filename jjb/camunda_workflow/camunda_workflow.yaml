@@ -21,9 +21,24 @@
     mvn-settings: camunda_workflow-settings
     mvn-params: '-f akraino/pom.xml'
     build-node: centos7-builder-2c-1g
-    stream: master
+    stream:
+      - master:
+          branch: master
+      - development:
+          branch: development
     jobs:
       - '{project-name}-maven-jobs'
-      - gerrit-maven-sonar
     views:
       - common-view
+
+# Only run Sonar on the development branch
+- project:
+    name: camunda_workflow-sonar-development
+    project: camunda_workflow
+    project-name: camunda_workflow
+    mvn-settings: camunda_workflow-settings
+    mvn-params: '-f akraino/pom.xml'
+    build-node: centos7-builder-2c-1g
+    stream: development
+    jobs:
+      - gerrit-maven-sonar

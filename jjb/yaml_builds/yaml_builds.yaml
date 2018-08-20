@@ -19,11 +19,14 @@
     project-name: yaml_builds
     project: yaml_builds
     build-node: centos7-builder-2c-1g
-    stream: master
+    stream:
+      - master:
+          branch: master
+      - development:
+          branch: development
     mvn-settings: yaml_builds-settings
     group-id: org.akraino.yaml_builds
     refspec: refs/heads/master
-    branch: master
     jobs:
       - akraino-project-stream-release-config
     views:

@@ -18,7 +18,6 @@ sudo yum install -y dos2unix
 # shellcheck source="$WORKSPACE/version.properties" disable=SC1091
 dos2unix "${WORKSPACE}/version.properties"
 source "$WORKSPACE/version.properties"
-TAR_NAME="${PROJECT}-${VERSION}-SNAPSHOT.tgz"
 TARDIR=$UPLOAD_FILES_PATH
 
 set -e -u -x -o pipefail
@@ -30,19 +29,27 @@ then
 
     # ONAP addon is special.
     # Build the regional controller scripts tar ball
-    ARTIFACT_NAME="onap-amsterdam-regional-controller-master"
-    echo "Making tar file ${TARDIR}/${ARTIFACT_NAME}${VERSION}-SNAPSHOT.tgz"
+    ARTIFACT_NAME="onap-amsterdam-regional-controller-${STREAM}"
+    TAR_NAME="${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz"
+    echo "Making tar file ${TARDIR}/${TAR_NAME}"
     cd ./src/regional_controller_scripts/
-    tar -cvzf "${TARDIR}/${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz" -- *
+    tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
 
     # Build the ONAP VM scripts tar ball
-    ARTIFACT_NAME="onap-amsterdam-VM-master"
-    echo "Making tar file ${TARDIR}/${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz"
+    ARTIFACT_NAME="onap-amsterdam-VM-${STREAM}"
+    TAR_NAME="${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz"
+    echo "Making tar file ${TARDIR}/${TAR_NAME}"
     cd ../onap_vm_scripts/
-    tar -cvzf "${TARDIR}/${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz" -- *
+    tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
 
 else
 
+    if [ "$STREAM" == "master" ]
+    then
+        TAR_NAME="${PROJECT}-${VERSION}-SNAPSHOT.tgz"
+    else
+        TAR_NAME="${PROJECT}-${VERSION}-${STREAM}-SNAPSHOT.tgz"
+    fi
     echo "Making tar file ${TARDIR}/${TAR_NAME}"
     tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
 

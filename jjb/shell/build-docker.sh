@@ -69,6 +69,12 @@ postgres_db_schema)
     ;;
 esac
 
+# Append stream, if it is not the master stream
+if [ "${STREAM}" != "master" ]
+then
+    VERSION="${VERSION}-${STREAM}"
+fi
+
 # Build and push the Docker container
 docker build -f Dockerfile -t ${CON_NAME}:${VERSION} .
 docker tag ${CON_NAME}:${VERSION} ${DOCKER_REPO}/${CON_NAME}:${VERSION}
