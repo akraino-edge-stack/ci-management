@@ -19,11 +19,14 @@
     project-name: airshipinabottle_deploy
     project: airshipinabottle_deploy
     build-node: centos7-builder-2c-1g
-    stream: master
+    stream:
+      - master:
+          branch: master
+      - development:
+          branch: development
     mvn-settings: airshipinabottle_deploy-settings
     group-id: org.akraino.airshipinabottle_deploy
     refspec: refs/heads/master
-    branch: master
     jobs:
       - akraino-project-stream-release-config
     views:

@@ -20,7 +20,11 @@
     project: postgres_db_schema
     global-settings-file: global-settings
     build-node: ubuntu1604-docker-8c-8g
-    stream: master
+    stream:
+      - master:
+          branch: master
+      - development:
+          branch: development
     java-version: openjdk8
     mvn-version: mvn35
     mvn-opts: ''
@@ -28,7 +32,6 @@
     mvn-settings: postgres_db_schema-settings
     build-timeout: 60
     submodule-recursive: true
-    branch: master
     jobs:
       - 'akraino-project-stream-docker'
     views:
