@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b1b4d21_53a67689",
+        "filename": "jjb/portal_user_interface/portal_user_interface.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-08-20T22:04:55Z",
+      "side": 1,
+      "message": "You\u0027ve double declared the view. Only one can be declared for a given project",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "4056a6f7be77cc81b4d99ae9ec4f92ee4478f58b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14ae399e_fcd68c29",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-08-20T22:04:55Z",
+      "side": 1,
+      "message": "Please use 4 space tabs expanded",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 1
+      },
+      "revId": "4056a6f7be77cc81b4d99ae9ec4f92ee4478f58b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ad123e9_f928c656",
+        "filename": "jjb/shell/make-tar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-08-20T22:04:55Z",
+      "side": 1,
+      "message": "Please use 4 space tabs expanded",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 3
+      },
+      "revId": "4056a6f7be77cc81b4d99ae9ec4f92ee4478f58b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
