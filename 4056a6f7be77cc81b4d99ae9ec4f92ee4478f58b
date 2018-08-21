@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "6b44a029_ee9addb7",
+        "filename": "jjb/camunda_workflow/camunda_workflow.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-08-21T15:53:05Z",
+      "side": 1,
+      "message": "You shouldn\u0027t remove this view statement",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 19
+      },
+      "revId": "4056a6f7be77cc81b4d99ae9ec4f92ee4478f58b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b1b4d21_53a67689",
         "filename": "jjb/portal_user_interface/portal_user_interface.yaml",
         "patchSetId": 1
