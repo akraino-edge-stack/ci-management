@@ -112,6 +112,7 @@
               file-paths: '{obj:gerrit_trigger_file_paths}'
 
     builders:
+      - lf-infra-pre-build
       - lf-maven-install:
           mvn-version: '{mvn-version}'
       - lf-update-java-alternatives:
