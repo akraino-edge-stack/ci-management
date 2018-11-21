@@ -24,21 +24,29 @@ set -e -u -x -o pipefail
 rm -fr "$TARDIR"
 mkdir "$TARDIR"
 
+if [ -n "$STAGING_BUILD" ]
+then
+    # Remove the "-SNAPSHOT" from the version for a staging build
+    VERSION=$(echo "$VERSION" | sed 's/-SNAPSHOT//')
+else
+    # Make sure the version has the "-SNAPSHOT" on the end for other builds
+    [[ ! "$VERSION" =~ -SNAPSHOT$ ]] && VERSION="${VERSION}-SNAPSHOT"
+fi
+
 if [ "$PROJECT" == "addon-onap" ]
 then
 
     # ONAP addon is special.
     # Build the regional controller scripts tar ball
-    # NOTE: Remove the two "-SNAPSHOT" below when the ONAP version.properties is fixed.
     ARTIFACT_NAME="onap-amsterdam-regional-controller-${STREAM}"
-    TAR_NAME="${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz"
+    TAR_NAME="${ARTIFACT_NAME}-${VERSION}.tgz"
     echo "Making tar file ${TARDIR}/${TAR_NAME}"
     cd ./src/regional_controller_scripts/
     tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
 
     # Build the ONAP VM scripts tar ball
     ARTIFACT_NAME="onap-amsterdam-VM-${STREAM}"
-    TAR_NAME="${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz"
+    TAR_NAME="${ARTIFACT_NAME}-${VERSION}.tgz"
     echo "Making tar file ${TARDIR}/${TAR_NAME}"
     cd ../onap_vm_scripts/
     tar -cvzf "${TARDIR}/${TAR_NAME}" -- *

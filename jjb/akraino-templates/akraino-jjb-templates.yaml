@@ -134,3 +134,140 @@
 
     publishers:
       - lf-infra-publish
+
+
+- job-template:
+    id: akraino-project-stream-stage-config
+    name: '{project}-{stream}-stage-config'
+
+    ######################
+    # Default parameters #
+    ######################
+
+    archive-artifacts: >
+      **/*.log
+      **/hs_err_*.log
+      **/target/**/feature.xml
+      **/target/failsafe-reports/failsafe-summary.xml
+      **/target/surefire-reports/*-output.txt
+    build-days-to-keep: 30  # 30 days in case a release takes long to get approved.
+    build-timeout: 60
+    cron: '@daily'
+    disable-job: false
+    git-url: '$GIT_URL/$PROJECT'
+    github-url: 'https://github.com'
+    java-version: openjdk8
+    mvn-central: false
+    mvn-global-settings: global-settings
+    mvn-goals: clean deploy
+    mvn-opts: ''
+    mvn-params: ''
+    mvn-version: mvn35
+    ossrh-profile-id: ''
+    sign-artifacts: false
+    stream: master
+    submodule-recursive: true
+    upload-files-dir: m2repo  # expected by "lftools deploy nexus-stage"
+
+    #####################
+    # Job Configuration #
+    #####################
+
+    project-type: freestyle
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          lftools-version: '{lftools-version}'
+      - lf-infra-maven-parameters:
+          mvn-opts: '{mvn-opts}'
+          mvn-params: '{mvn-params}'
+          mvn-version: '{mvn-version}'
+          staging-profile-id: '{staging-profile-id}'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+      - string:
+          name: UPLOAD_FILES_PATH
+          default: '{upload-files-dir}'
+          description: File path to generate tarball and upload to repository.
+      - string:
+          name: STAGING_PROFILE_ID
+          default: '{staging-profile-id}'
+          description: Nexus staging profile ID.
+      - string:
+          name: STAGING_BUILD
+          default: 'true'
+          description: Mark this as a staging build.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    gerrit_release_triggers:
+      - comment-added-contains-event:
+          comment-contains-value: stage-release$
+
+    disabled: '{disable-job}'
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          choosing-strategy: default
+
+    triggers:
+      - timed: '{obj:cron}'
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on: '{obj:gerrit_release_triggers}'
+          projects:
+            - project-compare-type: ANT
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: ANT
+                  branch-pattern: '**/{branch}'
+
+    builders:
+      - lf-infra-pre-build
+      - lf-jacoco-nojava-workaround
+      - lf-maven-install:
+          mvn-version: '{mvn-version}'
+      - lf-update-java-alternatives:
+          java-version: '{java-version}'
+      - lf-provide-maven-settings:
+          global-settings-file: '{mvn-global-settings}'
+          settings-file: '{mvn-settings}'
+      - lf-infra-create-netrc:
+          server-id: '{mvn-staging-id}'
+      - shell: !include-raw-escape:
+          - ../shell/make-tar.sh
+      - lf-sigul-sign-dir:
+          sign-artifacts: '{sign-artifacts}'
+          sign-dir: '$WORKSPACE/m2repo'
+      - lf-maven-stage
+      - conditional-step:
+          condition-kind: boolean-expression
+          condition-expression: '{mvn-central}'
+          steps:
+            - lf-infra-create-netrc:
+                server-id: 'ossrh'
+            - inject:
+                properties-content: 'OSSRH_PROFILE_ID={ossrh-profile-id}'
+            - shell: !include-raw-escape: ../global-jjb/shell/maven-central.sh
+      - lf-provide-maven-settings-cleanup
+
+    publishers:
+      - lf-infra-publish

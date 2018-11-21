@@ -29,6 +29,7 @@
     refspec: refs/heads/master
     jobs:
       - akraino-project-stream-release-config
+      - akraino-project-stream-stage-config
     views:
       - common-view
     cron: 'H H * * 0'  # push fresh snapshot weekly
