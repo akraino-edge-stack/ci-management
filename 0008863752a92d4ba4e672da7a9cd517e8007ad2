@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "172cf76f_b7774e60",
+        "filename": "jjb/akraino-templates/akraino-jjb-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-11-28T18:20:36Z",
+      "side": 1,
+      "message": "There is no reason to keep builds on the jenkins system this long the only things being stored there are logs. Additionally, the logs are shipped off to https://logs.akraino.org and live there for 6 months.\n\nI\u0027ll have to check, but staging repos should be auto-expiring after 14 days on the Nexus side.",
+      "revId": "0008863752a92d4ba4e672da7a9cd517e8007ad2",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c78ba51_30d588d2",
+        "filename": "jjb/akraino-templates/akraino-jjb-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-11-28T18:20:36Z",
+      "side": 1,
+      "message": "Since this is operating on tarballs maven central is not a valid endpoint. As such, this variable is not needed.",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 22
+      },
+      "revId": "0008863752a92d4ba4e672da7a9cd517e8007ad2",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7ca8a0a_43e48737",
+        "filename": "jjb/akraino-templates/akraino-jjb-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-11-28T18:20:36Z",
+      "side": 1,
+      "message": "Since this is operating on tarballs maven central is not a valid endpoint. As such, this variable is not needed.",
+      "revId": "0008863752a92d4ba4e672da7a9cd517e8007ad2",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e8e6322_f6bf3f3d",
+        "filename": "jjb/akraino-templates/akraino-jjb-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2018-11-28T18:20:36Z",
+      "side": 1,
+      "message": "Since this is working on tarballs maven central isn\u0027t a valid endpoint anyway. This section can be removed.",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 78
+      },
+      "revId": "0008863752a92d4ba4e672da7a9cd517e8007ad2",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
