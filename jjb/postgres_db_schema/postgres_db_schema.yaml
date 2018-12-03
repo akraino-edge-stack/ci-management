@@ -34,5 +34,6 @@
     submodule-recursive: true
     jobs:
       - 'akraino-project-stream-docker'
+      - 'akraino-project-stream-stage-docker'
     views:
       - project-view

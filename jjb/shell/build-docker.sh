@@ -15,6 +15,7 @@
 # limitations under the License.
 
 DOCKER_REPO='nexus3.akraino.org:10003'
+STAGING_BUILD=${STAGING_BUILD:=''}
 
 set -e -u -x -o pipefail
 
@@ -31,13 +32,23 @@ else
     case "$PROJECT" in
     portal_user_interface)
         CON_NAME='akraino-portal'
-        VERSION=`xmlstarlet sel -N "x=http://maven.apache.org/POM/4.0.0" -t -v "/x:project/x:version" AECPortalMgmt/pom.xml`
-
-        XMLFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/${PROJECT}/${VERSION}/maven-metadata.xml"
-        curl -O "${XMLFILE}"
-        V2=`grep value maven-metadata.xml | sed -e 's;</value>;;' -e 's;.*<value>;;' | uniq`
-        WARFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/${PROJECT}/${VERSION}/${PROJECT}-${V2}.war"
-        curl -O "${WARFILE}"
+        if [ -n "$STAGING_BUILD" -a -n "$AUTOSTAGING" ]
+        then
+            # For a staging build, the $VERSION is fixed
+            VERSION=`xmlstarlet sel -N "x=http://maven.apache.org/POM/4.0.0" -t -v "/x:project/x:version" AECPortalMgmt/pom.xml`
+            VERSION=$(echo "$VERSION" | sed 's/-SNAPSHOT//')
+            WARFILE="${NEXUS_URL}/content/repositories/autostaging-${AUTOSTAGING}/org/akraino/${PROJECT}/${VERSION}/${PROJECT}-${VERSION}.war"
+            DOCKER_REPO='nexus3.akraino.org:10004'
+            curl -O "${WARFILE}"
+        else
+            # For a snapshot build - find the latest snapshot
+            VERSION=`xmlstarlet sel -N "x=http://maven.apache.org/POM/4.0.0" -t -v "/x:project/x:version" AECPortalMgmt/pom.xml`
+            XMLFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/${PROJECT}/${VERSION}/maven-metadata.xml"
+            curl -O "${XMLFILE}"
+            V2=`grep value maven-metadata.xml | sed -e 's;</value>;;' -e 's;.*<value>;;' | uniq`
+            WARFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/${PROJECT}/${VERSION}/${PROJECT}-${V2}.war"
+            curl -O "${WARFILE}"
+        fi
 
         ln $(basename ${WARFILE}) AECPortalMgmt.war
         (
@@ -48,25 +59,48 @@ else
 
     camunda_workflow)
         CON_NAME='akraino-camunda-workflow-engine'
-        VERSION=`xmlstarlet sel -N "x=http://maven.apache.org/POM/4.0.0" -t -v "/x:project/x:version" akraino/pom.xml`
-
-        XMLFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/${PROJECT}/${VERSION}/maven-metadata.xml"
-        curl -O "${XMLFILE}"
-        V2=`grep value maven-metadata.xml | sed -e 's;</value>;;' -e 's;.*<value>;;' | uniq`
-        JARFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/${PROJECT}/${VERSION}/${PROJECT}-${V2}.jar"
-        curl -O ${JARFILE}
+        if [ -n "$STAGING_BUILD" -a -n "$AUTOSTAGING" ]
+        then
+            # For a staging build, the $VERSION is fixed
+            VERSION=`xmlstarlet sel -N "x=http://maven.apache.org/POM/4.0.0" -t -v "/x:project/x:version" akraino/pom.xml`
+            VERSION=$(echo "$VERSION" | sed 's/-SNAPSHOT//')
+            JARFILE="${NEXUS_URL}/content/repositories/autostaging-${AUTOSTAGING}/org/akraino/${PROJECT}/${VERSION}/${PROJECT}-${VERSION}.jar"
+            DOCKER_REPO='nexus3.akraino.org:10004'
+            curl -O "${JARFILE}"
+        else
+            # For a snapshot build - find the latest snapshot
+            VERSION=`xmlstarlet sel -N "x=http://maven.apache.org/POM/4.0.0" -t -v "/x:project/x:version" akraino/pom.xml`
+            XMLFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/${PROJECT}/${VERSION}/maven-metadata.xml"
+            curl -O "${XMLFILE}"
+            V2=`grep value maven-metadata.xml | sed -e 's;</value>;;' -e 's;.*<value>;;' | uniq`
+            JARFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/${PROJECT}/${VERSION}/${PROJECT}-${V2}.jar"
+            curl -O "${JARFILE}"
+        fi
         ;;
 
     postgres_db_schema)
         CON_NAME='akraino_schema_db'
-        source $WORKSPACE/version.properties
+        sudo yum install -y dos2unix
+        dos2unix "${WORKSPACE}/version.properties"
+        source "$WORKSPACE/version.properties"
 
-        # Note: for some reason the project name is in the path twice for tar files
-        XMLFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/yaml_builds/yaml_builds/${VERSION}/maven-metadata.xml"
-        curl -O "${XMLFILE}"
-        V2=`grep value maven-metadata.xml | sed -e 's;</value>;;' -e 's;.*<value>;;' | uniq`
-        TGZFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/yaml_builds/yaml_builds/${VERSION}/yaml_builds-${V2}.tgz"
-        curl -O "${TGZFILE}"
+        if [ -n "$STAGING_BUILD" -a -n "$AUTOSTAGING" ]
+        then
+            # For a staging build, the $VERSION is fixed
+            # Note: yaml_builds version MUST match the postgres_db_schema version
+            VERSION=$(echo "$VERSION" | sed 's/-SNAPSHOT//')
+            TGZFILE="${NEXUS_URL}/content/repositories/autostaging-${AUTOSTAGING}/yaml_builds-${VERSION}.tgz"
+            DOCKER_REPO='nexus3.akraino.org:10004'
+            curl -O "${TGZFILE}"
+       else
+            # For a snapshot build - find the latest snapshot
+            # Note: for some reason the project name is in the path twice for tar files
+            XMLFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/yaml_builds/yaml_builds/${VERSION}/maven-metadata.xml"
+            curl -O "${XMLFILE}"
+            V2=`grep value maven-metadata.xml | sed -e 's;</value>;;' -e 's;.*<value>;;' | uniq`
+            TGZFILE="${NEXUS_URL}/service/local/repositories/snapshots/content/org/akraino/yaml_builds/yaml_builds/${VERSION}/yaml_builds-${V2}.tgz"
+            curl -O "${TGZFILE}"
+        fi
         (mkdir yaml_builds; cd yaml_builds; tar xfv ../$(basename ${TGZFILE}))
         mv yaml_builds/templates akraino-j2templates
         ;;
