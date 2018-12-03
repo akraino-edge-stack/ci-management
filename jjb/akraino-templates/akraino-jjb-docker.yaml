@@ -51,3 +51,45 @@
 
     triggers:
       - timed: '@hourly'
+
+- job-template:
+    id: 'akraino-project-stream-stage-docker'
+    name: '{project}-{stream}-stage-docker'
+    project-type: freestyle
+    node: '{build-node}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          lftools-version: '{lftools-version}'
+      - string:
+          name: STAGING_BUILD
+          default: 'true'
+          description: Mark this as a staging build.
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: ''
+          branch: '{branch}'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+    builders:
+      - lf-update-java-alternatives:
+          java-version: '{java-version}'
+      - lf-infra-docker-login:
+          global-settings-file: '{global-settings-file}'
+          settings-file: '{mvn-settings}'
+      - inject:
+          properties-content: |
+              PROJECT={project}
+      - shell: !include-raw-escape:
+          - ../shell/build-docker.sh
+
+    triggers:
+      - timed: '@daily'
