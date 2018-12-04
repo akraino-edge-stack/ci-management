@@ -16,6 +16,23 @@
       "revId": "cf867834636b0bc889b6a47b804e09015211d25a",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c693d3ff_54ae2121",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-04T18:28:31Z",
+      "side": 1,
+      "message": "Looks like in this case the VERSION isn\u0027t initially set via xmlstarlet.  Perhaps this happens in the version.properties?",
+      "revId": "cf867834636b0bc889b6a47b804e09015211d25a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
