@@ -37,6 +37,23 @@
     },
     {
       "key": {
+        "uuid": "19964255_250fb121",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-04T21:38:28Z",
+      "side": 1,
+      "message": "I just noticed the reference to the `staging` meta repo.  In nexus version 2 this points at the oldest available staging artifact, which I suspect is not what you want here.\nI have a workaround in EdgeX that sidesteps this issue.  If it is an issue for you then a call would be a good way to sync up on this so I can explain the particulars.",
+      "revId": "cf867834636b0bc889b6a47b804e09015211d25a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c693d3ff_54ae2121",
         "filename": "jjb/shell/build-docker.sh",
         "patchSetId": 1
