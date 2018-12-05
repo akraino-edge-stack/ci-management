@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9bbd5f6e_8e41ebb2",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-05T21:56:36Z",
+      "side": 1,
+      "message": "Path to particular staging artifact looks like:\nhttps://nexus.akraino.org/content/repositories/autostaging-1098/",
+      "revId": "b82cd497f62af5a5543cb1a663e215d63ef51ef7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43647486_56af6a8e",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-05T21:56:36Z",
+      "side": 1,
+      "message": "same as above",
+      "revId": "b82cd497f62af5a5543cb1a663e215d63ef51ef7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45146cfd_50acba08",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-05T21:56:36Z",
+      "side": 1,
+      "message": "Flag on STAGING_BUILD env var and reset DOCKER_REPO accordingly:\nie nexus3.akraino.org:10004 if it is Staging build.",
+      "revId": "b82cd497f62af5a5543cb1a663e215d63ef51ef7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
