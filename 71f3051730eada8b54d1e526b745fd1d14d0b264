@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7eded742_2f6a0f62",
+        "filename": "jjb/akraino-templates/akraino-jjb-docker.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-06T18:18:58Z",
+      "side": 1,
+      "message": "I\u0027m not sure if a trigger will be overridden in the template off the top of my head.  You can specify a particular jobs though by specifying the specific project \"yaml_builds-{stream}-stage-config\" for example.",
+      "parentUuid": "9714bcd5_2c55f2e7",
+      "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a729f178_6dce5869",
         "filename": "jjb/shell/build-docker.sh",
         "patchSetId": 3
