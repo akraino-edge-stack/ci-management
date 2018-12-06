@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9714bcd5_2c55f2e7",
+        "filename": "jjb/akraino-templates/akraino-jjb-docker.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-12-06T17:08:10Z",
+      "side": 1,
+      "message": "This unfortunately would mean EVERY job that uses this template would be triggered by changes to the yaml_builds project.  I only want ONE docker job triggered this way, which is why the trigger should go in the yaml for that one project.  I need to know how to do that however.  If I add a trigger there will it override the trigger in the template?",
+      "parentUuid": "3a662744_a5c71d93",
+      "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a729f178_6dce5869",
         "filename": "jjb/shell/build-docker.sh",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-12-06T14:24:27Z",
       "side": 1,
       "message": "There still needs to be dynamic setting of DOCKER_REPO based on the value of STAGING_BUILD.",
+      "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dbc3e761_2ccaab15",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2018-12-06T17:08:10Z",
+      "side": 1,
+      "message": "I am setting DOCKER_REPO on lines 41, 68 and 93!",
+      "parentUuid": "a729f178_6dce5869",
       "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
