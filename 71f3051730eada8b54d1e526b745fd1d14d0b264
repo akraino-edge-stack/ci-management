@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a662744_a5c71d93",
+        "filename": "jjb/akraino-templates/akraino-jjb-docker.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-06T14:19:57Z",
+      "side": 1,
+      "message": "Ok this is good.  I saw your note about needing to reverse trigger for the yaml jobs as well which have a different name.  You can add multiple jobs here like so:\n\"\"\"\ntriggers:\n  - reverse:\n        jobs:\n            - \u0027a\u0027\n            - \u0027b\u0027\n            - \u0027c\u0027\n\"\"\"\nSo it will be a matter of formatting like this and adding all the jobs you need to reverse trigger from.",
+      "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
