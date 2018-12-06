@@ -87,6 +87,24 @@
       "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08c88d2e_0caaf94d",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-06T18:19:48Z",
+      "side": 1,
+      "message": "Ah yes I didn\u0027t see that at first.",
+      "parentUuid": "dbc3e761_2ccaab15",
+      "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
