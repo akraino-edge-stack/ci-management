@@ -16,6 +16,23 @@
       "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a729f178_6dce5869",
+        "filename": "jjb/shell/build-docker.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 72
+      },
+      "writtenOn": "2018-12-06T14:24:27Z",
+      "side": 1,
+      "message": "There still needs to be dynamic setting of DOCKER_REPO based on the value of STAGING_BUILD.",
+      "revId": "71f3051730eada8b54d1e526b745fd1d14d0b264",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
