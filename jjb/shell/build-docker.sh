@@ -80,7 +80,8 @@ else
 
     postgres_db_schema)
         CON_NAME='akraino_schema_db'
-        sudo yum install -y dos2unix
+        # This runs on ubuntu, so yum wont work.
+        sudo apt install dos2unix
         dos2unix "${WORKSPACE}/version.properties"
         source "$WORKSPACE/version.properties"
 
