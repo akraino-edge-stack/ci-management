@@ -19,14 +19,11 @@
     project-name: addon-onap
     project: addon-onap
     build-node: centos7-builder-2c-1g
-    stream:
-      - master:
-          branch: master
-      - development:
-          branch: development
+    stream: master
     mvn-settings: addon-onap-settings
     group-id: org.akraino.addon-onap
     refspec: refs/heads/master
+    branch: master
     jobs:
       - akraino-project-stream-release-config
       - akraino-project-stream-stage-config

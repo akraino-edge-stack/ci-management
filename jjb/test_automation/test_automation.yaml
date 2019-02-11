@@ -19,14 +19,11 @@
     project-name: test_automation
     project: test_automation
     build-node: centos7-builder-2c-1g
-    stream:
-      - master:
-          branch: master
-      - development:
-          branch: development
+    stream: master
     mvn-settings: test_automation-settings
     group-id: org.akraino.test_automation
     refspec: refs/heads/master
+    branch: master
     jobs:
       - akraino-project-stream-release-config
       - akraino-project-stream-stage-config

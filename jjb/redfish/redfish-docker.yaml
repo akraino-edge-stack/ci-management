@@ -20,11 +20,7 @@
     project: redfish
     global-settings-file: global-settings
     build-node: ubuntu1604-docker-8c-8g
-    stream:
-      - master:
-          branch: master
-      - development:
-          branch: development
+    stream: master
     java-version: openjdk8
     mvn-version: mvn35
     mvn-opts: ''
@@ -32,6 +28,7 @@
     mvn-settings: redfish-settings
     build-timeout: 60
     submodule-recursive: true
+    branch: master
     jobs:
       - 'akraino-project-stream-docker'
       - 'akraino-project-stream-stage-docker'

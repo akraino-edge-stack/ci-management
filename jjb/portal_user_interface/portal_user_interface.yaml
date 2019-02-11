@@ -22,24 +22,9 @@
     mvn-params: '-f AECPortalMgmt/pom.xml'
     nexus-iq-namespace: 'akraino-'
     build-node: centos7-builder-2c-1g
-    stream:
-      - master:
-          branch: master
-      - development:
-          branch: development
+    stream: master
     jobs:
       - '{project-name}-maven-jobs'
+      - gerrit-maven-sonar
     views:
       - project-view
-
-# Only run Sonar on the development branch
-- project:
-    name: portal_user_interface-sonar-development
-    project: portal_user_interface
-    project-name: portal_user_interface
-    mvn-settings: portal_user_interface-settings
-    mvn-params: '-f AECPortalMgmt/pom.xml'
-    build-node: centos7-builder-2c-1g
-    stream: development
-    jobs:
-      - gerrit-maven-sonar

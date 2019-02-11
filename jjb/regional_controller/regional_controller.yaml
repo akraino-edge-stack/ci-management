@@ -19,14 +19,11 @@
     project-name: regional_controller
     project: regional_controller
     build-node: centos7-builder-2c-1g
-    stream:
-      - master:
-          branch: master
-      - development:
-          branch: development
+    stream: master
     mvn-settings: regional_controller-settings
     group-id: org.akraino.regional_controller
     refspec: refs/heads/master
+    branch: master
     jobs:
       - akraino-project-stream-release-config
       - akraino-project-stream-stage-config
