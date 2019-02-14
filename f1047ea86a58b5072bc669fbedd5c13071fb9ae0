@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "519e6097_050fa4de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-02-14T19:59:36Z",
+      "side": 1,
+      "message": "Please change the commit message to the imperative (\"Remove\" rather than \"removed\").",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 7
+      },
+      "revId": "f1047ea86a58b5072bc669fbedd5c13071fb9ae0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
