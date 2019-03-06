@@ -1,6 +1,109 @@
 ---
 - project:
-    name: eliot-project-view
+    name: eliot-project-verify-job
     project-name: eliot
+    project: eliot
+    stream: master
+    branch: master
+    refspec: refs/heads/master
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - akraino-project-stream-verify
     views:
       - project-view
+
+#################
+# job templates #
+#################
+
+- job-template:
+    id: akraino-project-stream-verify
+    name: '{project}-{stream}-verify'
+    archive-artifacts: >
+      **/*.log
+    build-days-to-keep: 30
+    build-timeout: 60
+    stream: master
+    project-type: freestyle
+    submodule-recursive: true
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          lftools-version: '{lftools-version}'
+
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '{refspec}'
+          branch: '{branch}'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: defaul
+
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            - patchset-created-event:
+                exclude-drafts: 'false'
+                exclude-trivial-rebase: 'false'
+                exclude-no-code-change: 'false'
+            - change-merged-event
+            - draft-published-event
+            - comment-added-contains-event:
+                comment-contains-value: remerge$
+            - comment-added-contains-event:
+                comment-contains-value: 'recheck'
+            - comment-added-contains-event:
+                comment-contains-value: 'reverify'
+          projects:
+            - project-compare-type: 'ANT'
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/{branch}'
+              file-paths:
+                - compare-type: ANT
+                  pattern: '**/*'
+              disable-strict-forbidden-file-verification: 'true'
+              forbidden-file-paths:
+                - compare-type: ANT
+                  pattern: 'docs/**'
+          readable-message: true
+
+
+
+    builders:
+      - shell: |
+          #!/bin/bash
+          set -o errexit
+          set -o pipefail
+
+          echo "Running eliot verification..."
+
+          # unit tests
+          /bin/bash $WORKSPACE/verify.sh
+
+
+    publishers:
+      - lf-infra-publish
+
