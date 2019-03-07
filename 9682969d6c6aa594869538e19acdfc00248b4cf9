@@ -22,6 +22,30 @@
       "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b152062d_5ac83fb2",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2019-03-07T01:00:17Z",
+      "side": 1,
+      "message": "the verify.sh file should be in eliot project.",
+      "parentUuid": "2443e7bf_ca8da0f1",
+      "range": {
+        "startLine": 104,
+        "startChar": 10,
+        "endLine": 104,
+        "endChar": 40
+      },
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
