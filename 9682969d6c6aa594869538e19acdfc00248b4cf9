@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "be34ce2a_c9507938",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-08T02:15:52Z",
+      "side": 1,
+      "message": "\"eliot-project\" would be a more appropriate name, since other jobs are likely to be added later.",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 34
+      },
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b73401b9_236d34de",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-08T02:15:52Z",
+      "side": 1,
+      "message": "This job template should be moved to jjb/akraino-templates/akraino-jjb-templates.yaml",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 17
+      },
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0feeb77_6436ab9f",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-08T02:15:52Z",
+      "side": 1,
+      "message": "Please put all shell scripts into files in the \"shell\" directory, and call the script using\n- shell: !include-raw-escape: ../../shell/\u003cscript-name\u003e.sh",
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2443e7bf_ca8da0f1",
         "filename": "jjb/eliot/eliot.yaml",
         "patchSetId": 2
@@ -37,6 +100,30 @@
       "side": 1,
       "message": "the verify.sh file should be in eliot project.",
       "parentUuid": "2443e7bf_ca8da0f1",
+      "range": {
+        "startLine": 104,
+        "startChar": 10,
+        "endLine": 104,
+        "endChar": 40
+      },
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b060eb9f_4d6f574b",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-08T02:15:52Z",
+      "side": 1,
+      "message": "There is nothing in the repo but a .gitreview file: https://gerrit.akraino.org/r/gitweb?p\u003deliot.git;a\u003dtree;h\u003drefs/heads/master;hb\u003drefs/heads/master",
+      "parentUuid": "b152062d_5ac83fb2",
       "range": {
         "startLine": 104,
         "startChar": 10,
