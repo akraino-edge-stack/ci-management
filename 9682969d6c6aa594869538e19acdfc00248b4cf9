@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5277344d_514d35ad",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2019-03-11T06:50:38Z",
+      "side": 1,
+      "message": "OK, I will change this",
+      "parentUuid": "be34ce2a_c9507938",
+      "range": {
+        "startLine": 3,
+        "startChar": 4,
+        "endLine": 3,
+        "endChar": 34
+      },
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b73401b9_236d34de",
         "filename": "jjb/eliot/eliot.yaml",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9a479cf9_f155c40b",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2019-03-11T06:50:38Z",
+      "side": 1,
+      "message": "I will move it to jjb/akraino-templates/akraino-jjb-templates.yaml",
+      "parentUuid": "b73401b9_236d34de",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 17
+      },
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e0feeb77_6436ab9f",
         "filename": "jjb/eliot/eliot.yaml",
         "patchSetId": 2
@@ -59,6 +107,24 @@
       "writtenOn": "2019-03-08T02:15:52Z",
       "side": 1,
       "message": "Please put all shell scripts into files in the \"shell\" directory, and call the script using\n- shell: !include-raw-escape: ../../shell/\u003cscript-name\u003e.sh",
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95fc99c6_363abf69",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2019-03-11T06:50:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0feeb77_6436ab9f",
       "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
@@ -124,6 +190,30 @@
       "side": 1,
       "message": "There is nothing in the repo but a .gitreview file: https://gerrit.akraino.org/r/gitweb?p\u003deliot.git;a\u003dtree;h\u003drefs/heads/master;hb\u003drefs/heads/master",
       "parentUuid": "b152062d_5ac83fb2",
+      "range": {
+        "startLine": 104,
+        "startChar": 10,
+        "endLine": 104,
+        "endChar": 40
+      },
+      "revId": "9682969d6c6aa594869538e19acdfc00248b4cf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d00b9d16_5c634421",
+        "filename": "jjb/eliot/eliot.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2019-03-11T06:50:38Z",
+      "side": 1,
+      "message": "we have submited patch to add the file to repo https://gerrit.akraino.org/r/#/c/451/2/verify.sh",
+      "parentUuid": "b060eb9f_4d6f574b",
       "range": {
         "startLine": 104,
         "startChar": 10,
