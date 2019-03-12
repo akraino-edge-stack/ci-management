@@ -281,8 +281,9 @@
     parameters:
       - lf-infra-parameters:
           project: '{project}'
-          branch: '{branch}'
           stream: '{stream}'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
           lftools-version: '{lftools-version}'
 
       - string:
