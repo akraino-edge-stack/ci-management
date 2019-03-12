@@ -1,6 +1,0 @@
----
-- project:
-    name: kni-project-view
-    project-name: kni
-    views:
-      - project-view
