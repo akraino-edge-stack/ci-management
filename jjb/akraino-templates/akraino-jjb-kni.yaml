@@ -1,0 +1,91 @@
+---
+#
+# Copyright (c) 2019 Red Hat. All rights reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License.
+#
+# You may obtain a copy of the License at
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+- job-template:
+    id: kni-project-build-installer
+    name: '{project}-build-installer'
+
+    ######################
+    # Default parameters #
+    ######################
+
+    archive-artifacts: >
+      **/bin/kni-edge-installer
+    build-days-to-keep: 30
+    build-timeout: 60
+    maven-repo-url: '$NEXUS_URL/content/repositories/snapshots'
+    nexus-shapshot-repo: snapshots
+    repo-id: snapshots
+    submodule-recursive: true
+    upload-files-dir: /tmp/tardir
+    project: kni/installer
+
+    #####################
+    # Job Configuration #
+    #####################
+
+    project-type: freestyle
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+      - string:
+          name: UPLOAD_FILES_PATH
+          default: '{upload-files-dir}'
+          description: File path to generate tarball and upload to repository.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    gerrit_merge_triggers:
+      - change-merged-event
+      - comment-added-contains-event:
+          comment-contains-value: remerge$
+
+    gerrit_trigger_file_paths:
+      - compare-type: REG_EXP
+        pattern: '.*'
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+    builders:
+      - lf-infra-pre-build
+      - shell: !include-raw-escape:
+          - ../shell/build_kni_installer.sh
+
+    publishers:
+      - lf-infra-publish
