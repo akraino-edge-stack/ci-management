@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "62319426_3a49a675",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 140
+      },
+      "writtenOn": "2019-03-13T07:47:29Z",
+      "side": 1,
+      "message": "I want to publish the generated kni-installer binary. I\u0027d like to have it available so people can download the generated binary by themselves if needed, not having to build on their own. What\u0027s the best place to upload it?",
+      "parentUuid": "eafc8b96_80b83f37",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "5e6f776b5f799235c49a451e38d8fd00046aa758",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "853dbd85_bd8b5fc5",
         "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
         "patchSetId": 8
