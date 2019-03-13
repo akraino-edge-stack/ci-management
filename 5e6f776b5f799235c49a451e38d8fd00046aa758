@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eafc8b96_80b83f37",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-13T01:05:22Z",
+      "side": 1,
+      "message": "Does this job push artifacts to Nexus?",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 31,
+        "endChar": 22
+      },
+      "revId": "5e6f776b5f799235c49a451e38d8fd00046aa758",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "853dbd85_bd8b5fc5",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-13T01:05:22Z",
+      "side": 1,
+      "message": "This line should be removed.",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 26
+      },
+      "revId": "5e6f776b5f799235c49a451e38d8fd00046aa758",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f70c0b2d_69a3c6da",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-13T01:05:22Z",
+      "side": 1,
+      "message": "This template does not define any triggers.",
+      "revId": "5e6f776b5f799235c49a451e38d8fd00046aa758",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85abbbfd_c17ff4a6",
+        "filename": "jjb/kni/kni_installer.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-13T01:05:22Z",
+      "side": 1,
+      "message": "name, project, and project-name should use dashes rather than slashes as separators.",
+      "range": {
+        "startLine": 16,
+        "startChar": 13,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "5e6f776b5f799235c49a451e38d8fd00046aa758",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "816ee57c_5ad07663",
+        "filename": "jjb/kni/kni_installer.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-13T01:05:22Z",
+      "side": 1,
+      "message": "Do not add a view here.",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "5e6f776b5f799235c49a451e38d8fd00046aa758",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0eaf3b6_705c880c",
+        "filename": "jjb/shell/build_kni_installer.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-13T01:05:22Z",
+      "side": 1,
+      "message": "This is likely to be a common task, and should be put into its own step. In fact, creating a \"builder\" that performs a Go installation would be the best case here.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 35
+      },
+      "revId": "5e6f776b5f799235c49a451e38d8fd00046aa758",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "055dba5a_ebb62856",
+        "filename": "jjb/shell/build_kni_installer.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-13T01:05:22Z",
+      "side": 1,
+      "message": "No need to change modes before exit. Please remove this and leave only one newline at the end of the file.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 9
+      },
+      "revId": "5e6f776b5f799235c49a451e38d8fd00046aa758",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
