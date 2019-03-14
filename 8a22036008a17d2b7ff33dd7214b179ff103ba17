@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6439ca9_6d31b760",
+        "filename": "jjb/akraino-templates/akraino-jjb-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 161
+      },
+      "writtenOn": "2019-03-14T03:31:14Z",
+      "side": 1,
+      "message": "In my opinion, the parameter of branch is master, so when trigger the job, it will fetch the master code instead of my change. am I right?  think we need set refspec to $GERRIT_REFSPEC. Please refer to https://wiki.jenkins.io/display/JENKINS/Gerrit+Trigger#GerritTrigger-UsagewiththeGitPlugin",
+      "range": {
+        "startLine": 302,
+        "startChar": 19,
+        "endLine": 302,
+        "endChar": 40
+      },
+      "revId": "8a22036008a17d2b7ff33dd7214b179ff103ba17",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
