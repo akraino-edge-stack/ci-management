@@ -1,6 +1,159 @@
 ---
 - project:
-    name: iec-project-view
-    project-name: iec
+    name: 'iec-project-view'
+    project-name: 'iec'
+    project: '{project-name}'
     views:
       - project-view
+    # -------------------------------
+    # BRANCH DEFINITIONS
+    # -------------------------------
+    stream:
+      - master:
+          branch: '{stream}'
+          gs-pathname: ''
+          disabled: false
+
+    # -------------------------------
+    # DEPLOY TYPE DEFINITIONS
+    # -------------------------------
+    deploy-type:
+      - fuel-baremetal:
+          slave-label: 'aarch64_dev'
+      - fuel-virtual:
+          slave-label: 'aarch64_dev'
+
+    scenario:
+      # NOHA scenarios
+      - 'k8-nosdn-iec-noha':
+          auto-trigger-name: '{scenario}-{deploy-type}-daily-{stream}-trigger'
+
+    jobs:
+      - '{scenario}-{deploy-type}-daily-{stream}'
+      - '{scenario}-deploy-{deploy-type}-daily-{stream}'
+
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'iec-defaults'
+    parameters:
+      - string:
+          name: INSTALLER_IP
+          default: '10.20.0.2'
+          description: 'IP of the installer'
+      - string:
+          name: SSH_KEY
+          default: "/var/lib/opnfv/mcp.rsa"
+          description: 'Path to private SSH key to access environment nodes'
+      - string:
+          name: INSTALLER_TYPE
+          default: fuel
+          description: 'Installer used for deploying IEC on this POD'
+      - string:
+          name: EXTERNAL_NETWORK
+          default: 'floating_net'
+          description: 'external network for test'
+      - string:
+          name: CI_DEBUG
+          default: 'false'
+          description: "Show debug output information"
+
+########################
+# job templates
+########################
+- job-template:
+    name: '{scenario}-{deploy-type}-daily-{stream}'
+    disabled: '{obj:disabled}'
+    concurrent: false
+    node: '{slave-label}'
+    properties:
+      - throttle:
+          enabled: true
+          max-total: 4
+          max-per-node: 1
+          option: 'project'
+      - build-blocker:
+          use-build-blocker: true
+          blocking-jobs:
+            - 'k8-.*?-{deploy-type}-daily-.*'
+          blocking-level: 'NODE'
+
+    wrappers:
+      - build-name:
+          name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO'
+
+    triggers:
+      - '{auto-trigger-name}'
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-defaults'
+      - string:
+          name: DEPLOY_SCENARIO
+          default: 'k8-nosdn-iec-noha'
+
+    builders:
+      - trigger-builds:
+          - project: '{scenario}-deploy-{deploy-type}-daily-{stream}'
+            current-parameters: false
+            predefined-parameters: |
+              DEPLOY_SCENARIO={scenario}
+              INSTALLER_VERSION={stream}
+            same-node: true
+            block: true
+
+- job-template:
+    name: '{scenario}-deploy-{deploy-type}-daily-{stream}'
+    concurrent: true
+    node: '{slave-label}'
+    properties:
+      - throttle:
+          enabled: true
+          max-total: 4
+          max-per-node: 1
+          option: 'project'
+      - build-blocker:
+          use-build-blocker: true
+          blocking-jobs:
+            - 'k8-.*?-deploy-{deploy-type}-daily-*'
+          blocking-level: 'NODE'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-defaults'
+      - string:
+          name: DEPLOY_SCENARIO
+          default: 'k8-nosdn-iec-noha'
+
+    wrappers:
+      - build-name:
+          name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO'
+    builders:
+      - shell:
+          !include-raw-escape: ./iec-fuel-deploy.sh
+
+    publishers:
+      - email:
+          recipients: armband@enea.com
+
+########################
+# trigger macros
+########################
+# CI PODs
+# ----------------------------------------------------------------
+# Enea Armband CI Baremetal Triggers running against master branch
+# ----------------------------------------------------------------
+- trigger:
+    name: 'k8-nosdn-iec-noha-fuel-virtual-daily-master-trigger'
+    triggers:
+      - timed: '0 13 * * *'
+- trigger:
+    name: 'k8-nosdn-iec-noha-fuel-baremetal-daily-master-trigger'
+    triggers:
+      - timed: ''
