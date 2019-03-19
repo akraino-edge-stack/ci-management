@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b517a53_3bef6791",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T13:58:53Z",
+      "side": 1,
+      "message": "this is installer specific and it might be a good idea to squash it into the deploy-type as a parameter, since we will most likely only have one scenario for Fuel ...",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "9a9f47240d80c51c96da20b59b54cfad8c566d16",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afbe397f_5ee3742e",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T13:58:53Z",
+      "side": 1,
+      "message": "if Functest does not need this, maybe we should remove it to avoid confusion since it only applies to Fuel",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 44
+      },
+      "revId": "9a9f47240d80c51c96da20b59b54cfad8c566d16",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc01606a_18c3bb8e",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T13:58:53Z",
+      "side": 1,
+      "message": "no longer used",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 69
+      },
+      "revId": "9a9f47240d80c51c96da20b59b54cfad8c566d16",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ea95df3_8af06377",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T13:58:53Z",
+      "side": 1,
+      "message": "this assumes all scenarios being with \u0027k8-\u0027, maybe we should simplify it to \u0027.*-{deploy-type}-daily-.*\u0027\nsame for below blocker pattern",
+      "range": {
+        "startLine": 79,
+        "startChar": 15,
+        "endLine": 79,
+        "endChar": 21
+      },
+      "revId": "9a9f47240d80c51c96da20b59b54cfad8c566d16",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b0cf1c0_04910489",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T13:58:53Z",
+      "side": 1,
+      "message": "Akraino IEC",
+      "range": {
+        "startLine": 150,
+        "startChar": 2,
+        "endLine": 150,
+        "endChar": 13
+      },
+      "revId": "9a9f47240d80c51c96da20b59b54cfad8c566d16",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
