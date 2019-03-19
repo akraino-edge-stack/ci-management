@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30bb6149_93817778",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:11:18Z",
+      "side": 1,
+      "message": "not necessary since we don\u0027t use any pipes\nremoving this + all square double brackets will make this script posix sh compatible and not bash-specific",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 15
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "449fa6bb_90916205",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:11:18Z",
+      "side": 1,
+      "message": "[ \"$(uname -m)\" \u003d \u0027aarch64\u0027 ]",
+      "range": {
+        "startLine": 17,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 35
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c072ff8_54d0bc81",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:11:18Z",
+      "side": 1,
+      "message": "not needed, same for below line",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 31
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f86ab611_616be334",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:11:18Z",
+      "side": 1,
+      "message": "JOB_NAME is set by Jenkins, so we should add this to silence shellcheck:\n# shellcheck disable\u003dSC2153",
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe3c1e55_2735b6b9",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:11:18Z",
+      "side": 1,
+      "message": "[ \"${CI_DEBUG,,}\" \u003d \u0027true\u0027 ]\nSee https://stackoverflow.com/a/13542854",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f534ce6f_5f5def33",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:11:18Z",
+      "side": 1,
+      "message": "this only works for an empty fuel dir. Although Jenkins should be responsible for wiping the workspace before starting the job and this shouldn\u0027t be needed at all, a simpler and guaranteed to work approach would be:\nrm -rf fuel",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 35
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "61221f28_c0ded249",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:11:18Z",
+      "side": 1,
+      "message": "[ \"${exit_code}\" -ne 0] would be enough",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 72,
+        "endChar": 29
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ba2ea60_9c28ee9c",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-19T15:11:18Z",
+      "side": 1,
+      "message": "To avoid duplicating defaults I think we can use {scenario}.\nsame for below occurence",
+      "range": {
+        "startLine": 90,
+        "startChar": 19,
+        "endLine": 90,
+        "endChar": 38
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
