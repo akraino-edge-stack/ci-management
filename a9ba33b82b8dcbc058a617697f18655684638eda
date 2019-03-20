@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a268454_68a054ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-20T20:32:06Z",
+      "side": 1,
+      "message": "Your commit header should be in the imperative mood (\"Add CentOS 7 8c-8g builder\"), and should not end with a period.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 28
+      },
+      "revId": "a9ba33b82b8dcbc058a617697f18655684638eda",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb1fca7f_0d2e57d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-20T20:32:06Z",
+      "side": 1,
+      "message": "To reference an issue, put it at the top of the footer (directly above Change-Id) as \"Issue: \u003cRT/Jira ID\u003e\". The commit message should primarily address what changed and why.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "a9ba33b82b8dcbc058a617697f18655684638eda",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36cb863f_ca007ef1",
+        "filename": "jenkins-config/clouds/openstack/cattle/centos7-builder-8c-8g.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-03-20T20:32:06Z",
+      "side": 1,
+      "message": "This is not an available hardware flavor in Akraino. This should use the same HARDWARE_ID as the Ubuntu 8c-8g.",
+      "range": {
+        "startLine": 2,
+        "startChar": 12,
+        "endLine": 2,
+        "endChar": 25
+      },
+      "revId": "a9ba33b82b8dcbc058a617697f18655684638eda",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
