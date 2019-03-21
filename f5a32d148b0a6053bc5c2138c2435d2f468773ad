@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dfc86915_e9e21439",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-03-21T10:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30bb6149_93817778",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 15
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "449fa6bb_90916205",
         "filename": "jjb/iec/iec-fuel-deploy.sh",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2019-03-19T15:11:18Z",
       "side": 1,
       "message": "[ \"$(uname -m)\" \u003d \u0027aarch64\u0027 ]",
+      "range": {
+        "startLine": 17,
+        "startChar": 3,
+        "endLine": 17,
+        "endChar": 35
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8a2fd8a_ffe454ce",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-03-21T10:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "449fa6bb_90916205",
       "range": {
         "startLine": 17,
         "startChar": 3,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "769a7233_0a01ef34",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-03-21T10:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c072ff8_54d0bc81",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 31
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f86ab611_616be334",
         "filename": "jjb/iec/iec-fuel-deploy.sh",
         "patchSetId": 8
@@ -88,6 +160,24 @@
     },
     {
       "key": {
+        "uuid": "dbd5ccef_918b33b3",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-03-21T10:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f86ab611_616be334",
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe3c1e55_2735b6b9",
         "filename": "jjb/iec/iec-fuel-deploy.sh",
         "patchSetId": 8
@@ -99,6 +189,30 @@
       "writtenOn": "2019-03-19T15:11:18Z",
       "side": 1,
       "message": "[ \"${CI_DEBUG,,}\" \u003d \u0027true\u0027 ]\nSee https://stackoverflow.com/a/13542854",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1191c990_86e0cd16",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-03-21T10:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe3c1e55_2735b6b9",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "52acf658_4b11cf06",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-03-21T10:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f534ce6f_5f5def33",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 35
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "61221f28_c0ded249",
         "filename": "jjb/iec/iec-fuel-deploy.sh",
         "patchSetId": 8
@@ -145,6 +283,30 @@
       "writtenOn": "2019-03-19T15:11:18Z",
       "side": 1,
       "message": "[ \"${exit_code}\" -ne 0] would be enough",
+      "range": {
+        "startLine": 72,
+        "startChar": 3,
+        "endLine": 72,
+        "endChar": 29
+      },
+      "revId": "f5a32d148b0a6053bc5c2138c2435d2f468773ad",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b382567e_3ecfaa67",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-03-21T10:39:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61221f28_c0ded249",
       "range": {
         "startLine": 72,
         "startChar": 3,
