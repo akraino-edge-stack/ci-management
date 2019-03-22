@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "214d2759_df31be86",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-22T14:03:22Z",
+      "side": 1,
+      "message": "This job will leverage OPNFV Fuel installer scripts, it would be overkill to fork the full contents of that repo in Akraino.\nMaybe later we can use git submodules to reference it in IEC repo, but that are still ongoing discussions about the use of submodules in IEC.\nAt least for now, I think we can stick to using the Fuel repo as-is (github.com/opnfv/fuel). I\u0027ll try to push for merging the remaining changes in opnfv/fuel and ditch my personal fork (alexandruavadanii/fuel) before this change is ready for merge.",
+      "parentUuid": "7521a737_ca256403",
+      "range": {
+        "startLine": 42,
+        "startChar": 10,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "709c869df948c4d0a2952a9d0bc55f7a890127e4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "49f0d1f0_dfce4251",
         "filename": "jjb/iec/iec.yaml",
         "patchSetId": 9
