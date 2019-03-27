@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fced1f4_9a8985d3",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-27T16:41:31Z",
+      "side": 1,
+      "message": "POD_NAME\u003d${NODE_NAME/*ubuntu1604-dev-48c-256g-/virtual}\nthis will also work for snd-ubuntu... as well as prd-ubuntu...",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 6
+      },
+      "revId": "96ba6e68a7b9ba880317b818410643c9c0905a84",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b6242b0_593aea31",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-27T16:41:31Z",
+      "side": 1,
+      "message": "since this is the project repo, the jjb macro should be used instead so the git repo root ends up in $WORKSPACE and not in $WORKSPACE/iec",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 42
+      },
+      "revId": "96ba6e68a7b9ba880317b818410643c9c0905a84",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99a23c87_ac9e23cf",
+        "filename": "jjb/iec/iec-fuel-deploy.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-03-27T16:41:31Z",
+      "side": 1,
+      "message": "Since this is more or less static (and never optional), it can be moved directly to DEPLOY_COMMAND below",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 41
+      },
+      "revId": "96ba6e68a7b9ba880317b818410643c9c0905a84",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
