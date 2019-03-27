@@ -303,7 +303,7 @@
           branch: '{branch}'
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
-          choosing-strategy: default
+          choosing-strategy: 'gerrit'
 
     triggers:
       - gerrit:
