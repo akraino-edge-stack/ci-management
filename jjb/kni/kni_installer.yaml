@@ -3,8 +3,8 @@
     name: kni-installer
     project: 'kni/installer'
     project-name: kni-installer
-    build-node: centos7-builder-2c-1g
     stream: master
     branch: master
     jobs:
       - kni-installer-build-installer
+      - kni-installer-build-binary

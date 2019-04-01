@@ -22,6 +22,7 @@
     # Default parameters #
     ######################
 
+    build-node: centos7-builder-2c-1g
     build-days-to-keep: 30
     build-timeout: 60
     submodule-recursive: true
@@ -87,3 +88,81 @@
 
     publishers:
       - lf-infra-publish
+
+- job-template:
+    id: kni-installer-build-binary
+    name: '{project-name}-build-binary'
+
+    ######################
+    # Default parameters #
+    ######################
+
+    build-days-to-keep: 30
+    build-timeout: 60
+    build-node: centos7-builder-8c-8g
+    submodule-recursive: true
+
+    #####################
+    # Job Configuration #
+    #####################
+
+    project-type: freestyle
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          lftools-version: '{lftools-version}'
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    gerrit_merge_triggers:
+      - change-merged-event
+      - comment-added-contains-event:
+          comment-contains-value: remerge$
+
+    gerrit_trigger_file_paths:
+      - compare-type: REG_EXP
+        pattern: 'Makefile'
+      - compare-type: REG_EXP
+        pattern: 'cmd/binary.go'
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            - patchset-created-event:
+                exclude-drafts: 'false'
+                exclude-trivial-rebase: 'false'
+                exclude-no-code-change: 'false'
+            - change-merged-event
+            - comment-added-contains-event:
+                comment-contains-value: 'recheck'
+            - comment-added-contains-event:
+                comment-contains-value: 'reverify'
+
+    builders:
+      - lf-infra-pre-build
+      - shell: !include-raw-escape:
+          - ../shell/install_go.sh
+      - shell: !include-raw-escape:
+          - ../shell/build_kni_binary.sh
