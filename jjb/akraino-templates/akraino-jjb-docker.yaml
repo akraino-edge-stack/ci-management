@@ -16,7 +16,7 @@
 #
 - job-template:
     id: 'akraino-project-stream-docker'
-    name: '{project}-{stream}-docker'
+    name: '{project-name}-{stream}-docker'
     project-type: freestyle
     node: '{build-node}'
 
@@ -54,7 +54,7 @@
 
 - job-template:
     id: 'akraino-project-stream-stage-docker'
-    name: '{project}-{stream}-stage-docker'
+    name: '{project-name}-{stream}-stage-docker'
     project-type: freestyle
     node: '{build-node}'
 
