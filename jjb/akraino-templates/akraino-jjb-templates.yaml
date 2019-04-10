@@ -16,7 +16,7 @@
 #
 - job-template:
     id: akraino-project-stream-release-config
-    name: '{project}-{stream}-release-config'
+    name: '{project-name}-{stream}-release-config'
 
     ######################
     # Default parameters #
@@ -138,7 +138,7 @@
 
 - job-template:
     id: akraino-project-stream-stage-config
-    name: '{project}-{stream}-stage-config'
+    name: '{project-name}-{stream}-stage-config'
 
     ######################
     # Default parameters #
@@ -264,7 +264,7 @@
 
 - job-template:
     id: akraino-project-stream-verify
-    name: '{project}-{stream}-verify'
+    name: '{project-name}-{stream}-verify'
     archive-artifacts: >
       **/*.log
     build-days-to-keep: 30
