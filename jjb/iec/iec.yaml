@@ -3,6 +3,7 @@
     name: 'iec'
     project-name: 'iec'
     project: '{project-name}'
+    submodule-recursive: false
     views:
       - project-view
     # -------------------------------
@@ -135,7 +136,7 @@
           git-url: '{git-url}/{project}.git'
           refspec: ''
           branch: '{branch}'
-          submodule-recursive: false
+          submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
           choosing-strategy: default
 
