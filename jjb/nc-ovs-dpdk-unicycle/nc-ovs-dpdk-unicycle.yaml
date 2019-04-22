@@ -1,0 +1,17 @@
+---
+- project:
+    name: nc-ovs-dpdk-unicycle
+    project-name: nc-ovs-dpdk-unicycle
+    project: nc-ovs-dpdk-unicycle
+    build-node: centos7-builder-2c-1g
+    stream: master
+    mvn-settings: nc-ovs-dpdk-unicycle-settings
+    group-id: org.akraino.nc-ovs-dpdk-unicycle
+    refspec: refs/heads/master
+    branch: master
+    jobs:
+      - akraino-project-stream-release-config
+      - akraino-project-stream-stage-config
+    views:
+      - project-view
+    cron: 'H H * * 0'  # push fresh snapshot weekly
