@@ -1,0 +1,159 @@
+- project:
+
+    name: validation-docker
+    project: validation
+    mvn-settings: validation-settings
+    stream:
+      - master:
+          branch: '{stream}'
+          disabled: false
+
+    arch_tag:
+      - 'amd64':
+          slave_label: 'ubuntu1604-docker-8c-8g'
+      - 'arm64':
+          slave_label: 'aarch64_dev'
+
+    # settings for jobs run in multijob phases
+    docker-build-job-settings: &docker-build-job-settings
+      current-parameters: false
+      git-revision: true
+      node-parameters: false
+      predefined-parameters: |
+        GERRIT_REFNAME=$GERRIT_REFNAME
+      kill-phase-on: FAILURE
+      abort-all-jobs: false
+
+    jobs:
+      - "validation-{stream}-docker"
+      - "validation-docker-build-{arch_tag}-{stream}"
+      - "validation-docker-manifest-{stream}"
+
+########################
+# job templates
+########################
+- job-template:
+    name: 'validation-{stream}-docker'
+    project-type: multijob
+    disabled: '{obj:disabled}'
+
+    parameters:
+      - validation-job-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          slave_label: 'ubuntu1604-docker-8c-8g'
+          arch_tag: 'amd64'
+
+    properties:
+      - throttle:
+          max-per-node: 1
+          option: 'project'
+      - build-blocker:
+          use-build-blocker: true
+          blocking-jobs:
+            - 'validation-docker-.*'
+          blocking-level: 'NODE'
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: ''
+          branch: '{branch}'
+          submodule-recursive: false
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+    triggers:
+      # Build nigtly at 12:10 AM
+      - timed: '10 0 * * *'
+
+    builders:
+      - multijob:
+          name: 'build validation images'
+          execution-type: PARALLEL
+          projects:
+            - name: 'validation-docker-build-amd64-{stream}'
+              <<: *docker-build-job-settings
+            - name: 'validation-docker-build-arm64-{stream}'
+              <<: *docker-build-job-settings
+      - multijob:
+          name: 'publish validation manifests'
+          condition: SUCCESSFUL
+          execution-type: PARALLEL
+          projects:
+            - name: 'validation-docker-manifest-{stream}'
+              <<: *docker-build-job-settings
+
+    publishers:
+      - email:
+          recipients: 'cristina.pauna@enea.com'
+
+- job-template:
+    name: 'validation-docker-build-{arch_tag}-{stream}'
+    disabled: '{obj:disabled}'
+    parameters:
+      - validation-job-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          slave_label: '{slave_label}'
+          arch_tag: '{arch_tag}'
+    properties:
+      - build-blocker:
+          use-build-blocker: true
+          blocking-jobs:
+            - 'validation-docker-build-.*'
+          blocking-level: 'NODE'
+    scm:
+     - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: ''
+          branch: '{branch}'
+          submodule-recursive: false
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+    builders:
+      - lf-infra-docker-login:
+          global-settings-file: global-settings
+          settings-file: '{mvn-settings}'
+      - shell: |
+          #!/bin/bash -ex
+          make -C docker push-all
+
+- job-template:
+    name: 'validation-docker-manifest-{stream}'
+
+    parameters:
+      - validation-job-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          slave_label: 'ubuntu1604-docker-8c-8g'
+
+    disabled: '{obj:disabled}'
+
+    builders:
+      - lf-infra-docker-login:
+          global-settings-file: global-settings
+          settings-file: '{mvn-settings}'
+      - shell: |
+          #!/bin/bash -ex
+          make -C docker .push_manifest
+
+# parameter macro
+- parameter:
+    name: validation-job-parameters
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - label:
+          name: SLAVE_LABEL
+          default: '{slave_label}'
+          description: 'Slave label on Jenkins'
+          all-nodes: false
+          node-eligibility: 'ignore-offline'
