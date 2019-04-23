@@ -25,9 +25,18 @@
           slave-label: 'aarch64_dev'
           scenario: 'k8-calico-iec-noha'
 
+    # -------------------------------
+    # USECASE DEFINITIONS
+    # -------------------------------
+    usecase:
+      - seba_on_arm:
+          slave-label: 'aarch64_dev'
+          scenario: 'k8-calico-iec-noha'
+
     jobs:
       - 'iec-{deploy-type}-daily-{stream}'
       - 'iec-deploy-{deploy-type}-daily-{stream}'
+      - 'iec-install-{usecase}-{deploy-type}-daily-{stream}'
 
 ##############
 # PARAMETERS #
@@ -51,6 +60,29 @@
           name: CI_DEBUG
           default: 'false'
           description: "Show debug output information"
+- parameter:
+    name: 'seba-fuel-baremetal'
+    parameters:
+      - string:
+          name: K8S_MASTER_IP
+          default: '172.16.10.36'
+          description: 'K8s Master node to connect via ssh and deploy SEBA'
+      - string:
+          name: K8S_SSH_USER
+          default: 'ubuntu'
+          description: 'SSH username to connect to the K8s master '
+      - string:
+          name: K8S_SSH_PASSWORD
+          default: ''
+          description: 'SSH password to connect to the K8s master'
+      - string:
+          name: K8S_SSH_KEY
+          default: '/var/lib/opnfv/mcp.rsa'
+          description: 'SSH key to connect to the K8s master'
+- parameter:
+    name: 'seba-fuel-virtual'
+    parameters:
+      - 'seba-fuel-baremetal'
 
 ########################
 # job templates
@@ -87,7 +119,7 @@
       - '{project}-defaults'
       - string:
           name: DEPLOY_SCENARIO
-          default: 'k8-calico-iec-noha'
+          default: '{scenario}'
 
     builders:
       - trigger-builds:
@@ -95,6 +127,12 @@
             current-parameters: false
             predefined-parameters: |
               DEPLOY_SCENARIO={scenario}
+              INSTALLER_VERSION={stream}
+            same-node: true
+            block: true
+          - project: 'iec-install-{usecase}-daily-{stream}'
+            current-parameters: false
+            predefined-parameters: |
               INSTALLER_VERSION={stream}
             same-node: true
             block: true
@@ -123,7 +161,7 @@
       - '{project}-defaults'
       - string:
           name: DEPLOY_SCENARIO
-          default: 'k8-calico-iec-noha'
+          default: '{scenario}'
 
     wrappers:
       - build-name:
@@ -147,6 +185,60 @@
     builders:
       - shell:
           !include-raw-escape: ./iec-fuel-deploy.sh
+
+    publishers:
+      - email:
+          recipients: armband@enea.com
+
+- job-template:
+    name: 'iec-install-{usecase}-{deploy-type}-daily-{stream}'
+    concurrent: true
+    node: '{slave-label}'
+    properties:
+      - throttle:
+          enabled: true
+          max-total: 4
+          max-per-node: 1
+          option: 'project'
+      - build-blocker:
+          use-build-blocker: true
+          blocking-jobs:
+            - '.*-deploy-{deploy-type}-daily-*'
+            - '.*-install-{usecase}-{deploy-type}-daily-*'
+          blocking-level: 'NODE'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - 'seba-{deploy-type}'
+      - string:
+          name: DEPLOY_TYPE
+          default: '{deploy-type}'
+
+    wrappers:
+      - build-name:
+          name: '$BUILD_NUMBER - Usecase: ${usecase} DeployType: ${deploy-type}'
+
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}/{project}.git'
+          refspec: ''
+          branches:
+            - 'refs/heads/{branch}'
+          skip-tag: true
+          wipe-workspace: true
+          submodule:
+            disable: true
+            recursive: false
+            timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+    builders:
+      - shell:
+          !include-raw-escape: ./iec-{usecase}-{deploy-type}.sh
 
     publishers:
       - email:
