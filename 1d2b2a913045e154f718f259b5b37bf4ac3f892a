@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "830a3f2e_7d9533c1",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:25:57Z",
+      "side": 1,
+      "message": "Afaik this is not used in Akraino and was something OPNFV Fuel specific, which relied on an ARG CACHE_INVALIDATE being present in the Dockerfile.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 42
+      },
+      "revId": "1d2b2a913045e154f718f259b5b37bf4ac3f892a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2111cf74_0afc7abd",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:25:57Z",
+      "side": 1,
+      "message": "Can probably be identical with the params for the job below, provided that `slave_label` is properly configured for this one too.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 69
+      },
+      "revId": "1d2b2a913045e154f718f259b5b37bf4ac3f892a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d941da5_553d3edd",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:25:57Z",
+      "side": 1,
+      "message": "Afaik, not used in Akraino.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 82
+      },
+      "revId": "1d2b2a913045e154f718f259b5b37bf4ac3f892a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4fcebf9e_b4f8b114",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:25:57Z",
+      "side": 1,
+      "message": "not used?",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 66
+      },
+      "revId": "1d2b2a913045e154f718f259b5b37bf4ac3f892a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bfc10077_f295ab31",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-04-23T16:25:57Z",
+      "side": 1,
+      "message": "not used?",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 47
+      },
+      "revId": "1d2b2a913045e154f718f259b5b37bf4ac3f892a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
