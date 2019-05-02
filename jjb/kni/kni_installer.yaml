@@ -8,3 +8,4 @@
     jobs:
       - kni-installer-build-installer
       - kni-installer-build-binary
+      - kni-installer-deploy-aws
