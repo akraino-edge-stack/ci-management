@@ -8,3 +8,12 @@
     jobs:
       - kni-installer-build-installer
       - kni-installer-build-binary
+      - kni-installer-merge-deploy-aws
+- project:
+    name: kni-templates
+    project: 'kni/templates'
+    project-name: kni-templates
+    stream: master
+    branch: master
+    jobs:
+      - kni-templates-verify-deploy-aws
