@@ -14,4 +14,5 @@
     parameters:
       - lf-infra-tox-parameters:
           tox-envs: '{tox-envs}'
+          parallel: false
     build-node: centos7-builder-2c-1g
