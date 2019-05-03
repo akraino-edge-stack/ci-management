@@ -12,6 +12,7 @@
     jobs:
       - 'gerrit-tox-verify':
           parallel: false
+          submodule-disable: true
     parameters:
       - lf-infra-tox-parameters:
           tox-envs: '{tox-envs}'
