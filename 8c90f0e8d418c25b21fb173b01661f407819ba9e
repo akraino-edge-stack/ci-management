@@ -22,6 +22,30 @@
       "revId": "8c90f0e8d418c25b21fb173b01661f407819ba9e",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a459510_5159d88c",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-05-03T11:00:06Z",
+      "side": 1,
+      "message": "It was an overlooked *\nI think the patch is ready for merge unless there are other comments.\nJobs fail only because they can\u0027t push, which is expected for jobs ran in sandbox.",
+      "parentUuid": "aaa510e9_7c7551f7",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 12
+      },
+      "revId": "8c90f0e8d418c25b21fb173b01661f407819ba9e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
