@@ -256,6 +256,7 @@
       - lf-sigul-sign-dir:
           sign-artifacts: '{sign-artifacts}'
           sign-dir: '$WORKSPACE/m2repo'
+          sign-mode: serial
       - lf-maven-stage
       - lf-provide-maven-settings-cleanup
 
