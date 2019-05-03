@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "069deac6_b01a049e",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-03T11:10:26Z",
+      "side": 1,
+      "message": "These can probably be removed, not used afaict.\nWith that change, build-job-settings and manifest-job-settings would be identical, so we only need to keep one of them.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 28
+      },
+      "revId": "f34b12a933fc747e83727040e121e4076a8b2242",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f090d8dc_f55e3383",
         "filename": "jjb/validation/validation-docker.yaml",
         "patchSetId": 6
@@ -42,6 +65,29 @@
         "startChar": 6,
         "endLine": 80,
         "endChar": 27
+      },
+      "revId": "f34b12a933fc747e83727040e121e4076a8b2242",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e0846a2_bcd9c8c4",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-03T11:10:26Z",
+      "side": 1,
+      "message": "`make -C docker build-all push-all`\nBut if I remember right, push-all depends on build-all at the Makefile level, so a simple\n`make -C docker push-all` should also build the `build-all` make target.",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 33
       },
       "revId": "f34b12a933fc747e83727040e121e4076a8b2242",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
