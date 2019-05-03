@@ -22,6 +22,30 @@
       "revId": "f34b12a933fc747e83727040e121e4076a8b2242",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e470bbd6_dd7c8a4a",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-05-03T11:04:03Z",
+      "side": 1,
+      "message": "Just fixed the extra *. Sandbox says \"Would last have run at Friday, May 3, 2019 12:10:34 AM UTC; would next run at Saturday, May 4, 2019 12:10:34 AM UTC\"",
+      "parentUuid": "f090d8dc_f55e3383",
+      "range": {
+        "startLine": 79,
+        "startChar": 6,
+        "endLine": 80,
+        "endChar": 27
+      },
+      "revId": "f34b12a933fc747e83727040e121e4076a8b2242",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
