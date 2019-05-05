@@ -12,6 +12,13 @@
     jobs:
       - 'gerrit-tox-verify':
           parallel: false
+          triggers:
+            - gerrit:
+                skip-vote:
+                  successful: true
+                  failed: true
+                  unstable: true
+                  notbuilt: true
     parameters:
       - lf-infra-tox-parameters:
           tox-envs: '{tox-envs}'
