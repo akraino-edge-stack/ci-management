@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f863bc3a_cd0b9980",
+        "filename": "jjb/iec/iec-seba_on_arm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-08T13:53:51Z",
+      "side": 1,
+      "message": "DEPLOY_TYPE is redundant since it\u0027s included in JOB_NAME\nWe could do something like:\n\n  case \"$JOB_NAME\" in\n    *fuel*)",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 33
+      },
+      "revId": "cb959fb0f9642c55f95c9893bde555dabc90ccfe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71d6ed39_729bd168",
+        "filename": "jjb/iec/iec-seba_on_arm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-08T13:53:51Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 31,
+        "startChar": 44,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "cb959fb0f9642c55f95c9893bde555dabc90ccfe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "478fa4d5_abe11705",
+        "filename": "jjb/iec/iec-seba_on_arm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-08T13:53:51Z",
+      "side": 1,
+      "message": "a more helpful message would be nice",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 37
+      },
+      "revId": "cb959fb0f9642c55f95c9893bde555dabc90ccfe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15c79775_c4b0b618",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-08T13:53:51Z",
+      "side": 1,
+      "message": "Since fuel-baremetal and fuel-virtual are identical, I think we could use a single seba-{installer} set of params here and just add a new \"installer: fuel\" to deploy-type definitions above.",
+      "range": {
+        "startLine": 64,
+        "startChar": 10,
+        "endLine": 64,
+        "endChar": 31
+      },
+      "revId": "cb959fb0f9642c55f95c9893bde555dabc90ccfe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0eaaae4_fbb27102",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-08T13:53:51Z",
+      "side": 1,
+      "message": "afaict, INSTALLER_VERSION is not used anywhere, so I can be removed from here (and above too)",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 40
+      },
+      "revId": "cb959fb0f9642c55f95c9893bde555dabc90ccfe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9505633c_ed9cc005",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-08T13:53:51Z",
+      "side": 1,
+      "message": "imo this is redundant since deploy-type is already included in the job name",
+      "range": {
+        "startLine": 219,
+        "startChar": 52,
+        "endLine": 219,
+        "endChar": 79
+      },
+      "revId": "cb959fb0f9642c55f95c9893bde555dabc90ccfe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ccf680d_cea56afb",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-05-08T13:53:51Z",
+      "side": 1,
+      "message": "This looks identical to the scm defition above, so you could use YAML anchors to avoid duplication.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 234,
+        "endChar": 36
+      },
+      "revId": "cb959fb0f9642c55f95c9893bde555dabc90ccfe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
