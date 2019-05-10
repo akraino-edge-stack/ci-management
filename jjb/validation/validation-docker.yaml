@@ -36,14 +36,13 @@
     name: 'validation-{stream}-docker'
     project-type: multijob
     disabled: '{obj:disabled}'
+    node: 'centos7-builder-2c-1g'
 
     parameters:
       - validation-job-parameters:
           project: '{project}'
           branch: '{branch}'
           stream: '{stream}'
-          slave_label: 'ubuntu1604-docker-8c-8g'
-          arch_tag: 'amd64'
 
     properties:
       - throttle:
@@ -92,13 +91,15 @@
 - job-template:
     name: 'validation-docker-build-{arch_tag}-{stream}'
     disabled: '{obj:disabled}'
+    node: '{slave_label}'
+
     parameters:
       - validation-job-parameters:
           project: '{project}'
           branch: '{branch}'
           stream: '{stream}'
-          slave_label: '{slave_label}'
           arch_tag: '{arch_tag}'
+
     properties:
       - build-blocker:
           use-build-blocker: true
@@ -125,13 +126,13 @@
 
 - job-template:
     name: 'validation-docker-manifest-{stream}'
+    node: 'ubuntu1604-docker-8c-8g'
 
     parameters:
       - validation-job-parameters:
           project: '{project}'
           branch: '{branch}'
           stream: '{stream}'
-          slave_label: 'ubuntu1604-docker-8c-8g'
 
     disabled: '{obj:disabled}'
 
@@ -161,9 +162,3 @@
           project: '{project}'
           stream: '{stream}'
           branch: '{branch}'
-      - label:
-          name: SLAVE_LABEL
-          default: '{slave_label}'
-          description: 'Slave label on Jenkins'
-          all-nodes: false
-          node-eligibility: 'ignore-offline'
