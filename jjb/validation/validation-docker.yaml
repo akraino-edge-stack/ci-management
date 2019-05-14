@@ -37,6 +37,7 @@
     project-type: multijob
     disabled: '{obj:disabled}'
     node: 'centos7-builder-2c-1g'
+    build-timeout: 90
 
     parameters:
       - validation-job-parameters:
@@ -92,6 +93,7 @@
     name: 'validation-docker-build-{arch_tag}-{stream}'
     disabled: '{obj:disabled}'
     node: '{slave_label}'
+    build-timeout: 75
 
     parameters:
       - validation-job-parameters:
@@ -127,6 +129,7 @@
 - job-template:
     name: 'validation-docker-manifest-{stream}'
     node: 'ubuntu1604-docker-8c-8g'
+    build-timeout: 15
 
     parameters:
       - validation-job-parameters:
