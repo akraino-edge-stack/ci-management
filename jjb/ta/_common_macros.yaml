@@ -1,0 +1,83 @@
+---
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: ta-parameters-ci
+    parameters:
+     - string:
+        default: refs/heads/master
+        description: ''
+        name: SCM_REFSPEC_MANIFEST
+        trim: 'false'
+     - string:
+        default: refs/heads/master
+        description: ''
+        name: SCM_REFSPEC_BUILD_TOOLS
+        trim: 'false'
+     - string:
+        default: refs/heads/master
+        description: ''
+        name: SCM_REFSPEC_RPMBUILDER
+        trim: 'false'
+
+#######
+# SCM #
+#######
+- scm:
+    # Enhanced version of the global-jjb
+    name: ta-lf-infra-gerrit-scm
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}'
+          refspec: '{refspec}'
+          branches:
+            - 'refs/heads/{branch}'
+          skip-tag: true
+          wipe-workspace: true
+          submodule:
+            recursive: '{submodule-recursive}'
+            timeout: '{submodule-timeout}'
+          choosing-strategy: '{choosing-strategy}'
+          basedir: '{basedir}'
+
+###########
+# BUILDER #
+###########
+- builder:
+    name: ta-builder-tox
+    builders:
+        - shell: |2-
+            sudo yum install -y python-tox
+            for f in $(find $GERRIT_PROJECT -name tox.ini); do
+                pushd $(dirname $f)
+                #tox
+                popd
+            done
+
+- builder:
+    name: ta-builder-rpm
+    builders:
+        - shell: |2-
+            sudo yum install -y createrepo
+            build-tools/build_rpms.sh \
+              -m manifest \
+              -r $(dirname $(find . -maxdepth 3 -name 'makebuild.py')) \
+              -w work \
+              {project-to-build}
+            find work/
+
+- builder:
+    name: ta-builder-scm
+    builders:
+        - shell: |2-
+            git clone {git-url}/{project}
+            pushd $(basename {project})
+            if echo {ref} | grep -q "refs/changes"; then
+                git fetch origin {ref}
+                git checkout FETCH_HEAD
+            else
+                git checkout {ref}
+            fi
+            popd
