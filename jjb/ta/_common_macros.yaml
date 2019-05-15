@@ -1,0 +1,24 @@
+---
+- builder:
+    name: macro-builder-tox
+    builders:
+        - shell: |2-
+            #sudo yum install -y python-tox sudo
+            #pip install tox
+            #sudo pip install --upgrade pip
+            for f in $(find $GERRIT_PROJECT -name tox.ini); do
+                pushd $(dirname $f)
+                tox
+                popd
+            done
+
+- builder:
+    name: macro-builder-rpm
+    builders:
+        - shell: |2-
+            build-tools/build_rpms.sh \
+              -m manifest \
+              -r $(dirname $(find . -maxdepth 3 -name 'makebuild.py')) \
+              -w work \
+              {project-to-build}
+            find work/
