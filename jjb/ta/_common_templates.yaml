@@ -1,0 +1,97 @@
+---
+- job-template:
+    id: akraino-project-stream-type-ta
+    name: '{project-name}-{stream}-{project-type}'
+    archive-artifacts: >
+      work/**
+    build-days-to-keep: 30
+    build-timeout: 60
+    branch: master
+    stream: master
+    project-type: freestyle
+    submodule-recursive: true
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          project: '{project}'
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+          lftools-version: '{lftools-version}'
+
+      - ta-parameters-ci
+
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    scm:
+      - ta-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: 'gerrit'
+          basedir: '$GERRIT_PROJECT'
+
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            - patchset-created-event:
+                exclude-drafts: 'false'
+                exclude-trivial-rebase: 'false'
+                exclude-no-code-change: 'false'
+            - change-merged-event
+            - draft-published-event
+            - comment-added-contains-event:
+                comment-contains-value: 'recheck'
+            - comment-added-contains-event:
+                comment-contains-value: 'reverify'
+          projects:
+            - project-compare-type: 'ANT'
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/{branch}'
+              file-paths:
+                - compare-type: ANT
+                  pattern: '**/*'
+              disable-strict-forbidden-file-verification: 'true'
+              forbidden-file-paths:
+                - compare-type: ANT
+                  pattern: 'docs/**'
+          readable-message: true
+
+    builders:
+      - ta-builder-scm:
+          git-url: '{git-url}'
+          project: 'ta/manifest'
+          ref: '$SCM_REFSPEC_MANIFEST'
+      - ta-builder-scm:
+          git-url: '{git-url}'
+          project: 'ta/build-tools'
+          ref: '$SCM_REFSPEC_BUILD_TOOLS'
+      - ta-builder-scm:
+          git-url: '{git-url}'
+          project: 'ta/rpmbuilder'
+          ref: '$SCM_REFSPEC_RPMBUILDER'
+      - ta-builder-tox
+      - ta-builder-rpm:
+          project-to-build: '$GERRIT_PROJECT'
+
+    publishers:
+      - lf-infra-publish
