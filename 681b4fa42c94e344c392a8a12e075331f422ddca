@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25ea434a_d8b98df6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-05-15T14:35:27Z",
+      "side": 1,
+      "message": "Add [rec] and/or [ta] to the commit message since this repo is shared among all Akraino projects. We want to make it easy to tell from the git log which commits relate to REC/TA.",
+      "revId": "681b4fa42c94e344c392a8a12e075331f422ddca",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f099ecf_a3244de0",
+        "filename": "jjb/rec/rec-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-05-15T14:35:27Z",
+      "side": 1,
+      "message": "Remember to remove this one before merging.",
+      "revId": "681b4fa42c94e344c392a8a12e075331f422ddca",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
