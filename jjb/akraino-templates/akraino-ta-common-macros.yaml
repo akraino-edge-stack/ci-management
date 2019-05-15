@@ -1,0 +1,281 @@
+---
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: ta-parameters-manifest
+    parameters:
+     - string:
+        default: refs/heads/master
+        description: ''
+        name: SCM_REFSPEC_MANIFEST
+        trim: 'false'
+
+- parameter:
+    name: ta-parameters-build-tools
+    parameters:
+     - string:
+        default: refs/heads/master
+        description: ''
+        name: SCM_REFSPEC_BUILD_TOOLS
+        trim: 'false'
+
+- parameter:
+    name: ta-parameters-rpmbuilder
+    parameters:
+     - string:
+        default: refs/heads/master
+        description: ''
+        name: SCM_REFSPEC_RPMBUILDER
+        trim: 'false'
+
+- parameter:
+    name: ta-parameters-ci
+    parameters:
+     - ta-parameters-manifest
+     - ta-parameters-build-tools
+     - ta-parameters-rpmbuilder
+
+- parameter:
+    name: ta-parameters-ci-ta-rpmbuilder
+    parameters:
+     - ta-parameters-manifest
+     - ta-parameters-build-tools
+     - string:
+        default: ta/yarf
+        description: ''
+        name: SCM_PROJECT_TO_BUILD
+        trim: 'false'
+     - string:
+        default: refs/heads/master
+        description: ''
+        name: SCM_PROJECT_TO_BUILD_REFSPEC
+        trim: 'false'
+
+#######
+# SCM #
+#######
+- scm:
+    # Enhanced version of the global-jjb
+    name: ta-lf-infra-gerrit-scm
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}'
+          refspec: '{refspec}'
+          branches:
+            - 'refs/heads/{branch}'
+          skip-tag: true
+          wipe-workspace: true
+          submodule:
+            recursive: '{submodule-recursive}'
+            timeout: '{submodule-timeout}'
+          choosing-strategy: '{choosing-strategy}'
+          basedir: '{basedir}'
+
+###########
+# BUILDER #
+###########
+- builder:
+    name: ta-builder-tox
+    builders:
+        - lf-pip-install:
+            pip-packages: tox
+        - shell: |2-
+            source /tmp/v/tox/bin/activate
+            for f in $(find $GERRIT_PROJECT -name tox.ini); do
+                pushd $(dirname $f)
+                tox
+                popd
+            done
+
+- builder:
+    name: ta-builder-rpm
+    builders:
+        - shell: |2-
+            sudo yum install -y createrepo
+            ta/build-tools/build_rpms.sh \
+              -m ta/manifest \
+              -r ta/rpmbuilder \
+              -w work \
+              {project-to-build}
+            find work/
+
+- builder:
+    name: ta-builder-scm
+    builders:
+        - shell: |2-
+            git clone {git-url}/{project} {project}
+            pushd {project}
+            if echo {ref} | grep -q "refs/"; then
+                git fetch origin {ref}
+                git checkout FETCH_HEAD
+            else
+                git checkout {ref}
+            fi
+            popd
+
+- builder:
+    name: ta-lf-infra-ship-rpms
+    builders:
+      # Ensure no pre-existing .netrc files are overriding logs config
+      - lf-provide-maven-settings-cleanup
+      - config-file-provider:
+          files:
+            - file-id: 'images-snapshots-settings'
+              variable: 'SETTINGS_FILE'
+      - lf-infra-create-netrc:
+          server-id: images-snapshots
+      - shell: !include-raw:
+          # Ensure python-tools are installed in case job template does not
+          # call the lf-infra-pre-build macro.
+          - ../../global-jjb/shell/python-tools-install.sh
+          - ../ta/ta-rpm-deploy.sh
+      - shell: !include-raw:
+          - ../../global-jjb/shell/logs-clear-credentials.sh
+
+- builder:
+    name: ta-lf-infra-ship-isos
+    builders:
+      # Ensure no pre-existing .netrc files are overriding logs config
+      - lf-provide-maven-settings-cleanup
+      - config-file-provider:
+          files:
+            - file-id: 'images-snapshots-settings'
+              variable: 'SETTINGS_FILE'
+      - lf-infra-create-netrc:
+          server-id: images-snapshots
+      - shell: !include-raw:
+          # Ensure python-tools are installed in case job template does not
+          # call the lf-infra-pre-build macro.
+          - ../../global-jjb/shell/python-tools-install.sh
+          - ../ta/ta-iso-deploy.sh
+      - shell: !include-raw:
+          - ../../global-jjb/shell/logs-clear-credentials.sh
+
+- builder:
+    name: ta-builder-job-verify
+    builders:
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: 'ta/manifest'
+              ref: '$SCM_REFSPEC_MANIFEST'
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: 'ta/build-tools'
+              ref: '$SCM_REFSPEC_BUILD_TOOLS'
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: 'ta/rpmbuilder'
+              ref: '$SCM_REFSPEC_RPMBUILDER'
+        - ta-builder-tox
+        - ta-builder-rpm:
+              project-to-build: '$GERRIT_PROJECT'
+
+- builder:
+    name: ta-builder-job-verify-ta-rpmbuilder
+    builders:
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: 'ta/manifest'
+              ref: '$SCM_REFSPEC_MANIFEST'
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: 'ta/build-tools'
+              ref: '$SCM_REFSPEC_BUILD_TOOLS'
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: '$SCM_PROJECT_TO_BUILD'
+              ref: '$SCM_PROJECT_TO_BUILD_REFSPEC'
+        - ta-builder-tox
+        - ta-builder-rpm:
+              # Just package some random project to verify "rpmbuilder" changes
+              project-to-build: '$SCM_PROJECT_TO_BUILD'
+
+- builder:
+    name: ta-builder-job-merge
+    builders:
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: 'ta/manifest'
+              ref: '$SCM_REFSPEC_MANIFEST'
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: 'ta/build-tools'
+              ref: '$SCM_REFSPEC_BUILD_TOOLS'
+        - ta-builder-scm:
+              git-url: '{git-url}'
+              project: 'ta/rpmbuilder'
+              ref: '$SCM_REFSPEC_RPMBUILDER'
+        - ta-builder-rpm:
+              project-to-build: '$GERRIT_PROJECT'
+        - ta-lf-infra-ship-rpms
+
+- builder:
+    name: ta-builder-install-docker
+    builders:
+      - shell: |2-
+          sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+          sudo yum -y install docker-ce docker-ce-cli containerd.io
+          sudo systemctl start docker
+          # Ugly hack to make docker usable for non-root
+          # (adding to the group would require re-login)
+          sudo chmod 777 /var/run/docker.sock
+
+###########
+# TRIGGER #
+###########
+
+- trigger:
+    name: ta-trigger-job-verify
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            - patchset-created-event:
+                exclude-drafts: 'false'
+                exclude-trivial-rebase: 'false'
+                exclude-no-code-change: 'false'
+            - draft-published-event
+            - comment-added-contains-event:
+                comment-contains-value: 'recheck'
+            - comment-added-contains-event:
+                comment-contains-value: 'reverify'
+          projects:
+            - project-compare-type: 'ANT'
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/{branch}'
+          readable-message: true
+
+- trigger:
+    name: ta-trigger-job-merge
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            # Not sure if it would be better to use "change-merged" here and just clone the master
+            # branch. With the current approach the SCM can be identical in verify and merge jobs.
+            - ref-updated-event
+          projects:
+            - project-compare-type: 'ANT'
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/{branch}'
+          readable-message: true
+
+#############
+# PUBLISHER #
+#############
+
+- publisher:
+    name: ta-publisher-job-verify
+    publishers:
+        - lf-infra-publish
+
+- publisher:
+    name: ta-publisher-job-merge
+    publishers:
+        - lf-infra-publish
