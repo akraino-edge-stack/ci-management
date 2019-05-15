@@ -1,0 +1,6 @@
+---
+- project:
+    name: ta-project-view
+    project-name: ta
+    views:
+      - project-view
