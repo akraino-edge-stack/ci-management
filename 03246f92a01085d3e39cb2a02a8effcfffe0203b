@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c19bdb62_8d48285b",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-05-15T18:12:23Z",
+      "side": 1,
+      "message": "Should the triggers on these two job-templates match more closely? Also, neither one is a properly formatted merge trigger. Please take a look at merge jobs in global-jjb, such as this one: https://github.com/lfit/releng-global-jjb/blob/59af00afa9923c744db50cd105f9bb27b7356aaa/jjb/lf-ci-jobs.yaml#L351",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 50
+      },
+      "revId": "03246f92a01085d3e39cb2a02a8effcfffe0203b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a91af76d_98ce9c88",
+        "filename": "jjb/shell/kni_deploy_aws.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-05-15T18:12:23Z",
+      "side": 1,
+      "message": "I really don\u0027t like this. Could we please move this into a project repo, rather than your personal repo?",
+      "range": {
+        "startLine": 38,
+        "startChar": 59,
+        "endLine": 38,
+        "endChar": 100
+      },
+      "revId": "03246f92a01085d3e39cb2a02a8effcfffe0203b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb37a9c6_8a7d05e8",
+        "filename": "jjb/shell/kni_deploy_aws.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-05-15T18:12:23Z",
+      "side": 1,
+      "message": "Small style issue: Please remove one of these newlines.",
+      "revId": "03246f92a01085d3e39cb2a02a8effcfffe0203b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
