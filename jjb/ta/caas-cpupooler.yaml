@@ -1,0 +1,11 @@
+- project:
+    name: ta-caas-cpupooler
+    project: ta/caas-cpupooler
+    project-name: ta-caas-cpupooler
+    project-type:
+        - merge
+        - verify
+    build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta

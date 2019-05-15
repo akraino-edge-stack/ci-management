@@ -1,0 +1,11 @@
+- project:
+    name: ta-openstack-ansible-rabbitmq_server
+    project: ta/openstack-ansible-rabbitmq_server
+    project-name: ta-openstack-ansible-rabbitmq_server
+    project-type:
+        - merge
+        - verify
+    build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta

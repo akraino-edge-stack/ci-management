@@ -1,0 +1,10 @@
+- project:
+    name: ta-manifest
+    project: ta/manifest
+    project-name: ta-manifest
+    project-type:
+        - verify
+    build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta-build

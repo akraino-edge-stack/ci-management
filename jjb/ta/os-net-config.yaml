@@ -1,0 +1,11 @@
+- project:
+    name: ta-os-net-config
+    project: ta/os-net-config
+    project-name: ta-os-net-config
+    project-type:
+        - merge
+        - verify
+    build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta

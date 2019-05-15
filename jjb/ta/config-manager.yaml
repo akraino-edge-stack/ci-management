@@ -1,0 +1,11 @@
+- project:
+    name: ta-config-manager
+    project: ta/config-manager
+    project-name: ta-config-manager
+    project-type:
+        - merge
+        - verify
+    build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta

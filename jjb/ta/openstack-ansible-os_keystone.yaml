@@ -1,0 +1,11 @@
+- project:
+    name: ta-openstack-ansible-os_keystone
+    project: ta/openstack-ansible-os_keystone
+    project-name: ta-openstack-ansible-os_keystone
+    project-type:
+        - merge
+        - verify
+    build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta
