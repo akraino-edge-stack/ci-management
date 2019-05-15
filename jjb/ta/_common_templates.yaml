@@ -1,0 +1,202 @@
+---
+- job-template:
+    id: akraino-project-stream-type-ta
+    name: '{project-name}-{stream}-{project-type}'
+    archive-artifacts: >
+      work/**/*.spec
+      work/**/*.repo
+      work/**/*.ini
+      work/**/*.cfg
+      work/**/*.log
+      work/**/*.txt
+      work/**/*.json
+      work/tmp/rpms/mock_config/**
+    build-days-to-keep: 30
+    build-timeout: 60
+    branch: master
+    stream: master
+    project-type: freestyle
+    submodule-recursive: true
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          project: '{project}'
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+          lftools-version: '{lftools-version}'
+
+      - ta-parameters-ci
+
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    scm:
+      - ta-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: 'gerrit'
+          basedir: '$GERRIT_PROJECT'
+
+    triggers:
+      - ta-trigger-job-{project-type}:
+          gerrit-server-name: '{gerrit-server-name}'
+          project: '{project}'
+          branch: '{branch}'
+
+    builders:
+      - ta-builder-job-{project-type}:
+          git-url: '{git-url}'
+
+    publishers:
+      - ta-publisher-job-{project-type}
+
+- job-template:
+    id: akraino-project-stream-type-ta-rpmbuilder
+    name: '{project-name}-{stream}-{project-type}'
+    archive-artifacts: >
+      work/**/*.spec
+      work/**/*.repo
+      work/**/*.ini
+      work/**/*.cfg
+      work/**/*.log
+      work/**/*.txt
+      work/**/*.json
+      work/tmp/rpms/mock_config/**
+    build-days-to-keep: 30
+    build-timeout: 60
+    branch: master
+    stream: master
+    project-type: freestyle
+    submodule-recursive: true
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          project: '{project}'
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+          lftools-version: '{lftools-version}'
+
+      - ta-parameters-ci-{project-name}
+
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    scm:
+      - ta-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: 'gerrit'
+          basedir: '$GERRIT_PROJECT'
+
+    triggers:
+      - ta-trigger-job-{project-type}:
+          gerrit-server-name: '{gerrit-server-name}'
+          project: '{project}'
+          branch: '{branch}'
+
+    builders:
+      - ta-builder-job-{project-type}-{project-name}:
+          git-url: '{git-url}'
+
+    publishers:
+      - lf-infra-publish
+
+- job-template:
+    id: akraino-project-stream-type-ta-build
+    name: '{project-name}-{stream}-{project-type}'
+    archive-artifacts: >
+      work/**/*.spec
+      work/**/*.repo
+      work/**/*.ini
+      work/**/*.cfg
+      work/**/*.log
+      work/**/*.txt
+      work/**/*.json
+      work/tmp/rpms/mock_config/**
+    build-days-to-keep: 30
+    build-timeout: 60
+    branch: master
+    stream: master
+    project-type: freestyle
+    submodule-recursive: true
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          project: '{project}'
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+          lftools-version: '{lftools-version}'
+
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    scm:
+      - ta-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          choosing-strategy: 'gerrit'
+          basedir: '$GERRIT_PROJECT'
+
+    triggers:
+      - ta-trigger-job-{project-type}:
+          gerrit-server-name: '{gerrit-server-name}'
+          project: '{project}'
+          branch: '{branch}'
+
+    builders:
+      - ta-builder-tox
+      # TODO: verify ISO creation here
+
+    publishers:
+      - lf-infra-publish
