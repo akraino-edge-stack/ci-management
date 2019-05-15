@@ -1,0 +1,647 @@
+###########################################################
+# GLOBAL DEFINITIONS
+###########################################################
+- defaults:
+    name: global
+    #gerrit-project-prefix: rec
+    gerrit-http-url: http://gerrit.att-akraino.org
+    gerrit-project-prefix: ta
+    gerrit-http-url: https://gerrit.akraino.org
+    # sandbox.att-akraino.org
+    #credentials-id-gerrit: 5bb6ca1b-aece-46ac-9ff0-e9426145cb12
+    #credentials-id-nexus: 47e61bd3-09c7-4ad9-90fa-13b6b1ea65c3
+    #credentials-id-jenkins: 70819215-22d1-405d-aa99-3fd8149ebe2c
+    # jenkins.att-akraino.org
+    credentials-id-gerrit: c53088f4-9717-4ced-8601-d0603737feee
+    credentials-id-nexus: 47e61bd3-09c7-4ad9-90fa-13b6b1ea65c3
+    credentials-id-jenkins: 70819215-22d1-405d-aa99-3fd8149ebe2c
+
+###########################################################
+# PROJECT DEFINITIONS
+###########################################################
+- project:
+   name: build-rpm-in-container
+   project-name:
+    - access-management
+    - ansible-role-ntp
+    - caas-cpupooler
+    - caas-danm
+    - caas-etcd
+    - caas-helm
+    - caas-install
+    - caas-kubedns
+    - caas-kubernetes
+    - caas-lcm
+    - caas-logging
+    - caas-metrics
+    - caas-registry
+    - caas-security
+    - cm-plugins
+    - config-manager
+    - distributed-state-server
+    - hostcli
+    - hw-detector
+    - image-provision
+    - infra-ansible
+    - ironic
+    - ironic-virtmedia-driver
+    - ironicclient
+    - lockcli
+    - monitoring
+    - openstack-ansible
+    - openstack-ansible-galera_client
+    - openstack-ansible-galera_server
+    - openstack-ansible-haproxy_server
+    - openstack-ansible-memcached_server
+    - openstack-ansible-openstack_openrc
+    - openstack-ansible-os_ironic
+    - openstack-ansible-os_keystone
+    - openstack-ansible-plugins
+    - openstack-ansible-rabbitmq_server
+    - openstack-ansible-rsyslog_client
+    - os-net-config
+    - python-ilorest-library
+    - python-peewee
+    - start-menu
+    - storage
+    - yarf
+   project-type:
+    - verify
+    - merge
+   jobs:
+    - 'jjb/{project-name}-{project-type}'
+
+- project:
+   name: build-rpm-in-vm
+   project-name:
+    - ipa-deployer
+   project-type:
+    - verify
+    - merge
+   jobs:
+    - 'jjb/{project-name}-{project-type}':
+        node_var: centos_vm
+
+- project:
+   name: verify-build-image
+   project-name:
+    - manifest
+    - build-tools
+   project-type:
+    - verify
+   jobs:
+    - 'jjb/{project-name}-build-{project-type}'
+
+- project:
+   name: rpmbuilder-tool-verify
+   jobs:
+    - 'jjb/rpmbuilder-verify':
+       project-name: rpmbuilder
+       project-type: verify
+
+- project:
+   name: ci-build-image
+   jobs:
+    - 'jjb/build-image':
+        node_var: centos_vm
+
+###########################################################
+# TEMPLATE DEFINITIONS
+###########################################################
+- job-template:
+    name: 'jjb/{project-name}-{project-type}'
+    # This way node label is set only if given
+    node_var:
+    node: '{obj:node_var}'
+    block-downstream: false
+    block-upstream: false
+    project-type: freestyle
+    disabled: false
+    concurrent: true
+
+    description: |2-
+      Nothing magical here
+
+    parameters:
+     - macro-parameter-{project-type}:
+            project-name: '{project-name}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+
+    # Requires Multiple SCM plugin
+    scm:
+        - macro-scm:
+            gerrit-project-name: manifest
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+        - macro-scm:
+            gerrit-project-name: build-tools
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+        - macro-scm:
+            gerrit-project-name: rpmbuilder
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+        - macro-scm-{project-type}:
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+
+    triggers:
+        - macro-trigger-gerrit-{project-type}:
+            project-name: '{project-name}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+
+    wrappers:
+        - macro-wrapper-common:
+            credentials-id-nexus: '{credentials-id-nexus}'
+            credentials-id-jenkins: '{credentials-id-jenkins}'
+
+    builders:
+        - macro-builder-rpm-{project-type}:
+            project-to-build: '$GERRIT_PROJECT'
+
+    # Requires PostBuildScript plugin
+    # TODO: This hacky nexus publish is far from elegant :(
+    #        * May fail when "merge" job is executed twice and it tries to upload identical artifacts again to the rpms-release repository
+    #        * Fails without proper error message
+    #        * Hides curl error messages, returns just the HTTP response code
+    #publishers:
+    #- postbuildscript:
+    #    builders:
+    #        - build-on:
+    #            - SUCCESS
+    #            - UNSTABLE
+    #            - FAILURE
+    #            - NOT_BUILT
+    #            - ABORTED
+    #          build-steps:
+    #            - shell:
+    #                !include-raw:
+    #                    - include-raw-nexus-upload-lib.sh
+    #                    - include-raw-nexus-upload-{project-type}.sh
+
+- job-template:
+    name: 'jjb/{project-name}-build-{project-type}'
+    # This way node label is set only if given
+    node_var:
+    node: '{obj:node_var}'
+    block-downstream: false
+    block-upstream: false
+    project-type: freestyle
+    disabled: false
+    concurrent: true
+
+    description: |2-
+      Nothing magical here
+
+    parameters:
+     - macro-parameter-{project-type}:
+            project-name: '{project-name}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+
+    # Requires Multiple SCM plugin
+    scm:
+        - macro-scm-{project-type}:
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+
+    triggers:
+        - macro-trigger-gerrit-{project-type}:
+            project-name: '{project-name}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+
+    wrappers:
+        - macro-wrapper-common:
+            credentials-id-nexus: '{credentials-id-nexus}'
+            credentials-id-jenkins: '{credentials-id-jenkins}'
+
+    builders:
+        - macro-builder-{project-type}
+
+    # Requires PostBuildScript plugin
+    # TODO: This hacky nexus publish is far from elegant :(
+    #        * May fail when "merge" job is executed twice and it tries to upload identical artifacts again to the rpms-release repository
+    #        * Fails without proper error message
+    #        * Hides curl error messages, returns just the HTTP response code
+    #publishers:
+    #- postbuildscript:
+    #    builders:
+    #        - build-on:
+    #            - SUCCESS
+    #            - UNSTABLE
+    #            - FAILURE
+    #            - NOT_BUILT
+    #            - ABORTED
+    #          build-steps:
+    #            - shell: !include-raw:
+    #                - include-raw-nexus-upload-lib.sh
+    #                - include-raw-nexus-upload-verify-logs.sh
+
+- job-template:
+    name: 'jjb/rpmbuilder-verify'
+    # This way node label is set only if given
+    node_var:
+    node: '{obj:node_var}'
+    block-downstream: false
+    block-upstream: false
+    project-type: freestyle
+    disabled: false
+    concurrent: true
+
+    description: |2-
+      Nothing magical here
+
+    parameters:
+     - macro-parameter-{project-type}:
+            project-name: '{project-name}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+
+    # Requires Multiple SCM plugin
+    scm:
+        - macro-scm:
+            gerrit-project-name: manifest
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+        - macro-scm:
+            gerrit-project-name: build-tools
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+        - macro-scm:
+            gerrit-project-name: yarf
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+        - macro-scm-{project-type}:
+            gerrit-http-url: '{gerrit-http-url}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+
+    triggers:
+        - macro-trigger-gerrit-{project-type}:
+            project-name: '{project-name}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+
+    wrappers:
+        - macro-wrapper-common:
+            credentials-id-nexus: '{credentials-id-nexus}'
+            credentials-id-jenkins: '{credentials-id-jenkins}'
+
+    builders:
+        - macro-builder-rpm-{project-type}:
+            project-to-build: yarf
+
+    # Requires PostBuildScript plugin
+    # TODO: This hacky nexus publish is far from elegant :(
+    #        * May fail when "merge" job is executed twice and it tries to upload identical artifacts again to the rpms-release repository
+    #        * Fails without proper error message
+    #        * Hides curl error messages, returns just the HTTP response code
+    #publishers:
+    #- postbuildscript:
+    #    builders:
+    #        - build-on:
+    #            - SUCCESS
+    #            - UNSTABLE
+    #            - FAILURE
+    #            - NOT_BUILT
+    #            - ABORTED
+    #          build-steps:
+    #            - shell:
+    #                !include-raw:
+    #                    - include-raw-nexus-upload-lib.sh
+    #                    - include-raw-nexus-upload-rpmbuilder.sh
+
+- job-template:
+    name: 'jjb/build-image'
+    # This way node label is set only if given
+    node_var:
+    node: '{obj:node_var}'
+    block-downstream: false
+    block-upstream: false
+    project-type: freestyle
+    disabled: false
+    concurrent: false
+
+    description: |2-
+      Nothing magical here
+
+    parameters:
+     - string:
+        default: '*/master'
+        description: 'can be also e.g. refs/changes/99/199/1'
+        name: MANIFEST_REF
+        trim: 'false'
+     - string:
+        default: '*/master'
+        description: 'can be also e.g. refs/changes/99/199/1'
+        name: BUILD_TOOLS_REF
+        trim: 'false'
+
+    # Requires Multiple SCM plugin
+    scm:
+        - macro-scm-refspec:
+            gerrit-project-name: manifest
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+            gerrit-project-branch: $MANIFEST_REF
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+            gerrit-http-url: '{gerrit-http-url}'
+        - macro-scm-refspec:
+            gerrit-project-name: build-tools
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+            gerrit-project-branch: $BUILD_TOOLS_REF
+            credentials-id-gerrit: '{credentials-id-gerrit}'
+            gerrit-http-url: '{gerrit-http-url}'
+
+    triggers:
+        - timed: "@daily"
+
+    wrappers:
+        - macro-wrapper-common:
+            credentials-id-nexus: '{credentials-id-nexus}'
+            credentials-id-jenkins: '{credentials-id-jenkins}'
+
+    builders:
+        - macro-builder-image
+
+    # Requires PostBuildScript plugin
+    # TODO: This hacky nexus publish is far from elegant :(
+    #        * May fail when "merge" job is executed twice and it tries to upload identical artifacts again to the rpms-release repository
+    #        * Fails without proper error message
+    #        * Hides curl error messages, returns just the HTTP response code
+    #publishers:
+    #- postbuildscript:
+    #    builders:
+    #        - build-on:
+    #            - SUCCESS
+    #            - UNSTABLE
+    #            - FAILURE
+    #            - NOT_BUILT
+    #            - ABORTED
+    #          build-steps:
+    #            - shell:
+    #                !include-raw:
+    #                    - include-raw-nexus-upload-lib.sh
+    #                    - include-raw-nexus-upload-images.sh
+
+
+###########################################################
+# MACRO DEFINITIONS
+###########################################################
+- scm:
+    name: macro-scm
+    scm:
+      - git:
+         url: '{gerrit-http-url}/{gerrit-project-prefix}/{gerrit-project-name}.git'
+         credentials-id: '{credentials-id-gerrit}'
+         branches:
+          - '*/master'
+         basedir: '{gerrit-project-name}'
+
+- scm:
+    name: macro-scm-refspec
+    scm:
+        - git:
+            url: '{gerrit-http-url}/{gerrit-project-prefix}/{gerrit-project-name}.git'
+            credentials-id: '{credentials-id-gerrit}'
+            name: origin
+            refspec: refs/changes/*:refs/changes/*
+            branches:
+                - '{gerrit-project-branch}'
+            basedir: '{gerrit-project-name}'
+
+- scm:
+    name: macro-scm-verify
+    scm:
+      - git:
+         url: '{gerrit-http-url}/$GERRIT_PROJECT.git'
+         credentials-id: '{credentials-id-gerrit}'
+         name: origin
+         refspec: $GERRIT_REFSPEC
+         branches:
+          - refs/heads/$GERRIT_BRANCH
+         basedir: $GERRIT_PROJECT
+         choosing-strategy: gerrit
+
+- scm:
+    name: macro-scm-merge
+    scm:
+      - git:
+         url: '{gerrit-http-url}/$GERRIT_PROJECT.git'
+         credentials-id: '{credentials-id-gerrit}'
+         branches:
+          - refs/heads/$GERRIT_BRANCH
+         basedir: $GERRIT_PROJECT
+         choosing-strategy: gerrit
+
+- wrapper:
+    name: macro-wrapper-common
+    wrappers:
+    - workspace-cleanup
+    - credentials-binding:
+      - username-password-separated:
+          credential-id: '{credentials-id-nexus}'
+          username: NEXUS_ADMIN
+          password: NEXUS_PASS
+      - username-password-separated:
+          credential-id: '{credentials-id-jenkins}'
+          username: JENKINS_USER
+          password: JENKINS_PASS
+
+- trigger:
+    name: macro-trigger-gerrit-verify
+    triggers:
+      - gerrit:
+          server-name: Primary
+          trigger-on:
+            - patchset-created-event:
+                exclude-drafts: true
+            - change-restored-event
+            - draft-published-event
+            - comment-added-contains-event:
+                comment-contains-value: '^Patch Set[ ]+[0-9]+:([ ]+|[\n]+)(recheck|reverify)$'
+          projects:
+            - project-compare-type: 'PLAIN'
+              project-pattern: '{gerrit-project-prefix}/{project-name}'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/master'
+          dynamic-trigger-enabled: false
+          silent: false
+          escape-quotes: true
+
+- trigger:
+    name: macro-trigger-gerrit-merge
+    triggers:
+      - gerrit:
+          server-name: Primary
+          trigger-on:
+            - ref-updated-event
+          projects:
+            - project-compare-type: 'PLAIN'
+              project-pattern: '{gerrit-project-prefix}/{project-name}'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/master'
+          dynamic-trigger-enabled: false
+          silent: false
+          escape-quotes: true
+
+# This was tried out but was not working
+# Seems hard to provide complex structures as parameters
+#- trigger:
+#    name: macro-trigger-gerrit-common
+#    triggers:
+#      - gerrit:
+#          server-name: Primary
+#          trigger-on:
+#            - {triggers}
+#          projects:
+#            - project-compare-type: 'PLAIN'
+#              project-pattern: '{gerrit-project-prefix}/{project-name}'
+#              branches:
+#                - branch-compare-type: 'ANT'
+#                  branch-pattern: '**/master'
+#          dynamic-trigger-enabled: false
+#          silent: false
+#          escape-quotes: true
+#          #readable-message: true
+#          #notification-level: ALL
+#          #no-name-and-email: true
+#
+#- trigger:
+#    name: macro-trigger-gerrit-verify2
+#    triggers:
+#        - macro-trigger-gerrit-common:
+#            project-name: '{project-name}'
+#            gerrit-project-prefix: '{gerrit-project-prefix}'
+#            triggers:
+#                - patchset-created-event:
+#                    exclude-drafts: true
+#                - change-restored-event
+#                - draft-published-event
+#                - comment-added-contains-event:
+#                    comment-contains-value: '^Patch Set[ ]+[0-9]+:([ ]+|[\n]+)(recheck|reverify)$'
+#
+#- trigger:
+#    name: macro-trigger-gerrit-merge2
+#    triggers:
+#        - macro-trigger-gerrit-common:
+#            project-name: '{project-name}'
+#            gerrit-project-prefix: '{gerrit-project-prefix}'
+#            triggers:
+#                - ref-updated-event
+
+- builder:
+    name: macro-builder-tox
+    builders:
+        - shell: |2-
+            #sudo yum install -y python-tox sudo
+            #pip install tox
+            #sudo pip install --upgrade pip
+            for f in $(find $GERRIT_PROJECT -name tox.ini); do
+                pushd $(dirname $f)
+                tox
+                popd
+            done
+
+- builder:
+    name: macro-builder-rpm
+    builders:
+        - shell: |2-
+            build-tools/build_rpms.sh \
+              -m manifest \
+              -r $(dirname $(find . -maxdepth 3 -name 'makebuild.py')) \
+              -w work \
+              {project-to-build}
+            find work/
+
+- builder:
+    name: macro-builder-sonar
+    builders:
+        - shell: |2-
+            cat > sonar-project.properties << EOF
+            sonar.projectKey={sonar-project-key}
+            sonar.projectVersion={sonar-project-version}
+            sonar.sources=$WORKSPACE/$GERRIT_PROJECT
+            EOF
+        # This would be preferred but requires to know the sonar installation name within the Jenkins
+        # (And that cannot be obtained by non-admins)
+        #- sonar:
+        #    sonar-name: Sonar
+        # Instead we now use raw XML
+        - raw:
+            xml: |
+                <hudson.plugins.sonar.SonarRunnerBuilder plugin="sonar">
+                  <project/>
+                  <properties/>
+                  <javaOpts/>
+                  <additionalArguments/>
+                  <jdk>(Inherit From Job)</jdk>
+                  <task/>
+                </hudson.plugins.sonar.SonarRunnerBuilder>
+
+- builder:
+    name: macro-builder-image
+    builders:
+        - shell: |2-
+            unset DOCKER_HOST
+            ./build-tools/build_images.sh -m manifest -w work
+            find work
+
+- builder:
+    name: macro-builder-verify
+    builders:
+        - macro-builder-tox
+        - macro-builder-sonar:
+            sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_CHANGE_NUMBER | tr '/' ':')"
+            sonar-project-version: "$GERRIT_REFSPEC"
+
+- builder:
+    name: macro-builder-rpm-verify
+    builders:
+        - macro-builder-tox
+        - macro-builder-rpm:
+            project-to-build: '{project-to-build}'
+        - macro-builder-sonar:
+            sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_CHANGE_NUMBER | tr '/' ':')"
+            sonar-project-version: "$GERRIT_REFSPEC"
+
+- builder:
+    name: macro-builder-rpm-merge
+    builders:
+        - macro-builder-rpm:
+            project-to-build: '{project-to-build}'
+        - macro-builder-sonar:
+            sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_BRANCH | tr '/' ':')"
+            sonar-project-version: "$(cd $GERRIT_PROJECT; git describe --always --long --all --tags)"
+
+- parameter:
+    name: macro-parameter-merge
+    parameters:
+     - string:
+        default: '{gerrit-project-prefix}/{project-name}'
+        description: ''
+        name: GERRIT_PROJECT
+        trim: 'false'
+     - string:
+        default: master
+        description: ''
+        name: GERRIT_BRANCH
+        trim: 'false'
+
+- parameter:
+    name: macro-parameter-verify
+    parameters:
+     - macro-parameter-merge:
+            project-name: '{project-name}'
+            gerrit-project-prefix: '{gerrit-project-prefix}'
+     - string:
+        default: refs/heads/master
+        description: ''
+        name: GERRIT_REFSPEC
+        trim: 'false'
