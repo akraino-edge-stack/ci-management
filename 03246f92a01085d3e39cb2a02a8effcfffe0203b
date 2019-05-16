@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "610a4694_7f4187ab",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 140
+      },
+      "writtenOn": "2019-05-16T07:26:54Z",
+      "side": 1,
+      "message": "Ok so let me tell you what i need then maybe you can suggest how i do it, as i seem to struggle with the triggers. This first job needs to be just triggered when a change in kni/installer is merged. I don\u0027t want it to be triggered as verify job.\nWhile in the second job, in kni/templates, i want it to act as a verify job, but only when a file inside the aws directory is part of the patch. And in that case, i also want it to be triggered when a change in kni/templates is merged. How can i achieve it? Thanks!",
+      "parentUuid": "c19bdb62_8d48285b",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 50
+      },
+      "revId": "03246f92a01085d3e39cb2a02a8effcfffe0203b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a91af76d_98ce9c88",
         "filename": "jjb/shell/kni_deploy_aws.sh",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-15T18:12:23Z",
       "side": 1,
       "message": "I really don\u0027t like this. Could we please move this into a project repo, rather than your personal repo?",
+      "range": {
+        "startLine": 38,
+        "startChar": 59,
+        "endLine": 38,
+        "endChar": 100
+      },
+      "revId": "03246f92a01085d3e39cb2a02a8effcfffe0203b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31ed2d25_429dfc59",
+        "filename": "jjb/shell/kni_deploy_aws.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 140
+      },
+      "writtenOn": "2019-05-16T07:26:54Z",
+      "side": 1,
+      "message": "I was thinking in doing that, but those include credentials that i only want myself to see, as they are my personal AWS credentials. How can i move it inside an akraino project while being hidden to everyone else, is that possible?",
+      "parentUuid": "a91af76d_98ce9c88",
       "range": {
         "startLine": 38,
         "startChar": 59,
