@@ -120,11 +120,16 @@
       - trigger-builds:
           - project: 'iec-deploy-{deploy-type}-daily-{stream}'
             current-parameters: false
-            predefined-parameters: |
+            predefined-parameters:
               DEPLOY_SCENARIO={scenario}
             same-node: true
             block: true
-          - project: 'iec-install-{usecase}-daily-{stream}'
+          - project:
+              !j2: |
+                {%- for uc in usecase -%}
+                iec-install-{{ uc | first }}-daily-{{stream}}
+                {%- if not loop.last -%},{%- endif -%}
+                {%- endfor %}
             current-parameters: false
             same-node: true
             block: true
