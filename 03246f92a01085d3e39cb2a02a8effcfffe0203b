@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0d40a3da_b04cc97e",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-05-16T17:46:04Z",
+      "side": 1,
+      "message": "I\u0027ll push a suggested fix for this. Also, I would like these to use the standard \"verify\" and \"merge\" labels, so that this is less confusing. They\u0027re currently named essentially the same, so it\u0027s very confusing to have them run under different conditions.",
+      "parentUuid": "610a4694_7f4187ab",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 50
+      },
+      "revId": "03246f92a01085d3e39cb2a02a8effcfffe0203b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a91af76d_98ce9c88",
         "filename": "jjb/shell/kni_deploy_aws.sh",
         "patchSetId": 4
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I was thinking in doing that, but those include credentials that i only want myself to see, as they are my personal AWS credentials. How can i move it inside an akraino project while being hidden to everyone else, is that possible?",
       "parentUuid": "a91af76d_98ce9c88",
+      "range": {
+        "startLine": 38,
+        "startChar": 59,
+        "endLine": 38,
+        "endChar": 100
+      },
+      "revId": "03246f92a01085d3e39cb2a02a8effcfffe0203b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4969bf89_edab31fe",
+        "filename": "jjb/shell/kni_deploy_aws.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-05-16T17:46:04Z",
+      "side": 1,
+      "message": "Credentials should be stored on the Jenkins server. It\u0027s not much different than when we store creds for external Jenkins build nodes.",
+      "parentUuid": "31ed2d25_429dfc59",
       "range": {
         "startLine": 38,
         "startChar": 59,
