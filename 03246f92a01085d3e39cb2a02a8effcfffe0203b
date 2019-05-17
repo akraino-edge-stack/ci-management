@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "bd3f6c56_093994e0",
+        "filename": "jjb/shell/kni_deploy_aws.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 140
+      },
+      "writtenOn": "2019-05-17T06:23:43Z",
+      "side": 1,
+      "message": "Ok how can i do it with the current credentials system? This secret repo contains 4 files: aws-access-key-id, aws-secret-access-key, coreos-pull-secret, ssh-pub-key. The installer is setup to consume those files independently, it can grab them from a private repo or from a local folder. How can i translate that into jenkins credentials? I was thinking you were only allowing to setup ssh keys there, but not individual files ?",
+      "parentUuid": "4969bf89_edab31fe",
+      "range": {
+        "startLine": 38,
+        "startChar": 59,
+        "endLine": 38,
+        "endChar": 100
+      },
+      "revId": "03246f92a01085d3e39cb2a02a8effcfffe0203b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb37a9c6_8a7d05e8",
         "filename": "jjb/shell/kni_deploy_aws.sh",
         "patchSetId": 4
