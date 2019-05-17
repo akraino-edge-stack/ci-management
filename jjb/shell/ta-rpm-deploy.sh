@@ -16,13 +16,13 @@ set -eu -o pipefail
 
 set -x  # Trace commands for this script to make debugging easier.
 
-NEXUS_REPO=images-snapshots
+NEXUS_REPO=rpm.snapshots
 release_path=TA/release-1
 
 repo_dir="$WORKSPACE/work/nexus/$NEXUS_REPO"
 x86_dir="$repo_dir/$release_path/rpms/x86_64"
 sources_dir="$repo_dir/$release_path/rpms/Sources"
-nexus_repo_url="$NEXUS_URL/content/repositories/$NEXUS_REPO"
+nexus_repo_url="$ALT_NEXUS_URL/repository/$NEXUS_REPO"
 
 mkdir -p "$x86_dir"
 mkdir -p "$sources_dir"

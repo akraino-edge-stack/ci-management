@@ -122,10 +122,12 @@
       - lf-provide-maven-settings-cleanup
       - config-file-provider:
           files:
-            - file-id: 'images-snapshots-settings'
+            - file-id: 'ta-settings'
               variable: 'SETTINGS_FILE'
+      - inject:
+          properties-content: 'ALT_NEXUS_URL=https://nexus3.akraino.org'
       - lf-infra-create-netrc:
-          server-id: images-snapshots
+          server-id: rpm.snapshots
       - shell: !include-raw:
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
@@ -141,7 +143,7 @@
       - lf-provide-maven-settings-cleanup
       - config-file-provider:
           files:
-            - file-id: 'images-snapshots-settings'
+            - file-id: 'ta-settings'
               variable: 'SETTINGS_FILE'
       - lf-infra-create-netrc:
           server-id: images-snapshots
