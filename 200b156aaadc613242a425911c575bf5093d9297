@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3360aed7_8a7e9949",
+        "filename": "jjb/ta/access-management.yaml",
+        "patchSetId": 22
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-05-20T17:42:00Z",
+      "side": 1,
+      "message": "Please remove views from all files except ta.yaml. This view should contain all ta jobs, rather than giving each project its own view.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "200b156aaadc613242a425911c575bf5093d9297",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
