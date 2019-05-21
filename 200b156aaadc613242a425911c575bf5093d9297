@@ -22,6 +22,30 @@
       "revId": "200b156aaadc613242a425911c575bf5093d9297",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29a08637_dbd30c60",
+        "filename": "jjb/ta/access-management.yaml",
+        "patchSetId": 22
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 178
+      },
+      "writtenOn": "2019-05-21T20:36:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3360aed7_8a7e9949",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "200b156aaadc613242a425911c575bf5093d9297",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
