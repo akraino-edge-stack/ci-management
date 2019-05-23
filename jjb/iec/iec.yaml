@@ -196,6 +196,8 @@
             - shell:
                 !include-raw-escape: ./iec-compass-deploy.sh
             - shell:
+                !include-raw-escape: ./iec-fdn-deploy.sh
+            - shell:
                 !include-raw-escape: ./iec-compass-destroy.sh
       - conditional-step:
           condition-kind: regex-match
