@@ -17,7 +17,7 @@
     # -------------------------------
     # DEPLOY TYPE DEFINITIONS
     # -------------------------------
-    deploy_type:
+    deploy-type:
       - fuel-baremetal:
           slave-label: 'aarch64_dev'
           scenario: 'k8-calico-iec-noha'
@@ -37,9 +37,9 @@
           scenario: 'k8-calico-iec-noha'
 
     jobs:
-      - 'iec-{deploy_type}-daily-{stream}'
-      - 'iec-deploy-{deploy_type}-daily-{stream}'
-      - 'iec-install-{usecase}-{deploy_type}-daily-{stream}'
+      - 'iec-{deploy-type}-daily-{stream}'
+      - 'iec-deploy-{deploy-type}-daily-{stream}'
+      - 'iec-install-{usecase}-{deploy-type}-daily-{stream}'
 
 ##############
 # PARAMETERS #
@@ -87,7 +87,7 @@
 # job templates
 ########################
 - job-template:
-    name: 'iec-{deploy_type}-daily-{stream}'
+    name: 'iec-{deploy-type}-daily-{stream}'
     disabled: '{obj:disabled}'
     concurrent: false
     node: '{slave-label}'
@@ -100,7 +100,7 @@
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-{deploy_type}-daily-.*'
+            - '.*-{deploy-type}-daily-.*'
           blocking-level: 'NODE'
 
     wrappers:
@@ -108,7 +108,7 @@
           name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO'
 
     triggers:
-      - 'iec-{deploy_type}-daily-{stream}-trigger'
+      - 'iec-{deploy-type}-daily-{stream}-trigger'
 
     parameters:
       - lf-infra-parameters:
@@ -122,24 +122,19 @@
 
     builders:
       - trigger-builds:
-          - project: 'iec-deploy-{deploy_type}-daily-{stream}'
+          - project: 'iec-deploy-{deploy-type}-daily-{stream}'
             current-parameters: false
-            predefined-parameters:
+            predefined-parameters: |
               DEPLOY_SCENARIO={scenario}
             same-node: true
             block: true
-          - project:
-              !j2: |
-                {%- for uc in usecase -%}
-                iec-install-{{ uc | first }}-{{ deploy_type }}-daily-{{ stream }}
-                {%- if not loop.last -%},{%- endif -%}
-                {%- endfor %}
+          - project: 'iec-install-{usecase}-daily-{stream}'
             current-parameters: false
             same-node: true
             block: true
 
 - job-template:
-    name: 'iec-deploy-{deploy_type}-daily-{stream}'
+    name: 'iec-deploy-{deploy-type}-daily-{stream}'
     concurrent: true
     node: '{slave-label}'
     properties:
@@ -151,7 +146,7 @@
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-deploy-{deploy_type}-daily-*'
+            - '.*-deploy-{deploy-type}-daily-*'
           blocking-level: 'NODE'
 
     parameters:
@@ -189,18 +184,20 @@
       - conditional-step:
           condition-kind: regex-match
           regex: 'compass-.*'
-          label: '{deploy_type}'
+          label: '{deploy-type}'
           steps:
             - shell:
                 !include-raw-escape: ./iec-compass-build.sh
             - shell:
                 !include-raw-escape: ./iec-compass-deploy.sh
             - shell:
+                !include-raw-escape: ./iec-fdn-deploy.sh
+            - shell:
                 !include-raw-escape: ./iec-compass-destroy.sh
       - conditional-step:
           condition-kind: regex-match
           regex: 'fuel-.*'
-          label: '{deploy_type}'
+          label: '{deploy-type}'
           steps:
             - shell:
                 !include-raw-escape: ./iec-fuel-deploy.sh
@@ -211,7 +208,7 @@
       - lf-infra-publish
 
 - job-template:
-    name: 'iec-install-{usecase}-{deploy_type}-daily-{stream}'
+    name: 'iec-install-{usecase}-{deploy-type}-daily-{stream}'
     concurrent: true
     node: '{slave-label}'
     properties:
@@ -223,8 +220,8 @@
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-deploy-{deploy_type}-daily-*'
-            - '.*-install-{usecase}-{deploy_type}-daily-*'
+            - '.*-deploy-{deploy-type}-daily-*'
+            - '.*-install-{usecase}-{deploy-type}-daily-*'
           blocking-level: 'NODE'
 
     parameters:
@@ -237,7 +234,7 @@
 
     wrappers:
       - build-name:
-          name: '$BUILD_NUMBER - Usecase: ${usecase} DeployType: ${deploy_type}'
+          name: '$BUILD_NUMBER - Usecase: ${usecase} DeployType: ${deploy-type}'
 
     scm: *scm
 
