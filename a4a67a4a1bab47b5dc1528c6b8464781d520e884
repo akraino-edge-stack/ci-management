@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "1c00babd_93bae1bc",
+        "filename": "jenkins-config/clouds/openstack/cattle/centos7-builder-8c-16g.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-05-24T17:53:35Z",
+      "side": 1,
+      "message": "Is it ok for the image name to remain unchanged from the 8GB image? I assumed it would need a different name in https://gerrit.akraino.org/r/#/c/ci-management/+/834/ and used today\u0027s date and time in what I assume is a date/time string in the image name.",
+      "revId": "a4a67a4a1bab47b5dc1528c6b8464781d520e884",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82e2dbce_b6159833",
         "filename": "jjb/ta/ci-build.yaml",
         "patchSetId": 2
