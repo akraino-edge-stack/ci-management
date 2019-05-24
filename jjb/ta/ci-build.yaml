@@ -2,7 +2,7 @@
     name: ta-ci-build
     project: none
     project-name: none
-    build-node: centos7-builder-8c-8g
+    build-node: centos7-builder-8c-16g
     stream: master
     jobs:
       - akraino-project-release-ta-build
