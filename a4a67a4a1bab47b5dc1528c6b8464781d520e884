@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "348c3ad2_99d3f233",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-05-24T17:42:38Z",
+      "side": 1,
+      "message": "This entire paragraph can be removed, as this information is now known and is part of the commit.",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "a4a67a4a1bab47b5dc1528c6b8464781d520e884",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82e2dbce_b6159833",
+        "filename": "jjb/ta/ci-build.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-05-24T17:42:38Z",
+      "side": 1,
+      "message": "This needs to be changed to 8c-16g",
+      "range": {
+        "startLine": 5,
+        "startChar": 32,
+        "endLine": 5,
+        "endChar": 38
+      },
+      "revId": "a4a67a4a1bab47b5dc1528c6b8464781d520e884",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
