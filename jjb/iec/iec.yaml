@@ -15,18 +15,27 @@
           disabled: false
 
     # -------------------------------
+    # INSTALLER DEFINITIONS
+    # -------------------------------
+    installer:
+      - fuel
+      - compass
+
+    # -------------------------------
     # DEPLOY TYPE DEFINITIONS
     # -------------------------------
     deploy_type:
-      - fuel-baremetal:
+      - baremetal:
           slave-label: 'aarch64_dev'
           scenario: 'k8-calico-iec-noha'
-      - fuel-virtual:
+      - virtual:
           slave-label: 'aarch64_dev'
           scenario: 'k8-calico-iec-noha'
-      - compass-virtual:
-          slave-label: 'aarch64_dev'
-          scenario: 'k8-calico-iec-noha'
+
+    exclude:
+      # Compass does not run against baremetal PODs yet
+      - installer: compass
+        deploy_type: baremetal
 
     # -------------------------------
     # USECASE DEFINITIONS
@@ -37,9 +46,10 @@
           scenario: 'k8-calico-iec-noha'
 
     jobs:
-      - 'iec-{deploy_type}-daily-{stream}'
-      - 'iec-deploy-{deploy_type}-daily-{stream}'
-      - 'iec-install-{usecase}-{deploy_type}-daily-{stream}'
+      - 'iec-{installer}-{deploy_type}-daily-{stream}'
+      - 'iec-deploy-{installer}-{deploy_type}-daily-{stream}'
+      - 'iec-destroy-{installer}-{deploy_type}-daily-{stream}'
+      - 'iec-install-{usecase}-{installer}-{deploy_type}-daily-{stream}'
 
 ##############
 # PARAMETERS #
@@ -87,7 +97,7 @@
 # job templates
 ########################
 - job-template:
-    name: 'iec-{deploy_type}-daily-{stream}'
+    name: 'iec-{installer}-{deploy_type}-daily-{stream}'
     disabled: '{obj:disabled}'
     concurrent: false
     node: '{slave-label}'
@@ -100,7 +110,8 @@
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-{deploy_type}-daily-.*'
+            - '.*-fuel-{deploy_type}-daily-.*'
+            - '.*-compass-{deploy_type}-daily-.*'
           blocking-level: 'NODE'
 
     wrappers:
@@ -108,7 +119,7 @@
           name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO'
 
     triggers:
-      - 'iec-{deploy_type}-daily-{stream}-trigger'
+      - 'iec-{installer}-{deploy_type}-daily-{stream}-trigger'
 
     parameters:
       - lf-infra-parameters:
@@ -122,7 +133,7 @@
 
     builders:
       - trigger-builds:
-          - project: 'iec-deploy-{deploy_type}-daily-{stream}'
+          - project: 'iec-deploy-{installer}-{deploy_type}-daily-{stream}'
             current-parameters: false
             predefined-parameters:
               DEPLOY_SCENARIO={scenario}
@@ -131,18 +142,24 @@
           - project:
               !j2: |
                 {%- for uc in usecase -%}
-                iec-install-{{ uc | first }}-{{ deploy_type }}-daily-{{ stream }}
+                iec-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-daily-{{ stream }}
                 {%- if not loop.last -%},{%- endif -%}
                 {%- endfor %}
             current-parameters: false
             same-node: true
             block: true
+          - project: 'iec-destroy-{installer}-{deploy_type}-daily-{stream}'
+            current-parameters: false
+            predefined-parameters:
+              DEPLOY_SCENARIO={scenario}
+            same-node: true
+            block: true
 
 - job-template:
-    name: 'iec-deploy-{deploy_type}-daily-{stream}'
+    name: 'iec-deploy-{installer}-{deploy_type}-daily-{stream}'
     concurrent: true
     node: '{slave-label}'
-    properties:
+    properties: &properties
       - throttle:
           enabled: true
           max-total: 4
@@ -151,7 +168,9 @@
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-deploy-{deploy_type}-daily-*'
+            - '.*-deploy-{installer}-{deploy_type}-daily-.*'
+            - '.*-destroy-{installer}-{deploy_type}-daily-.*'
+            - '.*-install-.*-{installer}-{deploy_type}-daily-.*'
           blocking-level: 'NODE'
 
     parameters:
@@ -164,7 +183,7 @@
           name: DEPLOY_SCENARIO
           default: '{scenario}'
 
-    wrappers:
+    wrappers: &wrappers
       - build-name:
           name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO'
 
@@ -188,8 +207,8 @@
           description: "POD: $NODE_NAME"
       - conditional-step:
           condition-kind: regex-match
-          regex: 'compass-.*'
-          label: '{deploy_type}'
+          regex: 'compass'
+          label: '{installer}'
           steps:
             - shell:
                 !include-raw-escape: ./iec-compass-build.sh
@@ -197,37 +216,53 @@
                 !include-raw-escape: ./iec-compass-deploy.sh
             - shell:
                 !include-raw-escape: ./iec-fdn-install.sh
-            - shell:
-                !include-raw-escape: ./iec-compass-destroy.sh
       - conditional-step:
           condition-kind: regex-match
-          regex: 'fuel-.*'
-          label: '{deploy_type}'
+          regex: 'fuel'
+          label: '{installer}'
           steps:
             - shell:
                 !include-raw-escape: ./iec-fuel-deploy.sh
 
-    publishers:
+    publishers: &publishers
       - email:
           recipients: armband@enea.com
       - lf-infra-publish
 
 - job-template:
-    name: 'iec-install-{usecase}-{deploy_type}-daily-{stream}'
+    name: 'iec-destroy-{installer}-{deploy_type}-daily-{stream}'
     concurrent: true
     node: '{slave-label}'
-    properties:
-      - throttle:
-          enabled: true
-          max-total: 4
-          max-per-node: 1
-          option: 'project'
-      - build-blocker:
-          use-build-blocker: true
-          blocking-jobs:
-            - '.*-deploy-{deploy_type}-daily-*'
-            - '.*-install-{usecase}-{deploy_type}-daily-*'
-          blocking-level: 'NODE'
+    properties: *properties
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-defaults'
+      - string:
+          name: DEPLOY_SCENARIO
+          default: '{scenario}'
+      - string:
+          name: EXTRA_ARGS
+          default: '-EEE'
+
+    wrappers: *wrappers
+    scm: *scm
+
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - shell:
+          !include-raw-escape: ./iec-{installer}-destroy.sh
+
+    publishers: *publishers
+
+- job-template:
+    name: 'iec-install-{usecase}-{installer}-{deploy_type}-daily-{stream}'
+    concurrent: true
+    node: '{slave-label}'
+    properties: *properties
 
     parameters:
       - lf-infra-parameters:
@@ -239,7 +274,7 @@
 
     wrappers:
       - build-name:
-          name: '$BUILD_NUMBER - Usecase: ${usecase} DeployType: ${deploy_type}'
+          name: '$BUILD_NUMBER - Usecase: ${usecase} DeployType: ${installer}-${deploy_type}'
 
     scm: *scm
 
@@ -247,10 +282,7 @@
       - shell:
           !include-raw-escape: ./iec-{usecase}.sh
 
-    publishers:
-      - email:
-          recipients: armband@enea.com
-      - lf-infra-publish
+    publishers: *publishers
 
 ########################
 # trigger macros
