@@ -17,6 +17,18 @@ if [[ "$NODE_NAME" =~ "-virtual" ]]; then
     export VIRT_NUMBER=3 VIRT_CPUS=2 VIRT_MEM=4096 VIRT_DISK=50G
 fi
 
+#Modify the pip version to 8.1.1 version
+PIP_VERSION=$(pip --version|cut -f2 -d ' '|cut -f1 -d '.')
+#When pip version is larger than 10, it will result in some errors
+#about "pip ImportError"
+if [ "$PIP_VERSION" -gt "10" ]; then
+  sudo python -m pip uninstall -y pip
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  sudo python get-pip.py pip==8.1.1
+  rm get-pip.py
+  hash -r
+fi
+
 ./deploy.sh
 
 echo "Compass Deploy successful"
