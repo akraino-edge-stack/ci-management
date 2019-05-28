@@ -1,0 +1,8 @@
+Code-Review+1: Saku Chydenius <saku.chydenius@nokia.com>
+Verified+1: Akraino Jobbuilder <collab-it+akraino-jobbuilder@linuxfoundation.org>
+Code-Review+2: Eric Ball <eball@linuxfoundation.org>
+Submitted-by: Eric Ball <eball@linuxfoundation.org>
+Submitted-at: Tue, 28 May 2019 17:02:45 +0000
+Reviewed-on: https://gerrit.akraino.org/r/c/ci-management/+/854
+Project: ci-management
+Branch: refs/heads/master
