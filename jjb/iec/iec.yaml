@@ -124,8 +124,10 @@
       - trigger-builds:
           - project: 'iec-deploy-{deploy_type}-daily-{stream}'
             current-parameters: false
-            predefined-parameters:
+            predefined-parameters: |
               DEPLOY_SCENARIO={scenario}
+              SILO=arm
+              JENKINS_HOSTNAME=job
             same-node: true
             block: true
           - project:
@@ -134,6 +136,9 @@
                 iec-install-{{ uc | first }}-{{ deploy_type }}-daily-{{ stream }}
                 {%- if not loop.last -%},{%- endif -%}
                 {%- endfor %}
+            predefined-parameters: |
+              SILO=arm
+              JENKINS_HOSTNAME=job
             current-parameters: false
             same-node: true
             block: true
