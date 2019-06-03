@@ -17,3 +17,4 @@
     branch: master
     jobs:
       - kni-templates-verify-deploy-aws
+      - kni-templates-verify-deploy-libvirt
