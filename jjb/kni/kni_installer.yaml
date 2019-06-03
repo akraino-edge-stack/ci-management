@@ -9,6 +9,7 @@
       - kni-installer-build-installer
       - kni-installer-build-binary
       - kni-installer-merge-deploy-aws
+      - kni-installer-merge-deploy-libvirt
 - project:
     name: kni-templates
     project: 'kni/templates'
@@ -17,3 +18,4 @@
     branch: master
     jobs:
       - kni-templates-verify-deploy-aws
+      - kni-templates-verify-deploy-libvirt
