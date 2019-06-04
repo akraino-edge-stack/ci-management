@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "859fbf9b_f3c28779",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-06-04T12:43:33Z",
+      "side": 1,
+      "message": "Has this been tested? Why is it being added if it\u0027s not implemented anywhere?",
+      "range": {
+        "startLine": 270,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 42
+      },
+      "revId": "0603be609aa0bff882d3c6f2bf266ba2d664b2aa",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6116a164_0dea4d72",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-06-04T12:43:33Z",
+      "side": 1,
+      "message": "This should just be the label; e.g. \"kni-baremetal\" or \"kni-libvert\".",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 35
+      },
+      "revId": "0603be609aa0bff882d3c6f2bf266ba2d664b2aa",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb5f6c28_dfb4fed7",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-06-04T12:43:33Z",
+      "side": 1,
+      "message": "As above, this should just be the label.",
+      "range": {
+        "startLine": 467,
+        "startChar": 16,
+        "endLine": 467,
+        "endChar": 35
+      },
+      "revId": "0603be609aa0bff882d3c6f2bf266ba2d664b2aa",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c1d8d53_057917d9",
+        "filename": "jjb/shell/kni_deploy_libvirt.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-06-04T12:43:33Z",
+      "side": 1,
+      "message": "What\u0027s the purpose of moving this out of the workspace?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "0603be609aa0bff882d3c6f2bf266ba2d664b2aa",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
