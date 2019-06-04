@@ -2,5 +2,12 @@
 - project:
     name: starlingx-project-view
     project-name: starlingx
+    project: starlingx
+    stream:
+      - master:
+          branch: master
+    build-node: centos7-dev-16c-48g
+    jobs:
+      - akraino-project-stream-master-config
     views:
       - project-view
