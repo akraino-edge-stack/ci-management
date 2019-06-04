@@ -91,6 +91,30 @@
       "revId": "0603be609aa0bff882d3c6f2bf266ba2d664b2aa",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec95a142_fef24916",
+        "filename": "jjb/shell/kni_deploy_libvirt.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 140
+      },
+      "writtenOn": "2019-06-04T14:23:23Z",
+      "side": 1,
+      "message": "This is because we need to run from gopath, and this is under $HOME/go/src",
+      "parentUuid": "4c1d8d53_057917d9",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "0603be609aa0bff882d3c6f2bf266ba2d664b2aa",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
