@@ -8,6 +8,7 @@
     jobs:
       - kni-installer-verify-installer
       - kni-installer-verify-binary
+      - kni-installer-publish-libvirt-binary
       - kni-installer-merge-deploy-aws
       - kni-installer-merge-deploy-libvirt
 - project:
