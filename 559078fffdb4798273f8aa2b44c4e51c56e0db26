@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72c09788_09b3ba27",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 140
+      },
+      "writtenOn": "2019-06-10T14:27:08Z",
+      "side": 1,
+      "message": "we need them forever (if possible), or at least for a longer period",
+      "range": {
+        "startLine": 565,
+        "startChar": 24,
+        "endLine": 565,
+        "endChar": 27
+      },
+      "revId": "559078fffdb4798273f8aa2b44c4e51c56e0db26",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56f83579_a48540ea",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 140
+      },
+      "writtenOn": "2019-06-10T14:27:08Z",
+      "side": 1,
+      "message": "we don\u0027t need that to be triggered on each patchset created, just on a manual comment",
+      "range": {
+        "startLine": 594,
+        "startChar": 8,
+        "endLine": 594,
+        "endChar": 16
+      },
+      "revId": "559078fffdb4798273f8aa2b44c4e51c56e0db26",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
