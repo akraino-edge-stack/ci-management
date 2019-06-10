@@ -45,6 +45,29 @@
       "revId": "559078fffdb4798273f8aa2b44c4e51c56e0db26",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0258189_39938b1c",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 154
+      },
+      "writtenOn": "2019-06-10T14:29:03Z",
+      "side": 1,
+      "message": "Isn\u0027t this enough? If there is not a comment with this keyword, the job shouldn\u0027t be triggered. Is that right?",
+      "range": {
+        "startLine": 600,
+        "startChar": 34,
+        "endLine": 600,
+        "endChar": 49
+      },
+      "revId": "559078fffdb4798273f8aa2b44c4e51c56e0db26",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
