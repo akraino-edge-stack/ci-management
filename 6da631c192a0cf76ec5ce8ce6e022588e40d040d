@@ -22,6 +22,30 @@
       "revId": "6da631c192a0cf76ec5ce8ce6e022588e40d040d",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38c4e2c7_17a0c5a9",
+        "filename": "jjb/iec/iec-compass-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-06-11T09:57:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e52b100a_fbac4aa2",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 26
+      },
+      "revId": "6da631c192a0cf76ec5ce8ce6e022588e40d040d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
