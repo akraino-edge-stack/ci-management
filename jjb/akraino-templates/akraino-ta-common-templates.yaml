@@ -64,7 +64,14 @@
       - ta-builder-install-docker
       - ta-builder-job-{project-type}:
           git-url: '{git-url}'
-
+      ### SONAR for MERGE jobs ###
+      - ta-macro-builder-sonar
+          sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_BRANCH | tr '/' ':')"
+          sonar-project-version: "$(cd $GERRIT_PROJECT; git describe --always --long --all --tags)"
+      ### SONAR for VERIFY jobs ###
+      - ta-macro-builder-sonar
+          sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_CHANGE_NUMBER | tr '/' ':')"
+          sonar-project-version: "$GERRIT_REFSPEC"
     publishers:
       - ta-publisher-job-{project-type}
 
@@ -132,6 +139,14 @@
     builders:
       - ta-builder-job-{project-type}-{project-name}:
           git-url: '{git-url}'
+      ### SONAR for MERGE jobs ###
+      - ta-macro-builder-sonar
+          sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_BRANCH | tr '/' ':')"
+          sonar-project-version: "$(cd $GERRIT_PROJECT; git describe --always --long --all --tags)"
+      ### SONAR for VERIFY jobs ###
+      - ta-macro-builder-sonar
+          sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_CHANGE_NUMBER | tr '/' ':')"
+          sonar-project-version: "$GERRIT_REFSPEC"
 
     publishers:
       - lf-infra-publish
@@ -198,6 +213,14 @@
     builders:
       - ta-builder-tox
       # TODO: verify ISO creation here
+      ### SONAR for MERGE jobs ###
+      - ta-macro-builder-sonar
+          sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_BRANCH | tr '/' ':')"
+          sonar-project-version: "$(cd $GERRIT_PROJECT; git describe --always --long --all --tags)"
+      ### SONAR for VERIFY jobs ###
+      - ta-macro-builder-sonar
+          sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_CHANGE_NUMBER | tr '/' ':')"
+          sonar-project-version: "$GERRIT_REFSPEC"
 
     publishers:
       - lf-infra-publish

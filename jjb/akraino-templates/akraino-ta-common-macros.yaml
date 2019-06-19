@@ -232,6 +232,23 @@
           sudo systemctl start libvirtd
           systemctl status libvirtd
 
+- builder:
+    name: ta-macro-builder-sonar
+    builders:
+      - shell: |2-
+          cat > sonar-project.properties << EOF
+          sonar.projectKey={sonar-project-key}
+          sonar.projectVersion={sonar-project-version}
+          sonar.sources=$WORKSPACE/$GERRIT_PROJECT
+      - sonar:
+          sonar-name: Sonar
+          scanner-name: scanner-3.x
+          task: views
+          project: sonar-project.properties
+          properties: sonar.views.list=myview1,myview2
+          java-opts: -Xmx512m
+          additional-arguments: -X
+
 ###########
 # TRIGGER #
 ###########
@@ -291,3 +308,8 @@
     name: ta-publisher-job-merge
     publishers:
         - lf-infra-publish
+
+- publisher:
+    name: ta-macro-publisher-sonar
+    publishers:
+         - lf-infra-publish
