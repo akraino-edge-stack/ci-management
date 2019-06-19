@@ -35,6 +35,7 @@
           branch: '{branch}'
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
           choosing-strategy: default
 
     builders:
@@ -77,6 +78,7 @@
           branch: '{branch}'
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
           choosing-strategy: default
 
     builders:
