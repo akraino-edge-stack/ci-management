@@ -232,6 +232,36 @@
           sudo systemctl start libvirtd
           systemctl status libvirtd
 
+- builder:
+    name: ta-builder-sonar
+    builders:
+      - shell: |2-
+          cat > sonar-project.properties << EOF
+          sonar.projectKey={sonar-project-key}
+          sonar.projectVersion={sonar-project-version}
+          sonar.sources=$WORKSPACE/$GERRIT_PROJECT
+          EOF
+      - sonar:
+          sonar-name: Sonar
+          scanner-name: scanner-3.x
+          task: views
+          project: sonar-project.properties
+          properties: sonar.views.list=myview1,myview2
+          java-opts: -Xmx512m
+          additional-arguments: -X
+
+- builder:
+    name: ta-builder-sonar-merge
+    builders:
+      sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_BRANCH | tr '/' ':')"
+      sonar-project-version: "$(cd $GERRIT_PROJECT; git describe --always --long --all --tags)"
+
+- builder:
+     name: ta-builder-sonar-verify
+     builders:
+       sonar-project-key: "$(echo $GERRIT_PROJECT/$GERRIT_CHANGE_NUMBER | tr '/' ':')"
+       sonar-project-version: "$GERRIT_REFSPEC"
+
 ###########
 # TRIGGER #
 ###########
