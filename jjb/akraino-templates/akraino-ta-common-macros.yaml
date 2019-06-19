@@ -52,6 +52,24 @@
         name: SCM_PROJECT_TO_BUILD_REFSPEC
         trim: 'false'
 
+- parameter:
+    name: sonar-project-key
+    parameters:
+     - dynamic-choice:
+        description: "Key options for merge & verify jobs"
+        script : "['$(echo $GERRIT_PROJECT/$GERRIT_BRANCH | tr '/' ':')', '$(echo $GERRIT_PROJECT/$GERRIT_CHANGE_NUMBER | tr '/' ':')']"
+        remote: false
+        read-only: false
+
+- parameter:
+    name: sonar-project-version
+    parameters:
+     - dynamci-choice:
+        description: "Version of Sonar Project for merge & verify jobs"
+        script: "['$(cd $GERRIT_PROJECT; git describe --always --long --all --tags)', '$GERRIT_REFSPEC']"
+        remote: false
+        read-only: false
+
 #######
 # SCM #
 #######
@@ -231,6 +249,38 @@
           sudo yum -y install createrepo libguestfs-tools-c jq
           sudo systemctl start libvirtd
           systemctl status libvirtd
+
+- builder:
+    name: ta-builder-sonar
+    builders:
+      - shell: |2-
+          cat > sonar-project.properties << EOF
+          sonar.projectKey={sonar-project-key}
+          sonar.projectVersion={sonar-project-version}
+          sonar.sources=$WORKSPACE/$GERRIT_PROJECT
+          EOF
+      - sonar:
+          sonar-name: Sonar
+          scanner-name: scanner-3.x
+          task: views
+          project: sonar-project.properties
+          properties: sonar.views.list=myview1,myview2
+          java-opts: -Xmx512m
+          additional-arguments: -X
+
+- builder:
+    name: ta-builder-sonar-merge
+    builders:
+        - ta-builder-sonar:
+              sonar-project-key: '{sonar-project-key}'
+              sonar-project-version: '{sonar-project-version}'
+         
+- builder:
+     name: ta-builder-sonar-verify
+     builders:
+         - ta-builder-sonar:
+              sonar-project-key: '{sonar-project-key}'
+              sonar-project-version: '{sonar-project-version}'
 
 ###########
 # TRIGGER #
