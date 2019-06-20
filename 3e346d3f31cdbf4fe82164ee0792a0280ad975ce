@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5234931c_4fdfe79e",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-06-20T10:35:31Z",
+      "side": 1,
+      "message": "Please follow existing convention, should be renamed as \"ta-builder-sonar\"",
+      "range": {
+        "startLine": 236,
+        "startChar": 10,
+        "endLine": 236,
+        "endChar": 32
+      },
+      "revId": "3e346d3f31cdbf4fe82164ee0792a0280ad975ce",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb9d17cc_7104cc3b",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-06-20T10:35:31Z",
+      "side": 1,
+      "message": "Ending EOF missing for the input",
+      "revId": "3e346d3f31cdbf4fe82164ee0792a0280ad975ce",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4f7f41f8_14c96d39",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-06-20T10:35:31Z",
+      "side": 1,
+      "message": "This code is not being used, remove.",
+      "revId": "3e346d3f31cdbf4fe82164ee0792a0280ad975ce",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7f9874e_be915218",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-06-20T10:35:31Z",
+      "side": 1,
+      "message": "The Job template generates two jobs: \"verify\" and \"merge\" jobs based on the {project-type} variable. With this code both of the generated jobs will get two \"ta-macro-builder-sonar\" executions. This is not what we want.\n\nMove these two definitions to the common macros file as \"ta-builder-sonar-merge\" and \"ta-builder-sonar-verify\". In this template call them via \"ta-builder-sonar-{project-type}\"",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 50
+      },
+      "revId": "3e346d3f31cdbf4fe82164ee0792a0280ad975ce",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "11cc4338_d5226820",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-06-20T10:35:31Z",
+      "side": 1,
+      "message": "Same comment as above",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 50
+      },
+      "revId": "3e346d3f31cdbf4fe82164ee0792a0280ad975ce",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6fef200_4efa9069",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-06-20T10:35:31Z",
+      "side": 1,
+      "message": "Same comment as above",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 50
+      },
+      "revId": "3e346d3f31cdbf4fe82164ee0792a0280ad975ce",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
