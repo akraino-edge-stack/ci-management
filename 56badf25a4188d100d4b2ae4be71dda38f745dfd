@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8dd4fdf4_5d83be73",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-06-20T11:11:55Z",
+      "side": 1,
+      "message": "Execute only one sonar builder. \"ta-builder-sonar-{project-type}\" should internally call \"ta-builder-sonar\" with correct arguments",
+      "revId": "56badf25a4188d100d4b2ae4be71dda38f745dfd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
