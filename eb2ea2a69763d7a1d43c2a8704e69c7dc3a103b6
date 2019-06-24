@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a24e895_4d579aed",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-06-24T20:44:26Z",
+      "side": 1,
+      "message": "Please put shell scripts into separate files in the jjb/shell directory, and include them with !include-raw or !include-raw-escape. I know that there are many scripts included in this file already, but this is our standard, and I\u0027m going to enforce it on all changes moving forward.",
+      "range": {
+        "startLine": 257,
+        "startChar": 10,
+        "endLine": 261,
+        "endChar": 13
+      },
+      "revId": "eb2ea2a69763d7a1d43c2a8704e69c7dc3a103b6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2ed2c31_4bc07438",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-06-24T20:44:26Z",
+      "side": 1,
+      "message": "Remove extra whitespace.",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 9
+      },
+      "revId": "eb2ea2a69763d7a1d43c2a8704e69c7dc3a103b6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
