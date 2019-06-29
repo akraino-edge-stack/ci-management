@@ -22,5 +22,8 @@ export VIRT_NUMBER=3 VIRT_CPUS=4 VIRT_MEM=12288 VIRT_DISK=50G
 
 ./deploy.sh
 
+# Wait for 10 seconds, then the IEC install will be invoked.
+sleep 10
+
 echo "Compass Deploy successful"
 exit 0

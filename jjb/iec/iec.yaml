@@ -318,4 +318,4 @@
 - trigger:
     name: 'iec-compass-virtual-daily-master-trigger'
     triggers:
-      - timed: '0 13 * * *'
+      - timed: '0 H/11 * * *'
