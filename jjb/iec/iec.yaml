@@ -22,6 +22,14 @@
       - compass
 
     # -------------------------------
+    # OPERATING SYSTEM DEFINITIONS
+    # -------------------------------
+    os:
+      - ubuntu1604
+      - ubuntu1804
+      - centos7
+
+    # -------------------------------
     # DEPLOY TYPE DEFINITIONS
     # -------------------------------
     deploy_type:
@@ -36,6 +44,10 @@
       # Compass does not run against baremetal PODs yet
       - installer: compass
         deploy_type: baremetal
+      - installer: compass
+        os: centos7
+      - installer: compass
+        os: ubuntu1804
 
     # -------------------------------
     # USECASE DEFINITIONS
@@ -46,10 +58,10 @@
           scenario: 'k8-calico-iec-noha'
 
     jobs:
-      - 'iec-{installer}-{deploy_type}-daily-{stream}'
-      - 'iec-deploy-{installer}-{deploy_type}-daily-{stream}'
-      - 'iec-destroy-{installer}-{deploy_type}-daily-{stream}'
-      - 'iec-install-{usecase}-{installer}-{deploy_type}-daily-{stream}'
+      - 'iec-{installer}-{deploy_type}-{os}-daily-{stream}'
+      - 'iec-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
+      - 'iec-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
+      - 'iec-install-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
 
 ##############
 # PARAMETERS #
@@ -109,7 +121,7 @@
 # job templates
 ########################
 - job-template:
-    name: 'iec-{installer}-{deploy_type}-daily-{stream}'
+    name: 'iec-{installer}-{deploy_type}-{os}-daily-{stream}'
     disabled: '{obj:disabled}'
     concurrent: false
     node: '{slave-label}'
@@ -122,8 +134,8 @@
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-fuel-{deploy_type}-daily-.*'
-            - '.*-compass-{deploy_type}-daily-.*'
+            - '.*-fuel-{deploy_type}-.*'
+            - '.*-compass-{deploy_type}-.*'
           blocking-level: 'NODE'
 
     wrappers:
@@ -131,7 +143,7 @@
           name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO'
 
     triggers:
-      - 'iec-{installer}-{deploy_type}-daily-{stream}-trigger'
+      - 'iec-{installer}-{deploy_type}-{os}-daily-{stream}-trigger'
 
     parameters:
       - lf-infra-parameters:
@@ -145,7 +157,7 @@
 
     builders:
       - trigger-builds:
-          - project: 'iec-deploy-{installer}-{deploy_type}-daily-{stream}'
+          - project: 'iec-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
             current-parameters: false
             predefined-parameters:
               DEPLOY_SCENARIO={scenario}
@@ -154,7 +166,7 @@
           - project:
               !j2: |
                 {%- for uc in usecase -%}
-                iec-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-daily-{{ stream }}
+                iec-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
                 {%- if not loop.last -%},{%- endif -%}
                 {%- endfor %}
             current-parameters: false
@@ -164,7 +176,7 @@
               build-step-failure-threshold: 'never'
               failure-threshold: 'never'
               unstable-threshold: 'FAILURE'
-          - project: 'iec-destroy-{installer}-{deploy_type}-daily-{stream}'
+          - project: 'iec-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
             current-parameters: false
             predefined-parameters:
               DEPLOY_SCENARIO={scenario}
@@ -172,7 +184,7 @@
             block: true
 
 - job-template:
-    name: 'iec-deploy-{installer}-{deploy_type}-daily-{stream}'
+    name: 'iec-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
     concurrent: true
     node: '{slave-label}'
     properties: &properties
@@ -184,9 +196,9 @@
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-deploy-{installer}-{deploy_type}-daily-.*'
-            - '.*-destroy-{installer}-{deploy_type}-daily-.*'
-            - '.*-install-.*-{installer}-{deploy_type}-daily-.*'
+            - '.*-deploy-{installer}-{deploy_type}-.*'
+            - '.*-destroy-{installer}-{deploy_type}-.*'
+            - '.*-install-.*-{installer}-{deploy_type}-.*'
           blocking-level: 'NODE'
 
     parameters:
@@ -198,6 +210,9 @@
       - string:
           name: DEPLOY_SCENARIO
           default: '{scenario}'
+      - string:
+          name: EXTRA_ARGS
+          default: '-o {os}'
 
     wrappers: &wrappers
       - build-name:
@@ -246,7 +261,7 @@
       - lf-infra-publish
 
 - job-template:
-    name: 'iec-destroy-{installer}-{deploy_type}-daily-{stream}'
+    name: 'iec-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
     concurrent: true
     node: '{slave-label}'
     properties: *properties
@@ -261,7 +276,7 @@
           default: '{scenario}'
       - string:
           name: EXTRA_ARGS
-          default: '-EEE'
+          default: '-EEE -o {os}'
 
     wrappers: *wrappers
     scm: *scm
@@ -275,7 +290,7 @@
     publishers: *publishers
 
 - job-template:
-    name: 'iec-install-{usecase}-{installer}-{deploy_type}-daily-{stream}'
+    name: 'iec-install-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
     concurrent: true
     node: '{slave-label}'
     properties: *properties
@@ -308,14 +323,30 @@
 # Akraino IEC CI Baremetal Triggers running against master branch
 # ----------------------------------------------------------------
 - trigger:
-    name: 'iec-fuel-virtual-daily-master-trigger'
+    name: 'iec-fuel-virtual-ubuntu1604-daily-master-trigger'
     triggers:
       - timed: '0 1 * * *'
 - trigger:
-    name: 'iec-fuel-baremetal-daily-master-trigger'
+    name: 'iec-fuel-baremetal-ubuntu1604-daily-master-trigger'
     triggers:
       - timed: ''
 - trigger:
-    name: 'iec-compass-virtual-daily-master-trigger'
+    name: 'iec-compass-virtual-ubuntu1604-daily-master-trigger'
     triggers:
       - timed: '0 13 * * *'
+- trigger:
+    name: 'iec-fuel-virtual-ubuntu1804-daily-master-trigger'
+    triggers:
+      - timed: ''
+- trigger:
+    name: 'iec-fuel-baremetal-ubuntu1804-daily-master-trigger'
+    triggers:
+      - timed: ''
+- trigger:
+    name: 'iec-fuel-virtual-centos7-daily-master-trigger'
+    triggers:
+      - timed: ''
+- trigger:
+    name: 'iec-fuel-baremetal-centos7-daily-master-trigger'
+    triggers:
+      - timed: ''
