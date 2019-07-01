@@ -73,6 +73,23 @@
       "revId": "2f16b3b4c14456704638036ddcaf4d3756c8bd4b",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6cc2511f_50877c4d",
+        "filename": "jjb/shell/build_libvirt_binary.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 151
+      },
+      "writtenOn": "2019-07-01T08:59:48Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it make sense to replace the above two lines with two lines of building the binary directly from source? Much clearer/cleaner IMO.",
+      "revId": "2f16b3b4c14456704638036ddcaf4d3756c8bd4b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
