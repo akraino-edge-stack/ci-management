@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41dc4755_464bb731",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 140
+      },
+      "writtenOn": "2019-07-01T08:37:04Z",
+      "side": 1,
+      "message": "typo here. Also, do you need to run it on patchset created? I\u0027d say just in comment-added, right?",
+      "range": {
+        "startLine": 595,
+        "startChar": 10,
+        "endLine": 595,
+        "endChar": 18
+      },
+      "revId": "2f16b3b4c14456704638036ddcaf4d3756c8bd4b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
