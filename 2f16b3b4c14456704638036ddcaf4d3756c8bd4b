@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8d166ac9_1dd739c2",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 151
+      },
+      "writtenOn": "2019-07-01T08:47:33Z",
+      "side": 1,
+      "message": "\"{project-name}-build-openshift-install-with_libvirt\"?",
+      "revId": "2f16b3b4c14456704638036ddcaf4d3756c8bd4b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "41dc4755_464bb731",
         "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
         "patchSetId": 3
@@ -19,6 +36,40 @@
         "endLine": 595,
         "endChar": 18
       },
+      "revId": "2f16b3b4c14456704638036ddcaf4d3756c8bd4b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31041db8_95ac9a58",
+        "filename": "jjb/shell/build_libvirt_binary.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 151
+      },
+      "writtenOn": "2019-07-01T08:47:33Z",
+      "side": 1,
+      "message": "et -\u003e set",
+      "revId": "2f16b3b4c14456704638036ddcaf4d3756c8bd4b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b363d320_d6a65ce5",
+        "filename": "jjb/shell/build_libvirt_binary.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 151
+      },
+      "writtenOn": "2019-07-01T08:47:33Z",
+      "side": 1,
+      "message": "\"Building openshift-install binary with libvirt support\"?",
       "revId": "2f16b3b4c14456704638036ddcaf4d3756c8bd4b",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
