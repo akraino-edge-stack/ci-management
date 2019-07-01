@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcf9539d_0aa6f556",
+        "filename": "jjb/kni/kni_installer.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 151
+      },
+      "writtenOn": "2019-07-01T10:23:10Z",
+      "side": 1,
+      "message": "Needs update after name change.",
+      "revId": "1a0553e5bb236a5487398f7073553e6407327e2e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
