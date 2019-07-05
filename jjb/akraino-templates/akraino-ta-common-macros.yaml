@@ -212,6 +212,9 @@
         - ta-builder-rpm:
               project-to-build: '$GERRIT_PROJECT'
         - ta-lf-infra-ship-rpms
+        - shell: |2-
+            ../shell/sleep_if_image_being_built.sh
+        - ta-ci-build
 
 - builder:
     name: ta-builder-install-docker
