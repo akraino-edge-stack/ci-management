@@ -212,6 +212,14 @@
         - ta-builder-rpm:
               project-to-build: '$GERRIT_PROJECT'
         - ta-lf-infra-ship-rpms
+        - shell: !include-raw:
+            ../shell/sleep_if_image_being_built.sh
+        - ta-builder-install-docker
+        - ta-builder-install-build-tools
+        - shell: |2-
+            ta/build-tools/build_images.sh -m ta/manifest -w work
+            find work
+        - ta-lf-infra-ship-isos
 
 - builder:
     name: ta-builder-install-docker
