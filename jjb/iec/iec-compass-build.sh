@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 check_env(){
   #Checking python-pip software status. If failed, reinstall it.
