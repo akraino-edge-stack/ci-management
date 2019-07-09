@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69488655_0d3436b9",
+        "filename": "jjb/iec/iec-compass-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-07-09T12:57:57Z",
+      "side": 1,
+      "message": "This is equivalent to:\n\n  ln -sfn $(pwd)/work $COMPASS_WORK_DIR",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 37
+      },
+      "revId": "9d379979fe9b5c179710ad7b8d89e19b14322534",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
