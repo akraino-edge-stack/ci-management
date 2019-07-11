@@ -89,33 +89,56 @@
           name: ARCHIVE_ARTIFACTS
           default: '**/*.log'
           description: Artifacts to archive to the logs server.
+# Usecase params are both installer and OS specific
 - parameter:
-    name: 'seba_on_arm-defaults'
-    parameters:
-      - string:
+    name: 'seba_on_arm-fuel-ubuntu1604-defaults'
+    parameters: &k8s_fuel_ubuntu1604_parameters
+      - string: &k8s_master_ip
+          name: K8S_MASTER_IP
+          default: ''
+          description: 'IP address to connect to the K8s master'
+      - string: &k8s_ssh_user
           name: K8S_SSH_USER
           default: 'ubuntu'
           description: 'SSH username to connect to the K8s master '
-      - string:
+      - string: &k8s_ssh_password
           name: K8S_SSH_PASSWORD
           default: ''
           description: 'SSH password to connect to the K8s master'
-      - string:
+      - string: &k8s_ssh_key
           name: K8S_SSH_KEY
           default: ''
           description: 'SSH key to connect to the K8s master'
+- parameter:
+    name: 'seba_on_arm-fuel-ubuntu1804-defaults'
+    parameters:
+      <<: *k8s_fuel_ubuntu1604_parameters
+- parameter:
+    name: 'seba_on_arm-fuel-centos7-defaults'
+    parameters:
       - string:
-          name: K8S_MASTER_IP_COMPASS
+          <<: *k8s_master_ip
+      - string:
+          <<: *k8s_ssh_user
+          default: 'centos'
+      - string:
+          <<: *k8s_ssh_password
+      - string:
+          <<: *k8s_ssh_key
+- parameter:
+    name: 'seba_on_arm-compass-ubuntu1604-defaults'
+    parameters:
+      - string:
+          <<: *k8s_master_ip
           default: '10.1.0.50'
-          description: 'IP address to compass connect to the K8s master'
       - string:
-          name: K8S_SSH_PASSWORD_COMPASS
+          <<: *k8s_ssh_user
           default: 'root'
-          description: 'SSH password to compass connect to the K8s master'
       - string:
-          name: K8S_SSH_USER_COMPASS
+          <<: *k8s_ssh_password
           default: 'root'
-          description: 'SSH username to compass connect to the K8s master'
+      - string:
+          <<: *k8s_ssh_key
 
 ########################
 # job templates
@@ -301,7 +324,7 @@
           stream: '{stream}'
           branch: '{branch}'
       - '{project}-defaults'
-      - '{usecase}-defaults'
+      - '{usecase}-{installer}-{os}-defaults'
 
     wrappers:
       - build-name:

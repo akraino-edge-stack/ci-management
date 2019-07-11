@@ -18,13 +18,11 @@ case "${JOB_NAME}" in
                     | awk '{print $1}')
     # On Fuel deployements the K8s ssh key is the one used by the deploy job
     K8S_SSH_KEY=${SSH_KEY}
-    IEC_DIR="/home/${K8S_SSH_USER}/iec"
+    IEC_DIR="/var/lib/akraino/iec"
     ;;
   *compass*)
-    K8S_MASTER_IP=${K8S_MASTER_IP_COMPASS}
-    K8S_SSH_USER=${K8S_SSH_USER_COMPASS}
-    K8S_SSH_PASSWORD=${K8S_SSH_PASSWORD_COMPASS}
-    IEC_DIR="/${K8S_SSH_USER_COMPASS}/iec"
+    # K8S_{MASTER_IP,SSH_USER,SSH_PASSWORD} are already set by job params
+    IEC_DIR="/${K8S_SSH_USER}/iec"
     ;;
   *)
     echo "Cannot determine installer from ${JOB_NAME}"
