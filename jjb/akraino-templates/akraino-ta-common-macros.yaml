@@ -52,6 +52,39 @@
         name: SCM_PROJECT_TO_BUILD_REFSPEC
         trim: 'false'
 
+- parameter:
+    name: ta-parameters-sonar-project
+    parameters:
+     - ta-parameters-merge-key
+     - ta-parameters-merge-version
+     - ta-parameters-verify-key
+     - ta-parameters-verify-version
+     - ta-parameters-sonar-url
+     - dynamic-string:
+        script : "$(echo $GERRIT_PROJECT/$GERRIT_BRANCH | tr '/' ':')"
+        description: "Sonar key for merge jobs"
+        remote: false
+        read-only: false
+     - dynamic-string:
+        description: "Sonar version for merge jobs"
+        script: "$(cd $GERRIT_PROJECT; git describe --always --long --all --tags)"
+        remote: false
+        read-only: false
+     - dynamic-string:
+        description: "Sonar Key for verify jobs"
+        script : "$(echo $GERRIT_PROJECT/$GERRIT_CHANGE_NUMBER | tr '/' ':')"
+        remote: false
+        read-only: false
+     - dynamic-string:
+        description: "Sonar version for verify jobs"
+        script: "$GERRIT_REFSPEC']"
+        remote: false
+        read-only: false
+     - string:
+        name: SONAR_URL
+        default: "https://sonar.akraino.org"
+        description: ''
+
 #######
 # SCM #
 #######
@@ -233,6 +266,42 @@
           sudo yum -y install createrepo libguestfs-tools-c jq
           sudo systemctl start libvirtd
           systemctl status libvirtd
+
+- builder:
+    name: ta-builder-sonar
+    builders:
+      - lf-maven-install:
+          mvn-version: 'mvn35'
+      - lf-update-java-alternatives:
+          java-version: 'openjdk8'
+      - inject:
+          # TODO: Switch this to the sonar wrapper when JJB 2.0 is available
+          properties-content: SONAR_HOST_URL=$SONAR_URL
+#      - lf-provide-maven-settings:
+#          global-settings-file: global-settings
+#          settings-file: '{mvn-settings}'
+      - shell: !include-raw-escape:
+         - ../shell/maven-common-variables.sh
+         - ../shell/maven-sonar.sh
+      - trigger-builds:
+         - project:
+           - "sonar"
+           current-parameters: true 
+      - lf-provide-maven-settings-cleanup
+
+- builder:
+    name: ta-builder-sonar-merge
+    builders:
+        - ta-builder-sonar:
+              sonar-project-key: '{ta-parameters-sonar-merge-key}'
+              sonar-project-version: '{ta-parameters-sonar-merge-version}'
+         
+- builder:
+     name: ta-builder-sonar-verify
+     builders:
+         - ta-builder-sonar:
+              sonar-project-key: '{ta-parameters-sonar-verify-key}'
+              sonar-project-version: '{ta-parameters-sonar-verify-version}'
 
 ###########
 # TRIGGER #
