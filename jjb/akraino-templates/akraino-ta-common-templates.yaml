@@ -64,6 +64,7 @@
       - ta-builder-install-docker
       - ta-builder-job-{project-type}:
           git-url: '{git-url}'
+      - ta-builder-sonar-{project-type}
 
     publishers:
       - ta-publisher-job-{project-type}
@@ -132,6 +133,7 @@
     builders:
       - ta-builder-job-{project-type}-{project-name}:
           git-url: '{git-url}'
+      - ta-builder-sonar-{project-type}
 
     publishers:
       - lf-infra-publish
@@ -197,6 +199,7 @@
 
     builders:
       - ta-builder-tox
+      - ta-builder-sonar-{project-type}
       # TODO: verify ISO creation here
 
     publishers:

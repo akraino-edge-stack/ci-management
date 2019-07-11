@@ -1,0 +1,13 @@
+- project:
+    name: ta-sonar
+    project: ta/sonar
+    project-name: ta-sonar
+    mvn-settings: sonar-settings
+    mvn-params: '-f akraino'
+    nexus-iq-namespace: 'akraino-'
+    build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - gerrit-maven-sonar
+    views:
+      - project-view
