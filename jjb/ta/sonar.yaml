@@ -1,0 +1,21 @@
+- project:
+    name: ta-sonar
+    project: ta
+    project-name: ta
+    global-settings-file: global-settings
+    mvn-settings: ta-settings
+    mvn-params: '-f akraino'
+    mvn-opts: '-Xmx1024m -Dmaven.compile.fork=true'
+    mvn-goals: camunda_workflow-settings
+    nexus-iq-namespace: 'akraino-'
+    java-version: openjdk8
+    mvn-version: mvn35
+    build-node: centos7-builder-2c-1g
+    stream: master
+    build-timeout: 60
+    submodule-recursive: true
+    jobs:
+      - gerrit-maven-sonar
+    sonarcloud-project-key: ''
+    sonarcloud-project-organization: ''
+    sonarcloud-api-token: ''
