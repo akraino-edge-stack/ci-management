@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "b19c98f6_1cc63594",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-12T18:32:32Z",
+      "side": 1,
+      "message": "The current JJB version on Akraino Jenkins is 2.9.1.",
+      "range": {
+        "startLine": 278,
+        "startChar": 10,
+        "endLine": 278,
+        "endChar": 76
+      },
+      "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3b61dda_8f46d24f",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-12T18:32:32Z",
+      "side": 1,
+      "message": "If this does not need to be here, please remove it.",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 282,
+        "endChar": 42
+      },
+      "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce6493c5_ee82b7d0",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-12T18:32:32Z",
+      "side": 1,
+      "message": "Please clean up trailing whitespace.",
+      "range": {
+        "startLine": 289,
+        "startChar": 35,
+        "endLine": 289,
+        "endChar": 36
+      },
+      "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c708e7e6_2bbf0dd8",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-12T18:32:32Z",
+      "side": 1,
+      "message": "Please clean up trailing whitespace.",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 298,
+        "endChar": 9
+      },
+      "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31f04000_c5256e3f",
         "filename": "jjb/shell/maven-common-variables.sh",
         "patchSetId": 5
@@ -13,6 +105,29 @@
       "writtenOn": "2019-07-12T14:20:06Z",
       "side": 1,
       "message": "I don\u0027t understand the purpose of the echo on lines 16-21.\nWhy not just enclose the options in quotes?",
+      "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ff8979c_e5853fb8",
+        "filename": "jjb/ta/sonar.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-12T18:32:32Z",
+      "side": 1,
+      "message": "This repo does not exist. What is the purpose of this file?",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 21
+      },
       "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
