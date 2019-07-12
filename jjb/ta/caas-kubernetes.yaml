@@ -3,7 +3,11 @@
     project: ta/caas-kubernetes
     project-name: ta-caas-kubernetes
     project-type:
-        - merge
+        - merge:
+            post_build_trigger:
+              - project: 'ta-ci-build'
+                condition: UNSTABLE_OR_BETTER
+                trigger-with-no-params: true
         - verify
     build-node: centos7-builder-8c-8g
     stream: master

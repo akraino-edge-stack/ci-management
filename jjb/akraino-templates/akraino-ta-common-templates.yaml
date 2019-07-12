@@ -18,6 +18,7 @@
     project-type: freestyle
     submodule-recursive: true
     node: '{build-node}'
+    post_build_trigger: ''
 
     properties:
       - lf-infra-properties:
@@ -67,6 +68,7 @@
 
     publishers:
       - ta-publisher-job-{project-type}
+      - trigger-parameterized-builds: '{obj:post_build_trigger}'
 
 - job-template:
     id: akraino-project-stream-type-ta-rpmbuilder
@@ -87,6 +89,7 @@
     project-type: freestyle
     submodule-recursive: true
     node: '{build-node}'
+    post_build_trigger: ''
 
     properties:
       - lf-infra-properties:
@@ -135,6 +138,7 @@
 
     publishers:
       - lf-infra-publish
+      - trigger-parameterized-builds: '{obj:post_build_trigger}'
 
 - job-template:
     id: akraino-project-stream-type-ta-build
@@ -155,6 +159,7 @@
     project-type: freestyle
     submodule-recursive: true
     node: '{build-node}'
+    post_build_trigger: ''
 
     properties:
       - lf-infra-properties:
@@ -201,6 +206,7 @@
 
     publishers:
       - lf-infra-publish
+      - trigger-parameterized-builds: '{obj:post_build_trigger}'
 
 - job-template:
     id: akraino-project-release-ta-build
@@ -225,6 +231,7 @@
     project-type: freestyle
     submodule-recursive: true
     node: '{build-node}'
+    post_build_trigger: ''
 
     properties:
       - lf-infra-properties:
@@ -274,3 +281,4 @@
 
     publishers:
       - lf-infra-publish
+      - trigger-parameterized-builds: '{obj:post_build_trigger}'
