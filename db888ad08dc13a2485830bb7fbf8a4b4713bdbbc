@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67da0001_4957c1f0",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-07-12T12:40:53Z",
+      "side": 1,
+      "message": "I don\u0027t really know what\u0027s going on here, but is this correct? What is the meaning of this \u0027]",
+      "range": {
+        "startLine": 80,
+        "startChar": 32,
+        "endLine": 80,
+        "endChar": 34
+      },
+      "revId": "db888ad08dc13a2485830bb7fbf8a4b4713bdbbc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
