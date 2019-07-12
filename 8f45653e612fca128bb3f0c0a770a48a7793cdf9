@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e13349b3_8c36a28c",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-07-12T11:45:24Z",
+      "side": 1,
+      "message": "For my own education, is this \"akraino-project-stream-type\" documented somewhere? I\u0027m having trouble mentally parsing the meaning of \"stream-type\".\n\nI assume this is likely used across many different Akraino projects and this is just the TA specific instance of it, but it would help me to understand the overall CI process if I could associate some descriptive meaning to what \"stream-type\" is supposed to do.",
+      "revId": "8f45653e612fca128bb3f0c0a770a48a7793cdf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "13fba726_e3007347",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-07-12T11:45:24Z",
+      "side": 1,
+      "message": "Is this like an object oriented inheritance? Are you defining this as an empty string with the intention that it gets overridden in child classes?\n\nThis question again is just to help me understand how the CI system works. I have no idea whether what you\u0027re doing is right or wrong.",
+      "revId": "8f45653e612fca128bb3f0c0a770a48a7793cdf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
