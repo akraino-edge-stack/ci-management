@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31f04000_c5256e3f",
+        "filename": "jjb/shell/maven-common-variables.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-12T14:20:06Z",
+      "side": 1,
+      "message": "I don\u0027t understand the purpose of the echo on lines 16-21.\nWhy not just enclose the options in quotes?",
+      "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
