@@ -33,6 +33,24 @@
       "revId": "8f45653e612fca128bb3f0c0a770a48a7793cdf9",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a1eb1fc_eadd023d",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 73
+      },
+      "writtenOn": "2019-07-13T22:25:01Z",
+      "side": 1,
+      "message": "JJB supports passing the entire object to the template. \n\nhttps://docs.releng.linuxfoundation.org/projects/global-jjb/en/latest/best-practices.html#passing-parameters-to-shell-scripts",
+      "parentUuid": "13fba726_e3007347",
+      "revId": "8f45653e612fca128bb3f0c0a770a48a7793cdf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
