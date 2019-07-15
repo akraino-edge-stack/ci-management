@@ -287,9 +287,13 @@
 - publisher:
     name: ta-publisher-job-verify
     publishers:
-        - lf-infra-publish
+      - lf-infra-publish
 
 - publisher:
     name: ta-publisher-job-merge
     publishers:
-        - lf-infra-publish
+      - lf-infra-publish
+      - trigger-parameterized-builds:
+          - project: 'ta-ci-build'
+            condition: UNSTABLE_OR_BETTER
+            trigger-with-no-params: true
