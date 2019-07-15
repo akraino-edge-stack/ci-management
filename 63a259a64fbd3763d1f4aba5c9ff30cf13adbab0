@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "346a7161_ffed5166",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 73
+      },
+      "writtenOn": "2019-07-15T21:42:48Z",
+      "side": 1,
+      "message": "where are you calling this publisher? I\u0027d not hardcode jobs names in the templates since they are like blueprints and doing that reduces reusability. You should pass the object from the prohect section so that you have the flexibility of passing 1 or more jobs lists which need not be `ta-ci-build`.\n\nAlso doing this will trigger the ta-ci-build at the end of every -verify and -merge job?",
+      "range": {
+        "startLine": 293,
+        "startChar": 10,
+        "endLine": 293,
+        "endChar": 32
+      },
+      "revId": "63a259a64fbd3763d1f4aba5c9ff30cf13adbab0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
