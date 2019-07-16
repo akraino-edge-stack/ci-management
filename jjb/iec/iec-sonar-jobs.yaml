@@ -1,0 +1,10 @@
+---
+- project:
+    project: iec
+    project-name: iec
+    name: iec-tox-sonar
+    stream: master
+    jobs:
+      - 'gerrit-tox-sonar':
+          submodule-disable: true
+    build-node: centos7-builder-2c-1g
