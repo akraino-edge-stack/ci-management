@@ -13,6 +13,8 @@
       - 'gerrit-tox-verify':
           parallel: false
           submodule-disable: true
+      - 'gerrit-tox-sonar':
+          submodule-disable: true
     parameters:
       - lf-infra-tox-parameters:
           tox-envs: '{tox-envs}'
