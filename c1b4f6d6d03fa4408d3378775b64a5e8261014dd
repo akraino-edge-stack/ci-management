@@ -131,6 +131,30 @@
       "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7cc7b759_7c096a53",
+        "filename": "jjb/ta/sonar.yaml",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 213
+      },
+      "writtenOn": "2019-07-16T14:01:28Z",
+      "side": 1,
+      "message": "This file is to create a new jenkins job which will execute Sonarqube from a job definition already available",
+      "parentUuid": "4ff8979c_e5853fb8",
+      "range": {
+        "startLine": 3,
+        "startChar": 13,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "c1b4f6d6d03fa4408d3378775b64a5e8261014dd",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
