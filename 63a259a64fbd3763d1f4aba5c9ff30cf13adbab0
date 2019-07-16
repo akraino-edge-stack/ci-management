@@ -70,6 +70,30 @@
       "revId": "63a259a64fbd3763d1f4aba5c9ff30cf13adbab0",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2aadc8a7_bed8b468",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 73
+      },
+      "writtenOn": "2019-07-16T21:41:56Z",
+      "side": 1,
+      "message": "ok, if that is what the team wants, but in ODL we generally don\u0027t hardcode jobs inside of templates, since JJB \"templates\" are blue prints which are designed to be generic.",
+      "parentUuid": "24b0998f_64d0ec3b",
+      "range": {
+        "startLine": 293,
+        "startChar": 10,
+        "endLine": 293,
+        "endChar": 32
+      },
+      "revId": "63a259a64fbd3763d1f4aba5c9ff30cf13adbab0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
