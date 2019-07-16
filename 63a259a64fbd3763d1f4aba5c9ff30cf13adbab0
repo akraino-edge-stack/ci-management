@@ -46,6 +46,30 @@
       "revId": "63a259a64fbd3763d1f4aba5c9ff30cf13adbab0",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24b0998f_64d0ec3b",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-16T15:38:37Z",
+      "side": 1,
+      "message": "This publisher is being called here: https://gerrit.akraino.org/r/gitweb?p\u003dci-management.git;a\u003dblob;f\u003djjb/akraino-templates/akraino-ta-common-templates.yaml;h\u003df0e868b097859af2dabc4a503b1da2a867e6642b;hb\u003dHEAD#l69\n\nIt will only run for merge jobs (I have verified on the sandbox that downstream jobs only show up for merge).\n\nThere\u0027s a variation we could do that would sort of split the difference between your change and mine, where we parameterize this publisher, but specify the ta-ci-build job in the akraino-project-stream-type-ta template. They\u0027ve requested that all merge jobs include this downstream, so it makes sense to me that it would be hardcoded into the template.",
+      "parentUuid": "346a7161_ffed5166",
+      "range": {
+        "startLine": 293,
+        "startChar": 10,
+        "endLine": 293,
+        "endChar": 32
+      },
+      "revId": "63a259a64fbd3763d1f4aba5c9ff30cf13adbab0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
