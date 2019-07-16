@@ -1,0 +1,11 @@
+---
+- project:
+    project: iec
+    project-name: iec
+    name: iec-tox-sonar
+    stream: master
+    mvn-settings: camunda_workflow-settings
+    jobs:
+      - 'gerrit-tox-sonar':
+          submodule-disable: true
+    build-node: centos7-builder-2c-1g
