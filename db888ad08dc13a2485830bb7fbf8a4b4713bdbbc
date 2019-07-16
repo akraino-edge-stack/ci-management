@@ -22,6 +22,47 @@
       "revId": "db888ad08dc13a2485830bb7fbf8a4b4713bdbbc",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37105ae6_fcf4a7af",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 213
+      },
+      "writtenOn": "2019-07-16T13:56:41Z",
+      "side": 1,
+      "message": "Yes. it is incorrect. I have corrected \u0026  uploaded.",
+      "parentUuid": "67da0001_4957c1f0",
+      "range": {
+        "startLine": 80,
+        "startChar": 32,
+        "endLine": 80,
+        "endChar": 34
+      },
+      "revId": "db888ad08dc13a2485830bb7fbf8a4b4713bdbbc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "379f998f_b58f8652",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 213
+      },
+      "writtenOn": "2019-07-16T13:56:41Z",
+      "side": 1,
+      "message": "Yes its incorrect. changed \u0026 updated.",
+      "revId": "db888ad08dc13a2485830bb7fbf8a4b4713bdbbc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
