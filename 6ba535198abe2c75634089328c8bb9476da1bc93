@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f7dedf3_d5806d96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2019-07-16T18:32:58Z",
+      "side": 1,
+      "message": "Our preferred method of linking to issues is in the footer, not the subject line.\n\nThis subject should be \u0027Add Sonar for $foo\u0027 ($foo being your project)\n\nThe issue link should be in the footer (section where the Change-Id and Signed-off-by are) as \u0027Issue: \u003cYOURISSUE\u003e\u0027 or \u0027Issue-ID: \u003cYOURISSUE\u003e\u0027",
+      "revId": "6ba535198abe2c75634089328c8bb9476da1bc93",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
