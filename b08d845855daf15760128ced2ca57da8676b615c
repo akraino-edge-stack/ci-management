@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78b1fe5e_feb9daac",
+        "filename": "jjb/kni/kni_installer.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-16T18:38:32Z",
+      "side": 1,
+      "message": "Sorry to be this nit-picky, especially since I let this slide the first time, but could you please put an empty line between the two projects? Everything else looks good!",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 10
+      },
+      "revId": "b08d845855daf15760128ced2ca57da8676b615c",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
