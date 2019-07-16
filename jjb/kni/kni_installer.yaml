@@ -9,14 +9,12 @@
       - kni-installer-verify-installer
       - kni-installer-verify-binary
       - kni-installer-publish-openshift-install-libvirt-binary
-      - kni-installer-merge-deploy-aws
-      - kni-installer-merge-deploy-libvirt
 - project:
-    name: kni-templates
-    project: 'kni/templates'
-    project-name: kni-templates
+    name: kni-blueprint-pae
+    project: 'kni/blueprint-pae'
+    project-name: kni-blueprint-pae
     stream: master
     branch: master
     jobs:
-      - kni-templates-verify-deploy-aws
-      - kni-templates-verify-deploy-libvirt
+      - kni-blueprint-pae-verify-deploy-aws
+      - kni-blueprint-pae-verify-deploy-libvirt
