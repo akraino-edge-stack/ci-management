@@ -22,6 +22,30 @@
       "revId": "63a259a64fbd3763d1f4aba5c9ff30cf13adbab0",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f1b65f4_263d33c9",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-07-16T13:22:08Z",
+      "side": 1,
+      "message": "I don\u0027t have a complete understanding of Jenkins (I was mostly involved in Zuul based projects before January 2019) but I think the logic here makes sense. I believe this will add a new step to the \"Post-build Actions\" section in Jenkins which will be a \"ta-ci-build\" which is exactly what we want.\n\nI think it would be possible to add additional post-build jobs here if we wanted. If there\u0027s really a need to have several different post-build outcomes then it would make sense to split \"ta-publisher-job-merge\" into several differently named publishers.\n\nAs written, I believe this will NOT trigger the ta-ci-build at the end of every -verify job, but WOULD do so if lines 296-299 were added also after line 290. Basically the -verify jobs have on publisher (lf-infra-publish) and the -merge jobs have two publishers (lf-infra-publish and this new trigger-paramerterized-builds)",
+      "parentUuid": "346a7161_ffed5166",
+      "range": {
+        "startLine": 293,
+        "startChar": 10,
+        "endLine": 293,
+        "endChar": 32
+      },
+      "revId": "63a259a64fbd3763d1f4aba5c9ff30cf13adbab0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
