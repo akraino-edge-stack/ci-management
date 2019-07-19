@@ -4,7 +4,7 @@
     jobs:
       - gerrit-packer-verify
 
-    packer-version: 1.2.5
+    packer-version: 1.4.2
     project: ci-management
     project-name: ci-management
     build-node: centos7-builder-2c-1g
@@ -14,7 +14,7 @@
     jobs:
       - gerrit-packer-merge
 
-    packer-version: 1.2.5
+    packer-version: 1.4.2
     project: ci-management
     project-name: ci-management
     build-node: centos7-builder-2c-1g
@@ -30,7 +30,7 @@
     jobs:
       - gerrit-packer-merge
 
-    packer-version: 1.2.5
+    packer-version: 1.4.2
     project: ci-management
     project-name: ci-management
     build-node: centos7-builder-2c-1g
