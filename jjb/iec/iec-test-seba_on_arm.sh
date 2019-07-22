@@ -8,9 +8,18 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-export TERM="vt220"
 
 echo "JOB_NAME=${JOB_NAME}"
+
+
+case "${PON_TYPE}" in
+  *ponsim*)
+  ;;
+  *)
+    echo "Unknown PON_TYPE ${PON_TYPE}"
+    exit
+  ;;
+esac
 
 case "${JOB_NAME}" in
   *fuel*)
@@ -19,6 +28,7 @@ case "${JOB_NAME}" in
     # On Fuel deployements the K8s ssh key is the one used by the deploy job
     K8S_SSH_KEY=${SSH_KEY}
     IEC_DIR="/var/lib/akraino/iec"
+    KUBE_DIR="/root/.kube"
     ;;
   *compass*)
     # K8S_{MASTER_IP,SSH_USER,SSH_PASSWORD} are already set by job params
@@ -30,26 +40,34 @@ case "${JOB_NAME}" in
     ;;
 esac
 
-if [ -z "$K8S_SSH_USER" ]
-then
-  echo "K8S_SSH_USER not set, cannot ssh to install SEBA"
-  exit 1
-fi
+# First we need to install the selected test tool
+INSTALL_CMD="cd ${IEC_DIR}/src/use_cases/seba_on_arm/test/${PON_TYPE}; ./install.sh"
 
-# TODO: try to reuse this script for running the SEBA tests
-INSTALL_CMD="cd ${IEC_DIR}/src/use_cases/seba_on_arm/install; ./install.sh"
-
+# Run the installation script and copy the .kube dir needed for next step
 if [ -n "${K8S_SSH_PASSWORD}" ]
 then
   sshpass -p "${K8S_SSH_PASSWORD}" ssh -o StrictHostKeyChecking=no \
     "${K8S_SSH_USER}"@"${K8S_MASTER_IP}" "${INSTALL_CMD}"
+  sshpass -p "${K8S_SSH_PASSWORD}" scp -o StrictHostKeyChecking=no \
+    "${K8S_SSH_USER}"@"${K8S_MASTER_IP}" /root/.kube "${WORKSPACE}"
 elif [ -n "${K8S_SSH_KEY}" ]
 then
   ssh -o StrictHostKeyChecking=no -i "${K8S_SSH_KEY}" \
     "${K8S_SSH_USER}"@"${K8S_MASTER_IP}" "${INSTALL_CMD}"
+  scp -o StrictHostKeyChecking=no -i "${K8S_SSH_KEY}" \
+    "${K8S_SSH_USER}"@"${K8S_MASTER_IP}" /root/.kube "${WORKSPACE}"
 else
   echo "Neither K8S_SSH_USER or K8S_SSH_KEY set. Cannot ssh to K8S Master"
   exit 1
 fi
 
-exit 0
+# If the installation is successful, proceed with running the tests
+cd "${WORKSPACE}" || exit 1
+
+TEST_CMD="./src/usecases/seba_on_arm/test/${PON_TYPE}/test.sh"
+
+echo "Issuing command"
+echo "${DEPLOY_COMMAND}"
+
+${TEST_CMD}
+exit_code=$?

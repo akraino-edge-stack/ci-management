@@ -56,12 +56,14 @@
       - seba_on_arm:
           slave-label: 'aarch64_dev'
           scenario: 'k8-calico-iec-noha'
+          pon_type: 'ponsim'
 
     jobs:
       - 'iec-{installer}-{deploy_type}-{os}-daily-{stream}'
       - 'iec-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
       - 'iec-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
       - 'iec-install-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
+      - 'iec-test-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
 
 ##############
 # PARAMETERS #
@@ -189,6 +191,19 @@
               !j2: |
                 {%- for uc in usecase -%}
                 iec-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
+                {%- if not loop.last -%},{%- endif -%}
+                {%- endfor %}
+            current-parameters: false
+            same-node: true
+            block: true
+            block-thresholds:
+              build-step-failure-threshold: 'never'
+              failure-threshold: 'never'
+              unstable-threshold: 'FAILURE'
+          - project:
+              !j2: |
+                {%- for uc in usecase -%}
+                iec-test-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
                 {%- if not loop.last -%},{%- endif -%}
                 {%- endfor %}
             current-parameters: false
@@ -334,6 +349,35 @@
     builders:
       - shell:
           !include-raw-escape: ./iec-{usecase}.sh
+
+    publishers: *publishers
+
+- job-template:
+    name: 'iec-test-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
+    concurrent: true
+    node: '{slave-label}'
+    properties: *properties
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-defaults'
+      - '{usecase}-{installer}-{os}-defaults'
+      - string:
+          name: PON_TYPE
+          default: {pon_type}
+
+    wrappers:
+      - build-name:
+          name: '$BUILD_NUMBER - Test Usecase: ${usecase} DeployType: ${installer}-${deploy_type}'
+
+    scm: *scm
+
+    builders:
+      - shell:
+          !include-raw-escape: ./iec-test-{usecase}.sh
 
     publishers: *publishers
 
