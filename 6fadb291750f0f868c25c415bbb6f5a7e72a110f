@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c8d52e78_10cc7e7a",
+        "filename": "jjb/ta/caas-danm.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2019-07-23T17:15:49Z",
+      "side": 1,
+      "message": "Why jump to 8 core from 2 core? Do the builds go significantly faster with more cores?\n\nInstead, perhaps define a new centos7-builder-2c-8g (v2-standard-2 flavor) and utilize that.",
+      "revId": "6fadb291750f0f868c25c415bbb6f5a7e72a110f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
