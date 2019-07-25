@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab4aa4f1_54868951",
+        "filename": "jjb/iec/iec-test-seba_on_arm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-07-25T14:39:03Z",
+      "side": 1,
+      "message": "I think this (and most of this file) is common for iec-install-seba_on_arm.sh.\nMaybe we can abstract it into a separate sh file?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 4
+      },
+      "revId": "fefca3c67c9bf2da8c6269700caa1683e0ed5196",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cab9d589_fd0e95c7",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-07-25T14:39:03Z",
+      "side": 1,
+      "message": "For 2 usecases, the above block will expand to install jobs for install-usecase1,install-usecase2; while this testing block will expand to test-usecase1,test-usecase2. Imo, this order is not right and instead should be install-usecase1,test-usecase1,install-usecase2,test-usecase2.\nSo I would instead use the same j2 block above and do something like:\n\n  {%- for uc in usecase -%}\n      iec-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }},iec-test-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}\n      {%- if not loop.last -%},{%- endif -%}\n  {%- endfor %}",
+      "revId": "fefca3c67c9bf2da8c6269700caa1683e0ed5196",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
