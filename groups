@@ -1,5 +1,6 @@
 # UUID                                                                           	Group Name
 #
+0706f97cf3b2243094a8f24452092769b1065db0                                         	GitHub Replication
 global:Anonymous-Users                                                           	Anonymous Users
 ldap:cn=akraino-gerrit-att-early-access,ou=Groups,dc=freestandards,dc=org        	ldap/akraino-gerrit-att-early-access
 ldap:cn=akraino-gerrit-ci-management-committers,ou=Groups,dc=freestandards,dc=org	ldap/akraino-gerrit-ci-management-committers
