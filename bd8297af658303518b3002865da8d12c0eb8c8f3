@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a58681c_10f38498",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-31T17:37:53Z",
+      "side": 1,
+      "message": "Please pull this out of this file and create a new file called \"akraino-jjb-macros.yaml\". I want to see these sorts of definitions be shared throughout Akraino, rather than having them put into separate files for different blueprints.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 30
+      },
+      "revId": "bd8297af658303518b3002865da8d12c0eb8c8f3",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ace9298c_8272e469",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-07-31T17:37:53Z",
+      "side": 1,
+      "message": "Your last version of this change referenced wanting to be able to NOT always check out master. By hardcoding it here, you will ALWAYS get the master version of the installer repo. Is that what you intended?",
+      "range": {
+        "startLine": 280,
+        "startChar": 10,
+        "endLine": 280,
+        "endChar": 26
+      },
+      "revId": "bd8297af658303518b3002865da8d12c0eb8c8f3",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
