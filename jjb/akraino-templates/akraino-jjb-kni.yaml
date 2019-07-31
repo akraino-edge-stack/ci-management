@@ -14,6 +14,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+- scm:
+    # enhanced version of the global-jjb, based on ta-common-macros
+    name: kni-lf-infra-gerrit-scm
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}'
+          refspec: '{refspec}'
+          branches:
+            - 'refs/heads/{branch}'
+          skip-tag: true
+          wipe-workspace: true
+          submodule:
+            recursive: '{submodule-recursive}'
+            timeout: '{submodule-timeout}'
+          choosing-strategy: '{choosing-strategy}'
+          basedir: '{basedir}'
+
 - job-template:
     id: kni-installer-verify-installer
     name: '{project-name}-verify-installer'
@@ -245,7 +263,7 @@
           comment-contains-value: '^Patch Set[ ]+[0-9]+:([ ]+|[\n]+)(recheck|reverify)$'
 
     scm:
-      - lf-infra-gerrit-scm:
+      - kni-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
           refspec: '$GERRIT_REFSPEC'
@@ -254,7 +272,17 @@
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
           choosing-strategy: default
-
+          basedir: 'blueprint-pae'
+      - kni-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/kni/installer.git'
+          refspec: 'refs/heads/master'
+          branch: 'master'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+          basedir: 'installer'
     triggers:
       - gerrit:
           server-name: '{gerrit-server-name}'
@@ -275,8 +303,7 @@
               target: akraino-secrets/coreos-pull-secret
       - shell: !include-raw-escape:
           - ../shell/install_go.sh
-      - shell: !include-raw-escape:
-          - ../shell/kni_deploy_aws.sh
+      - shell: ./installer/ci/kni_deploy_aws.sh
 
     publishers:
       - lf-infra-publish
@@ -358,7 +385,7 @@
               file-paths: '{obj:gerrit_trigger_file_paths}'
 
     scm:
-      - lf-infra-gerrit-scm:
+      - kni-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
           refspec: '$GERRIT_REFSPEC'
@@ -367,7 +394,17 @@
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
           choosing-strategy: default
-
+          basedir: 'blueprint-pae'
+      - kni-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/kni/installer.git'
+          refspec: 'refs/heads/master'
+          branch: 'master'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+          basedir: 'installer'
     builders:
       - lf-infra-pre-build
       - config-file-provider:
@@ -378,8 +415,7 @@
               target: akraino-secrets/ssh-pub-key
       - shell: !include-raw-escape:
           - ../shell/install_go.sh
-      - shell: !include-raw-escape:
-          - ../shell/kni_deploy_libvirt.sh
+      - shell: ./installer/ci/kni_deploy_libvirt.sh
 
     publishers:
       - lf-infra-publish
