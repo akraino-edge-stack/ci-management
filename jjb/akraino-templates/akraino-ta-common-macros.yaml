@@ -94,12 +94,15 @@
     builders:
         - shell: |2-
             sudo yum install -y createrepo
-            ta/build-tools/build_rpms.sh \
-              -m ta/manifest \
-              -r ta/rpmbuilder \
-              -w work \
-              {project-to-build}
-            find work/
+            if [ -n "$(find {project-to-build} -name '*.spec')" ]
+            then
+                ta/build-tools/build_rpms.sh \
+                 -m ta/manifest \
+                 -r ta/rpmbuilder \
+                 -w work \
+                 {project-to-build}
+                find work/
+            fi
 
 - builder:
     name: ta-builder-scm
