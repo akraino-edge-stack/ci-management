@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cd8ce7d_6031b5f5",
+        "filename": "jjb/ta/cloudtaf.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-08-07T09:30:20Z",
+      "side": 1,
+      "message": "This job template will eventually call \"ta-builder-job-verify\" macro that will try to create also an RPM:\nhttps://gerrit.akraino.org/r/gitweb?p\u003dci-management.git;a\u003dblob;f\u003djjb/akraino-templates/akraino-ta-common-macros.yaml;h\u003d24436b9e81297f8eb6c40f16f88ab4c9a164c271;hb\u003d63e93e529a3b4a319ae0c3362331a6fefa2f0c2a#l159\n\nThis in return will fail as there are no RPMs to build within \"ta/cloudtaf\" repository\n\nOptions:\na) Change \"ta-builder-rpm\" macro to skip RPM build in case no *.spec file is found within the {project-to-build} (https://gerrit.akraino.org/r/gitweb?p\u003dci-management.git;a\u003dblob;f\u003djjb/akraino-templates/akraino-ta-common-macros.yaml;h\u003d24436b9e81297f8eb6c40f16f88ab4c9a164c271;hb\u003d63e93e529a3b4a319ae0c3362331a6fefa2f0c2a#l96)\nb) Change \"ta/rpmbuilder\" tool not to fail if given project list contains no RPMs to build\nc) Add new JJB job template that does not include RPM building\n\nI would prefer option a) as it is rather straight to implement with e.g. \"find\" and produces small diff. I would avoid creating new JJB templates (option c)",
+      "revId": "941fba7b9b533924bc91e15013d0c96c20b3d197",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
