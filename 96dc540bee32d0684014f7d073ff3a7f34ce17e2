@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "011ebff5_3e8d8966",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-08-08T07:20:20Z",
+      "side": 1,
+      "message": "If logic here does not work. It returns always true as the \"find\" command returns always 0.\n\nPlease change e.g. to \nif [ -n \"$(find {project-to-build} -name \u0027*.spec\u0027)\" ]; then",
+      "revId": "96dc540bee32d0684014f7d073ff3a7f34ce17e2",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "99fd6ff5_ddfabc7a",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-08-08T07:20:20Z",
+      "side": 1,
+      "message": "I think you should use just \"{project-to-build}\" here as that is also the argument given to the build_rpms.sh. SPEC file(s) can be found anywhere within the project.",
+      "range": {
+        "startLine": 97,
+        "startChar": 20,
+        "endLine": 97,
+        "endChar": 59
+      },
+      "revId": "96dc540bee32d0684014f7d073ff3a7f34ce17e2",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
