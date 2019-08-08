@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fb15019_47fdc1fd",
+        "filename": "jjb/shell/ta-rpm-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-08-08T15:40:41Z",
+      "side": 1,
+      "message": "Please change this, and all references to it, to \"artifact\".",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 12
+      },
+      "revId": "6043e9bf335768ae81b8c92192ac62710ba6b867",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "854bb7e7_99750a32",
+        "filename": "jjb/shell/ta-rpm-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-08-08T15:40:41Z",
+      "side": 1,
+      "message": "Replace tab with spaces.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 1
+      },
+      "revId": "6043e9bf335768ae81b8c92192ac62710ba6b867",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
