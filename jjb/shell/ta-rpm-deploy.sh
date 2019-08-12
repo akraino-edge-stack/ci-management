@@ -26,35 +26,35 @@ nexus_repo_url="$ALT_NEXUS_URL/repository/$NEXUS_REPO"
 results_dir="$WORKSPACE/work/results"
 repo_name=`echo $WORKSPACE | awk -F '/' '{print $4}' | cut -d '-' -f2- | sed 's|\(.*\)-.*|\1|'`
 
-#Creating dir to move duplicate RPMs/SRPMs to avoid re-upload
+#Creating dirs to move duplicate RPMs/SRPMs to avoid re-upload and copy the incremented RPMs/SRPMs
 mkdir "$results_dir/repo/duplicates"
 mkdir "$results_dir/src_repo/duplicates"
+mkdir -p "$x86_dir"
+mkdir -p "$sources_dir"
 
 #List all RPMs available in Nexus and move the duplicates
 for artifact in \
-  `ls $results_dir/repo`
+  `ls $results_dir/repo/*.rpm`
     do
         if curl --head --fail $nexus_repo_url/$release_path/rpms/x86_64/$artifact
         then
             mv $results_dir/repo/$artifact $results_dir/repo/duplicates/
+        else
+            cp $results_dir/repo/$artifact $x86_dir
         fi
     done
 
 #List all SRPMs available in Nexus and move the duplicates
 for artifact in \
-  `ls $results_dir/src_repo`
+  `ls $results_dir/src_repo/*.rpm`
     do
         if curl --head --fail $nexus_repo_url/$release_path/rpms/Sources/$artifact
         then
             mv $results_dir/src_repo/$artifact $results_dir/src_repo/duplicates/
+        else
+            cp $results_dir/src_repo/$artifact $sources_dir
         fi
     done
-
-mkdir -p "$x86_dir"
-mkdir -p "$sources_dir"
-
-cp "$results_dir/repo/"*.rpm "$x86_dir"
-cp "$results_dir/src_repo/"*.rpm "$sources_dir"
 
 echo "-----> Upload RPMs to Nexus"
 lftools deploy nexus "$nexus_repo_url" "$repo_dir"
