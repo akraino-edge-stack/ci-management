@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f4b2a9c_c9b46790",
+        "filename": "jjb/shell/ta-rpm-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-08-13T10:16:50Z",
+      "side": 1,
+      "message": "tabs",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "ae5a0a4556239a3707411a42f754b5a48ce6cd26",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
