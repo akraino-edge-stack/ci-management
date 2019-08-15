@@ -11,10 +11,4 @@
       - akraino-project-stream-verify
     views:
       - project-view
-    triggers:
-      - 'starlingx-weekly-master-trigger'
-
-- trigger:
-    name: 'starlingx-weekly-master-trigger'
-    triggers:
-      - timed: '0 11 * * 0'
+    cron: 'H H * * 0'  # push fresh snapshot weekly
