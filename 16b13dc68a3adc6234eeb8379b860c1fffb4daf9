@@ -39,6 +39,30 @@
       "revId": "16b13dc68a3adc6234eeb8379b860c1fffb4daf9",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79d428b0_fb8d3523",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-08-19T17:39:13Z",
+      "side": 1,
+      "message": "It does not need a defined value. My initial change was to actually make it \"nexus.akraino.org\", but the default value is empty, so this is a better way of returning it to default.\n\nAnil, they are properly injecting this env var at line 128, which is needed for lf-infra-create-netrc. We just need to unset it once the work is done.",
+      "parentUuid": "e14e34b9_797e2cb4",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 139,
+        "endChar": 46
+      },
+      "revId": "16b13dc68a3adc6234eeb8379b860c1fffb4daf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
