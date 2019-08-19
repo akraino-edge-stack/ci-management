@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "316707b8_69fa1438",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 188
+      },
+      "writtenOn": "2019-08-19T17:32:01Z",
+      "side": 1,
+      "message": "does this need a defined value, even if null?",
+      "revId": "16b13dc68a3adc6234eeb8379b860c1fffb4daf9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
