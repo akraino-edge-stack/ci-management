@@ -82,6 +82,7 @@
         - lf-pip-install:
             pip-packages: tox
         - shell: |2-
+            #!/bin/bash
             source /tmp/v/tox/bin/activate
             for f in $(find $GERRIT_PROJECT -name tox.ini); do
                 pushd $(dirname $f)
@@ -93,10 +94,11 @@
     name: ta-builder-rpm
     builders:
         - shell: |2-
+            #!/bin/bash
             #  Skip RPM build in case no *.spec file is found within the {project-to-build}
             if [ -n "$(find {project-to-build} -name '*.spec')" ]
             then
-                sudo yum install -y createrepo
+                sudo yum install -y createrepo || sudo apt install -y createrepo
                 ta/build-tools/build_rpms.sh \
                  -m ta/manifest \
                  -r ta/rpmbuilder \
@@ -109,6 +111,8 @@
     name: ta-builder-scm
     builders:
         - shell: |2-
+            #!/bin/bash
+            rm -rf {project}
             git clone {git-url}/{project} {project}
             pushd {project}
             if echo {ref} | grep -q "refs/"; then
@@ -223,6 +227,7 @@
     name: ta-builder-install-docker
     builders:
       - shell: |2-
+          #!/bin/bash
           sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
           sudo yum -y install docker-ce docker-ce-cli containerd.io
           sudo mkdir -p /etc/docker/
@@ -236,6 +241,7 @@
     name: ta-builder-install-build-tools
     builders:
       - shell: |2-
+          #!/bin/bash
           sudo yum -y install createrepo libguestfs-tools-c jq
           sudo systemctl start libvirtd
           systemctl status libvirtd
