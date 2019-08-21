@@ -20,7 +20,7 @@ NEXUS_REPO=rpm.snapshots
 release_path=TA/release-1
 
 repo_dir="$WORKSPACE/work/nexus/$NEXUS_REPO"
-x86_dir="$repo_dir/$release_path/rpms/x86_64"
+arch_dir="$repo_dir/$release_path/rpms/$(uname -m)"
 sources_dir="$repo_dir/$release_path/rpms/Sources"
 nexus_repo_url="$ALT_NEXUS_URL/repository/$NEXUS_REPO"
 results_dir="$WORKSPACE/work/results"
@@ -29,20 +29,20 @@ repo_name=`echo $WORKSPACE | awk -F '/' '{print $4}' | cut -d '-' -f2- | sed 's|
 #Creating dirs to move duplicate RPMs/SRPMs to avoid re-upload and copy the changed RPMs/SRPMs
 mkdir "$results_dir/repo/duplicates"
 mkdir "$results_dir/src_repo/duplicates"
-mkdir -p "$x86_dir"
+mkdir -p "$arch_dir"
 mkdir -p "$sources_dir"
 
 #List all RPMs available in Nexus, move the duplicates and copy the changed ones
 for artifact in \
   `ls $results_dir/repo/*.rpm`
     do
-        if curl --head --fail $nexus_repo_url/$release_path/rpms/x86_64/$(basename $artifact)
+        if curl --head --fail $nexus_repo_url/$release_path/rpms/$(uname -m)/$(basename $artifact)
         then
             echo "RPM - $(basename $artifact) already available in Nexus"
             mv $results_dir/repo/$(basename $artifact) $results_dir/repo/duplicates/
         else
             echo "RPM - $(basename $artifact) is not available in Nexus. Will be uploaded"
-            cp $results_dir/repo/$(basename $artifact) $x86_dir
+            cp $results_dir/repo/$(basename $artifact) $arch_dir
         fi
     done
 
