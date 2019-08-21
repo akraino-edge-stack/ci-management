@@ -1,8 +1,18 @@
 - project:
-    name: ta-ci-build
+    name: ta-ci-build-amd64
     project: none
     project-name: none
     build-node: centos7-builder-8c-32g
+    stream: master
+    build-timeout: 120
+    jobs:
+      - akraino-project-release-ta-build
+
+- project:
+    name: ta-ci-build-arm64
+    project: none
+    project-name: none
+    build-node: aarch64_dev
     stream: master
     build-timeout: 120
     jobs:

@@ -27,6 +27,13 @@ nexus_repo_url="$NEXUS_URL/content/repositories/$NEXUS_REPO"
 mkdir -p "$upload_dir1"
 mkdir -p "$upload_dir2"
 
+if [ "$(uname -m)" != 'x86_64' ]; then
+    # On non-x86 architecture, rename the artifacts appropiately
+    pushd "$WORKSPACE/work/results/images/"
+    rename "s/\./.$(uname -m)./" *.*
+    popd
+fi
+
 cp "$WORKSPACE/work/results/images/"* "$upload_dir1"
 cp "$WORKSPACE/work/results/images/"* "$upload_dir2"
 

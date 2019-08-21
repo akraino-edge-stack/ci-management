@@ -18,6 +18,7 @@
     project-type: freestyle
     submodule-recursive: true
     node: '{build-node}'
+    arch: amd64
 
     properties:
       - lf-infra-properties:
@@ -66,7 +67,8 @@
           git-url: '{git-url}'
 
     publishers:
-      - ta-publisher-job-{project-type}
+      - ta-publisher-job-{project-type}:
+          arch: '{arch}'
 
 - job-template:
     id: akraino-project-stream-type-ta-rpmbuilder

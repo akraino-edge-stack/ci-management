@@ -89,6 +89,7 @@
         - lf-pip-install:
             pip-packages: tox
         - shell: |2-
+            #!/bin/bash -ex
             source /tmp/v/tox/bin/activate
             for f in $(find $GERRIT_PROJECT -name tox.ini); do
                 pushd $(dirname $f)
@@ -100,10 +101,32 @@
     name: ta-builder-rpm
     builders:
         - shell: |2-
+            #!/bin/bash -ex
             #  Skip RPM build in case no *.spec file is found within the {project-to-build}
             if [ -n "$(find {project-to-build} -name '*.spec')" ]
             then
-                sudo yum install -y createrepo
+                if apt --version 2>1 >/dev/null; then
+                    sudo groupadd mock || true
+                    sudo usermod -aG mock $USER
+                    sudo apt update
+                    # Explicitly install mock dependencies
+                    sudo apt install -y createrepo alien systemd-container python-pip \
+                                        python-decoratortools yum-utils usermode pigz
+                    # We need a specific version of mock (1.4.14) and devtools
+                    # not available in Ubuntu/Debian repos, so fetch them from RHEL mirrors
+                    wget http://mirror.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
+                         https://kojipkgs.fedoraproject.org/packages/mock/1.4.14/2.el7/noarch/mock-1.4.14-2.el7.noarch.rpm
+                    sudo alien -d *.rpm
+                    sudo dpkg -i *.deb
+                    rm -rf *.rpm *.deb
+                    # RHEL tools hardcode the full path for certain distro tools
+                    sudo ln -sf /bin/tar /usr/bin/gtar
+                    sudo ln -sf /bin/machinectl /bin/df /usr/bin/
+                    # Some mock dependencies are only available via pip
+                    sudo pip install distro pyroute2
+                else
+                    sudo yum install -y createrepo
+                fi
                 ta/build-tools/build_rpms.sh \
                  -m ta/manifest \
                  -r ta/rpmbuilder \
@@ -116,6 +139,8 @@
     name: ta-builder-scm
     builders:
         - shell: |2-
+            #!/bin/bash -ex
+            rm -rf {project}
             git clone {git-url}/{project} {project}
             pushd {project}
             if echo {ref} | grep -q "refs/"; then
@@ -230,8 +255,18 @@
     name: ta-builder-install-docker
     builders:
       - shell: |2-
-          sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-          sudo yum -y install docker-ce docker-ce-cli containerd.io
+          #!/bin/bash -ex
+          if apt --version 2>1 >/dev/null; then
+              sudo apt update
+              sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+              curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+              sudo add-apt-repository -y "deb http://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+              sudo apt update
+              sudo apt install -y docker-ce
+          else
+              sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+              sudo yum -y install docker-ce docker-ce-cli containerd.io
+          fi
           sudo mkdir -p /etc/docker/
           echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
           sudo systemctl start docker
@@ -243,7 +278,13 @@
     name: ta-builder-install-build-tools
     builders:
       - shell: |2-
-          sudo yum -y install createrepo libguestfs-tools-c jq
+          #!/bin/bash -ex
+          if apt --version 2>1 >/dev/null; then
+              sudo apt update
+              sudo apt install -y createrepo libguestfs-tools jq
+          else
+              sudo yum -y install createrepo libguestfs-tools-c jq
+          fi
           sudo systemctl start libvirtd
           systemctl status libvirtd
 
@@ -307,6 +348,6 @@
     publishers:
       - lf-infra-publish
       - trigger-parameterized-builds:
-          - project: 'ta-ci-build'
+          - project: 'ta-ci-build-{arch}'
             condition: UNSTABLE_OR_BETTER
             trigger-with-no-params: true
