@@ -45,6 +45,30 @@
       "revId": "a446e1ef3720f8e5283d3e5b5753c950fbe21f0c",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa88a425_7200612c",
+        "filename": "jjb/ta/python-peewee.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-08-22T13:51:33Z",
+      "side": 1,
+      "message": "We do have arm build nodes available, but they are static Jenkins slave, there\u0027s no VM spawned like for x86. They are here: https://jenkins.akraino.org/computer/prd-ubuntu1604-dev-48c-256g-1/ and https://jenkins.akraino.org/computer/prd-ubuntu1604-dev-48c-256g-2/",
+      "parentUuid": "a62a7cd9_ba86d68f",
+      "range": {
+        "startLine": 19,
+        "startChar": 16,
+        "endLine": 19,
+        "endChar": 27
+      },
+      "revId": "a446e1ef3720f8e5283d3e5b5753c950fbe21f0c",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
