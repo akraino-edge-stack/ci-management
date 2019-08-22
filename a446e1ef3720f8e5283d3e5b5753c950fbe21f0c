@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "18d746ce_df6e7dbc",
+        "filename": "jjb/ta/python-peewee.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-08-22T00:00:19Z",
+      "side": 1,
+      "message": "Tiny nitpick, but please put a blank line between the two projects.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 10
+      },
+      "revId": "a446e1ef3720f8e5283d3e5b5753c950fbe21f0c",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
