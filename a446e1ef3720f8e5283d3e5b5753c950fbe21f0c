@@ -22,6 +22,29 @@
       "revId": "a446e1ef3720f8e5283d3e5b5753c950fbe21f0c",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a62a7cd9_ba86d68f",
+        "filename": "jjb/ta/python-peewee.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-08-22T12:44:02Z",
+      "side": 1,
+      "message": "This is question to LF: Where are the valid build-node values listed? This doc https://docs.releng.linuxfoundation.org/en/latest/jenkins.html#build-minion-flavors points to this example https://github.com/opendaylight/releng-builder/tree/master/jenkins-config/clouds/openstack/odlvex but when I look at https://gerrit.akraino.org/r/#/admin/projects/?filter\u003dreleng I don\u0027t see a corresponding releng-builder repo in the Akraino Gerrit.\n\nI notice that the current build-node spec mentions the OS, CPU count and memory size but not the architecture, whereas the new build-node spec \"aarch64_dev\" mentions only the architecture, nothing about OS, CPU or memory. Do we have ARM build nodes available yet? And if not, does LF want to pre-define a naming scheme for what they will be?",
+      "range": {
+        "startLine": 19,
+        "startChar": 16,
+        "endLine": 19,
+        "endChar": 27
+      },
+      "revId": "a446e1ef3720f8e5283d3e5b5753c950fbe21f0c",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
