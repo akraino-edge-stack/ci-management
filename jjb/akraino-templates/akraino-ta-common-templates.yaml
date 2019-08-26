@@ -251,6 +251,22 @@
           build-timeout: '{build-timeout}'
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
 
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            - change-merged-event
+          project: 'ta/manifest'
+          branch: '{branch}'
+
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            - change-merged-event
+          project: 'ta/build-tools'
+          branch: '{branch}'
+
     builders:
       - ta-builder-scm:
           git-url: '{git-url}'
