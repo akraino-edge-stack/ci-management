@@ -16,6 +16,24 @@
       "revId": "b385ce5856ad47f7167017f8187e46e8fa092768",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc79a143_f4ef025e",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-08-27T11:50:32Z",
+      "side": 1,
+      "message": "What does\n\n project-compare-type: \u0027ANT\u0027\n\nmean? I see the documentation says\n\n project-compare-type (str) – ‘’PLAIN’’, ‘’ANT’’ or ‘’REG_EXP’’\n\nbut I don\u0027t see any explanation of what \"ANT\" means. I assume REG_EXP means regular expression.",
+      "parentUuid": "7cbe7c67_6fecf443",
+      "revId": "b385ce5856ad47f7167017f8187e46e8fa092768",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
