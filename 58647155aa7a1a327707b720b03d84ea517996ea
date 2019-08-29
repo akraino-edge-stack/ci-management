@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a3dad86_53b61287",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-08-29T06:29:28Z",
+      "side": 1,
+      "message": "Please avoid publishing code that is not meant to be reviewed into the review. It is enough to have these kind of changes locally on your machine.",
+      "range": {
+        "startLine": 258,
+        "startChar": 1,
+        "endLine": 262,
+        "endChar": 45
+      },
+      "revId": "58647155aa7a1a327707b720b03d84ea517996ea",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
