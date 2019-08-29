@@ -236,6 +236,8 @@
     name: ta-builder-install-build-tools
     builders:
       - shell: |2-
+          sudo /usr/sbin/modprobe -r kvm_intel
+          sudo /usr/sbin/modprobe kvm_intel nested=1
           sudo yum -y install createrepo libguestfs-tools-c jq
           sudo systemctl start libvirtd
           systemctl status libvirtd
