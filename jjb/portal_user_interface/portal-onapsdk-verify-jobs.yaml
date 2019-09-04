@@ -1,0 +1,16 @@
+---
+- project:
+    project: 'portal_user_interface/portal-onapsdk'
+    project-name: portal_user_interface-portal-onapsdk
+    name: portal_user_interface-portal-onapsdk-tox-verify
+    stream:
+      - master:
+          branch: '{stream}'
+          gs-pathname: ''
+          disabled: false
+    jobs:
+      - 'gerrit-tox-verify':
+          parallel: false
+          submodule-disable: true
+    build-node: centos7-builder-2c-1g
+
