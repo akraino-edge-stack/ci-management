@@ -10,5 +10,9 @@ cloud-env.json
 # Maven
 target/
 
-# Intellij IDEs
+# IDE files
+/.settings/
+.classpath
+.project
 .idea
+
