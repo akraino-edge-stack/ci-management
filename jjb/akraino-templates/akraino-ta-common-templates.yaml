@@ -100,7 +100,7 @@
           branch: '{branch}'
           lftools-version: '{lftools-version}'
 
-      - ta-parameters-ci-{project-name}
+      - ta-parameters-ci-{project}
 
       - string:
           name: ARCHIVE_ARTIFACTS
@@ -130,7 +130,7 @@
           branch: '{branch}'
 
     builders:
-      - ta-builder-job-{project-type}-{project-name}:
+      - ta-builder-job-{project-type}-{project}:
           git-url: '{git-url}'
 
     publishers:
