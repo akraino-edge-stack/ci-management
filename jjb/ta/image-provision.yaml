@@ -1,11 +1,23 @@
 - project:
-    name: ta-image-provision
+    name: ta-image-provision-amd64
     project: ta/image-provision
-    project-name: ta-image-provision
+    project-name: ta-image-provision-amd64
     project-type:
         - merge
         - verify
     build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta
+
+- project:
+    name: ta-image-provision-arm64
+    project: ta/image-provision
+    project-name: ta-image-provision-arm64
+    project-type:
+        - merge
+        - verify
+    build-node: aarch64_dev
     stream: master
     jobs:
       - akraino-project-stream-type-ta
