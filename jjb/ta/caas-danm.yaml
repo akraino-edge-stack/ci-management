@@ -1,11 +1,23 @@
 - project:
-    name: ta-caas-danm
+    name: ta-caas-danm-amd64
     project: ta/caas-danm
-    project-name: ta-caas-danm
+    project-name: ta-caas-danm-amd64
     project-type:
         - merge
         - verify
     build-node: centos7-builder-2c-8g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta
+
+- project:
+    name: ta-caas-danm-arm64
+    project: ta/caas-danm
+    project-name: ta-caas-danm-arm64
+    project-type:
+        - merge
+        - verify
+    build-node: aarch64_dev
     stream: master
     jobs:
       - akraino-project-stream-type-ta

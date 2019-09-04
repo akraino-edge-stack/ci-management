@@ -1,10 +1,21 @@
 - project:
-    name: ta-rpmbuilder
+    name: ta-rpmbuilder-amd64
     project: ta/rpmbuilder
-    project-name: ta-rpmbuilder
+    project-name: ta-rpmbuilder-amd64
     project-type:
         - verify
     build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta-rpmbuilder
+
+- project:
+    name: ta-rpmbuilder-arm64
+    project: ta/rpmbuilder
+    project-name: ta-rpmbuilder-arm64
+    project-type:
+        - verify
+    build-node: aarch64_dev
     stream: master
     jobs:
       - akraino-project-stream-type-ta-rpmbuilder

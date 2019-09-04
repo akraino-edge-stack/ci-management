@@ -37,7 +37,7 @@
      - ta-parameters-rpmbuilder
 
 - parameter:
-    name: ta-parameters-ci-ta-rpmbuilder
+    name: ta-parameters-ci-ta/rpmbuilder
     parameters:
      - ta-parameters-manifest
      - ta-parameters-build-tools
@@ -206,7 +206,7 @@
               project-to-build: '$GERRIT_PROJECT'
 
 - builder:
-    name: ta-builder-job-verify-ta-rpmbuilder
+    name: ta-builder-job-verify-ta/rpmbuilder
     builders:
         - ta-builder-scm:
               git-url: '{git-url}'

@@ -1,10 +1,21 @@
 - project:
-    name: ta-build-tools
+    name: ta-build-tools-amd64
     project: ta/build-tools
-    project-name: ta-build-tools
+    project-name: ta-build-tools-amd64
     project-type:
         - verify
     build-node: centos7-builder-2c-1g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta-build
+
+- project:
+    name: ta-build-tools-arm64
+    project: ta/build-tools
+    project-name: ta-build-tools-arm64
+    project-type:
+        - verify
+    build-node: aarch64_dev
     stream: master
     jobs:
       - akraino-project-stream-type-ta-build

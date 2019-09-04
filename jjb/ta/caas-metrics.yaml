@@ -1,11 +1,23 @@
 - project:
-    name: ta-caas-metrics
+    name: ta-caas-metrics-amd64
     project: ta/caas-metrics
-    project-name: ta-caas-metrics
+    project-name: ta-caas-metrics-amd64
     project-type:
         - merge
         - verify
     build-node: centos7-builder-2c-8g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta
+
+- project:
+    name: ta-caas-metrics-arm64
+    project: ta/caas-metrics
+    project-name: ta-caas-metrics-arm64
+    project-type:
+        - merge
+        - verify
+    build-node: aarch64_dev
     stream: master
     jobs:
       - akraino-project-stream-type-ta

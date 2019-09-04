@@ -1,11 +1,23 @@
 - project:
-    name: ta-ironic
+    name: ta-ironic-amd64
     project: ta/ironic
-    project-name: ta-ironic
+    project-name: ta-ironic-amd64
     project-type:
         - merge
         - verify
     build-node: centos7-builder-8c-8g
+    stream: master
+    jobs:
+      - akraino-project-stream-type-ta
+
+- project:
+    name: ta-ironic-arm64
+    project: ta/ironic
+    project-name: ta-ironic-arm64
+    project-type:
+        - merge
+        - verify
+    build-node: aarch64_dev
     stream: master
     jobs:
       - akraino-project-stream-type-ta
