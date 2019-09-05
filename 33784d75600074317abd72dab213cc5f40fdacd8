@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ecc4f0cb_146ad7d1",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-09-05T07:01:53Z",
+      "side": 1,
+      "message": "I assume this line is needed due debian based build environment change? If this line is needed then please add also the default options used by the Jenkins on the next line:\n\n    #!/bin/bash\n    set -xe\n\nOtherwise the shell script will not stop and exit on first error nor give any debug logs.",
+      "revId": "33784d75600074317abd72dab213cc5f40fdacd8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86608c84_7abcf7c9",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-09-05T07:01:53Z",
+      "side": 1,
+      "message": "Same as above, include \"set -xe\"",
+      "revId": "33784d75600074317abd72dab213cc5f40fdacd8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "47b88b9d_43b42ce3",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-09-05T07:01:53Z",
+      "side": 1,
+      "message": "Same as above, include \"set -xe\"",
+      "revId": "33784d75600074317abd72dab213cc5f40fdacd8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d2c43b7_b23816ea",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-09-05T07:01:53Z",
+      "side": 1,
+      "message": "Same as above, include \"set -xe\"",
+      "revId": "33784d75600074317abd72dab213cc5f40fdacd8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6dbbc1f_0074c93a",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 204
+      },
+      "writtenOn": "2019-09-05T07:01:53Z",
+      "side": 1,
+      "message": "Same as above, include \"set -xe\"",
+      "revId": "33784d75600074317abd72dab213cc5f40fdacd8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
