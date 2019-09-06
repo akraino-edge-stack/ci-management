@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "04d6b69b_025a03a9",
+        "filename": "jjb/ta/ci-build.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-09-06T16:50:10Z",
+      "side": 0,
+      "message": "Why is this being removed?",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "14cb7e9dd5bf8697bd2cbb389e9a5179271f21bf",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
