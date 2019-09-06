@@ -4,6 +4,5 @@
     project-name: none
     build-node: centos7-builder-8c-32g
     stream: master
-    build-timeout: 120
     jobs:
       - akraino-project-release-ta-build
