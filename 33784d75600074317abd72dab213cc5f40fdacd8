@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "198c08f9_020e6f6a",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2019-09-09T18:44:49Z",
+      "side": 1,
+      "message": "Just to confirm that I\u0027m understanding this correctly, is this because the ARM VMs that are being used as builder nodes in the LF CI system are running Debian?\n\nI think what I\u0027m seeing is that the TA RPMs for ARM will be build on a Debian machine and then packaged into an ISO that will deploy CentOS.",
+      "revId": "33784d75600074317abd72dab213cc5f40fdacd8",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47b88b9d_43b42ce3",
         "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
         "patchSetId": 6
