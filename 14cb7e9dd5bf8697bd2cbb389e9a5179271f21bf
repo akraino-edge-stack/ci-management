@@ -46,6 +46,30 @@
       "revId": "14cb7e9dd5bf8697bd2cbb389e9a5179271f21bf",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ccb1b85_29f3743e",
+        "filename": "jjb/ta/ci-build.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 186
+      },
+      "writtenOn": "2019-09-10T14:50:47Z",
+      "side": 0,
+      "message": "\u003e Any successful build jobs takes less than 60 minutes (approx 51) to complete. Any job build that fails has to wait for 120 minutes currently to timeout. Removing this to use the default value of 60 minutes as timeout.\n\nJust to make it clear, any failure during CI build dos not results failure in the CI job, but the job times out and that causes job failure?\nThis seems a little odd to me.",
+      "parentUuid": "a7d90d5c_a735a709",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "14cb7e9dd5bf8697bd2cbb389e9a5179271f21bf",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
