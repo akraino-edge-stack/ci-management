@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7df553b1_01e8739e",
+        "filename": "jjb/akraino-templates/akraino-ta-common-templates.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 274
+      },
+      "writtenOn": "2019-09-12T11:58:40Z",
+      "side": 1,
+      "message": "trigger-on part copied from \u0027ta-trigger-job-merge\u0027 trigger (akraino-ta-common-macros.yaml), which trigger is used in merge jobs.",
+      "range": {
+        "startLine": 257,
+        "startChar": 10,
+        "endLine": 257,
+        "endChar": 21
+      },
+      "revId": "7ef6e5f942d0d1a4f2830ee0a32e7f835b2b426f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
