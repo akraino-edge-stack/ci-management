@@ -93,7 +93,7 @@
           description: Artifacts to archive to the logs server.
 # Usecase params are both installer and OS specific
 - parameter: &k8s_fuel_ubuntu1604_parameter
-    name: 'seba_on_arm-fuel-ubuntu1604-defaults'
+    name: 'fuel-ubuntu1604-defaults'
     parameters:
       - string: &k8s_master_ip
           name: K8S_MASTER_IP
@@ -113,9 +113,9 @@
           description: 'SSH key to connect to the K8s master'
 - parameter:
     <<: *k8s_fuel_ubuntu1604_parameter
-    name: 'seba_on_arm-fuel-ubuntu1804-defaults'
+    name: 'fuel-ubuntu1804-defaults'
 - parameter:
-    name: 'seba_on_arm-fuel-centos7-defaults'
+    name: 'fuel-centos7-defaults'
     parameters:
       - string:
           <<: *k8s_master_ip
@@ -127,7 +127,7 @@
       - string:
           <<: *k8s_ssh_key
 - parameter:
-    name: 'seba_on_arm-compass-ubuntu1604-defaults'
+    name: 'compass-ubuntu1604-defaults'
     parameters:
       - string:
           <<: *k8s_master_ip
@@ -175,6 +175,7 @@
           stream: '{stream}'
           branch: '{branch}'
       - '{project}-defaults'
+      - '{installer}-{os}-defaults'
       - string:
           name: DEPLOY_SCENARIO
           default: '{scenario}'
@@ -182,10 +183,19 @@
     builders:
       - trigger-builds:
           - project: 'iec-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
-            current-parameters: false
+            current-parameters: true
             predefined-parameters:
               DEPLOY_SCENARIO={scenario}
             same-node: true
+            block: true
+          - project: 'validation-enea-daily-{stream}'
+            same-node: true
+            current-parameters: true
+            predefined-parameters: |
+              BLUEPRINT={project-name}
+              LAYER=k8s
+              VERSION=master
+              OPTIONAL=yes
             block: true
           - project:
               !j2: |
@@ -193,7 +203,7 @@
                 iec-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
                 {%- if not loop.last -%},{%- endif -%}
                 {%- endfor %}
-            current-parameters: false
+            current-parameters: true
             same-node: true
             block: true
             block-thresholds:
@@ -325,7 +335,6 @@
           stream: '{stream}'
           branch: '{branch}'
       - '{project}-defaults'
-      - '{usecase}-{installer}-{os}-defaults'
 
     wrappers:
       - build-name:
