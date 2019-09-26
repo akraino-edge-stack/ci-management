@@ -1,0 +1,64 @@
+---
+#
+# copyright (c) 2019 at&t intellectual property.
+# copyright (c) 2019 enea
+#
+# licensed under the apache license, version 2.0 (the "license"); you may
+# not use this file except in compliance with the license.
+#
+# you may obtain a copy of the license at
+#       http://www.apache.org/licenses/license-2.0
+#
+# unless required by applicable law or agreed to in writing, software
+# distributed under the license is distributed on an "as is" basis, without
+# warranties or conditions of any kind, either express or implied.
+# see the license for the specific language governing permissions and
+# limitations under the license.
+#
+- project:
+    name: lab
+    project-name: validation
+    project: validation
+    build-node: '{build-node}'
+    stream:
+      - master:
+          branch: '{stream}'
+          gs-pathname: ''
+          disabled: false
+    validation_lab:
+      - enea
+    jobs:
+      - validation-{validation_lab}-daily-{stream}
+
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'lab_params'
+    parameters:
+      - string:
+          <<: *k8s_master_ip
+      - string:
+          <<: *k8s_ssh_user
+      - string:
+          <<: *k8s_ssh_password
+      - string:
+          <<: *k8s_ssh_key
+      - string:
+          <<: *blueprint_name
+      - string:
+          <<: *layer
+      - string:
+          <<: *version
+      - string:
+          <<: *optional
+
+- job-template:
+    name: 'validation-{validation_lab}-daily-{stream}'
+    parameters:
+      - {'lab_params'}
+    builders:
+      - trigger-builds:
+          - project: 'bluval-daily-{stream}'
+            same-node: true
+            current-parameters: true
