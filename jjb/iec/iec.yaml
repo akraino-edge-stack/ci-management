@@ -187,6 +187,15 @@
               DEPLOY_SCENARIO={scenario}
             same-node: true
             block: true
+          - project: 'bluval-iec-daily-{stream}'
+            current-parameters: true
+            predefined-parameters: |
+              DEPLOY_SCENARIO={scenario}
+              SSH_KEY=/var/lib/opnfv/mcp.rsa
+              SSH_USER=ubuntu
+              K8S_MASTER=172.16.10.36
+            same-node: true
+            block: true
           - project:
               !j2: |
                 {%- for uc in usecase -%}

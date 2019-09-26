@@ -1,0 +1,97 @@
+---
+#
+# Copyright (c) 2019 AT&T Intellectual Property.
+# Copyright (c) 2019 Enea
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License.
+#
+# You may obtain a copy of the License at
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+- project:
+    name: bluval
+    project-name: validation
+    project: validation
+    build-node: '{build-node}'
+    group-id: org.akraino.validation
+    refspec: refs/heads/master
+    branch: master
+    view:
+      - project-view
+    dut:
+      - iec
+      - rec
+    stream:
+      - master:
+          branch: '{stream}'
+          gs-pathname: ''
+          disabled: false
+    jobs:
+      - bluval-{dut}-daily-{stream}
+
+
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'bluval-defaults'
+    parameters:
+      - string:
+          name: K8S_MASTER
+          default: '10.20.0.2'
+          description: 'IP of the K8S Master'
+      - string:
+          name: SSH_USER
+          default: ''
+          description: 'ssh user to access environment nodes'
+      - string:
+          name: SSH_KEY
+          default: ''
+          description: 'Path to private SSH key to access environment nodes'
+      - string:
+          name: CI_DEBUG
+          default: 'false'
+          description: 'Show debug output information'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '**/*.log'
+          description: Artifacts to archive to the logs server.
+
+- job-template:
+    name: 'bluval-{dut}-daily-{stream}'
+    concurrent: true
+    node: '{build-node}'
+    parameters:
+      - string:
+          name: DEPLOY_SCENARIO
+          default: ''
+      - {'bluval-defaults'}
+        
+    wrappers: *wrappers
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}/ci-management.git'
+          refspec: ''
+          branches:
+            - 'refs/heads/{branch}'
+          skip-tag: true
+          wipe-workspace: true
+          submodule:
+            disable: true
+            recursive: false
+            timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - shell: ../shell/run_bluval.sh -n demo
