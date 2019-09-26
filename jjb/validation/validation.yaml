@@ -31,3 +31,76 @@
     views:
       - project-view
     cron: 'H H * * 0'  # push fresh snapshot weekly
+
+- project:
+    name: bluval
+    project-name: bluval
+    project: bluval
+    build-node: centos7-builder-2c-1g
+    stream: master
+    mvn-settings: validation-settings
+    group-id: org.akraino.validation
+    refspec: refs/heads/master
+    branch: master
+    view:
+      - project-view
+    # -------------------------------
+    # BRANCH DEFINITIONS
+    # -------------------------------
+    dut:
+      - iec
+      - rec
+
+    stream:
+      - master:
+          branch: '{stream}'
+          gs-pathname: ''
+          disabled: false
+
+   jobs:
+      - bluval-{dut}-daily-{stream}
+
+
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'bluval-defaults'
+    parameters:
+      - string:
+          name: K8S_MASTER
+          default: '10.20.0.2'
+          description: 'IP of the K8S Master'
+      - string:
+          name: SSH_KEY
+          default: '/var/lib/opnfv/mcp.rsa'
+          description: 'Path to private SSH key to access environment nodes'
+      - string:
+          name: CI_DEBUG
+          default: 'false'
+          description: 'Show debug output information'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '**/*.log'
+          description: Artifacts to archive to the logs server.
+
+
+- job-template:
+    name: 'bluval-{dut}-daily-{stream}'
+    concurrent: true
+    node: '{slave-label}'
+    properties: *properties
+    parameters:
+      - string:
+          name: DEPLOY_SCENARIO
+          default: '{scenario}'
+
+    wrappers: *wrappers
+    scm: *scm
+
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - shell:
+          !include-raw-escape: ./run_bluval.sh demo
+
