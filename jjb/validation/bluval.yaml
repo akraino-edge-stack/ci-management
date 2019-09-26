@@ -1,0 +1,100 @@
+---
+#
+# Copyright (c) 2019 AT&T Intellectual Property.
+# Copyright (c) 2019 Enea
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may
+# not use this file except in compliance with the License.
+#
+# You may obtain a copy of the License at
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+- project:
+    name: bluval
+    project-name: validation
+    project: validation
+    build-node: '{build-node}'
+    group-id: org.akraino.validation
+    refspec: refs/heads/master
+    branch: master
+    view:
+      - project-view
+    blueprint:
+      - iec
+      - rec
+    stream:
+      - master:
+          branch: '{stream}'
+          gs-pathname: ''
+          disabled: false
+    jobs:
+      - bluval-daily-{stream}
+
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'bluval-defaults'
+    parameters:
+      - string:
+          <<: *k8s_master_ip
+      - string:
+          <<: *k8s_ssh_user
+      - string:
+          <<: *k8s_ssh_password
+      - string:
+          <<: *k8s_ssh_key
+      - string: &blueprint_name
+          name: BLUEPRINT
+          default: ''
+          description: 'Blueprint used'
+      - string: &layer
+          name: LAYER
+          default: ''
+          description: 'Layer'
+      - string: &version
+          name: VERSION
+          default: ''
+          description: 'Version'
+      - string: &optional
+          name: OPTIONAL
+          default: ''
+          description: 'If set to yes run optional tests'
+
+- job-template:
+    name: 'bluval-daily-{stream}'
+    concurrent: true
+    node: '{build-node}'
+    parameters:
+      - string:
+          name: DEPLOY_SCENARIO
+          default: ''
+      - {'bluval-defaults'}
+
+    wrappers: *wrappers
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}/ci-management.git'
+          refspec: ''
+          branches:
+            - 'refs/heads/{branch}'
+          skip-tag: true
+          wipe-workspace: true
+          submodule:
+            disable: true
+            recursive: false
+            timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - shell: ./jjb/shell/run_bluval.sh -n "$BLUEPRINT"
