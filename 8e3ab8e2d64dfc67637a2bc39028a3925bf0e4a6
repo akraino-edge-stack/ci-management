@@ -1,0 +1,297 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fffe6fcf_f042180a",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "imo, this is where we want to trigger a downstream bluval job, by adding a block like:\n\n          - project: \u0027bluval-iec-daily-{stream}\u0027\n            current-parameters: false\n            predefined-parameters: |\n              DEPLOY_SCENARIO\u003d{scenario}\n              SOME_OTHER_IEC_SPECIFIC_PARAM\u003dexample\n              SOME_OTHER_IEC_SPECIFIC_OTHER_PARAM\u003detc\n            same-node: true\n            block: true\n\nThis would trigger the bluval job with some custom env vars for IEC, e.g. K8s master IP, custom layers to be tested etc.",
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ebec571_cd39910f",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "This would create another upstream job (similar to our top-level IEC jobs which each currently trigger a Fuel/Compass installation, SEBA install and cleanup).\nInstead, we should insert the bluval job as a downstream job in the existing parent jobs (see above comment); and this job-template should be removed.",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 344,
+        "endChar": 15
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d01e75a3_3344dbd4",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "should be updated",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 27
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "869de0fd_b2c5dd6e",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "minor nitpick: $(pwd)",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 9
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6cab076_ed78f732",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "should this have been ssh_user?\nEither way, I think it should be configurable one way or the other instead of hardcoded.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 7
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd9a21f4_377657bb",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "Let\u0027s not mix tabs with spaces in the same file, except where it\u0027s mandatory (e.g. `cat \u003c\u003cEOF` situations).",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "729645eb_88483c66",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 70,
+        "startChar": 26,
+        "endLine": 70,
+        "endChar": 35
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7027d08_0a327b13",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "rm trailing whitespaces",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 3
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a07612b_ae6de291",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 80,
+        "startChar": 18,
+        "endLine": 80,
+        "endChar": 24
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "db4c3218_a8c83e26",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "you could use a default empty string if the variable is not defined/empty:\n[ \"${blueprint_layer:-}\" \u003d\u003d \"kubernetes\" ]",
+      "range": {
+        "startLine": 91,
+        "startChar": 3,
+        "endLine": 91,
+        "endChar": 68
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b35ea5b_e5ccef71",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "I think these can be combined into a single sed invocation since they touch the same file:\nsed -i -e \"/kube_config_dir/...\" -e \"/blueprint_dir/...\" -e \"...\" \"${volumes_path}\"",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 75
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa9783fd_554a6978",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "How about:\npython3 validation/bluval/blucon.py $blueprint_name -l \"${blueprint_layer:-kubernetes}\"",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 2
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50d0e7dc_b32e93c7",
+        "filename": "jjb/validation/validation.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-09-26T16:39:22Z",
+      "side": 1,
+      "message": "I think we can leave this empty and let upstream projects (IEC/REC) to set it if needed.\nSame for K8S_MASTER above.",
+      "range": {
+        "startLine": 76,
+        "startChar": 19,
+        "endLine": 76,
+        "endChar": 43
+      },
+      "revId": "8e3ab8e2d64dfc67637a2bc39028a3925bf0e4a6",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
