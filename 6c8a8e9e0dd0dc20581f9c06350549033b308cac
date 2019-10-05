@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "126c0e67_c810b5a1",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-10-05T13:09:35Z",
+      "side": 1,
+      "message": "I think this should be \u0027centos\u0027 when {os} is centos.",
+      "range": {
+        "startLine": 195,
+        "startChar": 23,
+        "endLine": 195,
+        "endChar": 29
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae831530_3e32ad16",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-10-05T13:09:35Z",
+      "side": 1,
+      "message": "trailing ws",
+      "range": {
+        "startLine": 82,
+        "startChar": 32,
+        "endLine": 82,
+        "endChar": 33
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a8c1ea6_3b8de93e",
+        "filename": "jjb/validation/bluval.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-10-05T13:09:35Z",
+      "side": 1,
+      "message": "This is specific to IEC with Fuel, so I would leave the default value empty here.",
+      "range": {
+        "startLine": 48,
+        "startChar": 20,
+        "endLine": 48,
+        "endChar": 29
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3c10249_4762b7e1",
+        "filename": "jjb/validation/bluval.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-10-05T13:09:35Z",
+      "side": 1,
+      "message": "trailing ws",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 8
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
