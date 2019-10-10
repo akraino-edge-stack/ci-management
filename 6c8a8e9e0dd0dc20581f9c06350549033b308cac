@@ -249,6 +249,23 @@
     },
     {
       "key": {
+        "uuid": "7d26a5ef_161ae361",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 67
+      },
+      "writtenOn": "2019-10-10T14:56:47Z",
+      "side": 1,
+      "message": "Blucon also accepts a parameter to include optional testcases or not. You can make use if it also.",
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "217293e9_ca09c71d",
         "filename": "jjb/validation/bluval.yaml",
         "patchSetId": 3
