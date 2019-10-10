@@ -2,6 +2,69 @@
   "comments": [
     {
       "key": {
+        "uuid": "24213794_e8f11f46",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "The ENEA lab silo should be defined here (hard coded) and used throughout he process",
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8873e91a_abf0f466",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "A new job template should be used here, that is the job that run validation tests on ENEA lab. This job should accept the following items as parameters:\n\nBLUEPRINT (blueprint name)\nLAYER (blueprint layer)\nVERSION (blueprint version)\nOPTIONAL (whether optional test cases should run or not)",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 8
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a102fa3_59b9e833",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "The new Job template that will run validation tests on ENEA lab should be placed here. This template will trigger the project under the validation/bluval.yaml file",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 14
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "126c0e67_c810b5a1",
         "filename": "jjb/iec/iec.yaml",
         "patchSetId": 3
@@ -22,6 +85,75 @@
       "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "04c8d8de_f9c49735",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "This code should be substituted with a call to the new Jenkins Job template which run validation tests on ENEA lab. The new parameters should be also used.",
+      "range": {
+        "startLine": 190,
+        "startChar": 10,
+        "endLine": 198,
+        "endChar": 23
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91d50edf_9cf8c6f6",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "\u0027optional\u0027 and \u0027version\u0027 parameters should be supported. The former defines whether optional test cases should run or not while the latter defines the blueprint version.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 7
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b21b38e5_389206dc",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "\u0027optional\u0027 and \u0027version\u0027 parameters should be supported. The former defines whether optional test cases should run or not while the latter defines the blueprint version.",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 24
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     },
     {
       "key": {
@@ -94,6 +226,75 @@
     },
     {
       "key": {
+        "uuid": "106a12f2_a90c5900",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "Currently, blucon does not take into account the blueprint version. So, let us take for granted now that the master version is used.\n\nHowever, the \u0027optional\u0027 parameter is supported. Look at the following patch how you can use it\n\nhttps://gerrit.akraino.org/r/#/c/validation/+/1647/2/utils/validation_jenkins_job.xml",
+      "range": {
+        "startLine": 107,
+        "startChar": 26,
+        "endLine": 107,
+        "endChar": 35
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "217293e9_ca09c71d",
+        "filename": "jjb/validation/bluval.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "The \u0027dut\u0027 should be renamed to \u0027blueprint_names\u0027",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 8
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a7d5623_23696927",
+        "filename": "jjb/validation/bluval.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "The following parameters should be added:\n\n- BLUEPRINT (blueprint name)\n- LAYER (blueprint layer)\n- VERSION (blueprint version)\n- OPTIONAL (whether optional test cases should run or not)",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 11
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a8c1ea6_3b8de93e",
         "filename": "jjb/validation/bluval.yaml",
         "patchSetId": 3
@@ -114,6 +315,29 @@
       "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c41abe1_8e8c1a9a",
+        "filename": "jjb/validation/bluval.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-10T11:54:55Z",
+      "side": 1,
+      "message": "Where are these two parameters used?",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 63
+      },
+      "revId": "6c8a8e9e0dd0dc20581f9c06350549033b308cac",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     },
     {
       "key": {
