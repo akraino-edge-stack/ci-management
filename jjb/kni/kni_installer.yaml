@@ -19,3 +19,13 @@
     jobs:
       - kni-blueprint-pae-verify-deploy-aws
       - kni-blueprint-pae-verify-deploy-libvirt
+
+- project:
+    name: kni-blueprint-basic-3-masters
+    project: 'kni/blueprint-basic-3-masters'
+    project-name: kni-blueprint-basic-3-masters
+    stream: master
+    branch: master
+    jobs:
+      - kni-blueprint-basic-3-masters-verify-deploy-aws
+      - kni-blueprint-basic-3-masters-verify-deploy-libvirt
