@@ -1,0 +1,14 @@
+---
+- project:
+    name: icn
+    project: icn
+    project-name: icn
+    gate:
+      - bashate
+    build-node: icn-dev
+    stream:
+      - master:
+          branch: master
+          disabled: false
+    jobs:
+      - 'icn-{stream}-verify-{gate}'
