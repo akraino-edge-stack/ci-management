@@ -1,0 +1,15 @@
+---
+- project:
+    name: icn-verify
+    project: icn
+    project-name: icn
+    gate: bashate
+    build-node: icn-dev
+    stream:
+      - master:
+          branch: '{stream}'
+          disabled: false
+    jobs:
+      - '{project-name}-{stream}-{gate}-verify':
+          parallel: false
+          submodule-disable: true
