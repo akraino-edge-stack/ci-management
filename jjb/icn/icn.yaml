@@ -1,0 +1,109 @@
+---
+#
+## Copyright (c) 2019 Intel Corporation
+##
+## Licensed under the Apache License, Version 2.0 (the "License"); you may
+## not use this file except in compliance with the License.
+##
+## You may obtain a copy of the License at
+##       http://www.apache.org/licenses/LICENSE-2.0
+##
+## Unless required by applicable law or agreed to in writing, software
+## distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+## WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+## See the License for the specific language governing permissions and
+## limitations under the License.
+##
+#
+- project:
+    name: icn
+    project: icn
+    project-name: icn
+    gate:
+      - bashate
+    build-node: icn-dev
+    stream:
+      - master:
+          branch: master
+    jobs:
+      - 'icn-master-verify-bashate'
+
+- job-template:
+    id: icn-stream-verify-gate
+    name: 'icn-{stream}-verify-{gate}'
+    archive-artifacts: >
+      **/*.log
+    build-days-to-keep: 30
+    build-timeout: 60
+    stream: master
+    gate: bashate
+    project-type: freestyle
+    submodule-recursive: true
+    node: '{build-node}'
+
+    properties:
+      - lf-infra-properties:
+          build-days-to-keep: '{build-days-to-keep}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+          lftools-version: '{lftools-version}'
+
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: 'gerrit'
+
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            - patchset-created-event:
+                exclude-drafts: 'false'
+                exclude-trivial-rebase: 'false'
+                exclude-no-code-change: 'false'
+            - change-merged-event
+            - draft-published-event
+            - comment-added-contains-event:
+                comment-contains-value: 'recheck'
+            - comment-added-contains-event:
+                comment-contains-value: 'reverify'
+          projects:
+            - project-compare-type: 'ANT'
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/{branch}'
+              file-paths:
+                - compare-type: ANT
+                  pattern: '**/*'
+              disable-strict-forbidden-file-verification: 'true'
+              forbidden-file-paths:
+                - compare-type: ANT
+                  pattern: 'docs/**'
+          readable-message: true
+
+    builders:
+      - shell: 'make {gate}'
+
+    publishers:
+      - lf-infra-publish
