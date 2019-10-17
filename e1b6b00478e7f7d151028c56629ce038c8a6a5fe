@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cb513ac_1849f520",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-10-17T17:36:26Z",
+      "side": 1,
+      "message": "Remove extra newline.",
+      "revId": "e1b6b00478e7f7d151028c56629ce038c8a6a5fe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "399e0117_83f9796d",
+        "filename": "jjb/akraino-templates/akraino-ta-common-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-10-17T17:36:26Z",
+      "side": 1,
+      "message": "Remove extra newline.",
+      "revId": "e1b6b00478e7f7d151028c56629ce038c8a6a5fe",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
