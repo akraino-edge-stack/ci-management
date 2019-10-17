@@ -46,14 +46,13 @@
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
 
     scm:
-      - ta-lf-infra-gerrit-scm:
+      - ta-lf-infra-gerrit-scm-{project-type}:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
           refspec: '$GERRIT_REFSPEC'
           branch: '$GERRIT_BRANCH'
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
-          choosing-strategy: 'gerrit'
           basedir: '$GERRIT_PROJECT'
 
     triggers:

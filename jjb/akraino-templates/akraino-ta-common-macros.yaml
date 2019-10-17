@@ -73,6 +73,34 @@
           choosing-strategy: '{choosing-strategy}'
           basedir: '{basedir}'
 
+
+- scm:
+    name: ta-lf-infra-gerrit-scm-merge
+    scm:
+      - ta-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}'
+          refspec: '{refspec}'
+          branch: '{branch}'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          basedir: '{basedir}'
+          choosing-strategy: default
+
+- scm:
+    name: ta-lf-infra-gerrit-scm-verify
+    scm:
+      - ta-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}'
+          refspec: '{refspec}'
+          branch: '{branch}'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          basedir: '{basedir}'
+          choosing-strategy: gerrit
+
+
 ###########
 # BUILDER #
 ###########
