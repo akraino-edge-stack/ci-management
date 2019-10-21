@@ -127,6 +127,9 @@
       - shell: |
           #!/bin/bash -ex
           make -k -C docker push-all
+      - shell: |
+          #!/bin/bash -ex
+              docker system prune -af
 
 - job-template:
     name: 'validation-docker-manifest-{stream}'
