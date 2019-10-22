@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9427b57e_8229f2ec",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-10-22T08:29:13Z",
+      "side": 1,
+      "message": "Allign the command with the shebang",
+      "range": {
+        "startLine": 132,
+        "startChar": 14,
+        "endLine": 132,
+        "endChar": 37
+      },
+      "revId": "2d1656667ff7471f21c8325b7fbd091c715ce0f7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
