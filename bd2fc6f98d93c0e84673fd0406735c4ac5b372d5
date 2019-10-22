@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfb8fd7b_6de6f024",
+        "filename": "jjb/validation/lab.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2019-10-22T18:15:30Z",
+      "side": 1,
+      "message": "AT\u0026T lab is not integrated with LF Jenkins. So, it should be deleted.",
+      "range": {
+        "startLine": 30,
+        "startChar": 6,
+        "endLine": 30,
+        "endChar": 11
+      },
+      "revId": "bd2fc6f98d93c0e84673fd0406735c4ac5b372d5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
