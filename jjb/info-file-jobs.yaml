@@ -1,0 +1,872 @@
+---
+- project:
+    name: All-Info-Verify
+    views:
+      - common-view
+    view-name: All-Info-Verify
+    view-regex: '.*-info-yaml-verify'
+    view-description: 'List of info file verify jobs'
+
+- project:
+    name: addon-onap-info
+    project-name: addon-onap
+    project: addon-onap
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: addon-snappy-info
+    project-name: addon-snappy
+    project: addon-snappy
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: airshipinabottle_deploy-info
+    project-name: airshipinabottle_deploy
+    project: airshipinabottle_deploy
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: camunda_workflow-info
+    project-name: camunda_workflow
+    project: camunda_workflow
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: chomp-info
+    project-name: chomp
+    project: chomp
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: connected-vehicle-info
+    project-name: connected-vehicle
+    project: connected-vehicle
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: edgility-generator-info
+    project-name: edgility-generator
+    project: edgility-generator
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: edgility-mosca-info
+    project-name: edgility-mosca
+    project: edgility-mosca
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: edgility-web-info
+    project-name: edgility-web
+    project: edgility-web
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: eliot-info
+    project-name: eliot
+    project: eliot
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: evp-info
+    project-name: evp
+    project: evp 
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: icn-info
+    project-name: icn
+    project: icn
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: icn-daaas-info
+    project-name: icn-daaas
+    project: icn/daaas
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: iec-info
+    project-name: iec
+    project: iec
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: iec-xconnect-info
+    project-name: iec-xconnect
+    project: iec/xconnect
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: kni-info
+    project-name: kni
+    project: kni
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: kni-blueprint-basic-3-masters-info
+    project-name: kni-blueprint-basic-3-masters
+    project: kni/blueprint-basic-3-masters
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: kni-blueprint-ie-info
+    project-name: kni-blueprint-ie
+    project: kni/blueprint-ie
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: kni-blueprint-pae-info
+    project-name: kni-blueprint-pae
+    project: kni/blueprint-pae
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: kni-installer-info
+    project-name: kni-installer
+    project: kni/installer
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: mec-api-framework-info
+    project-name: mec-api-framework
+    project: mec-api-framework
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: nc-ovs-dpdk-unicycle-info
+    project-name: nc-ovs-dpdk-unicycle
+    project: nc/ovs-dpdk-unicycle
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: nc-rover-info
+    project-name: nc-rover
+    project: nc/rover
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: nc-seba-info
+    project-name: nc-seba
+    project: nc/seba
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: nc-tf-info
+    project-name: nc-tf
+    project: nc/tf
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: nc-unicycle-info
+    project-name: nc-unicycle
+    project: nc/unicycle
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ovs-dpdk-airship-info
+    project-name: ovs-dpdk-airship
+    project: ovs-dpdk-airship
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: portal-info
+    project-name: portal
+    project: portal
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: portal_user_interface-info
+    project-name: portal_user_interface
+    project: portal_user_interface
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: portal_user_interface-portal-onapsdk-info
+    project-name: portal_user_interface-portal-onapsdk
+    project: portal_user_interface/portal-onapsdk
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: postgres_db_schema-info
+    project-name: postgres_db_schema
+    project: postgres_db_schema
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: rec-info
+    project-name: rec
+    project: rec
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: redfish-info
+    project-name: redfish
+    project: redfish
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: regional_controller-info
+    project-name: regional_controller
+    project: regional_controller
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: regional_controller-api-server-info
+    project-name: regional_controller-api-server
+    project: regional_controller/api-server
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: remote-server-os-bootstrap-info
+    project-name: remote-server-os-bootstrap
+    project: remote-server-os-bootstrap
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: repo-beta-info
+    project-name: repo-beta
+    project: repo-beta
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: sample_vnf-info
+    project-name: sample_vnf
+    project: sample_vnf
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: serverless-info
+    project-name: serverless
+    project: serverless
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: starlingx-info
+    project-name: starlingx
+    project: starlingx
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-info
+    project-name: ta
+    project: ta
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-access-management-info
+    project-name: ta-access-management
+    project: ta/access-management
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-ansible-role-ntp-info
+    project-name: ta-ansible-role-ntp
+    project: ta/ansible-role-ntp
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-build-tools-info
+    project-name: ta-build-tools
+    project: ta/build-tools
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-cpupooler-info
+    project-name: ta-caas-cpupooler
+    project: ta/caas-cpupooler
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-danm-info
+    project-name: ta-caas-danm
+    project: ta/caas-danm
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-etcd-info
+    project-name: ta-caas-etcd
+    project: ta/caas-etcd
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-helm-info
+    project-name: ta-caas-helm
+    project: ta/caas-helm
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-install-info
+    project-name: ta-caas-install
+    project: ta/caas-install
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-kubedns-info
+    project-name: ta-caas-kubedns
+    project: ta/caas-kubedns
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-kubernetes-info
+    project-name: ta-caas-kubernetes
+    project: ta/caas-kubernetes
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-lcm-info
+    project-name: ta-caas-lcm
+    project: ta/caas-lcm
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-logging-info
+    project-name: ta-caas-logging
+    project: ta/caas-logging
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-metrics-info
+    project-name: ta-caas-metrics
+    project: ta/caas-metrics
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-registry-info
+    project-name: ta-caas-registry
+    project: ta/caas-registry
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-security-info
+    project-name: ta-caas-security
+    project: ta/caas-security
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-caas-storage-info
+    project-name: ta-caas-storage
+    project: ta/caas-storage
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-cloudtaf-info
+    project-name: ta-cloudtaf
+    project: ta/cloudtaf
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-cm-plugins-info
+    project-name: ta-cm-plugins
+    project: ta/cm-plugins
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-config-manager-info
+    project-name: ta-config-manager
+    project: ta/config-manager
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-distributed-state-server-info
+    project-name: ta-distributed-state-server
+    project: ta/distributed-state-server
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-hostcli-info
+    project-name: ta-hostcli
+    project: ta/hostcli
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-hw-detector-info
+    project-name: ta-hw-detector
+    project: ta/hw-detector
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-image-provision-info
+    project-name: ta-image-provision
+    project: ta/image-provision
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-infra-ansible-info
+    project-name: ta-infra-ansible
+    project: ta/infra-ansible
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-ipa-deployer-info
+    project-name: ta-ipa-deployer
+    project: ta/ipa-deployer
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-ironic-info
+    project-name: ta-ironic
+    project: ta/ironic
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-ironic-virtmedia-driver-info
+    project-name: ta-ironic-virtmedia-driver
+    project: ta/ironic-virtmedia-driver
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-ironicclient-info
+    project-name: ta-ironicclient
+    project: ta/ironicclient
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-lockcli-info
+    project-name: ta-lockcli
+    project: ta/lockcli
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-manifest-info
+    project-name: ta-manifest
+    project: ta/manifest
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-monitoring-info
+    project-name: ta-monitoring
+    project: ta/monitoring
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-info
+    project-name: ta-openstack-ansible
+    project: ta/openstack-ansible
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-galera_client-info
+    project-name: ta-openstack-ansible-galera_client
+    project: ta/openstack-ansible-galera_client
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-galera_server-info
+    project-name: ta-openstack-ansible-galera_server
+    project: ta/openstack-ansible-galera_server
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-haproxy_server-info
+    project-name: ta-openstack-ansible-haproxy_server
+    project: ta/openstack-ansible-haproxy_server
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-memcached_server-info
+    project-name: ta-openstack-ansible-memcached_server
+    project: ta/openstack-ansible-memcached_server
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-openstack_openrc-info
+    project-name: ta-openstack-ansible-openstack_openrc
+    project: ta/openstack-ansible-openstack_openrc
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-os_ironic-info
+    project-name: ta-openstack-ansible-os_ironic
+    project: ta/openstack-ansible-os_ironic
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-os_keystone-info
+    project-name: ta-openstack-ansible-os_keystone
+    project: ta/openstack-ansible-os_keystone
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-plugins-info
+    project-name: ta-openstack-ansible-plugins
+    project: ta/openstack-ansible-plugins
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-rabbitmq_server-info
+    project-name: ta-openstack-ansible-rabbitmq_server
+    project: ta/openstack-ansible-rabbitmq_server
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-openstack-ansible-rsyslog_client-info
+    project-name: ta-openstack-ansible-rsyslog_client
+    project: ta/openstack-ansible-rsyslog_client
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-os-net-config-info
+    project-name: ta-os-net-config
+    project: ta/os-net-config
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-python-ilorest-library-info
+    project-name: ta-python-ilorest-library
+    project: ta/python-ilorest-library
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-python-peewee-info
+    project-name: ta-python-peewee
+    project: ta/python-peewee
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-remote-installer-info
+    project-name: ta-remote-installer
+    project: ta/remote-installer
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-rpmbuilder-info
+    project-name: ta-rpmbuilder
+    project: ta/rpmbuilder
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-start-menu-info
+    project-name: ta-start-menu
+    project: ta/start-menu
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-storage-info
+    project-name: ta-storage
+    project: ta/storage
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: ta-yarf-info
+    project-name: ta-yarf
+    project: ta/yarf
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: tc-info
+    project-name: tc
+    project: tc
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: test_automation-info
+    project-name: test_automation
+    project: test_automation
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: umec-info
+    project-name: umec
+    project: umec
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: validation-info
+    project-name: validation
+    project: validation
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
+
+- project:
+    name: yaml_builds-info
+    project-name: yaml_builds
+    project: yaml_builds
+    build-node: centos7-builder-2c-1g
+    branch: master
+    jobs:
+      - "{project-name}-info-yaml-jobs"
