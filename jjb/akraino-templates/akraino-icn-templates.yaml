@@ -44,6 +44,11 @@
           default: '{archive-artifacts}'
           description: Artifacts to archive to the logs server.
 
+      - string:
+          name: NEXUS_LOG_SUBDIR
+          default: '{nexus_log_subdir}'
+          description: Organization sub dir on Akraino Nexus server.
+
     wrappers:
       - lf-infra-wrappers:
           build-timeout: '{build-timeout}'
@@ -93,4 +98,4 @@
       - shell: 'make {gate}'
 
     publishers:
-      - lf-infra-publish
+      - icn-infra-publish
