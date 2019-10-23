@@ -93,4 +93,4 @@
       - shell: 'make {gate}'
 
     publishers:
-      - lf-infra-publish
+      - icn-infra-publish
