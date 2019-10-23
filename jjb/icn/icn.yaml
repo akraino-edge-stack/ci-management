@@ -19,6 +19,7 @@
     name: icn
     project: icn
     project-name: icn
+    nexus_log_subdir: intel/ICN_CI_logs
     gate:
       - bashate
     build-node: icn-dev
@@ -27,3 +28,5 @@
           branch: master
     jobs:
       - akraino-project-stream-verify-gate
+    views:
+      - project-view
