@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4198ae49_1a8962e0",
+        "filename": "jjb/info-file-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 51
+      },
+      "writtenOn": "2019-10-23T17:00:50Z",
+      "side": 1,
+      "message": "jobs:\n      - gerrit-info-yaml-verify ?\n\nI\u0027m not sure why this job group exists. as it only has one job in it.\n\n- job-group:\n    name: \"{project-name}-info-yaml-jobs\"\n\n    jobs:\n      - gerrit-info-yaml-verify\n\nbut I mean, all the same i suppose.",
+      "range": {
+        "startLine": 16,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 39
+      },
+      "revId": "4c0c37874e07fcd894423b4bd803f2113ce7e24b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "874f3051_d37bab71",
+        "filename": "jjb/info-file-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 51
+      },
+      "writtenOn": "2019-10-23T17:00:50Z",
+      "side": 1,
+      "message": "trailing",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 17
+      },
+      "revId": "4c0c37874e07fcd894423b4bd803f2113ce7e24b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
