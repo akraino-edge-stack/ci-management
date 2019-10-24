@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "c1f8c0df_544e36f1",
+        "filename": "jjb/validation/lab.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-10-24T14:47:25Z",
+      "side": 1,
+      "message": "Let\u0027s add the keyword \"validation\" at the beginning of this job, to make it obvious that\u0027s a testing job.",
+      "revId": "0501d53986ce082be38bd379c77cd58779488747",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "1cad9496_b9d7d0aa",
         "filename": "jjb/validation/lab.yaml",
         "patchSetId": 7
