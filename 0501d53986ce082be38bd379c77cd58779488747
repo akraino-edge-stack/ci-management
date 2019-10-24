@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cad9496_b9d7d0aa",
+        "filename": "jjb/validation/lab.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-10-24T11:38:50Z",
+      "side": 1,
+      "message": "I think we need to pass \"current-parameters: true\" here in order for the bluval job to receive the parameters values set in the parent job",
+      "revId": "0501d53986ce082be38bd379c77cd58779488747",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
