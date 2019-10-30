@@ -192,6 +192,8 @@
             same-node: true
             current-parameters: true
             predefined-parameters: |
+              K8S_MASTER_IP=172.16.10.36
+              K8S_SSH_KEY=/var/lib/opnfv/mcp.rsa
               BLUEPRINT={project-name}
               LAYER=k8s
               VERSION=master
