@@ -1,0 +1,11 @@
+Verified+1: Akraino Jobbuilder <collab-it+akraino-jobbuilder@linuxfoundation.org>
+Code-Review+1: Krisztián Lengyel <krisztian.lengyel@nokia.com>
+Code-Review+1: Cristina Pauna <cristina.pauna@enea.com>
+Code-Review+1: Valentin Radulescu <valentin.radulescu@enea.com>
+Code-Review+1: Levente Kálé <levente.kale@nokia.com>
+Code-Review+2: Eric Ball <eball@linuxfoundation.org>
+Submitted-by: Eric Ball <eball@linuxfoundation.org>
+Submitted-at: Thu, 31 Oct 2019 16:12:22 +0000
+Reviewed-on: https://gerrit.akraino.org/r/c/ci-management/+/1882
+Project: ci-management
+Branch: refs/heads/master
