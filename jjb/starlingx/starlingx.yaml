@@ -12,3 +12,17 @@
     views:
       - project-view
     cron: 'H H * * 0'  # push fresh snapshot weekly
+
+- project:
+    name: starlingx-distcloud-project-view
+    project-name: starlingx-distcloud
+    project: starlingx
+    stream:
+      - master:
+          branch: master
+    build-node: ubuntu1604-dev-8c-64g
+    jobs:
+      - akraino-project-stream-verify
+    views:
+      - project-view
+    cron: 'H H * * 0'  # push fresh snapshot weekly
