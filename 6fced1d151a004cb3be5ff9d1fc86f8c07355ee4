@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39e93841_e392c29d",
+        "filename": "jjb/starlingx/starlingx.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 16
+      },
+      "writtenOn": "2019-11-13T23:31:33Z",
+      "side": 1,
+      "message": "This change assumes that this node exists. The request to add it was sent.",
+      "revId": "6fced1d151a004cb3be5ff9d1fc86f8c07355ee4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
