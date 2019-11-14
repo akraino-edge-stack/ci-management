@@ -14,6 +14,12 @@ set -o pipefail
 cwd=$(pwd)
 is_optional="false"
 
+finish() {
+    # Fix ownership of output files
+    user_id=$(stat -c '%u:%g' $cwd)
+    sudo chown -R ${user_id} $results_dir
+}
+
 info ()  {
     logger -s -t "run_blu_val.info" "$*"
 }
@@ -136,3 +142,5 @@ then
 fi
 # shellcheck disable=SC2086
 python3 validation/bluval/blucon.py $options "$blueprint_name"
+
+trap finish EXIT
