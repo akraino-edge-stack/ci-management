@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae430684_10089831",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-11-18T23:55:33Z",
+      "side": 1,
+      "message": "This seems to assume that if the stream isn\u0027t \"master\", then we should treat it as a tag. But what if you wanted to add another branch stream? It seems to me that \"refs_tag\" could be used to differentiate between these situations, and it would be more robust than assuming that anything that isn\u0027t master is a tag.",
+      "range": {
+        "startLine": 154,
+        "startChar": 10,
+        "endLine": 154,
+        "endChar": 69
+      },
+      "revId": "1b63800c8dc80927186ba9a1c66082323e5f22a5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
