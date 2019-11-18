@@ -1,0 +1,157 @@
+---
+- job-template:
+    id: akraino-validation-docker-multiarch
+    name: 'validation-{stream}-docker'
+    project-type: multijob
+    disabled: '{obj:disabled}'
+    node: 'centos7-builder-2c-1g'
+    build-timeout: 90
+
+    parameters:
+      - validation-job-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+
+    properties:
+      - throttle:
+          max-per-node: 1
+          option: 'project'
+      - build-blocker:
+          use-build-blocker: true
+          blocking-jobs:
+            - 'validation-docker-.*'
+          blocking-level: 'NODE'
+    scm:
+      - validation-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: ''
+          refs_tag: '{refs_tag}'
+          stream: '{stream}'
+          submodule-recursive: false
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+
+    triggers:
+      # Build nigtly at 12:10 AM
+      - timed: '10 0 * * *'
+
+    builders:
+      - multijob:
+          name: 'build validation images'
+          execution-type: PARALLEL
+          projects:
+            - name: 'validation-docker-build-amd64-{stream}'
+              <<: *docker-build-job-settings
+            - name: 'validation-docker-build-arm64-{stream}'
+              <<: *docker-build-job-settings
+      - multijob:
+          name: 'publish validation manifests'
+          condition: SUCCESSFUL
+          execution-type: PARALLEL
+          projects:
+            - name: 'validation-docker-manifest-{stream}'
+              <<: *docker-build-job-settings
+
+    publishers:
+      - email:
+          recipients: 'cristina.pauna@enea.com'
+
+- job-template:
+    id: akraino-validation-docker-specific-arch
+    name: 'validation-docker-build-{arch_tag}-{stream}'
+    disabled: '{obj:disabled}'
+    node: '{slave_label}'
+    build-timeout: 75
+
+    parameters:
+      - validation-job-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          arch_tag: '{arch_tag}'
+
+    properties:
+      - build-blocker:
+          use-build-blocker: true
+          blocking-jobs:
+            - 'validation-docker-build-.*'
+          blocking-level: 'NODE'
+    scm:
+     - validation-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: ''
+          refs_tag: '{refs_tag}'
+          stream: '{stream}'
+          submodule-recursive: false
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+
+    builders:
+      - lf-infra-docker-login:
+          global-settings-file: global-settings
+          settings-file: '{mvn-settings}'
+      - conditional-step:
+          condition-kind: regex-match
+          regex: '^tags$'
+          label: '{refs_tag}'
+          steps:
+            - shell: |
+                #!/bin/bash -ex
+                echo "export TAG_VER=$STREAM"  >> tag_version.sh 
+      - shell: |
+          #!/bin/bash -ex
+          if [ -f tag_version.sh ]; then source tag_version.sh; fi
+          make -k -C docker push-all
+          rm -f tag_version.sh
+      - shell: |
+          #!/bin/bash -ex
+          docker system prune -af
+
+- job-template:
+    id: akraino-validation-docker-manifest
+    name: 'validation-docker-manifest-{stream}'
+    node: 'ubuntu1604-docker-8c-8g'
+    build-timeout: 15
+
+    parameters:
+      - validation-job-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+
+    disabled: '{obj:disabled}'
+
+    scm:
+     - validation-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: ''
+          refs_tag: '{refs_tag}'
+          stream: '{stream}'
+          submodule-recursive: false
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+
+    builders:
+      - lf-infra-docker-login:
+          global-settings-file: global-settings
+          settings-file: '{mvn-settings}'
+     - conditional-step:
+          condition-kind: regex-match
+          regex: '^tags$'
+          label: '{refs_tag}'
+          steps:
+            - shell: |
+                #!/bin/bash -ex
+                echo "export TAG_VER=$STREAM"  >> tag_version.sh  
+      - shell: |
+          #!/bin/bash -ex
+          if [ -f tag_version.sh ]; then source tag_version.sh; fi
+          for sd in docker/*/.; do make -k -C $sd .push_manifest; done
+          rm -f tag_version.sh
