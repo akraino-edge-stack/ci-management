@@ -6,6 +6,11 @@
     stream:
       - master:
           branch: '{stream}'
+          refs_tag: 'heads'
+          disabled: false
+      - 2.0.0:
+          branch: 'master'
+          refs_tag: 'tags'
           disabled: false
 
     arch_tag:
@@ -14,160 +19,7 @@
       - 'arm64':
           slave_label: 'aarch64_dev'
 
-    # settings for jobs run in multijob phases
-    docker-build-job-settings: &docker-build-job-settings
-      current-parameters: false
-      git-revision: true
-      node-parameters: false
-      predefined-parameters: |
-        GERRIT_REFNAME=$GERRIT_REFNAME
-      kill-phase-on: FAILURE
-      abort-all-jobs: false
-
     jobs:
-      - "validation-{stream}-docker"
-      - "validation-docker-build-{arch_tag}-{stream}"
-      - "validation-docker-manifest-{stream}"
-
-########################
-# job templates
-########################
-- job-template:
-    name: 'validation-{stream}-docker'
-    project-type: multijob
-    disabled: '{obj:disabled}'
-    node: 'centos7-builder-2c-1g'
-    build-timeout: 90
-
-    parameters:
-      - validation-job-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-
-    properties:
-      - throttle:
-          max-per-node: 1
-          option: 'project'
-      - build-blocker:
-          use-build-blocker: true
-          blocking-jobs:
-            - 'validation-docker-.*'
-          blocking-level: 'NODE'
-    scm:
-      - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: ''
-          branch: '{branch}'
-          submodule-recursive: false
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-
-    triggers:
-      # Build nigtly at 12:10 AM
-      - timed: '10 0 * * *'
-
-    builders:
-      - multijob:
-          name: 'build validation images'
-          execution-type: PARALLEL
-          projects:
-            - name: 'validation-docker-build-amd64-{stream}'
-              <<: *docker-build-job-settings
-            - name: 'validation-docker-build-arm64-{stream}'
-              <<: *docker-build-job-settings
-      - multijob:
-          name: 'publish validation manifests'
-          condition: SUCCESSFUL
-          execution-type: PARALLEL
-          projects:
-            - name: 'validation-docker-manifest-{stream}'
-              <<: *docker-build-job-settings
-
-    publishers:
-      - email:
-          recipients: 'cristina.pauna@enea.com'
-
-- job-template:
-    name: 'validation-docker-build-{arch_tag}-{stream}'
-    disabled: '{obj:disabled}'
-    node: '{slave_label}'
-    build-timeout: 75
-
-    parameters:
-      - validation-job-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          arch_tag: '{arch_tag}'
-
-    properties:
-      - build-blocker:
-          use-build-blocker: true
-          blocking-jobs:
-            - 'validation-docker-build-.*'
-          blocking-level: 'NODE'
-    scm:
-     - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: ''
-          branch: '{branch}'
-          submodule-recursive: false
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-
-    builders:
-      - lf-infra-docker-login:
-          global-settings-file: global-settings
-          settings-file: '{mvn-settings}'
-      - shell: |
-          #!/bin/bash -ex
-          make -k -C docker push-all
-      - shell: |
-          #!/bin/bash -ex
-          docker system prune -af
-
-- job-template:
-    name: 'validation-docker-manifest-{stream}'
-    node: 'ubuntu1604-docker-8c-8g'
-    build-timeout: 15
-
-    parameters:
-      - validation-job-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-
-    disabled: '{obj:disabled}'
-
-    scm:
-     - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: ''
-          branch: '{branch}'
-          submodule-recursive: false
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-
-    builders:
-      - lf-infra-docker-login:
-          global-settings-file: global-settings
-          settings-file: '{mvn-settings}'
-      - shell: |
-          #!/bin/bash -ex
-          for sd in docker/*/.; do make -k -C $sd .push_manifest; done
-
-# parameter macro
-- parameter:
-    name: validation-job-parameters
-    parameters:
-      - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
+      - akraino-validation-docker-multiarch
+      - akraino-validation-docker-specific-arch
+      - akraino-validation-docker-manifest

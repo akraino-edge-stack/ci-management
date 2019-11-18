@@ -1,0 +1,45 @@
+---
+#######
+# SCM #
+#######
+- scm:
+    # Enhanced version of the global-jjb
+    name: validation-infra-gerrit-scm
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}'
+          refspec: '{refspec}'
+          branches:
+            - 'refs/{refs_tag}/{stream}'
+          skip-tag: false
+          wipe-workspace: true
+          submodule:
+            recursive: '{submodule-recursive}'
+            timeout: '{submodule-timeout}'
+          choosing-strategy: '{choosing-strategy}'
+
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: validation-job-parameters
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+
+############
+# SETTINGS #
+############
+# settings for jobs run in multijob phases
+- docker-build-job-settings: &docker-build-job-settings
+    name: docker_build_job_settings
+    current-parameters: false
+    git-revision: true
+    node-parameters: false
+    predefined-parameters: |
+      GERRIT_REFNAME=$GERRIT_REFNAME
+    kill-phase-on: FAILURE
+    abort-all-jobs: false
