@@ -6,6 +6,11 @@
     stream:
       - master:
           branch: '{stream}'
+          refs_tag: 'heads'
+          disabled: false
+      - 2.0.0:
+          branch: 'master'
+          refs_tag: 'tags'
           disabled: false
 
     arch_tag:
@@ -28,6 +33,24 @@
       - "validation-{stream}-docker"
       - "validation-docker-build-{arch_tag}-{stream}"
       - "validation-docker-manifest-{stream}"
+
+
+- scm:
+    # Enhanced version of the global-jjb
+    name: validation-infra-gerrit-scm
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}'
+          refspec: '{refspec}'
+          branches:
+            - 'refs/{refs_tag}/{stream}'
+          skip-tag: false
+          wipe-workspace: true
+          submodule:
+            recursive: '{submodule-recursive}'
+            timeout: '{submodule-timeout}'
+          choosing-strategy: '{choosing-strategy}'
 
 ########################
 # job templates
@@ -55,11 +78,12 @@
             - 'validation-docker-.*'
           blocking-level: 'NODE'
     scm:
-      - lf-infra-gerrit-scm:
+      - validation-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
           refspec: ''
-          branch: '{branch}'
+          refs_tag: '{refs_tag}'
+          stream: '{stream}'
           submodule-recursive: false
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
@@ -110,11 +134,12 @@
             - 'validation-docker-build-.*'
           blocking-level: 'NODE'
     scm:
-     - lf-infra-gerrit-scm:
+     - validation-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
           refspec: ''
-          branch: '{branch}'
+          refs_tag: '{refs_tag}'
+          stream: '{stream}'
           submodule-recursive: false
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
@@ -126,6 +151,7 @@
           settings-file: '{mvn-settings}'
       - shell: |
           #!/bin/bash -ex
+          if [ $STREAM != 'master' ]; then export TAG_VER=$STREAM; fi
           make -k -C docker push-all
       - shell: |
           #!/bin/bash -ex
@@ -145,11 +171,12 @@
     disabled: '{obj:disabled}'
 
     scm:
-     - lf-infra-gerrit-scm:
+     - validation-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
           refspec: ''
-          branch: '{branch}'
+          refs_tag: '{refs_tag}'
+          stream: '{stream}'
           submodule-recursive: false
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
@@ -161,6 +188,7 @@
           settings-file: '{mvn-settings}'
       - shell: |
           #!/bin/bash -ex
+          if [ $STREAM != 'master' ]; then export TAG_VER=$STREAM; fi
           for sd in docker/*/.; do make -k -C $sd .push_manifest; done
 
 # parameter macro
