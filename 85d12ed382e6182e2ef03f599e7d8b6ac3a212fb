@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55a51049_1b69144b",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-18T14:19:43Z",
+      "side": 1,
+      "message": "I think this should be $STREAM",
+      "range": {
+        "startLine": 154,
+        "startChar": 58,
+        "endLine": 154,
+        "endChar": 64
+      },
+      "revId": "85d12ed382e6182e2ef03f599e7d8b6ac3a212fb",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec508a7a_5e21ab70",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-18T14:19:43Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 191,
+        "startChar": 58,
+        "endLine": 191,
+        "endChar": 64
+      },
+      "revId": "85d12ed382e6182e2ef03f599e7d8b6ac3a212fb",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
