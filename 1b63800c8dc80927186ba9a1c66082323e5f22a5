@@ -46,6 +46,30 @@
       "revId": "1b63800c8dc80927186ba9a1c66082323e5f22a5",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9f1ab1a_ee5e579d",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-19T16:50:01Z",
+      "side": 1,
+      "message": "How about testing $GERRIT_REFSPEC?",
+      "parentUuid": "b26655f0_565ddf62",
+      "range": {
+        "startLine": 154,
+        "startChar": 10,
+        "endLine": 154,
+        "endChar": 69
+      },
+      "revId": "1b63800c8dc80927186ba9a1c66082323e5f22a5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
