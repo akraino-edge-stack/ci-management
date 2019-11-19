@@ -22,6 +22,30 @@
       "revId": "1b63800c8dc80927186ba9a1c66082323e5f22a5",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b26655f0_565ddf62",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-11-19T16:44:00Z",
+      "side": 1,
+      "message": "refs_tag doesn\u0027t seem to be expanded in env variables in the job [1]. Any hints on how to get its value here?\n\n[1] https://jenkins.akraino.org/sandbox/job/validation-docker-build-amd64-2.0.0/8/injectedEnvVars/",
+      "parentUuid": "ae430684_10089831",
+      "range": {
+        "startLine": 154,
+        "startChar": 10,
+        "endLine": 154,
+        "endChar": 69
+      },
+      "revId": "1b63800c8dc80927186ba9a1c66082323e5f22a5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
