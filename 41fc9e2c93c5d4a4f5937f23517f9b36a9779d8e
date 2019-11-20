@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad80b490_95a8e4d5",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-11-20T17:38:32Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to be in use.",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 9
+      },
+      "revId": "41fc9e2c93c5d4a4f5937f23517f9b36a9779d8e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b83d9767_db08f19c",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-11-20T17:38:32Z",
+      "side": 1,
+      "message": "Where is this defined?",
+      "range": {
+        "startLine": 154,
+        "startChar": 41,
+        "endLine": 154,
+        "endChar": 52
+      },
+      "revId": "41fc9e2c93c5d4a4f5937f23517f9b36a9779d8e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21765352_c169e9d8",
+        "filename": "jjb/validation/lab.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-11-20T17:38:32Z",
+      "side": 1,
+      "message": "Should this space be here?",
+      "range": {
+        "startLine": 64,
+        "startChar": 23,
+        "endLine": 64,
+        "endChar": 24
+      },
+      "revId": "41fc9e2c93c5d4a4f5937f23517f9b36a9779d8e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
