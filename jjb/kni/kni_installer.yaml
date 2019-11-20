@@ -19,6 +19,7 @@
     jobs:
       - kni-verify-deploy-aws
       - kni-verify-deploy-libvirt
+      - kni-verify-deploy-baremetal
 
 - project:
     name: kni-blueprint-basic-3-masters
@@ -29,3 +30,4 @@
     jobs:
       - kni-verify-deploy-aws
       - kni-verify-deploy-libvirt
+      - kni-verify-deploy-baremetal
