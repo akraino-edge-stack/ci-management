@@ -66,6 +66,10 @@
           name: OPTIONAL
           default: ''
           description: 'If set to yes run optional tests'
+      - string:
+          name: LAB_SILO
+          default: ''
+          description: 'Owner of the lab'
 
 - job-template:
     name: 'bluval-daily-{stream}'

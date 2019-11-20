@@ -144,3 +144,15 @@ then
 fi
 # shellcheck disable=SC2086
 python3 validation/bluval/blucon.py $options "$blueprint_name"
+
+NEXUS_URL="https://nexus.akraino.org/content/sites/logs/$LAB_SILO-blu-val/bluval_results/"
+BUILD_URL="${JENKINS_HOSTNAME}/job/${JOB_NAME}/${BUILD_NUMBER}/"
+TIMESTAMP=$(date +'%Y%m%d-%H%M%S')
+
+zip -r results.zip $results
+
+lftools deploy nexus-zip $NEXUS_URL logs $NEXUS_PATH results.zip
+
+rm results.zip
+sudo rm -rf $results
+
