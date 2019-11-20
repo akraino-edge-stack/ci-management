@@ -19,6 +19,10 @@ info ()  {
     logger -s -t "run_blu_val.info" "$*"
 }
 
+has_substring() {
+   [[ "$1" != "${2/$1/}" ]]
+}
+
 change_res_owner() {
 # change owner of results created by root in container
     if [ -d "$results_dir" ]
@@ -157,3 +161,16 @@ fi
 set -e
 
 change_res_owner
+if has_substring "$NODE_NAME" "snd-"
+then
+    echo "In sandbox the logs are not pushed"
+else
+    NEXUS_URL="https://nexus.akraino.org/content/sites/logs/$LAB_SILO-blu-val/bluval_results/"
+    BUILD_URL="${JENKINS_HOSTNAME}/job/${JOB_NAME}/${BUILD_NUMBER}/"
+    TIMESTAMP=$(date +'%Y%m%d-%H%M%S')
+    zip -r results.zip $results_dir
+    lftools deploy nexus-zip $NEXUS_URL logs $NEXUS_PATH results.zip
+fi
+
+rm results.zip
+

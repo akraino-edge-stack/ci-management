@@ -66,6 +66,14 @@
           name: OPTIONAL
           default: ''
           description: 'If set to yes run optional tests'
+      - string:
+          name: LAB_SILO
+          default: ''
+          description: 'Owner of the lab'
+      - string:
+          name: SETTINGS_FILE
+          default: '/home/jenkins/settings.xml'
+          description: 'Path to credentials file'
 
 - job-template:
     name: 'bluval-daily-{stream}'
@@ -93,8 +101,11 @@
             timeout: '{submodule-timeout}'
           choosing-strategy: default
 
-
     builders:
       - description-setter:
           description: "POD: $NODE_NAME"
+      - lf-infra-create-netrc:
+          server-id: logs
       - shell: ./jjb/shell/run_bluval.sh -n "$BLUEPRINT"
+      - shell: !include-raw:
+          - ../../global-jjb/shell/logs-clear-credentials.sh
