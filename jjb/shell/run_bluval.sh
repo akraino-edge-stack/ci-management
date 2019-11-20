@@ -10,6 +10,7 @@
 set -e
 set -o errexit
 set -o pipefail
+export PATH=$PATH:/home/jenkins/.local/bin
 
 cwd=$(pwd)
 current_user=$(whoami)
@@ -17,6 +18,10 @@ is_optional="false"
 
 info ()  {
     logger -s -t "run_blu_val.info" "$*"
+}
+
+has_substring() {
+   [ "$1" != "${2/$1/}" ]
 }
 
 change_res_owner() {
@@ -150,9 +155,23 @@ python3 bluval/blucon.py $options "$blueprint_name"
 
 if [ $? -ne 0 ]; then
     change_res_owner
-    error "Bluval validation failed!"
+    error "Bluval validation FAIL "
 fi
-
 set -e
 
 change_res_owner
+if has_substring "$NODE_NAME" "snd-"
+then
+    echo "In sandbox the logs are not pushed"
+else
+    TIMESTAMP=$(date +'%Y%m%d-%H%M%S')
+    NEXUS_URL=https://nexus.akraino.org/
+    NEXUS_PATH="${LAB_SILO}/bluval_results/${blueprint_name}/${VERSION}/${TIMESTAMP}"
+    BUILD_URL="${JENKINS_HOSTNAME}/job/${JOB_NAME}/${BUILD_NUMBER}/"
+    zip -r results.zip $results_dir
+    lftools deploy nexus-zip "$NEXUS_URL" logs "$NEXUS_PATH" results.zip
+fi
+
+rm results.zip
+rm -f ~/.netrc
+

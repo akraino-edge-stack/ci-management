@@ -60,5 +60,7 @@
     builders:
       - trigger-builds:
           - project: 'bluval-daily-{stream}'
+            predefined-parameters:
+              LAB_SILO={validation_lab}
             same-node: true
             current-parameters: true
