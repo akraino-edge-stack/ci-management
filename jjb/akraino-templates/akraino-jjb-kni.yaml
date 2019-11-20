@@ -14,26 +14,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-- job-template:
-    id: kni-installer-verify-installer
-    name: '{project-name}-verify-installer'
+- kni_common: &kni_common
+    name: kni-common
 
     ######################
     # Default parameters #
     ######################
 
-    build-node: centos7-builder-2c-1g
+    build-node: "{build-node}"
     build-days-to-keep: 30
     build-timeout: 60
     submodule-recursive: true
+    gerrit_trigger_file_paths: "{gerrit_trigger_file_paths}"
 
     #####################
     # Job Configuration #
     #####################
 
     project-type: freestyle
-    node: '{build-node}'
-
+    node: "{build-node}"
     properties:
       - lf-infra-properties:
           build-days-to-keep: '{build-days-to-keep}'
@@ -49,10 +48,6 @@
       - lf-infra-wrappers:
           build-timeout: '{build-timeout}'
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
-
-    gerrit_trigger_file_paths:
-      - compare-type: ANT
-        pattern: '**'
 
     scm:
       - lf-infra-gerrit-scm:
@@ -85,40 +80,14 @@
                 - branch-compare-type: ANT
                   branch-pattern: '**/{branch}'
               file-paths: '{obj:gerrit_trigger_file_paths}'
-
-    builders:
-      - lf-infra-pre-build
-      - shell: !include-raw-escape:
-          - ../shell/install_go.sh
-      - shell: !include-raw-escape:
-          - ../shell/build_kni_installer.sh
-
     publishers:
       - lf-infra-publish
 
-- job-template:
-    id: kni-installer-verify-binary
-    name: '{project-name}-verify-binary'
-
-    ######################
-    # Default parameters #
-    ######################
-
-    build-days-to-keep: 30
-    build-timeout: 60
-    build-node: centos7-builder-8c-8g
-    submodule-recursive: true
-
-    #####################
-    # Job Configuration #
-    #####################
-
-    project-type: freestyle
-    node: '{build-node}'
-
-    properties:
-      - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
+- kni_common_deploy: &kni_common_deploy
+    name: kni-common-deploy
+    <<: *kni_common
+    archive-artifacts: >
+      **/*.log
 
     parameters:
       - lf-infra-parameters:
@@ -126,29 +95,21 @@
           branch: '{branch}'
           stream: '{stream}'
           lftools-version: '{lftools-version}'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
 
     wrappers:
       - lf-infra-wrappers:
           build-timeout: '{build-timeout}'
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
-
-    gerrit_trigger_file_paths:
-      - compare-type: ANT
-        pattern: 'Makefile'
-      - compare-type: ANT
-        pattern: 'cmd/binary.go'
-
-    gerrit_verify_triggers:
-      - patchset-created-event:
-          execlude-drafts: true
-          exclude-trivial-rebase: false
-          exclude-no-code-change: false
-      - draft-published-event
-      - comment-added-contains-event:
-          comment-contains-value: '^Patch Set[ ]+[0-9]+:([ ]+|[\n]+)(recheck|reverify)$'
-
+      - credentials-binding:
+          - ssh-user-private-key:
+              credential-id: kni-secrets
+              key-file-variable: KNI_KEY_PATH
     scm:
-      - lf-infra-gerrit-scm:
+      - akraino-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
           refspec: '$GERRIT_REFSPEC'
@@ -157,6 +118,45 @@
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
           choosing-strategy: default
+          basedir: '{project-name}'
+      - akraino-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/kni/installer.git'
+          refspec: 'refs/heads/master'
+          branch: 'master'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+          basedir: 'installer'
+ 
+- job-template:
+    id: kni-installer-verify-installer
+    name: '{project-name}-verify-installer'
+    gerrit_trigger_file_paths:
+      - compare-type: ANT
+        pattern: '**'
+    <<: *kni_common
+    build-node: centos7-builder-2c-1g
+
+    builders:
+      - lf-infra-pre-build
+      - shell: !include-raw-escape:
+          - ../shell/install_go.sh
+      - shell: !include-raw-escape:
+          - ../shell/build_kni_installer.sh
+
+- job-template:
+    id: kni-installer-verify-binary
+    name: '{project-name}-verify-binary'
+    <<: *kni_common
+    build-node: centos7-builder-8c-8g
+
+    gerrit_trigger_file_paths:
+      - compare-type: ANT
+        pattern: 'Makefile'
+      - compare-type: ANT
+        pattern: 'cmd/binary.go'
 
     triggers:
       - gerrit:
@@ -177,55 +177,11 @@
       - shell: !include-raw-escape:
           - ../shell/build_kni_binary.sh
 
-    publishers:
-      - lf-infra-publish
-
 - job-template:
     id: kni-verify-deploy-aws
     name: 'kni-{project-name}-verify-deploy-aws'
-
-    ######################
-    # Default parameters #
-    ######################
-
-    build-days-to-keep: 30
-    build-timeout: 60
     build-node: kni-libvirt
-    submodule-recursive: true
-
-    #####################
-    # Job Configuration #
-    #####################
-
-    project-type: freestyle
-    node: '{build-node}'
-
-    properties:
-      - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
-
-    archive-artifacts: >
-      **/*.log
-
-    parameters:
-      - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
-      - string:
-          name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
-          description: Artifacts to archive to the logs server.
-
-    wrappers:
-      - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-      - credentials-binding:
-          - ssh-user-private-key:
-              credential-id: kni-secrets
-              key-file-variable: KNI_KEY_PATH
+    <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
@@ -234,48 +190,6 @@
         pattern: 'sites/testing.aws.edge-sites.net/**'
       - compare-type: ANT
         pattern: 'base/**'
-
-    gerrit_verify_triggers:
-      - patchset-created-event:
-          exclude-drafts: true
-          exclude-trivial-rebase: false
-          exclude-no-code-change: false
-      - draft-published-event
-      - comment-added-contains-event:
-          comment-contains-value: '^Patch Set[ ]+[0-9]+:([ ]+|[\n]+)(recheck|reverify)$'
-
-    scm:
-      - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-          basedir: '{project-name}'
-      - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/kni/installer.git'
-          refspec: 'refs/heads/master'
-          branch: 'master'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-          basedir: 'installer'
-    triggers:
-      - gerrit:
-          server-name: '{gerrit-server-name}'
-          trigger-on: '{obj:gerrit_verify_triggers}'
-          projects:
-            - project-compare-type: ANT
-              project-pattern: '{project}'
-              branches:
-                - branch-compare-type: ANT
-                  branch-pattern: '**/{branch}'
-              file-paths: '{obj:gerrit_trigger_file_paths}'
 
     builders:
       - lf-infra-pre-build
@@ -287,55 +201,11 @@
           - ../shell/install_go.sh
       - shell: ./installer/ci/kni_deploy_aws.sh
 
-    publishers:
-      - lf-infra-publish
-
 - job-template:
     id: kni-verify-deploy-libvirt
     name: 'kni-{project-name}-verify-deploy-libvirt'
-
-    ######################
-    # Default parameters #
-    ######################
-
-    build-days-to-keep: 30
-    build-timeout: 60
     build-node: kni-libvirt
-    submodule-recursive: true
-
-    #####################
-    # Job Configuration #
-    #####################
-
-    project-type: freestyle
-    node: '{build-node}'
-
-    properties:
-      - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
-
-    parameters:
-      - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
-      - string:
-          name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
-          description: Artifacts to archive to the logs server.
-
-    archive-artifacts: >
-      **/*.log
-
-    wrappers:
-      - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-      - credentials-binding:
-          - ssh-user-private-key:
-              credential-id: kni-secrets
-              key-file-variable: KNI_KEY_PATH
+    <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
@@ -345,48 +215,6 @@
       - compare-type: ANT
         pattern: 'base/**'
 
-    gerrit_verify_triggers:
-      - patchset-created-event:
-          exclude-drafts: true
-          exclude-trivial-rebase: false
-          exclude-no-code-change: false
-      - draft-published-event
-      - comment-added-contains-event:
-          comment-contains-value: '^Patch Set[ ]+[0-9]+:([ ]+|[\n]+)(recheck|reverify)$'
-
-    triggers:
-      - gerrit:
-          server-name: '{gerrit-server-name}'
-          trigger-on: '{obj:gerrit_verify_triggers}'
-          projects:
-            - project-compare-type: ANT
-              project-pattern: '{project}'
-              branches:
-                - branch-compare-type: ANT
-                  branch-pattern: '**/{branch}'
-              file-paths: '{obj:gerrit_trigger_file_paths}'
-
-    scm:
-      - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-          basedir: '{project-name}'
-      - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/kni/installer.git'
-          refspec: 'refs/heads/master'
-          branch: 'master'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-          basedir: 'installer'
     builders:
       - lf-infra-pre-build
       - config-file-provider:
@@ -399,70 +227,14 @@
           - ../shell/install_go.sh
       - shell: ./installer/ci/kni_deploy_libvirt.sh
 
-    publishers:
-      - lf-infra-publish
-
 - job-template:
     id: kni-installer-publish-openshift-install-libvirt-binary
     name: '{project-name}-publish-openshift-install-libvirt-binary'
-
-    ######################
-    # Default parameters #
-    ######################
-
-    build-days-to-keep: 200
-    build-timeout: 60
+    <<: *kni_common
     build-node: centos7-builder-8c-8g
-    submodule-recursive: true
-
-    #####################
-    # Job Configuration #
-    #####################
-
-    project-type: freestyle
-    node: '{build-node}'
-
-    properties:
-      - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
-
-    parameters:
-      - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
-
-    wrappers:
-      - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-
     gerrit_build_triggers:
       - comment-added-contains-event:
           comment-contains-value: '^build-binary'
-
-    scm:
-      - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-
-    triggers:
-      - gerrit:
-          server-name: '{gerrit-server-name}'
-          trigger-on: '{obj:gerrit_build_triggers}'
-          projects:
-            - project-compare-type: ANT
-              project-pattern: '{project}'
-              branches:
-                - branch-compare-type: ANT
-                  branch-pattern: '**/{branch}'
 
     builders:
       - lf-infra-pre-build
@@ -471,5 +243,49 @@
       - shell: !include-raw-escape:
           - ../shell/build_openshift_install_libvirt_binary.sh
 
-    publishers:
-      - lf-infra-publish
+- job-template:
+    id: kni-verify-deploy-baremetal
+    name: 'kni-{project-name}-verify-deploy-baremetal'
+    <<: *kni_common_deploy
+    build-timeout: 120
+    build-node: kni-baremetal
+ 
+    gerrit_trigger_file_paths:
+      - compare-type: ANT
+        pattern: 'profiles/production.baremetal/**'
+      - compare-type: ANT
+        pattern: 'sites/testing.baremetal.edge-sites.net/**'
+      - compare-type: ANT
+        pattern: 'base/**'
+
+    scm:
+      - akraino-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: 'https://github.com/yrobla/testing.baremetal.edge-sites.net'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+          basedir: 'testing.baremetal.edge-sites.net'
+      - akraino-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/kni/installer.git'
+          refspec: 'refs/heads/master'
+          branch: 'master'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+          basedir: 'installer'
+
+    builders:
+      - lf-infra-pre-build
+      - config-file-provider:
+          files:
+            - file-id: kni-coreos-pull-secret
+              target: akraino-secrets/coreos-pull-secret
+            - file-id: kni-ssh-pub-key
+              target: akraino-secrets/ssh-pub-key
+      - shell: sudo -E ./installer/ci/kni_deploy_baremetal.sh
