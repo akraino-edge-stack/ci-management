@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0aaf344b_bb21033d",
+        "filename": "jjb/akraino-templates/akraino-validation-templates.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-25T16:52:42Z",
+      "side": 1,
+      "message": "I think the definition for this YAML anchor was lost during refactoring.",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "217266a0b1dc021e0dfb4550b4b820a560238d1f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cb0a98a_2c8e505f",
+        "filename": "jjb/akraino-templates/akraino-validation-templates.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-25T16:52:42Z",
+      "side": 1,
+      "message": "trailing ws",
+      "range": {
+        "startLine": 105,
+        "startChar": 64,
+        "endLine": 105,
+        "endChar": 65
+      },
+      "revId": "217266a0b1dc021e0dfb4550b4b820a560238d1f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59e3b747_ca839e8c",
+        "filename": "jjb/akraino-templates/akraino-validation-templates.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-25T16:52:42Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 152,
+        "startChar": 64,
+        "endLine": 152,
+        "endChar": 66
+      },
+      "revId": "217266a0b1dc021e0dfb4550b4b820a560238d1f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
