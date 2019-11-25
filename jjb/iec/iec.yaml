@@ -241,6 +241,7 @@
           stream: '{stream}'
           branch: '{branch}'
       - '{project}-defaults'
+      - '{installer}-{os}-defaults'
       - string:
           name: DEPLOY_SCENARIO
           default: '{scenario}'
@@ -305,6 +306,7 @@
           stream: '{stream}'
           branch: '{branch}'
       - '{project}-defaults'
+      - '{installer}-{os}-defaults'
       - string:
           name: DEPLOY_SCENARIO
           default: '{scenario}'
@@ -335,6 +337,7 @@
           stream: '{stream}'
           branch: '{branch}'
       - '{project}-defaults'
+      - '{installer}-{os}-defaults'
 
     wrappers:
       - build-name:
