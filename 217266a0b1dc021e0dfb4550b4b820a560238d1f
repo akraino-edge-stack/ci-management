@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cdecfb91_d870ff6e",
+        "filename": "jjb/akraino-templates/akraino-validation-templates.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-11-25T17:08:30Z",
+      "side": 1,
+      "message": "The settings definition is in the akraino-validation-macros.yaml file",
+      "parentUuid": "0aaf344b_bb21033d",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 44
+      },
+      "revId": "217266a0b1dc021e0dfb4550b4b820a560238d1f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4cb0a98a_2c8e505f",
         "filename": "jjb/akraino-templates/akraino-validation-templates.yaml",
         "patchSetId": 6
