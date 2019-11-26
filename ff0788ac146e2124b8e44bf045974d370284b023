@@ -22,6 +22,30 @@
       "revId": "ff0788ac146e2124b8e44bf045974d370284b023",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab7ea2b8_9a7e0523",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 87
+      },
+      "writtenOn": "2019-11-26T09:41:31Z",
+      "side": 1,
+      "message": "Thanks for your comments. It has been resolved. Please check it.",
+      "parentUuid": "78841f42_8b1c5048",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 11
+      },
+      "revId": "ff0788ac146e2124b8e44bf045974d370284b023",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
