@@ -12,13 +12,8 @@ set -o errexit
 set -o pipefail
 
 cwd=$(pwd)
+current_user=$(whoami)
 is_optional="false"
-
-finish() {
-    # Fix ownership of output files
-    user_id=$(stat -c '%u:%g' $cwd)
-    sudo chown -R ${user_id} $results_dir
-}
 
 info ()  {
     logger -s -t "run_blu_val.info" "$*"
@@ -118,8 +113,6 @@ then
     fi
 fi
 
-trap finish EXIT
-
 if [ ! -d "$cwd/validation" ]
 then
     git clone http://gerrit.akraino.org/r/validation
@@ -143,4 +136,8 @@ then
     options+=" -o"
 fi
 # shellcheck disable=SC2086
-python3 validation/bluval/blucon.py $options "$blueprint_name"
+#even if the script fails we need to change the owner of results
+! python3 validation/bluval/blucon.py $options "$blueprint_name"
+
+#change owner of results created by root in container
+sudo chown -R $current_user $results_dir
