@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "555d4ea3_8e046eac",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-27T17:57:06Z",
+      "side": 1,
+      "message": "This will also `exit 1`, which even with the `set +e` above, will exit the whole script, skipping the chown below.\nIs that the intended behavior?",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 10
+      },
+      "revId": "541d4e1f723ef09527591c2f343d0c9bb5c3e87f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
