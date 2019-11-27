@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c6f4cf5_f081eba8",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-27T10:47:32Z",
+      "side": 1,
+      "message": "This will print the message but this script will not exit with the same exit code (i.e. it will always return 0).\n\nI would add something like this here\n\n  exit_code\u003d$?\n\nAnd at the end of the script\n\n  exit $exit_code",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 145,
+        "endChar": 36
+      },
+      "revId": "ed1a1a3b4e6fa615552f2c2aa0a3da34b1adc002",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
