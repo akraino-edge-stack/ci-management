@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "88cb913a_44d20403",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2019-11-28T10:14:15Z",
+      "side": 1,
+      "message": "This pattern won\u0027t match iec-tox-verify. How about\n\n  ^{project-name}-(tox|type1|type2)-(verify|fuel|compass).*\n\nor (not sure nesting parenthesis works, but it should)\n\n  ^{project-name}-(tox|(type1|type2)-(fuel|compass)).*",
+      "range": {
+        "startLine": 9,
+        "startChar": 23,
+        "endLine": 9,
+        "endChar": 74
+      },
+      "revId": "895d574a617feaaf8b8574377a33da1f30666e36",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
