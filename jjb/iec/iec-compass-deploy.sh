@@ -41,4 +41,5 @@ modify_workdir
 echo "Compass Deploy successful"
 
 rm -rf "$COMPASS_WORK_DIR"
+rm -rf work
 exit 0
