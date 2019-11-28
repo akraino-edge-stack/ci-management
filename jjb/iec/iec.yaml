@@ -6,7 +6,7 @@
     views:
       - common-view:
           view-name: iec
-          view-regex: '^{project-name}-(tox|fuel|compass)-.*'
+          view-regex: '^{project-name}-(tox|type1|type2)-.*'
     # -------------------------------
     # BRANCH DEFINITIONS
     # -------------------------------
