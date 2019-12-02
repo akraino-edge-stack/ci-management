@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "430eb4eb_7a1c6e4c",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-12-02T22:01:22Z",
+      "side": 1,
+      "message": "Remove erroneous whitespace.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 1
+      },
+      "revId": "052b1d5f60649c43ff8828d98cbdd63c95111906",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a53217a_2d706fb2",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-12-02T22:01:22Z",
+      "side": 1,
+      "message": "Whitespace",
+      "range": {
+        "startLine": 252,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 1
+      },
+      "revId": "052b1d5f60649c43ff8828d98cbdd63c95111906",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
