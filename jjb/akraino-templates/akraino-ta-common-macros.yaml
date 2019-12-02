@@ -180,6 +180,14 @@
             popd
 
 - builder:
+    name: ta-lf-infra-ship-large-files-workaround
+    builders:
+        # Python requests older than 2.12.5 can't upload files larger than 2GB
+        - shell: |2-
+            #!/bin/bash -ex
+            sudo pip install -U "requests>=2.12.5,<2.22.0"
+
+- builder:
     name: ta-lf-infra-ship-rpms
     builders:
       # Ensure no pre-existing .netrc files are overriding logs config
@@ -200,6 +208,8 @@
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
+      - ta-lf-infra-ship-large-files-workaround
+      - shell: !include-raw:
           - ../shell/ta-rpm-deploy.sh
       - shell: !include-raw:
           - ../../global-jjb/shell/logs-clear-credentials.sh
@@ -219,6 +229,8 @@
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
+      - ta-lf-infra-ship-large-files-workaround
+      - shell: !include-raw:
           - ../shell/ta-iso-deploy.sh
       - shell: !include-raw:
           - ../../global-jjb/shell/logs-clear-credentials.sh
