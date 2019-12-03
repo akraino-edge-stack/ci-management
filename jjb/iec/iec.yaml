@@ -74,6 +74,8 @@
       - 'iec-{iecType}-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
       - 'iec-{iecType}-install-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
 
+
+
 ##############
 # PARAMETERS #
 ##############
@@ -369,6 +371,7 @@
           !include-raw-escape: ./iec-{usecase}.sh
 
     publishers: *publishers
+
 
 ########################
 # trigger macros
