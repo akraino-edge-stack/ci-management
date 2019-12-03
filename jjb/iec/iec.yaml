@@ -73,6 +73,7 @@
       - 'iec-{iecType}-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
       - 'iec-{iecType}-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
       - 'iec-{iecType}-install-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
+      - gerrit-sonar
 
 ##############
 # PARAMETERS #
@@ -369,6 +370,43 @@
           !include-raw-escape: ./iec-{usecase}.sh
 
     publishers: *publishers
+
+- job-template:
+    id: gerrit-sonar
+    sonar-project-file: ""
+    sonar-properties: |
+      # Required metadata
+      sonar.projectKey=
+      sonar.projectName=
+      sonar.organization=akraino-edge-stack
+
+      #Source
+      sonar.sources=.
+      sonar.exclusions=**/*_test.go,**/vendor/**
+
+      # Language
+      sonar.language=go
+
+      # Encoding
+      sonar.build.sourceEncoding=UTF-8
+
+      # Inclusions
+      sonar.inclusions=**/**.go
+
+      # Test Execution
+      sonar.tests=.
+      sonar.test.inclusions=**/*_test.go
+      sonar.test.exclusions=**/vendor/**
+
+      # Unit tests
+      sonar.go.coverage.reportPaths=iec-coverage.xml
+      sonar.go.tests.reportPaths=iec-tests.xml
+
+      # Importing External Issues
+      sonar.go.govet.reportPaths=iec-govet.xml
+      sonar.go.golint.reportPaths=iec-golint.xml
+      sonar.go.gometalinter.reportPaths=iec-gometalinter.xml
+      sonar.go.golangci-lint.reportPaths=iec-golangci-lint.xml
 
 ########################
 # trigger macros
