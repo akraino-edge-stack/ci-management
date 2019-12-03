@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54290990_8d21c3b1",
+        "filename": "global-jjb",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-12-03T00:19:01Z",
+      "side": 1,
+      "message": "This is a global-jjb downgrade. There is no way this should be merged.",
+      "revId": "a37578a698635629104e4bdfc597298227a179ba",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
