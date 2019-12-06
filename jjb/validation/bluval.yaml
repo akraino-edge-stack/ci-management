@@ -70,31 +70,69 @@
 - job-template:
     name: 'bluval-daily-{stream}'
     concurrent: true
-    node: '{build-node}'
+    node: snd-ubuntu1604-dev-48c-256g-2
+    jdk: (System)
+    disabled: false
     parameters:
       - string:
           name: DEPLOY_SCENARIO
           default: ''
       - {'bluval-defaults'}
 
-    wrappers: *wrappers
+    # FIXME: wrappers: *wrappers
     scm:
-      - git:
-          credentials-id: '{jenkins-ssh-credential}'
-          url: '{git-url}/ci-management.git'
-          refspec: ''
-          branches:
-            - 'refs/heads/{branch}'
-          skip-tag: true
-          wipe-workspace: true
-          submodule:
-            disable: true
-            recursive: false
-            timeout: '{submodule-timeout}'
-          choosing-strategy: default
-
-
+      - raw:
+          xml: |
+            <scm class="hudson.plugins.git.GitSCM" plugin="git@4.0.0-rc">
+              <configVersion>2</configVersion>
+              <userRemoteConfigs>
+                <hudson.plugins.git.UserRemoteConfig>
+                  <name>origin</name>
+                  <url>ssh://akraino-jobbuilder@gerrit.akraino.org:29418/ci-management.git</url>
+                  <credentialsId>jenkins-ssh</credentialsId>
+                </hudson.plugins.git.UserRemoteConfig>
+              </userRemoteConfigs>
+              <branches>
+                <hudson.plugins.git.BranchSpec>
+                  <name>refs/heads/master</name>
+                </hudson.plugins.git.BranchSpec>
+              </branches>
+              <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+              <submoduleCfg class="list"/>
+              <extensions>
+                <hudson.plugins.git.extensions.impl.BuildChooserSetting>
+                  <buildChooser class="hudson.plugins.git.util.DefaultBuildChooser"/>
+                </hudson.plugins.git.extensions.impl.BuildChooserSetting>
+                <hudson.plugins.git.extensions.impl.SubmoduleOption>
+                  <disableSubmodules>true</disableSubmodules>
+                  <recursiveSubmodules>false</recursiveSubmodules>
+                  <trackingSubmodules>false</trackingSubmodules>
+                  <reference></reference>
+                  <parentCredentials>false</parentCredentials>
+                  <timeout>10</timeout>
+                  <shallow>false</shallow>
+                </hudson.plugins.git.extensions.impl.SubmoduleOption>
+                <hudson.plugins.git.extensions.impl.WipeWorkspace/>
+              </extensions>
+            </scm>
     builders:
-      - description-setter:
-          description: "POD: $NODE_NAME"
       - shell: ./jjb/shell/run_bluval.sh -n "$BLUEPRINT"
+
+    properties:
+      - raw:
+          xml: |
+            <com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty plugin="build-failure-analyzer@1.23.0">
+                  <doNotScan>false</doNotScan>
+                </com.sonyericsson.jenkins.plugins.bfa.model.ScannerJobProperty>
+    publishers:
+      - email:
+          recipients: armband@enea.com
+      - raw:
+          xml: |
+            <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.1">
+              <unstableOnWarning>true</unstableOnWarning>
+              <failBuildOnError>true</failBuildOnError>
+              <showGraphs>false</showGraphs>
+              <useProjectRule>true</useProjectRule>
+              <projectRulePath>whatever/rules</projectRulePath>
+            </hudson.plugins.logparser.LogParserPublisher>
