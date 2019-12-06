@@ -70,31 +70,22 @@
 - job-template:
     name: 'bluval-daily-{stream}'
     concurrent: true
-    node: '{build-node}'
+    node: snd-ubuntu1604-dev-48c-256g-2
+    jdk: (System)
+    disabled: false
     parameters:
       - string:
           name: DEPLOY_SCENARIO
           default: ''
       - {'bluval-defaults'}
 
-    wrappers: *wrappers
-    scm:
-      - git:
-          credentials-id: '{jenkins-ssh-credential}'
-          url: '{git-url}/ci-management.git'
-          refspec: ''
-          branches:
-            - 'refs/heads/{branch}'
-          skip-tag: true
-          wipe-workspace: true
-          submodule:
-            disable: true
-            recursive: false
-            timeout: '{submodule-timeout}'
-          choosing-strategy: default
-
-
     builders:
-      - description-setter:
-          description: "POD: $NODE_NAME"
       - shell: ./jjb/shell/run_bluval.sh -n "$BLUEPRINT"
+
+    publishers:
+      - logparser:
+          use-project-rules: true
+          parse-rules: "rules.txt"
+          unstable-on-warning: true
+          fail-on-error: true
+          show-graphs: false
