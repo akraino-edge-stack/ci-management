@@ -70,14 +70,14 @@
 - job-template:
     name: 'bluval-daily-{stream}'
     concurrent: true
-    node: '{build-node}'
+    node: snd-ubuntu1604-dev-48c-256g-2
     parameters:
       - string:
           name: DEPLOY_SCENARIO
           default: ''
       - {'bluval-defaults'}
 
-    wrappers: *wrappers
+    # FIXME: wrappers: *wrappers
     scm:
       - git:
           credentials-id: '{jenkins-ssh-credential}'
@@ -93,8 +93,18 @@
             timeout: '{submodule-timeout}'
           choosing-strategy: default
 
-
     builders:
       - description-setter:
           description: "POD: $NODE_NAME"
       - shell: ./jjb/shell/run_bluval.sh -n "$BLUEPRINT"
+
+    publishers:
+      - raw:
+          xml: |
+            <hudson.plugins.logparser.LogParserPublisher plugin="log-parser@2.1">
+              <unstableOnWarning>true</unstableOnWarning>
+              <failBuildOnError>true</failBuildOnError>
+              <showGraphs>false</showGraphs>
+              <useProjectRule>false</useProjectRule>
+              <parsingRulesPath>/home/jenkins/vara/rules</parsingRulesPath>
+            </hudson.plugins.logparser.LogParserPublisher>
