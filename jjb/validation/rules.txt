@@ -1,0 +1,6 @@
+error /(?i)^error/
+error /(?i)error:/
+error /(?i)^fail/
+error /(?i)fail/
+error /BUILD FAILED/
+error /failed with exit code/

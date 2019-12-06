@@ -98,3 +98,11 @@
       - description-setter:
           description: "POD: $NODE_NAME"
       - shell: ./jjb/shell/run_bluval.sh -n "$BLUEPRINT"
+
+    publishers:
+      - logparser:
+          use-project-rules: true
+          parse-rules: "./jjb/validation/rules.txt"
+          unstable-on-warning: true
+          fail-on-error: true
+          show-graphs: false
