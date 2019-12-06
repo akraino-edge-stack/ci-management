@@ -131,6 +131,9 @@ then
     cp "$blueprint_yaml" ./validation/bluval/
 fi
 
+# Create rules file for log parser
+printf 'error /(?i)^error /\nerror /(?i)error:/\nerror /(?i)^fail/\nerror /(?i)fail/\nerror /BUILD FAILED/\nerror /failed with exit code/\n' > ./rules.txt
+
 volumes_path="$cwd/validation/bluval/volumes.yaml"
 #update information in volumes yaml
 sed -i -e "/kube_config_dir/{n; s@local: ''@local: '$k8s_config_dir'@}" -e "/blueprint_dir/{n; s@local: ''@local: '$cwd/validation/bluval/'@}" -e "/results_dir/{n; s@local: ''@local: '$results_dir'@}" "$volumes_path"
