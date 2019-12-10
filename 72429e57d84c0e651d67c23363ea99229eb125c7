@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a973119_586169eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-12-10T19:24:25Z",
+      "side": 1,
+      "message": "Please fix typo here. I would probably let this slide normally, but the name \"daaas\" is already confusing. Lets make sure we\u0027re consistent with it.",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "72429e57d84c0e651d67c23363ea99229eb125c7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb4fc137_9f5e78d0",
+        "filename": "jjb/icn-daaas/icn-daaas-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2019-12-10T19:24:25Z",
+      "side": 1,
+      "message": "This file should be moved to jjb/akraino-templates, and should be renamed appropriately to match the other files.",
+      "revId": "72429e57d84c0e651d67c23363ea99229eb125c7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
