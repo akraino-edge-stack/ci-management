@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fdaecf05_47e0425f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 291
+      },
+      "writtenOn": "2019-12-10T20:00:42Z",
+      "side": 1,
+      "message": "Not sure if the repo name can be changed. Is this possible?",
+      "parentUuid": "3a973119_586169eb",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "72429e57d84c0e651d67c23363ea99229eb125c7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cb4fc137_9f5e78d0",
         "filename": "jjb/icn-daaas/icn-daaas-jobs.yaml",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2019-12-10T19:24:25Z",
       "side": 1,
       "message": "This file should be moved to jjb/akraino-templates, and should be renamed appropriately to match the other files.",
+      "revId": "72429e57d84c0e651d67c23363ea99229eb125c7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98ab65bf_db1bd542",
+        "filename": "jjb/icn-daaas/icn-daaas-jobs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 291
+      },
+      "writtenOn": "2019-12-10T20:00:42Z",
+      "side": 1,
+      "message": "Moved to jjb/akraino-templates. Named it akraino-icn-daaas-templates.yaml",
+      "parentUuid": "cb4fc137_9f5e78d0",
       "revId": "72429e57d84c0e651d67c23363ea99229eb125c7",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
