@@ -19,11 +19,25 @@
     name: icn-daaas
     project: 'icn/daaas'
     project-name: icn-daaas
-    build-node: icn-dev
+    build-node: ubuntu1804-helm-8c-32g
     stream:
       - master:
           branch: master
+    type:
+      - golang:
+          path: microservices
+          script: |-
+            #!/bin/bash
+            cd $WORKSPACE/microservices
+            make build
+      - helm:
+          path: deploy
+          script: |-
+            #!/bin/bash
+            cd $WORKSPACE/deploy
+            make all
     jobs:
-      - akraino-project-stream-verify
+      - "{project-name}-{stream}-{type}-verify"
+      - "{project-name}-{stream}-{type}-merge"
     views:
       - project-view
