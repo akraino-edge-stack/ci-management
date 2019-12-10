@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "05929165_f55ed204",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 291
+      },
+      "writtenOn": "2019-12-10T21:00:48Z",
+      "side": 1,
+      "message": "Yes We want it to be DaaS - Distributed AI Analytics stack. The confusion started as the previous name was Distributed Analytics as a service. so we created a repo named icn/daaas. But later figured out it is more of a stack than a service. If possible we want to keep it DaaS.",
+      "parentUuid": "ec86945a_61c02c51",
+      "range": {
+        "startLine": 7,
+        "startChar": 25,
+        "endLine": 7,
+        "endChar": 29
+      },
+      "revId": "72429e57d84c0e651d67c23363ea99229eb125c7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "cb4fc137_9f5e78d0",
         "filename": "jjb/icn-daaas/icn-daaas-jobs.yaml",
         "patchSetId": 1
