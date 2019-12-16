@@ -1,0 +1,9 @@
+---
+- project:
+    name: camunda_workflow-info
+    project-name: camunda_workflow
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: camunda_workflow
+    branch: master
