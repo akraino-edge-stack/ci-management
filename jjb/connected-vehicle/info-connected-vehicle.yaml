@@ -1,0 +1,9 @@
+---
+- project:
+    name: connected-vehicle-info
+    project-name: connected-vehicle
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: connected-vehicle
+    branch: master
