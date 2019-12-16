@@ -1,0 +1,9 @@
+---
+- project:
+    name: umec-info
+    project-name: umec
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: umec
+    branch: master
