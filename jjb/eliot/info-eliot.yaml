@@ -1,0 +1,9 @@
+---
+- project:
+    name: eliot-info
+    project-name: eliot
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: eliot
+    branch: master
