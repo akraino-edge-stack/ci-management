@@ -1,0 +1,9 @@
+---
+- project:
+    name: redfish-info
+    project-name: redfish
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: redfish
+    branch: master
