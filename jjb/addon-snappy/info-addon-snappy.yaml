@@ -1,0 +1,8 @@
+---
+- project:
+    name: addon-snappy-info
+    project-name: addon-snappy
+    jobs:
+      - gerrit-info-yaml-verify
+    project: addon-snappy
+    branch: master
