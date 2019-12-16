@@ -1,0 +1,9 @@
+---
+- project:
+    name: postgres_db_schema-info
+    project-name: postgres_db_schema
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: postgres_db_schema
+    branch: master
