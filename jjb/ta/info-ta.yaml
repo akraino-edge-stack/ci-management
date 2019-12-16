@@ -1,0 +1,9 @@
+---
+- project:
+    name: ta-info
+    project-name: ta
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: ta
+    branch: master

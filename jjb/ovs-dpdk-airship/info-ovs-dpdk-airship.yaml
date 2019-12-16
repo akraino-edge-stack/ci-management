@@ -1,0 +1,9 @@
+---
+- project:
+    name: ovs-dpdk-airship-info
+    project-name: ovs-dpdk-airship
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: ovs-dpdk-airship
+    branch: master
