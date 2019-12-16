@@ -1,0 +1,9 @@
+---
+- project:
+    name: repo-beta-info
+    project-name: repo-beta
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: repo-beta
+    branch: master

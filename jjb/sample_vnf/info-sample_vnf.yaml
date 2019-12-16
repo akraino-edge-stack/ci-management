@@ -1,0 +1,9 @@
+---
+- project:
+    name: sample_vnf-info
+    project-name: sample_vnf
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: sample_vnf
+    branch: master
