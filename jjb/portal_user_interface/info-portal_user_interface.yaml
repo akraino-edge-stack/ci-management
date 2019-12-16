@@ -1,0 +1,9 @@
+---
+- project:
+    name: portal_user_interface-info
+    project-name: portal_user_interface
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: portal_user_interface
+    branch: master

@@ -1,0 +1,9 @@
+---
+- project:
+    name: regional_controller-info
+    project-name: regional_controller
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: regional_controller
+    branch: master
