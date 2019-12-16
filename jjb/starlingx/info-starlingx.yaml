@@ -1,0 +1,9 @@
+---
+- project:
+    name: starlingx-info
+    project-name: starlingx
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
+    project: starlingx
+    branch: master
