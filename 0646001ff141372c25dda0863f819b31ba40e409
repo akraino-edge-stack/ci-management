@@ -22,6 +22,30 @@
       "revId": "0646001ff141372c25dda0863f819b31ba40e409",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3c6a2c0_066b331b",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2019-12-20T10:55:26Z",
+      "side": 1,
+      "message": "I don\u0027t think it can be done with that plugin. The condition needs to be different for master vs tag jobs. For example:\nhttp://paste.ubuntu.com/p/RnC5k8DcZK/ will create a condition between master jobs and tag jobs. \nhttp://paste.ubuntu.com/p/J7tG3BqTn4/ will make the master job to not run daily.\nI need something in between as functionality but the plugin doesn\u0027t allow dynamic conditions.",
+      "parentUuid": "09f712c3_1556ec8a",
+      "range": {
+        "startLine": 14,
+        "startChar": 20,
+        "endLine": 14,
+        "endChar": 24
+      },
+      "revId": "0646001ff141372c25dda0863f819b31ba40e409",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
