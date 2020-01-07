@@ -217,6 +217,29 @@
     },
     {
       "key": {
+        "uuid": "457b53fd_b8f93cbd",
+        "filename": "jjb/validation/bluval.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-01-07T15:14:01Z",
+      "side": 1,
+      "message": "I think there needs to be a different description here. This is the folder on nexus where the logs are going to be pushed.",
+      "range": {
+        "startLine": 72,
+        "startChar": 24,
+        "endLine": 72,
+        "endChar": 40
+      },
+      "revId": "41fc9e2c93c5d4a4f5937f23517f9b36a9779d8e",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "58b6cb64_1ef59c8a",
         "filename": "jjb/validation/bluval.yaml",
         "patchSetId": 1
