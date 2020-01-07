@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "170699a3_3bc4bcb9",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-01-07T15:14:01Z",
+      "side": 1,
+      "message": "See Ioakeim\u0027s comment on the previous patch, this needs to be just $LAB_SILO",
+      "range": {
+        "startLine": 168,
+        "startChar": 60,
+        "endLine": 168,
+        "endChar": 77
+      },
+      "revId": "eaee841422f0d7f114eca3862a83119c4cc82e92",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "240b6bdf_ab0e0e34",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-01-07T15:14:01Z",
+      "side": 1,
+      "message": "We should also capture the output of the console in Jenkins and push that into Nexus.",
+      "revId": "eaee841422f0d7f114eca3862a83119c4cc82e92",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
