@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6738920_00ddf017",
+        "filename": "jjb/validation/bluval.yaml",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-01-08T15:22:13Z",
+      "side": 1,
+      "message": "I think this is a residual change while testing the patch, the build node needs to remain as it was.",
+      "range": {
+        "startLine": 73,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 19
+      },
+      "revId": "a3b1f2c90100bb57b671f565fcfea2f1f470eca4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
