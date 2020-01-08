@@ -78,6 +78,7 @@
           build-node: centos7-builder-2c-1g
           sonar-properties: |
             # Required metadata
+            sonar.login='{sonarcloud_api_token}'
             sonar.projectKey=iec
             sonar.projectName=iec
             sonar.organization=akraino-edge-stack
