@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "20f894cb_e541f46d",
+        "filename": "jjb/validation/rules.txt",
+        "patchSetId": 16
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-01-08T15:48:03Z",
+      "side": 1,
+      "message": "The successful run has the text \"0 failed\" in it (see https://jenkins.akraino.org/job/bluval-daily-master/180/console) which will match this rule. It\u0027s better to match on the output robot framework issues when failing (see https://jenkins.akraino.org/job/bluval-daily-master/181/console)",
+      "revId": "91f2ff5643c4dd80a8e26aef6f7ce16a1464e4de",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
