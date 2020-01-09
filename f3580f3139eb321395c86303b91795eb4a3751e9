@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce9326c1_290382b4",
+        "filename": "jjb/validation/bluval.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-01-09T20:01:16Z",
+      "side": 1,
+      "message": "This path is not available in the workspace. JJB files are not actually injected into the job; they are converted to XML. In this case, you\u0027re passing this path directly, so the job will look for this file in a path that doesn\u0027t exist. The workspace will only contain the contents of the validation repo.",
+      "range": {
+        "startLine": 105,
+        "startChar": 23,
+        "endLine": 105,
+        "endChar": 51
+      },
+      "revId": "f3580f3139eb321395c86303b91795eb4a3751e9",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
