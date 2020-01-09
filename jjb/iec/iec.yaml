@@ -101,15 +101,6 @@
             sonar.test.inclusions=**/*_test.go
             sonar.test.exclusions=**/vendor/**
 
-            # Unit tests
-            #sonar.go.coverage.reportPaths=iec-coverage.xml
-            #sonar.go.tests.reportPaths=iec-tests.xml
-
-            # Importing External Issues
-            #sonar.go.govet.reportPaths=iec-govet.xml
-            #sonar.go.golint.reportPaths=iec-golint.xml
-            #sonar.go.gometalinter.reportPaths=iec-gometalinter.xml
-            #sonar.go.golangci-lint.reportPaths=iec-golangci-lint.xml
 
 ##############
 # PARAMETERS #
