@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4e9c480_c0f46706",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2020-01-11T00:57:38Z",
+      "side": 1,
+      "message": "The NEXUS_URL should be equal to \u0027https://nexus.akraino.org\u0027.\n\nAlso, the NEXUS_PATH is missing. This variable should be declared and its content should be equal to \u0027${LAB_SILO}/bluval_results/${blueprint_name}/${VERSION}/${TIMESTAMP}\u0027",
+      "range": {
+        "startLine": 170,
+        "startChar": 4,
+        "endLine": 170,
+        "endChar": 130
+      },
+      "revId": "59a1790c3695ced54b7b3e87e19951ec1edff2bc",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
