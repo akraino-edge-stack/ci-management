@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dac94f3c_2d016498",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2020-01-13T18:14:07Z",
+      "side": 1,
+      "message": "Why did you comment this line?\nAlso, the blucon.sh should be executed from the \u0027validation\u0027 directory. So, the following commands should be added:\n\ncd validation\nsh bluval/blucon.sh $options \"$blueprint_name\"",
+      "range": {
+        "startLine": 155,
+        "startChar": 1,
+        "endLine": 155,
+        "endChar": 58
+      },
+      "revId": "406acb01c7493fd24b6b15966fb3a873dc8b5cc7",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
