@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "477d7bb8_c13bf951",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-01-16T14:01:22Z",
+      "side": 1,
+      "message": "No need to change this, but just for the record, this does not need [[ ]]. [ ] would be enough.\nWith [[ ]], you could just do\n\n  [[ \"$1\" \u003d~ \"$2\" ]]",
+      "range": {
+        "startLine": 24,
+        "startChar": 3,
+        "endLine": 24,
+        "endChar": 27
+      },
+      "revId": "6faf9a6a35281af93a08a8cdcc4cba6064b74b3d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
