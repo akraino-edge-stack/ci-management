@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "1aa2d48d_78806423",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 252
+      },
+      "writtenOn": "2020-01-16T21:18:44Z",
+      "side": 1,
+      "message": "After the merge of https://gerrit.akraino.org/r/c/ci-management/+/2100 we checkout validation in scm and we cannot call the blucon script. Error is \nBuilding docker image\ninvalid argument \"akraino/validation:blucon-(HEAD\" for \"-t, --tag\" flag: invalid reference format\nSee \u0027docker build --help\u0027.\n+ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/jenkins/akraino/slave_root/workspace/results:/opt/akraino/results -v /home/jenkins/akraino/slave_root/workspace/validation:/opt/akraino/validation akraino/validation:blucon-(HEAD -lk8s iec\ndocker: invalid reference format.",
+      "revId": "6faf9a6a35281af93a08a8cdcc4cba6064b74b3d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a50463f0_ac9e6117",
         "filename": "jjb/validation/lab.yaml",
         "patchSetId": 5
