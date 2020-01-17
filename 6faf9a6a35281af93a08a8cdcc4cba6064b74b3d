@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "c97825c7_29d4c902",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-01-17T10:31:54Z",
+      "side": 1,
+      "message": "Let\u0027s then leave the python3 call and we will fix the blucon.sh script in a subsequent patch.",
+      "parentUuid": "1aa2d48d_78806423",
+      "revId": "6faf9a6a35281af93a08a8cdcc4cba6064b74b3d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a50463f0_ac9e6117",
         "filename": "jjb/validation/lab.yaml",
         "patchSetId": 5
