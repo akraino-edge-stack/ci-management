@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "214f3af5_19fe4e54",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 194
+      },
+      "writtenOn": "2020-01-17T21:59:50Z",
+      "side": 1,
+      "message": "This command should be executed under the same directory where the \u0027results\u0027 directory reside.\n\nSo, this command should be substituted with the following commands:\n\ncd $results_dir\nzip -r results.zip results/",
+      "range": {
+        "startLine": 171,
+        "startChar": 4,
+        "endLine": 171,
+        "endChar": 35
+      },
+      "revId": "47f7e6342fded796304b1c5d521e41a8815aa9be",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    }
+  ]
+}
