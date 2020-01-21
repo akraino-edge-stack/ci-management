@@ -21,7 +21,7 @@ info ()  {
 }
 
 has_substring() {
-   [ "$1" != "${2/$1/}" ]
+    [[ $1 =~ $2 ]]
 }
 
 change_res_owner() {
