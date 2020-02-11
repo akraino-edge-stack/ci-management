@@ -293,4 +293,4 @@
       - ta-lf-infra-ship-isos
 
     publishers:
-      - lf-infra-publish
+      - '{name}-publisher'
