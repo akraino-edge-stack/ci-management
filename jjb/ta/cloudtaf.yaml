@@ -16,7 +16,6 @@
     project-type:
         - verify
     build-node: aarch64_build
-    gerrit-skip-vote: true
     arch: arm64
     stream: master
     jobs:
