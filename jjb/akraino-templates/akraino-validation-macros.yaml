@@ -30,6 +30,70 @@
           stream: '{stream}'
           branch: '{branch}'
 
+- parameter:
+    name: bluval-defaults
+    parameters:
+      - string: &cluster_master_ip
+          name: CLUSTER_MASTER_IP
+          default: ''
+          description: 'IP address to connect to the cluster master'
+      - string: &cluster_ssh_user
+          name: CLUSTER_SSH_USER
+          default: ''
+          description: 'SSH username to connect to the cluster master '
+      - string: &cluster_ssh_password
+          name: CLUSTER_SSH_PASSWORD
+          default: ''
+          description: 'SSH password to connect to the cluster master'
+      - string: &cluster_ssh_key
+          name: CLUSTER_SSH_KEY
+          default: ''
+          description: 'SSH key to connect to the cluster master'
+      - string: &blueprint_name
+          name: BLUEPRINT
+          default: ''
+          description: 'Blueprint used'
+      - string: &layer
+          name: LAYER
+          default: ''
+          description: 'Layer'
+      - string: &version
+          name: VERSION
+          default: ''
+          description: 'Version'
+      - string: &optional
+          name: OPTIONAL
+          default: ''
+          description: 'If set to yes run optional tests'
+      - string:
+          name: LAB_SILO
+          default: ''
+          description: 'Folder in nexus where the logs are pushed.'
+      - string:
+          name: SETTINGS_FILE
+          default: '/home/jenkins/settings.xml'
+          description: 'Path to credentials file'
+
+- parameter:
+    name: lab_params
+    parameters:
+      - string:
+          <<: *cluster_master_ip
+      - string:
+          <<: *cluster_ssh_user
+      - string:
+          <<: *cluster_ssh_password
+      - string:
+          <<: *cluster_ssh_key
+      - string:
+          <<: *blueprint_name
+      - string:
+          <<: *layer
+      - string:
+          <<: *version
+      - string:
+          <<: *optional
+
 ############
 # SETTINGS #
 ############

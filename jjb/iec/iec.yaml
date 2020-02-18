@@ -231,6 +231,10 @@
             same-node: true
             current-parameters: true
             predefined-parameters: |
+              CLUSTER_MASTER_IP=$K8S_MASTER_IP
+              CLUSTER_SSH_USER=$K8S_SSH_USER
+              CLUSTER_SSH_PASSWORD=$K8S_SSH_PASSWORD
+              CLUSTER_SSH_KEY=$K8S_SSH_KEY
               BLUEPRINT={project-name}
               LAYER=k8s
               VERSION=master

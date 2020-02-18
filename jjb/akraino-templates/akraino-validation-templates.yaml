@@ -155,3 +155,61 @@
           if [ -f tag_version.sh ]; then source tag_version.sh; fi
           for sd in docker/*/.; do make -k -C $sd .push_manifest; done
           rm -f tag_version.sh
+
+- job-template:
+    id: akraino-validation-lab-daily
+    name: 'validation-{validation_lab}-daily-{stream}'
+    concurrent: true
+    node: '{build-node}'
+    parameters:
+      - {'lab_params'}
+    builders:
+      - trigger-builds:
+          - project: 'bluval-daily-{stream}'
+            predefined-parameters:
+              LAB_SILO={validation_lab}
+            same-node: true
+            current-parameters: true
+            block: true
+
+- job-template:
+    id: bluval-run-daily-tests
+    name: 'bluval-daily-{stream}'
+    concurrent: true
+    node: '{build-node}'
+    parameters:
+      - string:
+          name: DEPLOY_SCENARIO
+          default: ''
+      - {'bluval-defaults'}
+
+    scm:
+      - git:
+          credentials-id: '{jenkins-ssh-credential}'
+          url: '{git-url}/validation.git'
+          refspec: ''
+          branches:
+            - 'refs/heads/{branch}'
+          skip-tag: true
+          wipe-workspace: true
+          submodule:
+            disable: true
+            recursive: false
+            timeout: '{submodule-timeout}'
+          choosing-strategy: default
+
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - lf-infra-create-netrc:
+          server-id: logs
+      - shell: !include-raw-escape:
+        - ../shell/run_bluval.sh
+
+    publishers:
+      - logparser:
+          use-project-rules: true
+          parse-rules: "./bluval/rules.txt"
+          unstable-on-warning: true
+          fail-on-error: true
+          show-graphs: false

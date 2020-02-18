@@ -37,7 +37,7 @@ usage() {
     echo "[-n <blueprint_name>">&2
     echo "[-b <blueprint_yaml> blueprint definition">&2
     echo "[-k <k8s_config_dir> k8s config dir">&2
-    echo "[-j <k8s_master> k8s master">&2
+    echo "[-j <cluster_master_ip> cluster master IP">&2
     echo "[-u <ssh_user> ssh user">&2
     echo "[-s <ssh_key>] path to ssh key">&2
     echo "[-c <custmom_var_file> ] path to variables yaml file">&2
@@ -67,7 +67,7 @@ error () {
 # Get options from shell
 while getopts "j:k:u:s:b:l:r:n:ov:" optchar; do
     case "${optchar}" in
-        j) k8s_master=${OPTARG} ;;
+        j) cluster_master_ip=${OPTARG} ;;
         k) k8s_config_dir=${OPTARG} ;;
         s) ssh_key=${OPTARG} ;;
         b) blueprint_yaml=${OPTARG} ;;
@@ -95,7 +95,7 @@ fi
 input="$cwd/kube"
 
 # Initialize ssh key used
-ssh_key=${ssh_key:-$K8S_SSH_KEY}
+ssh_key=${ssh_key:-$CLUSTER_SSH_KEY}
 # K8s config directory
 k8s_config_dir=${k8s_config_dir:-$input}
 mkdir -p "$k8s_config_dir"
@@ -103,26 +103,25 @@ mkdir -p "$k8s_config_dir"
 # Testing configuration
 version=${version:-$VERSION}
 results_dir=$cwd/results
-k8s_master=${k8s_master:-$K8S_MASTER_IP}
-ssh_user=${sh_user:-$K8S_SSH_USER}
+cluster_master_ip=${cluster_master_ip:-$CLUSTER_MASTER_IP}
+ssh_user=${sh_user:-$CLUSTER_SSH_USER}
 blueprint_layer=${blueprint_layer:-$LAYER}
 
-# If blueprint layer is not defined use k8s by default
 if [ "$blueprint_layer" == "k8s" ]
 then
-    if [ -z "$k8s_master" ]
+    if [ -z "$cluster_master_ip" ]
     then
         usage
-        error "Please provide valid k8s IP address."
+        error "Please provide valid IP address to access the k8s cluster."
     fi
-    verify_connectivity "${k8s_master}"
-    if [[ -n $K8S_SSH_PASSWORD ]]
+    verify_connectivity "${cluster_master_ip}"
+    if [[ -n $CLUSTER_SSH_PASSWORD ]]
     then
-        sshpass -p "${K8S_SSH_PASSWORD}" scp -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -r\
-             "${ssh_user}@${k8s_master}:~/.kube/*" "$k8s_config_dir"
+        sshpass -p "${CLUSTER_SSH_PASSWORD}" scp -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -r\
+             "${ssh_user}@${cluster_master_ip}:~/.kube/*" "$k8s_config_dir"
     else
         scp -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -i"$ssh_key" -r\
-            "${ssh_user}"@"${k8s_master}":~/.kube/* "$k8s_config_dir"
+            "${ssh_user}"@"${cluster_master_ip}":~/.kube/* "$k8s_config_dir"
     fi
 fi
 
