@@ -1,0 +1,38 @@
+---
+- project:
+    name: static-slaves-ci-jobs
+
+    project: ci-management
+    project-name: ci-management
+    branch: master
+    stream: '{branch}'
+
+    build-node:
+      - aarch64_dev
+      - aarch64_build
+      - aarch64_baremetal
+
+    jobs:
+      - '{project-name}-{build-node}-init'
+
+- job-template:
+    name: '{project-name}-{build-node}-init'
+    disabled: '{obj:disabled}'
+    concurrent: true
+    label: '{build-node}'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - label:
+          name: '{build-node}'
+          node-eligibility: 'all'
+          all-nodes: true
+
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - shell: |
+          echo OK
