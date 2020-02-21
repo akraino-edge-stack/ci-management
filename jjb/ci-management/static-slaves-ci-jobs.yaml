@@ -1,0 +1,73 @@
+---
+- project:
+    name: static-slaves-ci-jobs
+
+    project: ci-management
+    project-name: ci-management
+    branch: master
+    stream: '{branch}'
+
+    build-node:
+      - aarch64_dev
+      - aarch64_build
+      - aarch64_baremetal
+
+    jobs:
+      - '{project-name}-{build-node}-init'
+
+- job-template:
+    name: '{project-name}-{build-node}-init'
+    disabled: '{obj:disabled}'
+    concurrent: true
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - label:
+          name: '{build-node}'
+          default: '{build-node}'
+          node-eligibility: 'all'
+          all-nodes: true
+
+    gerrit_merge_triggers:
+      - change-merged-event
+      - comment-added-contains-event:
+          comment-contains-value: remerge$
+
+    gerrit_trigger_file_paths:
+      - compare-type: REG_EXP
+        pattern: 'global-jjb'
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
+          refspec: ''
+          branch: '{branch}'
+          submodule-recursive: true
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on: '{obj:gerrit_merge_triggers}'
+          projects:
+            - project-compare-type: ANT
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: ANT
+                  branch-pattern: '**/{branch}'
+              file-paths: '{obj:gerrit_trigger_file_paths}'
+
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - shell: |
+          #!/bin/bash -ex
+          export SWAP_SIZE=0
+          sudo -E ./global-jjb/jenkins-init-scripts/init.sh
+          sudo chown jenkins:jenkins -R archives
