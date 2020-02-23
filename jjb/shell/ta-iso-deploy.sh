@@ -16,6 +16,8 @@ set -eu -o pipefail
 
 set -x  # Trace commands for this script to make debugging easier.
 
+set +f  # Ensure filename expansion (globbing) is enabled
+
 NEXUS_REPO=images-snapshots
 release_path=TA/release-1
 
