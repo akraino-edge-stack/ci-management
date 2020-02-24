@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "998d27a0_54f8d569",
+        "filename": "jjb/akraino-templates/akraino-iec-templates.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-02-24T14:55:03Z",
+      "side": 1,
+      "message": "usecase",
+      "range": {
+        "startLine": 197,
+        "startChar": 28,
+        "endLine": 197,
+        "endChar": 36
+      },
+      "revId": "77327c11a3e082355f6e76e520c2f6c60ca8b827",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
