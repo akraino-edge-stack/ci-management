@@ -21,8 +21,26 @@ set +f  # Ensure filename expansion (globbing) is enabled
 NEXUS_REPO=images-snapshots
 release_path=TA/release-1
 
+# Determine ISO build trigger timestamp (by analyzing TA RPM build merge job gerrit event)
+if [ -n "${GIT_COMMIT}" ]; then
+    echo "RPM - Looking up gerrit change details for commit ${GIT_COMMIT}"
+    FQ="[.messages[] | select(.author.email | contains('${GERRIT_EVENT_ACCOUNT_EMAIL:-}'))][-1] | .date"
+    set +e
+    ROOT_BUILD_TIMESTAMP=$(curl -sL "${GERRIT_URL}/changes/${GIT_COMMIT}/detail" | \
+                           sed '1d' | jq "${FQ}" 2>/dev/null)
+    set -e
+fi
+
+if [ -n "${ROOT_BUILD_TIMESTAMP:-}" ]; then
+    echo "RPM - Found matching gerrit event timestamp ${ROOT_BUILD_TIMESTAMP} (UTC)"
+else
+    echo "RPM - No matching gerrit event timestamp found, using current date/time"
+fi
+ROOT_BUILD_TIMESTAMP=$(date -u '+%Y%m%dT%H%M%S' -d "${ROOT_BUILD_TIMESTAMP:-now}")
+echo "RPM - Formatted timestamp: ${ROOT_BUILD_TIMESTAMP}"
+
 repo_dir="$WORKSPACE/work/nexus/$NEXUS_REPO"
-upload_dir1="$repo_dir/$release_path/images/$BUILD_ID"
+upload_dir1="$repo_dir/$release_path/images/$ROOT_BUILD_TIMESTAMP"
 upload_dir2="$repo_dir/$release_path/images/latest"
 nexus_repo_url="$NEXUS_URL/content/repositories/$NEXUS_REPO"
 
