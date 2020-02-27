@@ -247,6 +247,7 @@
 
       - ta-parameters-manifest
       - ta-parameters-build-tools
+      - ta-parameters-ta-build
 
       - string:
           name: ARCHIVE_ARTIFACTS

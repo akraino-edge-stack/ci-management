@@ -52,6 +52,18 @@
         name: SCM_PROJECT_TO_BUILD_REFSPEC
         trim: 'false'
 
+- parameter:
+    name: ta-parameters-ta-build
+    parameters:
+      - string:
+          name: ROOT_BUILD_CAUSE_GIT_COMMIT
+          default: ''
+          description: Upstream git commit that triggered this build
+      - string:
+          name: ROOT_BUILD_CAUSE_ACCOUNT_EMAIL
+          default: ''
+          description: Upstream account email that triggered this build
+
 #######
 # SCM #
 #######
@@ -293,7 +305,7 @@
               sudo chmod +r /boot/vmlinuz*
               if ! docker --version 2>1 >/dev/null; then
                   sudo apt update
-                  sudo apt install -y apt-transport-https ca-certificates curl software-properties-common rename
+                  sudo apt install -y apt-transport-https ca-certificates curl software-properties-common rename jq
                   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
                   sudo add-apt-repository -y "deb http://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
                   sudo apt update
@@ -395,6 +407,9 @@
           - project: 'ta-ci-build-{arch}'
             condition: UNSTABLE_OR_BETTER
             trigger-with-no-params: true
+            predefined-parameters: |
+              ROOT_BUILD_CAUSE_GIT_COMMIT=$GIT_COMMIT
+              ROOT_BUILD_CAUSE_ACCOUNT_EMAIL=$GERRIT_EVENT_ACCOUNT_EMAIL
 
 - publisher:
     name: ta-publisher-ci-build
