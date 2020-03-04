@@ -1,0 +1,91 @@
+---
+- job-template:
+    id: akraino-rec-deploy
+    name: 'rec-{rec_pod}-daily-{stream}'
+    disabled: '{obj:disabled}'
+    concurrent: false
+    node: '{slave-label}'
+    properties:
+      - throttle:
+          enabled: true
+          max-total: 4
+          max-per-node: 1
+          option: 'project'
+      - build-blocker:
+          use-build-blocker: true
+          blocking-jobs:
+            - 'rec-install-.*'
+          block-level: 'NODE'
+
+    wrappers:
+      - build-name:
+          name: '$BUILD_NUMBER - Install REC Blueprint'
+
+    triggers:
+      - 'rec-daily-{stream}-trigger'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-{rec_pod}-defaults'
+
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - trigger-builds:
+          - project: 'rec-install-rec-{rec_pod}-daily-{stream}'
+            current-parameters: true
+            same-node: true
+            block: true
+      #TODO: add the validation and RIC installation jobs
+      #   - project: 'rec-install-ric-{rec_pod}-daily-{stream}'
+      #     current-parameters: true
+      #     same-node: true
+      #     block: true
+
+
+- job-template:
+    id: akraino-rec-install-rec
+    name: 'rec-install-rec-{rec_pod}-daily-{stream}'
+    concurrent: true
+    node: '{slave-label}'
+    properties:
+      - throttle:
+          enabled: true
+          max-total: 4
+          max-per-node: 1
+          option: 'project'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-{rec_pod}-defaults'
+
+    scm:
+      - ta-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/ta/remote-installer.git'
+          branch: 'master'
+          submodule-recursive: false
+          submodule-timeout: 10
+          choosing-strategy: 'gerrit'
+          basedir: 'git/remote-installer'
+          refspec: '$SCM_REFSPEC_REMOTE_INSTALLER'
+    builders:
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - shell: !include-raw-escape:
+          - ../shell/ta-install.sh
+
+          #publishers: *publishers
+
+# TODO:
+# - job-template:
+#     id: akraino-rec-install-ric
+#     name: 'rec-install-ric-{rec_pod}-daily-{stream}'
+#     concurrent: true
+#     node: '{slave-label}'
