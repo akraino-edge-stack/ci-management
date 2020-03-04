@@ -1,0 +1,32 @@
+---
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'rec-unh-ampere1-defaults'
+    parameters:
+      - string:
+          name: HOST_IP
+          default: '10.11.6.14'
+          description: 'IP of the Jumpserver'
+      - string:
+          name: CLOUDNAME
+          default: 'ampere-pod1'
+          description: 'Hostname of the Jumpserver'
+      - string:
+          name: ADMIN_PASSWD
+          default: 'admin'
+          description: 'Password of the deployed cloud'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '**/*.log'
+          description: Artifacts to archive to the logs server.
+
+########################
+# trigger macros
+########################
+- trigger:
+    name: 'rec-daily-master-trigger'
+    triggers:
+      - timed: '0 1 * * 6,7'
+
