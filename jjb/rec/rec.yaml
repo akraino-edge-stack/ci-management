@@ -1,6 +1,26 @@
 ---
 - project:
-    name: rec-project-view
-    project-name: rec
+    name: 'rec'
+    project-name: 'rec'
+    project: '{project-name}'
     views:
       - project-view
+    # -------------------------------
+    # BRANCH DEFINITIONS
+    # -------------------------------
+    stream:
+      - master:
+          branch: '{stream}'
+          gs-pathname: ''
+          disabled: false
+
+    # -------------------------------
+    # POD DEFINITIONS
+    # -------------------------------
+    rec_pod:
+      - unh-ampere1
+
+    slave-label: 'aarch64_baremetal'
+    jobs:
+       - akraino-rec-install
+       - akraino-rec-deploy
