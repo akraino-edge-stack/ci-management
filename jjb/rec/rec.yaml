@@ -1,6 +1,31 @@
 ---
 - project:
-    name: rec-project-view
-    project-name: rec
+    name: 'rec'
+    project-name: 'rec'
+    project: '{project-name}'
     views:
       - project-view
+    # -------------------------------
+    # BRANCH DEFINITIONS
+    # -------------------------------
+    stream:
+      - master:
+          branch: '{stream}'
+          gs-pathname: ''
+          disabled: false
+
+    # -------------------------------
+    # POD DEFINITIONS
+    # -------------------------------
+    # For CD testing REC pods require specific static jenkins slaves
+    # that have access to the PODs lab
+    rec_pod:
+      - unh-ampere1:
+          pod-jenkins-slave: snd-centos7-32c-128g-1
+    # - another-rec-pod:
+    #     pod-jenkins-slave: other-slave
+
+    jobs:
+       - akraino-rec-deploy
+       - akraino-rec-install-rec
+       #- akraino-rec-install-ric (TBD)
