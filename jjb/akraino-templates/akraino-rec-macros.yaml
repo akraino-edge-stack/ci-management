@@ -1,0 +1,48 @@
+---
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'rec-unh-ampere1-defaults'
+    parameters:
+      - string:
+          name: HOST_IP
+          default: '10.11.6.14'
+          description: 'IP of the Jumpserver'
+      - string:
+          name: CLOUDNAME
+          default: 'unh-ampere-pod1'
+          description: 'Cloud name'
+      - string:
+          name: ADMIN_PASSWD
+          default: 'admin'
+          description: 'Password of the deployed cloud'
+      - string:
+          name: REC_ISO_IMAGE_NAME
+          default: 'https://nexus.akraino.org/content/repositories/images-snapshots/TA/images/arm64/latest/install.aarch64.iso'
+          description: 'REC install image'
+      - string:
+          name: REC_PROVISIONING_ISO_NAME
+          default: 'https://nexus.akraino.org/content/repositories/images-snapshots/TA/images/arm64/latest/bootcd.aarch64.iso'
+          description: 'REC provisioning image'
+      - string:
+          name: REC_USER_CONFIG
+          default: '/data/rec_pods/unh-ampere-pod1/user_config.yaml'
+          description: 'REC provisioning image'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '**/*.log'
+          description: Artifacts to archive to the logs server.
+      - string:
+          name: REMOTE_INSTALLER_GITREF
+          default: ''
+          description: 'remote-installer custom git ref'
+
+########################
+# trigger macros
+########################
+- trigger:
+    name: 'rec-daily-master-trigger'
+    triggers:
+      - timed: '0 1 * * 6,7'
+
