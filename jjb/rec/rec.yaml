@@ -1,6 +1,29 @@
 ---
 - project:
-    name: rec-project-view
-    project-name: rec
+    name: 'rec'
+    project-name: 'rec'
+    project: '{project-name}'
     views:
       - project-view
+    # -------------------------------
+    # BRANCH DEFINITIONS
+    # -------------------------------
+    stream:
+      - master:
+          branch: '{stream}'
+          disabled: false
+
+    # -------------------------------
+    # POD DEFINITIONS
+    # -------------------------------
+
+    slave-label:
+      - aarch64_baremetal
+
+    job-frequency:
+      - weekly
+
+    jobs:
+       - akraino-rec-deploy
+       - akraino-rec-install-rec
+       #- akraino-rec-install-ric (TBD)

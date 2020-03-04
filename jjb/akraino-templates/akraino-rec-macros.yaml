@@ -1,0 +1,36 @@
+---
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'rec-aarch64_baremetal-defaults'
+    parameters:
+      - string:
+          name: REC_ISO_IMAGE_NAME
+          default: 'https://nexus.akraino.org/content/repositories/images-snapshots/TA/images/arm64/latest/install.aarch64.iso'
+          description: 'REC install image'
+      - string:
+          name: REC_PROVISIONING_ISO_NAME
+          default: 'https://nexus.akraino.org/content/repositories/images-snapshots/TA/images/arm64/latest/bootcd.aarch64.iso'
+          description: 'REC provisioning image'
+      - string:
+          name: REC_USER_CONFIG
+          default: 'file:///data/rec_pod/user_config.yaml'
+          description: 'POD user config YAML (hosted on Jumpserver by default)'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '**/*.log'
+          description: Artifacts to archive to the logs server.
+      - string:
+          name: SCM_REFSPEC_REMOTE_INSTALLER
+          default: 'refs/heads/master'
+          description: 'remote-installer custom git refspec'
+
+########################
+# trigger macros
+########################
+- trigger:
+    name: 'rec-weekly-master-trigger'
+    triggers:
+      - timed: '0 1 * * 6,7'
+
