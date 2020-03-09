@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc5c5077_a3cbac73",
+        "filename": "jjb/iec/iec-compass-build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-03-09T17:02:02Z",
+      "side": 0,
+      "message": "This change is not addressed in the commit message (or at least, it is not made clear how it relates to the commit).",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 93
+      },
+      "revId": "90b585d904692d3986b8f53dbede7406b131171b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}

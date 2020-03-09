@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "68a58556_8ffa4b04",
+        "filename": "jjb/iec/iec-compass-build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-03-09T17:02:02Z",
+      "side": 1,
+      "message": "This seems like a problem with compass4nfv. Why not submit a PR directly to the project to make it compatible with Ubuntu? https://gerrit.opnfv.org/gerrit/admin/repos/compass4nfv\n\nIf you\u0027re going to continue with this version of the change, I would change the regex you\u0027re searching for just to include the \u003d after host_ip, so that the matching is a bit safer. As is, it would match any variable that was added that starts with \"host_ip\" and has the same indentation.",
+      "range": {
+        "startLine": 34,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 57
+      },
+      "revId": "4cf1500a811b99a043aea66f3802752c9fabc42a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
