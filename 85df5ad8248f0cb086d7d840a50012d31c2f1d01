@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "1f53c91d_d324f0e4",
+        "filename": "jjb/akraino-templates/akraino-rec-macros.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "s/CLOUD/POD/ to align with wiki notation [1]\n\n[1] https://wiki.akraino.org/display/AK/Ampere+Pod+1",
+      "range": {
+        "startLine": 13,
+        "startChar": 16,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "95b01db8_9b7bb562",
         "filename": "jjb/akraino-templates/akraino-rec-macros.yaml",
         "patchSetId": 7
@@ -18,6 +41,253 @@
         "startChar": 1,
         "endLine": 39,
         "endChar": 56
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9a8a383_fa1cd087",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "It would be nice to add a description-setter (e.g. [1]) that includes the POD name.\n\n[1] https://github.com/opnfv/releng/blob/master/jjb/fuel/fuel-daily-jobs.yaml#L137-L139",
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "482e0925_0eb399b3",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "This will create different jobs for each POD, e.g. rec-deploy-unh-ampere1-daily-master, but it will schedule each of them on nodes with \u0027aarch64_baremetal\u0027 label, which is currently fine (we only have 1 node with aarch64_baremetal label and that is unh-ampere1).\nHowever, this is not guaranteed to hold true going forward, so I would either create jobs based on slave-label instead of rec_pod, e.g. rec-deploy-aarch64_baremetal-daily-master, or switch job/node allocation from label to node name.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 36
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce489083_0ea544d1",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "this sounds very similar to deploy, maybe we can find a more generic macro name",
+      "range": {
+        "startLine": 25,
+        "startChar": 21,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "915421e8_fe04991e",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "fwiw, trap is bash scripts ran by Jenkins is sometimes unpredictable, especially when an user aborts the job manually or the slave disconnects from master",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 40
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bb0a3ea_113e40f2",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 70,
+        "startChar": 13,
+        "endLine": 70,
+        "endChar": 22
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dfde396e_affcc818",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "$BASEDIR/user-configs/$CLOUDNAME and we can drop a few lines below",
+      "range": {
+        "startLine": 73,
+        "startChar": 13,
+        "endLine": 73,
+        "endChar": 34
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1798e760_1839452e",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "curl -sL (also below)",
+      "range": {
+        "startLine": 80,
+        "startChar": 3,
+        "endLine": 80,
+        "endChar": 7
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01eb703c_0ee66575",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "let\u0027s run shellcheck on the whole file, it should catch a few things like unquoted vars",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 21
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2bae3a43_40422eed",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "Instead of this, we can use the TA SCM macro used in TA RPM jobs with some custom params like:\n\n    [...]\n    scm:\n      - ta-lf-infra-gerrit-scm:\n          jenkins-ssh-credential: \u0027{jenkins-ssh-credential}\u0027\n          git-url: \u0027{git-url}/ta/remote-installer.git\u0027\n          branch: \u0027master\u0027\n          submodule-recursive: false\n          submodule-timeout: 10\n          basedir: \u0027git/remote-installer\u0027\n          refspec: \u0027$SCM_REFSPEC_REMOTE_INSTALLER\u0027 # to align REMOTE_INSTALLER_GITREF naming with TA RPM jobs\u0027 style",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 5
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32099fed_e6a74df8",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "We could just set `set -x` for the whole script, it should make eventual debugging easier",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 49
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a9c72fa_184e42ef",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-10T14:25:31Z",
+      "side": 1,
+      "message": "This is not part of the base distro packages, so we should ensure it is installed.\nMaybe the same thing should apply to Docker and/or other dependencies too?",
+      "range": {
+        "startLine": 190,
+        "startChar": 41,
+        "endLine": 190,
+        "endChar": 43
       },
       "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
