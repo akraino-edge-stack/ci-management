@@ -113,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "3dfcc4e2_052325fa",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-11T09:05:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f9a8a383_fa1cd087",
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "482e0925_0eb399b3",
         "filename": "jjb/rec/rec.yaml",
         "patchSetId": 7
@@ -136,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "2fabca7d_335fbb8e",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-11T09:05:34Z",
+      "side": 1,
+      "message": "ACK.\nStill ramping-up on Jenkins/LF CI.\nI\u0027ll have to look more into it.",
+      "parentUuid": "482e0925_0eb399b3",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 36
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ce489083_0ea544d1",
         "filename": "jjb/rec/rec.yaml",
         "patchSetId": 7
@@ -147,6 +189,30 @@
       "writtenOn": "2020-03-10T14:25:31Z",
       "side": 1,
       "message": "this sounds very similar to deploy, maybe we can find a more generic macro name",
+      "range": {
+        "startLine": 25,
+        "startChar": 21,
+        "endLine": 25,
+        "endChar": 28
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "093868a3_dea406fe",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-11T09:05:34Z",
+      "side": 1,
+      "message": "Ack\nMaybe switch and rename them:\n  - akraino-rec-deploy      # parent job\n  - akraino-rec-install-rec # child job \n# - akraino-rec-install-ric # child job (future)\n\nThis would also show intent and make it clearer.",
+      "parentUuid": "ce489083_0ea544d1",
       "range": {
         "startLine": 25,
         "startChar": 21,
