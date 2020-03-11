@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "01d8af3d_cb8ed76b",
+        "filename": "jjb/akraino-templates/akraino-rec-macros.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-11T09:14:19Z",
+      "side": 1,
+      "message": "Not necessarily, for example ta-ci-build jobs use ta/build-tools and ta/manifest, so one project can easily clone a different project\u0027s git.",
+      "parentUuid": "63062a97_3ad49c7e",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 39,
+        "endChar": 56
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9a8a383_fa1cd087",
         "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
         "patchSetId": 7
