@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "63062a97_3ad49c7e",
+        "filename": "jjb/akraino-templates/akraino-rec-macros.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-11T08:32:53Z",
+      "side": 1,
+      "message": "We could use scm but in this case the patch should be moved under jjb/remote-installer, right?\nHowever, even if it depends on remote-installer, this job is not really about the remote installer.",
+      "parentUuid": "95b01db8_9b7bb562",
+      "range": {
+        "startLine": 36,
+        "startChar": 1,
+        "endLine": 39,
+        "endChar": 56
+      },
+      "revId": "85df5ad8248f0cb086d7d840a50012d31c2f1d01",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f9a8a383_fa1cd087",
         "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
         "patchSetId": 7
