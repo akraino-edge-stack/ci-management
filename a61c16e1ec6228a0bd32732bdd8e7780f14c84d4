@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ebb48f40_3ca67a6d",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-11T11:14:25Z",
+      "side": 1,
+      "message": "Imo, it still belongs to the \u0027rec\u0027 project.",
+      "parentUuid": "5b88c9ea_ff8e033d",
+      "revId": "a61c16e1ec6228a0bd32732bdd8e7780f14c84d4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9e7cb123_1c7eb0e8",
         "filename": "jjb/rec/rec.yaml",
         "patchSetId": 9
@@ -47,6 +65,24 @@
       "writtenOn": "2020-03-11T10:22:40Z",
       "side": 1,
       "message": "Not sure updating the docker packages is totally safe.\nKeep it commented for now",
+      "revId": "a61c16e1ec6228a0bd32732bdd8e7780f14c84d4",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "601bd78c_a09c3e42",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-11T11:14:25Z",
+      "side": 1,
+      "message": "Also, there\u0027s no guarantee the host OS is CentOS, it could be Ubuntu.\nSince this job will (only?) run on static Jenkins slaves, we could just document the requirements and let the lab admin deal with them.",
+      "parentUuid": "186a6734_10ea1f8d",
       "revId": "a61c16e1ec6228a0bd32732bdd8e7780f14c84d4",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
