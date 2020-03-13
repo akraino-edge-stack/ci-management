@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bac1a8bb_9afb6b8f",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 18
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-13T15:30:36Z",
+      "side": 1,
+      "message": "Akraino jjb is configured to use yaml anchors globally, so this will have the same name with the publishers macro in IEC.\nI would either avoid using yaml anchors or qualify their names with a project-specific prefix/suffix.",
+      "range": {
+        "startLine": 48,
+        "startChar": 16,
+        "endLine": 48,
+        "endChar": 27
+      },
+      "revId": "191d068d2696352b4d2610cca731db3c3d41fd5f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
