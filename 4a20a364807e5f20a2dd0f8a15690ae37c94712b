@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26b1dd3c_0ecefa2d",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 17
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-13T15:23:57Z",
+      "side": 1,
+      "message": "I think this is incomplete.",
+      "revId": "4a20a364807e5f20a2dd0f8a15690ae37c94712b",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
