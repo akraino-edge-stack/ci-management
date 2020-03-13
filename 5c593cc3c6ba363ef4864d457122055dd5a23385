@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a60660db_f24cd934",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-13T11:05:31Z",
+      "side": 1,
+      "message": "type: POD\u0027s lab",
+      "revId": "5c593cc3c6ba363ef4864d457122055dd5a23385",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "714d92bc_a94d7c08",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-13T11:05:31Z",
+      "side": 1,
+      "message": "TODO: disable workspace cleanup from JJB\nalso chmod -R jenkins:jenkins $WORKDIR",
+      "revId": "5c593cc3c6ba363ef4864d457122055dd5a23385",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
