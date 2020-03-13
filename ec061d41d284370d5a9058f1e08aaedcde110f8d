@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "259f2c13_59074645",
+        "filename": "jjb/akraino-templates/akraino-rec-macros.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-03-13T14:03:38Z",
+      "side": 1,
+      "message": "It would be ideal to run the job after every build, but since this pod is also used for development, we\u0027ll have to make sure it doesn\u0027t interfere with manual work on it. So this is a compromise we need to make for now. \nThe idea behind running it both days, even if it may be the same iso is spurious failures. Sometimes nexus mirrors aren\u0027t working, or some connection error happens and you\u0027ll need to wait for another week to confirm the failure had nothing to do with the iso. But if the team thinks it makes more sense to run just once a weekend, we can do that too.",
+      "parentUuid": "c4470403_ed3dbecb",
+      "revId": "ec061d41d284370d5a9058f1e08aaedcde110f8d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "efb2593e_65399fd9",
         "filename": "jjb/rec/rec.yaml",
         "patchSetId": 13
