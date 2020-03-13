@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "252f4daa_e0e2d7e1",
+        "filename": "jjb/akraino-templates/akraino-rec-macros.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-13T12:24:36Z",
+      "side": 1,
+      "message": "If we define this as an URI (e.g. file:///data/rec_pods/...), we could use `curl` instead of `cp` in ta-install.sh; which would also allow using user_config.yaml files served via HTTP later (e.g. from github/gerrit repos).",
+      "revId": "ec061d41d284370d5a9058f1e08aaedcde110f8d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "efb2593e_65399fd9",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-13T12:24:36Z",
+      "side": 1,
+      "message": "I thought some more about this and I\u0027m still not completely sure which way is better: per-pod vs per-label job definition.\nIn theory, having a different set of jobs for each pod is marginally easier to configure, but leads to ever-increasing number of jobs with the addition of new PODs.\nWhat OPNFV and Akraino IEC did was to tie the jobs per-label and create a static (manually updated) mapping structure in the install script.\ne.g. in this case we could do here\n\n  rec_pod:\n    - aarch64_baremetal\n\nand have something like this in ta-install.sh:\n\n  case NODE_NAME in\n    prd-centos7-32c-128g-*)\n      POD_NAME\u003d${NODE_NAME/prd-centos7-32c-128g-/unh-ampere}\n      ;;\n    *)\n      echo Cannot determine LAB/POD name from Jenkins slave name\n      exit 1\n      ;;\n  esac\n\nI personally prefer the per-label approach as it only creates one set of jobs and both approaches will eventually hardcode the label and node name(s) some way or the other.",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 19
+      },
+      "revId": "ec061d41d284370d5a9058f1e08aaedcde110f8d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
