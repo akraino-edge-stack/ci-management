@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca006c6a_6fa095ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 43
+      },
+      "writtenOn": "2020-03-13T14:58:46Z",
+      "side": 1,
+      "message": "typo: sore -\u003e store",
+      "range": {
+        "startLine": 13,
+        "startChar": 23,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "36a216402f562dbc60273f6a7c4187480fffe8a0",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
