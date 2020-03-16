@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb0f729d_dce39784",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-16T12:36:59Z",
+      "side": 1,
+      "message": "This might be redundant here, since we already a maximum of 1 rec-{slave-label}-{job-frequency}-{stream} per node, so this job won\u0027t get scheduled twice at the same time on the same node.\nSince rec-{slave-label}-install-.* is not spawned individually (without the rec-{slave-label}-{job-frequency}-{stream} already running as a parent job), it should not make a difference.\nMoreover, when we add more child jobs to this job (e.g. rec-whatever-validation), if they don\u0027t follow the \u0027rec-{slave-label}-install-.*\u0027 pattern, this job blocker would not be effective anyway.",
+      "range": {
+        "startLine": 17,
+        "startChar": 15,
+        "endLine": 17,
+        "endChar": 43
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cf71eda1_dd9b07d7",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-16T12:36:59Z",
+      "side": 1,
+      "message": "let\u0027s remove TODO/commented-out code blocks, especially since they are very similar to the existing code block above.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42a38f13_251ed3cc",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-16T12:36:59Z",
+      "side": 1,
+      "message": "should we also use \u0027{stream}\u0027 here? or is rec/master independent from remote-installer/master refs?",
+      "range": {
+        "startLine": 76,
+        "startChar": 19,
+        "endLine": 76,
+        "endChar": 25
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b40a06c3_4971ac1e",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-16T12:36:59Z",
+      "side": 1,
+      "message": "afaict, this is not used in Akraino and was only propagated here from opnfv via copy-paste, so it should be safe to rm",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 25
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fbe955f_c630147c",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-16T12:36:59Z",
+      "side": 1,
+      "message": "Let\u0027s make this a list, so it\u0027s obvious it can be extended:\n\n  slave-label:\n    - aarch64_baremetal",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54410239_59579304",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-16T12:36:59Z",
+      "side": 1,
+      "message": "\u0027weekly\u0027 would be more appropiate, as we normally use \u0027daily\u0027 notation",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 15
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2041c2f_a079e7d4",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-16T12:36:59Z",
+      "side": 1,
+      "message": "With this flow, we will exit with return code 0 even if the $STATUS is \u0027failed\u0027, which is not ok imo, as a simple glance at the jenkins job status will indicate everything is fine.",
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
