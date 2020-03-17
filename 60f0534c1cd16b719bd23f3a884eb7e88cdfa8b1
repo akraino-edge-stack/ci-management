@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "35833a1e_3e70f3fe",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T09:04:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fb0f729d_dce39784",
+      "range": {
+        "startLine": 17,
+        "startChar": 15,
+        "endLine": 17,
+        "endChar": 43
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf71eda1_dd9b07d7",
         "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
         "patchSetId": 20
@@ -45,6 +69,30 @@
       "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2147675d_1e439172",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T09:04:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cf71eda1_dd9b07d7",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "02436be9_3404736c",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T09:04:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "42a38f13_251ed3cc",
+      "range": {
+        "startLine": 76,
+        "startChar": 19,
+        "endLine": 76,
+        "endChar": 25
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b40a06c3_4971ac1e",
         "filename": "jjb/rec/rec.yaml",
         "patchSetId": 20
@@ -91,6 +163,30 @@
       "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcf37f53_e36ab1de",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T09:04:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b40a06c3_4971ac1e",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 25
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "0940ab77_cd7a4820",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T09:04:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2fbe955f_c630147c",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 36
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54410239_59579304",
         "filename": "jjb/rec/rec.yaml",
         "patchSetId": 20
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "11f53148_eef9148a",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T09:04:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "54410239_59579304",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 15
+      },
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f2041c2f_a079e7d4",
         "filename": "jjb/shell/ta-install.sh",
         "patchSetId": 20
@@ -154,6 +298,24 @@
       "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcbf48b9_757173f3",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T09:04:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f2041c2f_a079e7d4",
+      "revId": "60f0534c1cd16b719bd23f3a884eb7e88cdfa8b1",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
