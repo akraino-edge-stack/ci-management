@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f5b3a7a_66a80a7b",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-17T09:19:03Z",
+      "side": 1,
+      "message": "rm the whole block",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 29
+      },
+      "revId": "2133b51dbe7a9c596810637a3c9b312b9e569225",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8641db53_682f1ee5",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-17T09:19:03Z",
+      "side": 1,
+      "message": "rm",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 39
+      },
+      "revId": "2133b51dbe7a9c596810637a3c9b312b9e569225",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53d0abd1_51ffa35f",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-17T09:19:03Z",
+      "side": 1,
+      "message": "alternatively, $BUILD_ID could be used to tie the name of the cluster to the jenkins job build number",
+      "range": {
+        "startLine": 27,
+        "startChar": 26,
+        "endLine": 27,
+        "endChar": 51
+      },
+      "revId": "2133b51dbe7a9c596810637a3c9b312b9e569225",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
