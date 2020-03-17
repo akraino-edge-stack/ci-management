@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e7d1973a_3b913741",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T15:06:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1f5b3a7a_66a80a7b",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 29
+      },
+      "revId": "2133b51dbe7a9c596810637a3c9b312b9e569225",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8641db53_682f1ee5",
         "filename": "jjb/rec/rec.yaml",
         "patchSetId": 22
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fa506b02_f169395b",
+        "filename": "jjb/rec/rec.yaml",
+        "patchSetId": 22
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T15:06:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8641db53_682f1ee5",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 39
+      },
+      "revId": "2133b51dbe7a9c596810637a3c9b312b9e569225",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53d0abd1_51ffa35f",
         "filename": "jjb/shell/ta-install.sh",
         "patchSetId": 22
@@ -68,6 +116,30 @@
       "revId": "2133b51dbe7a9c596810637a3c9b312b9e569225",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f17f76a3_9ebc6a6e",
+        "filename": "jjb/shell/ta-install.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 251
+      },
+      "writtenOn": "2020-03-17T15:06:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "53d0abd1_51ffa35f",
+      "range": {
+        "startLine": 27,
+        "startChar": 26,
+        "endLine": 27,
+        "endChar": 51
+      },
+      "revId": "2133b51dbe7a9c596810637a3c9b312b9e569225",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
