@@ -132,7 +132,17 @@ fi
 
 volumes_path="$cwd/bluval/volumes.yaml"
 #update information in volumes yaml
-sed -i -e "/kube_config_dir/{n; s@local: ''@local: '$k8s_config_dir'@}" -e "/blueprint_dir/{n; s@local: ''@local: '$cwd/bluval/'@}" -e "/results_dir/{n; s@local: ''@local: '$results_dir'@}" "$volumes_path"
+sed -i -e "/ssh_key_dir/{n; s@local: ''@local: '$cwd/ssh_key_dir'@}" -e "/kube_config_dir/{n; s@local: ''@local: '$k8s_config_dir'@}" -e "/custom_variables_file/{n; s@local: ''@local: '$cwd/tests/variables.yaml'@}" -e "/blueprint_dir/{n; s@local: ''@local: '$cwd/bluval/'@}" -e "/results_dir/{n; s@local: ''@local: '$results_dir'@}" "$volumes_path"
+
+#create ssh_key_dir
+mkdir -p $cwd/ssh_key_dir
+
+#copy ssh_key in ssh_key_dir
+cp $ssh_key $cwd/ssh_key_dir/id_rsa
+
+variables_path="$cwd/tests/variables.yaml"
+#update information in variables yaml
+sed -i -e "{s@host: [0-9]*.[0-9]*.[0-9]*.[0-9]*@host: $cluster_master_ip@}" -e "{s@username: [a-z]*@username: $ssh_user@}" "$variables_path"
 
 if [[ -n $blueprint_layer ]]
 then
