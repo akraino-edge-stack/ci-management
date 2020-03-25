@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7f7a9a5_09cff4c6",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-25T13:52:18Z",
+      "side": 1,
+      "message": "To avoid duplicating the pattern and the replacement string, a catching group could be used, e.g.\n\n  sed -i -e \"/ssh_key_dir/{n; s@(local: )\u0027\u0027@\\1\u0027$cwd/ssh_key_dir\u0027@}\"\n\nThe same applies in multiple occurences in this patchset.",
+      "range": {
+        "startLine": 135,
+        "startChar": 30,
+        "endLine": 135,
+        "endChar": 37
+      },
+      "revId": "cef1c2a28d780dccd6a6c6d882e18272e3544f60",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef9b1e5d_dd6b1d7d",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-25T13:52:18Z",
+      "side": 1,
+      "message": "Usernames could contain uppercase chars and/or digits too.",
+      "range": {
+        "startLine": 145,
+        "startChar": 93,
+        "endLine": 145,
+        "endChar": 98
+      },
+      "revId": "cef1c2a28d780dccd6a6c6d882e18272e3544f60",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
