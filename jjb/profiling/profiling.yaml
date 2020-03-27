@@ -1,0 +1,14 @@
+---
+- project:
+    name: profiling-project-view
+    project-name: profiling
+    views:
+      - project-view
+
+- project:
+    name: profiling-info
+    project: profiling
+    project-name: profiling
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
