@@ -1,0 +1,14 @@
+---
+- project:
+    name: apigateway-project-view
+    project-name: apigateway
+    views:
+      - project-view
+
+- project:
+    name: apigateway-info
+    project: apigateway
+    project-name: apigateway
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
