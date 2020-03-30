@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6789caf_04667f3e",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-30T12:44:46Z",
+      "side": 1,
+      "message": "This line is very long and hard to read. I would split it with 1 pattern per line, e.g.:\n\n  sed -i \\\n    -e \"/ssh_key_dir/{n; s@local: \u0027\u0027@local: \u0027$cwd/ssh_key_dir\u0027@}\" \\\n    -e \"/kube_config_dir/{n; s@local: \u0027\u0027@local: \u0027$k8s_config_dir\u0027@}\" \\\n    -e \"/custom_variables_file/{n; s@local: \u0027\u0027@local: \u0027$cwd/tests/variables.yaml\u0027@}\" \\\n    ...",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 348
+      },
+      "revId": "7d0cd3d8bfe9548b0594f9c6d979c4a01d38b98a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b38d651f_b4f6e719",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-03-30T12:44:46Z",
+      "side": 1,
+      "message": "{} are unnecessary here afaict. not really a showstopper, just thought it should be mentioned",
+      "range": {
+        "startLine": 145,
+        "startChar": 11,
+        "endLine": 145,
+        "endChar": 12
+      },
+      "revId": "7d0cd3d8bfe9548b0594f9c6d979c4a01d38b98a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
