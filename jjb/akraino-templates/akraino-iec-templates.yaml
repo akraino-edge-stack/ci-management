@@ -56,7 +56,6 @@
               CLUSTER_SSH_PASSWORD=$K8S_SSH_PASSWORD
               CLUSTER_SSH_KEY=$K8S_SSH_KEY
               BLUEPRINT={project-name}
-              LAYER=k8s
               VERSION=master
               OPTIONAL=false
             block: true
