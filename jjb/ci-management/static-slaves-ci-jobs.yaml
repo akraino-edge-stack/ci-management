@@ -11,6 +11,7 @@
       - aarch64_dev
       - aarch64_build
       - aarch64_baremetal
+      - aarch64_baremetal_dev
 
     jobs:
       - akraino-project-build-node-init

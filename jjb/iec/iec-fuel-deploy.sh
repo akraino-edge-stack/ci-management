@@ -17,7 +17,11 @@ if [ "$(uname -m)" = 'aarch64' ]; then
     LAB_NAME='arm'
     # shellcheck disable=SC2153
     POD_NAME=${NODE_NAME/*ubuntu1804-dev-48c-256g-/virtual}
-else
+    if [[ ! "$POD_NAME" =~ virtual ]]; then
+        POD_NAME=${NODE_NAME/*ubuntu1804-dev-96c-256g-/baremetal}
+    fi
+fi
+if [[ ! "$POD_NAME" =~ (virtual|baremetal) ]]; then
     echo "Unavailable hardware. Cannot continue!"
     exit 1
 fi

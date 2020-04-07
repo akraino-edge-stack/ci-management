@@ -43,7 +43,7 @@
     # -------------------------------
     deploy_type:
       - baremetal:
-          slave-label: 'aarch64_dev'
+          slave-label: 'aarch64_baremetal_dev'
           scenario: 'k8-calico-iec-noha'
       - virtual:
           slave-label: 'aarch64_dev'
@@ -59,14 +59,19 @@
         os: ubuntu1804
       - iecType: type1
         installer: fuel
+      # Fuel baremetal provisioning only supports Ubuntu 18.04
+      - installer: fuel
+        deploy_type: baremetal
+        os: centos7
+      - installer: fuel
+        deploy_type: baremetal
+        os: ubuntu1604
 
     # -------------------------------
     # USECASE DEFINITIONS
     # -------------------------------
     usecase:
-      - seba_on_arm:
-          slave-label: 'aarch64_dev'
-          scenario: 'k8-calico-iec-noha'
+      - seba_on_arm
 
     jobs:
       - akraino-iec-install

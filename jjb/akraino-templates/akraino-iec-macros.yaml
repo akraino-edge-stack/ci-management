@@ -90,10 +90,6 @@
     triggers:
       - timed: '0 1 * * 1,3,5'
 - trigger:
-    name: 'iec-type2-fuel-baremetal-ubuntu1604-daily-master-trigger'
-    triggers:
-      - timed: ''
-- trigger:
     name: 'iec-type2-compass-virtual-ubuntu1604-daily-master-trigger'
     triggers:
       - timed: '0 13 * * *'
@@ -104,15 +100,11 @@
 - trigger:
     name: 'iec-type2-fuel-baremetal-ubuntu1804-daily-master-trigger'
     triggers:
-      - timed: ''
+      - timed: '0 1 * * *'
 - trigger:
     name: 'iec-type2-fuel-virtual-centos7-daily-master-trigger'
     triggers:
       - timed: '0 1 * * 4,7'
-- trigger:
-    name: 'iec-type2-fuel-baremetal-centos7-daily-master-trigger'
-    triggers:
-      - timed: ''
 - trigger:
     name: 'iec-type1-compass-virtual-ubuntu1604-daily-master-trigger'
     triggers:
