@@ -62,7 +62,7 @@
           - project:
               !j2: |
                 {%- for uc in usecase -%}
-                iec-{{ iecType }}-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
+                iec-{{ iecType }}-install-{{ uc }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
                 {%- if not loop.last -%},{%- endif -%}
                 {%- endfor %}
             current-parameters: true
