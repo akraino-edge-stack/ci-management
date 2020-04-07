@@ -59,6 +59,13 @@
         os: ubuntu1804
       - iecType: type1
         installer: fuel
+      # Fuel baremetal provisioning only supports Ubuntu 18.04
+      - installer: fuel
+        deploy_type: baremetal
+        os: centos7
+      - installer: fuel
+        deploy_type: baremetal
+        os: ubuntu1604
 
     # -------------------------------
     # USECASE DEFINITIONS
