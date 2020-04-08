@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ebfd875d_51d094d0",
+        "filename": "jjb/iec/iec.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-04-08T12:34:43Z",
+      "side": 1,
+      "message": "Opened ticket IT-19445 for changing this to aarch64_baremetal_dev, hopefully we can synchronize in due time.",
+      "range": {
+        "startLine": 46,
+        "startChar": 24,
+        "endLine": 46,
+        "endChar": 45
+      },
+      "revId": "8b78f972ef34d8d7fc0dfd016cb0cc8c173dec9a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7085c08b_9dcedcd6",
         "filename": "jjb/iec/iec.yaml",
         "patchSetId": 4
