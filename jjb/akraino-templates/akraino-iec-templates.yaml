@@ -62,7 +62,8 @@
           - project:
               !j2: |
                 {%- for uc in usecase -%}
-                iec-{{ iecType }}-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
+                iec-{{ iecType }}-install-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }},
+                iec-{{ iecType }}-test-{{ uc | first }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
                 {%- if not loop.last -%},{%- endif -%}
                 {%- endfor %}
             current-parameters: true
@@ -214,6 +215,36 @@
     wrappers:
       - build-name:
           name: '$BUILD_NUMBER - Usecase: ${usecase} DeployType: ${installer}-${deploy_type}'
+
+    scm: *scm
+
+    builders:
+      - shell:
+          !include-raw-escape: ../iec/iec-{usecase}.sh
+
+    publishers: *publishers
+
+- job-template:
+    id: akraino-iec-test-usecase
+    name: 'iec-{iecType}-test-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
+    concurrent: true
+    node: '{slave-label}'
+    properties: *properties
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-defaults'
+      - '{installer}-{os}-defaults'
+      - string:
+          name: PON_TYPE
+          default: '{pon_type}'
+
+    wrappers:
+      - build-name:
+          name: '$BUILD_NUMBER - Test Usecase: ${usecase} DeployType: ${installer}-${deploy_type}'
 
     scm: *scm
 
