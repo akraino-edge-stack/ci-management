@@ -62,8 +62,10 @@
           - project:
               !j2: |
                 {%- for uc in usecase -%}
-                iec-{{ iecType }}-install-{{ uc }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
+                {%- for ph in phase -%}
+                iec-{{ iecType }}-{{ ph }}-{{ uc }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
                 {%- if not loop.last -%},{%- endif -%}
+                {%- endfor %}
                 {%- endfor %}
             current-parameters: true
             same-node: true
@@ -196,8 +198,8 @@
     publishers: *publishers
 
 - job-template:
-    id: akraino-iec-install-usecase
-    name: 'iec-{iecType}-install-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
+    id: akraino-iec-phase-usecase
+    name: 'iec-{iecType}-{phase}-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
     concurrent: true
     node: '{slave-label}'
     properties: *properties
@@ -209,6 +211,7 @@
           branch: '{branch}'
       - '{project}-defaults'
       - '{installer}-{os}-defaults'
+      - '{usecase}-defaults'
 
     wrappers:
       - build-name:
@@ -221,4 +224,3 @@
           !include-raw-escape: ../iec/iec-{usecase}.sh
 
     publishers: *publishers
-

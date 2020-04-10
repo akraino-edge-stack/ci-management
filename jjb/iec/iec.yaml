@@ -73,11 +73,15 @@
     usecase:
       - seba_on_arm
 
+    phase:
+      - install
+      - test
+
     jobs:
       - akraino-iec-install
       - akraino-iec-deploy
       - akraino-iec-destroy
-      - akraino-iec-install-usecase
+      - akraino-iec-phase-usecase
       - gerrit-sonar:
           sonar-project-file: ""
           build-node: centos7-builder-2c-1g

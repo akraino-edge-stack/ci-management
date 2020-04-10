@@ -78,6 +78,14 @@
       - string:
           <<: *k8s_ssh_key
 
+# IEC usecase(s) parameters
+- parameter:
+    name: 'seba_on_arm-defaults'
+    parameters:
+      - string:
+          name: PON_TYPE
+          default: 'ponsim'
+
 ########################
 # trigger macros
 ########################
