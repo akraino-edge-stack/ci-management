@@ -66,6 +66,9 @@
       - installer: fuel
         deploy_type: baremetal
         os: ubuntu1604
+      # SEBA on virtual PODs should be excluded
+      - deploy_type: virtual
+        usecase: seba_on_arm
 
     # -------------------------------
     # USECASE DEFINITIONS
