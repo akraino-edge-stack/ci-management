@@ -22,6 +22,30 @@
       "revId": "64f67301fded595b0e32bc53e8ba8da38368cbc5",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "79b5175b_eb2b76ee",
+        "filename": "jjb/akraino-templates/akraino-iec-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 147
+      },
+      "writtenOn": "2020-04-13T15:27:49Z",
+      "side": 1,
+      "message": "Yes, I know. Sorry for this, the intention was to have working code. In my opinion, #3342 needs to be merged ASAP, and then I will rebase this change.",
+      "parentUuid": "89a280ae_e4f34af3",
+      "range": {
+        "startLine": 65,
+        "startChar": 42,
+        "endLine": 65,
+        "endChar": 58
+      },
+      "revId": "64f67301fded595b0e32bc53e8ba8da38368cbc5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
