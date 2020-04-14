@@ -6,11 +6,9 @@
     stream:
       - master:
           branch: '{stream}'
-          refs_tag: 'heads'
           disabled: false
       - 2.0.1:
           branch: 'master'
-          refs_tag: 'tags'
           disabled: true
 
     arch_tag:

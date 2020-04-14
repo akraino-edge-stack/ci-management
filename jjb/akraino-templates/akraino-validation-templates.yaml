@@ -8,7 +8,7 @@
     build-timeout: 90
 
     parameters:
-      - validation-job-parameters:
+      - lf-infra-parameters: &validation_lf_infra_parameters
           project: '{project}'
           branch: '{branch}'
           stream: '{stream}'
@@ -22,17 +22,6 @@
           blocking-jobs:
             - 'validation-docker-.*'
           block-level: 'NODE'
-    scm:
-      - validation-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: ''
-          refs_tag: '{refs_tag}'
-          stream: '{stream}'
-          submodule-recursive: false
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
 
     triggers:
       # Build nigtly at 12:10 AM
@@ -70,11 +59,7 @@
     build-timeout: 75
 
     parameters:
-      - validation-job-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          arch_tag: '{arch_tag}'
+      - lf-infra-parameters: *validation_lf_infra_parameters
 
     properties:
       - build-blocker:
@@ -82,13 +67,14 @@
           blocking-jobs:
             - 'validation-docker-build-.*'
           block-level: 'NODE'
-    scm:
-     - validation-infra-gerrit-scm:
+    scm: &validation_scm
+      # lf-infra-gerrit-scm hardcodes branch specifier to refs/heads; while
+      # lf-infra-github-scm does not, allowing us to pass a fully custom '{branch}'
+      - lf-infra-github-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: ''
-          refs_tag: '{refs_tag}'
-          stream: '{stream}'
+          url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$STREAM'
           submodule-recursive: false
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
@@ -98,21 +84,10 @@
       - lf-infra-docker-login:
           global-settings-file: global-settings
           settings-file: '{mvn-settings}'
-      - conditional-step:
-          condition-kind: regex-match
-          regex: '^tags$'
-          label: '{refs_tag}'
-          steps:
-            - shell: |
-                #!/bin/bash -ex
-                echo "export TAG_VER=$STREAM"  >> tag_version.sh
       - shell: |
           #!/bin/bash -ex
-          if [ -f tag_version.sh ]; then source tag_version.sh; fi
+          if [ "{branch}" != "{stream}" ]; then export TAG_VER=$STREAM; fi
           make -k -C docker push-all
-          rm -f tag_version.sh
-      - shell: |
-          #!/bin/bash -ex
           docker system prune -af
 
 - job-template:
@@ -122,42 +97,20 @@
     build-timeout: 15
 
     parameters:
-      - validation-job-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
+      - lf-infra-parameters: *validation_lf_infra_parameters
 
     disabled: '{obj:disabled}'
 
-    scm:
-     - validation-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: ''
-          refs_tag: '{refs_tag}'
-          stream: '{stream}'
-          submodule-recursive: false
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
+    scm: *validation_scm
 
     builders:
       - lf-infra-docker-login:
           global-settings-file: global-settings
           settings-file: '{mvn-settings}'
-      - conditional-step:
-          condition-kind: regex-match
-          regex: '^tags$'
-          label: '{refs_tag}'
-          steps:
-            - shell: |
-                #!/bin/bash -ex
-                echo "export TAG_VER=$STREAM"  >> tag_version.sh
       - shell: |
           #!/bin/bash -ex
-          if [ -f tag_version.sh ]; then source tag_version.sh; fi
+          if [ "{branch}" != "{stream}" ]; then export TAG_VER=$STREAM; fi
           for sd in docker/*/.; do make -k -C $sd .push_manifest; done
-          rm -f tag_version.sh
 
 - job-template:
     id: akraino-validation-lab-daily
@@ -181,24 +134,21 @@
     concurrent: true
     node: '{build-node}'
     parameters:
+      - lf-infra-parameters: *validation_lf_infra_parameters
       - string:
           name: DEPLOY_SCENARIO
           default: ''
       - {'bluval-defaults'}
 
     scm:
-      - git:
-          credentials-id: '{jenkins-ssh-credential}'
-          url: '{git-url}/validation.git'
-          refspec: ''
-          branches:
-            - 'refs/heads/{branch}'
-          skip-tag: true
-          wipe-workspace: true
-          submodule:
-            disable: true
-            recursive: false
-            timeout: '{submodule-timeout}'
+      - lf-infra-github-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          url: '{git-url}/{project}.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: false
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: true
           choosing-strategy: default
 
     builders:
