@@ -107,7 +107,7 @@ cluster_master_ip=${cluster_master_ip:-$CLUSTER_MASTER_IP}
 ssh_user=${sh_user:-$CLUSTER_SSH_USER}
 blueprint_layer=${blueprint_layer:-$LAYER}
 
-if [ "$blueprint_layer" == "k8s" ]
+if [ "$blueprint_layer" == "k8s" ] || [ -z "$blueprint_layer" ]
 then
     if [ -z "$cluster_master_ip" ]
     then
