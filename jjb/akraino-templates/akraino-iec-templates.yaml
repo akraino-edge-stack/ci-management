@@ -121,17 +121,14 @@
           name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO $IEC_TYPE'
 
     scm: &scm
-      - git:
-          credentials-id: '{jenkins-ssh-credential}'
-          url: '{git-url}/{project}.git'
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/{project}.git'
           refspec: '$GERRIT_REFSPEC'
-          branches: '$GERRIT_BRANCH'
-          skip-tag: true
-          wipe-workspace: true
-          submodule:
-            disable: true
-            recursive: false
-            timeout: '{submodule-timeout}'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: false
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: true
           choosing-strategy: default
 
     builders:

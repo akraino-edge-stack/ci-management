@@ -375,7 +375,7 @@
       - lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
-          refspec: ''
+          refspec: '$GERRIT_REFSPEC'
           branch: '{branch}'
           submodule-recursive: true
           submodule-timeout: '{submodule-timeout}'

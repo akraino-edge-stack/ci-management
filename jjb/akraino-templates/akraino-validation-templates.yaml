@@ -26,7 +26,7 @@
       - validation-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
-          refspec: ''
+          refspec: '$GERRIT_REFSPEC'
           refs_tag: '{refs_tag}'
           stream: '{stream}'
           submodule-recursive: false
@@ -86,7 +86,7 @@
      - validation-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
-          refspec: ''
+          refspec: '$GERRIT_REFSPEC'
           refs_tag: '{refs_tag}'
           stream: '{stream}'
           submodule-recursive: false
@@ -133,7 +133,7 @@
      - validation-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
-          refspec: ''
+          refspec: '$GERRIT_REFSPEC'
           refs_tag: '{refs_tag}'
           stream: '{stream}'
           submodule-recursive: false
@@ -181,6 +181,10 @@
     concurrent: true
     node: '{build-node}'
     parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
       - string:
           name: DEPLOY_SCENARIO
           default: ''
@@ -190,7 +194,7 @@
       - git:
           credentials-id: '{jenkins-ssh-credential}'
           url: '{git-url}/validation.git'
-          refspec: ''
+          refspec: '$GERRIT_REFSPEC'
           branches:
             - 'refs/heads/{branch}'
           skip-tag: true
