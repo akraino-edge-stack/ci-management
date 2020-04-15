@@ -23,9 +23,7 @@
             - 'validation-docker-.*'
           block-level: 'NODE'
 
-    triggers:
-      # Build nigtly at 12:10 AM
-      - timed: '10 0 * * *'
+    triggers: '{obj:triggers}'
 
     builders:
       - multijob:

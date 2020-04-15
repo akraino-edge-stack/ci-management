@@ -7,9 +7,27 @@
       - master:
           branch: '{stream}'
           disabled: false
+          triggers:
+            # Build nigtly at 12:10 AM
+            - timed: '10 0 * * *'
       - 3.0.0:
           branch: 'master'
           disabled: false
+          triggers:
+            - gerrit:
+                server-name: '{gerrit-server-name}'
+                trigger-on:
+                  - change-merged-event
+                  - comment-added-contains-event:
+                      comment-contains-value: remerge$
+                projects:
+                  - project-compare-type: PLAIN
+                    project-pattern: 'ci-management'
+                    branches:
+                      - branch-compare-type: ANT
+                        branch-pattern: '**'
+                    file-paths:
+                      - pattern: 'jjb/validation/validation-docker.yaml'
 
     arch_tag:
       - 'amd64':
