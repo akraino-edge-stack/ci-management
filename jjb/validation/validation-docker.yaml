@@ -10,6 +10,9 @@
       - 2.0.1:
           branch: 'master'
           disabled: true
+      - 3.0.0:
+          branch: 'master'
+          disabled: false
 
     arch_tag:
       - 'amd64':
