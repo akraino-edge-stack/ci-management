@@ -7,9 +7,9 @@
       - master:
           branch: '{stream}'
           disabled: false
-      - 2.0.1:
+      - 3.0.0:
           branch: 'master'
-          disabled: true
+          disabled: false
 
     arch_tag:
       - 'amd64':
