@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dc534c75_64893e95",
+        "filename": "jjb/validation/validation-docker.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-04-15T16:31:09Z",
+      "side": 1,
+      "message": "Does it make sense to keep this? We don\u0027t need to re-build these images in the future, as the tag is fixed.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "a60d2bff35e72df7dd434cbfc9d01e75b077059c",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
