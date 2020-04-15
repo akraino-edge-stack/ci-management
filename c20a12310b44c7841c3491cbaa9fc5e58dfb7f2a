@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c0574126_caf29e56",
+        "filename": "jjb/akraino-templates/akraino-validation-templates.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-15T11:38:10Z",
+      "side": 1,
+      "message": "global-jjb has 2 almost identical macros: lf-infra-gerrit-scm and lf-infra-github-scm.\nNone of them is tied to gerrit or github per-se, but they are \u0027friendlier\u0027 towards usage with one of those repository storages. The 2 macros are almost identical, but they do have 2 minor differences, one of which is very useful in this case:\n- slightly different parameter names (\u0027git-url\u0027 vs \u0027url\u0027);\n- different branches definition: lf-infra-gerrit-scm hardcodes the branches to \u0027refs/heads/{branch}\u0027, while lf-infra-github-scm sets it to \u0027{branch}\u0027;\n\nHere we want to pass a reference under {branch} that is actually a git tag.\nWith the lf-infra-gerrit-scm macro, that would break, as \u0027refs/heads/2.0.1\u0027 does not exist in the git repo (it should be \u0027refs/tags/2.0.1\u0027).\nHowever, since lf-infra-github-scm uses merely \u0027{branch}\u0027, that works fine with tags too.\n\nApart from this thing that we leverage in our favor, the 2 macros are almost identical.\nI agree the macro name including \u0027github\u0027 might be misleading, but it\u0027s something we can live with if properly documented.\n\nIdeally, upstream global-jjb would change the lf-infra-gerrit-scm macro to use \u0027{branch}\u0027 instead of \u0027refs/heads/{branch}\u0027, but that would make the 2 macros pretty much identical.",
+      "parentUuid": "8f758999_105d074d",
+      "range": {
+        "startLine": 73,
+        "startChar": 17,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "c20a12310b44c7841c3491cbaa9fc5e58dfb7f2a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d6f2135a_e8651ec7",
         "filename": "jjb/akraino-templates/akraino-validation-templates.yaml",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2020-04-15T01:42:03Z",
       "side": 1,
       "message": "Why is this using github?",
+      "range": {
+        "startLine": 144,
+        "startChar": 17,
+        "endLine": 144,
+        "endChar": 23
+      },
+      "revId": "c20a12310b44c7841c3491cbaa9fc5e58dfb7f2a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9600d6de_fa2f82c6",
+        "filename": "jjb/akraino-templates/akraino-validation-templates.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-15T11:38:10Z",
+      "side": 1,
+      "message": "Here we could actually use either of those 2 macros, it is currently github to resemble the above block; but the idea is to avoid using \u0027git\u0027 directly and instead leverage the global-jjb macros.",
+      "parentUuid": "d6f2135a_e8651ec7",
       "range": {
         "startLine": 144,
         "startChar": 17,
