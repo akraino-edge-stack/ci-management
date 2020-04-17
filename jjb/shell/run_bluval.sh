@@ -162,8 +162,6 @@ then
     options+=" -o"
 fi
 
-printf 'ok / PASS /\nerror / FAIL /\n' > ./bluval/rules.txt
-
 set +e
 # even if the script fails we need to change the owner of results
 # shellcheck disable=SC2086

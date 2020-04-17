@@ -161,6 +161,6 @@
       - logparser:
           use-project-rules: true
           parse-rules: "./bluval/rules.txt"
-          unstable-on-warning: true
+          unstable-on-warning: false
           fail-on-error: true
-          show-graphs: false
+          show-graphs: true
