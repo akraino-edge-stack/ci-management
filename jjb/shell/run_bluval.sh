@@ -49,6 +49,7 @@ usage() {
 verify_connectivity() {
     local ip=$1
     info "Verifying connectivity to $ip..."
+    # shellcheck disable=SC2034
     for i in $(seq 0 10); do
         if ping -c 1 -W 1 "$ip" > /dev/null; then
             info "$ip is reachable!"
@@ -141,10 +142,10 @@ sed -i \
     "$volumes_path"
 
 # create ssh_key_dir
-mkdir -p $cwd/ssh_key_dir
+mkdir -p "$cwd/ssh_key_dir"
 
 # copy ssh_key in ssh_key_dir
-cp $ssh_key $cwd/ssh_key_dir/id_rsa
+cp "$ssh_key" "$cwd/ssh_key_dir/id_rsa"
 
 variables_path="$cwd/tests/variables.yaml"
 # update information in variables yaml
@@ -164,9 +165,16 @@ fi
 
 set +e
 # even if the script fails we need to change the owner of results
-# shellcheck disable=SC2086
-python3 bluval/blucon.py $options "$blueprint_name"
+if python3 --version > /dev/null; then
+    # shellcheck disable=SC2086
+    python3 bluval/blucon.py $options "$blueprint_name"
+else
+    # shellcheck disable=SC2086
+    VALIDATION_DIR="$WORKSPACE" RESULTS_DIR="$WORKSPACE/results" \
+        bluval/blucon.sh $options "$blueprint_name"
+fi
 
+# shellcheck disable=SC2181
 if [ $? -ne 0 ]; then
     change_res_owner
     error "Bluval validation FAIL "
@@ -181,11 +189,9 @@ else
     TIMESTAMP=$(date +'%Y%m%d-%H%M%S')
     NEXUS_URL=https://nexus.akraino.org/
     NEXUS_PATH="${LAB_SILO}/bluval_results/${blueprint_name}/${VERSION}/${TIMESTAMP}"
-    BUILD_URL="${JENKINS_HOSTNAME}/job/${JOB_NAME}/${BUILD_NUMBER}/"
     zip -r results.zip ./results
     lftools deploy nexus-zip "$NEXUS_URL" logs "$NEXUS_PATH" results.zip
     rm results.zip
 fi
 
 rm -f ~/.netrc
-
