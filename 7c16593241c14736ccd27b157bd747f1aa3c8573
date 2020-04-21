@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a2044a5_6bf42ce3",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 150
+      },
+      "writtenOn": "2020-04-21T08:32:43Z",
+      "side": 1,
+      "message": "This comment needs to be moved lower in the file.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 65
+      },
+      "revId": "7c16593241c14736ccd27b157bd747f1aa3c8573",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
