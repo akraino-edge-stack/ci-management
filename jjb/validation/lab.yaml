@@ -27,5 +27,6 @@
           disabled: false
     validation_lab:
       - enea
+      - kni
     jobs:
       - akraino-validation-lab-daily

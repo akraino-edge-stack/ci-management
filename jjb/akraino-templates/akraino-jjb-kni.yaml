@@ -315,3 +315,46 @@
             - file-id: kni-ssh-pub-key
               target: akraino-secrets/ssh-pub-key
       - shell: sudo -E ./installer/ci/kni_deploy_baremetal.sh
+
+- job-template:
+    id: kni-bluval-baremetal
+    name: 'kni-{project-name}-baremetal-daily-master'
+    build-timeout: 120
+    node: 'kni-libvirt'
+    properties:
+      - throttle:
+          enabled: true
+          max-total: 1
+          max-per-node: 1
+          option: 'project'
+
+    wrappers:
+      - build-name:
+          name: '$BUILD_NUMBER'
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+
+    builders:
+      - trigger-builds:
+          - project: 'kni-{project-name}-verify-deploy-baremetal'
+            current-parameters: true
+            predefined-parameters:
+              PRESERVE_CLUSTER="yes"
+            same-node: true
+            block: true
+      - trigger-builds:
+          - project: 'validation-kni-daily-master'
+            same-node: true
+            current-parameters: true
+            predefined-parameters: |
+              CLUSTER_MASTER_IP=192.168.111.11
+              CLUSTER_SSH_USER=core
+              BLUEPRINT={project-name}
+              VERSION=master
+              OPTIONAL=false
+            block: true
+

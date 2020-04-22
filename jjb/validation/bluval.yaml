@@ -28,6 +28,7 @@
     blueprint:
       - iec
       - rec
+      - kni
     stream:
       - master:
           branch: '{stream}'
