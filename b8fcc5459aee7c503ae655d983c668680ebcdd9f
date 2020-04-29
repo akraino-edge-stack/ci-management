@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "461e9688_19fd7d85",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-29T12:02:20Z",
+      "side": 1,
+      "message": "\u00262",
+      "range": {
+        "startLine": 43,
+        "startChar": 43,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1fd5c339_58e7515b",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-29T12:02:20Z",
+      "side": 1,
+      "message": "this was previously `sh_user` (not `ssh_user`). Either keep the old name or refactor below code to reflect the new name used.",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 12
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4af1d890_08a2c056",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-29T12:02:20Z",
+      "side": 1,
+      "message": "do not mix tabs with spaces",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 1
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "443d884c_6043f258",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-29T12:02:20Z",
+      "side": 1,
+      "message": "Note that we already have a \u0027p\u0027 arg used for docker pulls. Either choose a different arg name for ssh password or refactor the previous `-p` arg for docker pull into something different.",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 26
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9670b5ac_704a852e",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-29T12:02:20Z",
+      "side": 1,
+      "message": "I think this dir should only be created if `$ssh_key` is not empty, i.e. move this inside the if condition block below.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 27
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86db1ed5_ce191e91",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-29T12:02:20Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be `$cwd/ssh_key_dir/id_rsa`?",
+      "range": {
+        "startLine": 155,
+        "startChar": 25,
+        "endLine": 155,
+        "endChar": 42
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eadc7e4d_2695a709",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-04-29T12:02:20Z",
+      "side": 1,
+      "message": "In sh scripts, var assignment should be `var\u003dsomething`, not `$var\u003dsomething`.",
+      "range": {
+        "startLine": 155,
+        "startChar": 8,
+        "endLine": 155,
+        "endChar": 22
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
