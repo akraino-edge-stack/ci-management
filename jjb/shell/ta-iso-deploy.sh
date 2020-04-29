@@ -41,6 +41,9 @@ fi
 cp "$WORKSPACE/work/results/images/"* "$upload_dir1"
 cp "$WORKSPACE/work/results/images/"* "$upload_dir2"
 
+echo "-----> Sign all artifacts"
+lftools sign sigul "$repo_dir"
+
 echo "-----> Upload ISOs to Nexus"
 lftools deploy nexus "$nexus_repo_url" "$repo_dir"
 rm -rf "$repo_dir"

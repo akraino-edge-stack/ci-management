@@ -189,6 +189,16 @@
           files:
             - file-id: 'ta-settings'
               variable: 'SETTINGS_FILE'
+            - file-id: lftoolsini
+              target: "$HOME/.config/lftools/lftools.ini"
+            - file-id: sigul-config
+              variable: SIGUL_CONFIG
+            - file-id: sigul-password
+              variable: SIGUL_PASSWORD
+            - file-id: sigul-pki
+              variable: SIGUL_PKI
+            - file-id: signing-pubkey
+              variable: SIGNING_PUBKEY
       - inject:
           properties-content: 'ALT_NEXUS_URL=https://nexus3.akraino.org'
       - lf-infra-create-netrc:
@@ -201,6 +211,8 @@
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
+      - shell: !include-raw: ../global-jjb/shell/sigul-configuration.sh
+      - shell: !include-raw: ../global-jjb/shell/sigul-install.sh
       - shell: !include-raw:
           - ../shell/ta-rpm-deploy.sh
       - shell: !include-raw:
@@ -215,12 +227,24 @@
           files:
             - file-id: 'ta-settings'
               variable: 'SETTINGS_FILE'
+            - file-id: lftoolsini
+              target: "$HOME/.config/lftools/lftools.ini"
+            - file-id: sigul-config
+              variable: SIGUL_CONFIG
+            - file-id: sigul-password
+              variable: SIGUL_PASSWORD
+            - file-id: sigul-pki
+              variable: SIGUL_PKI
+            - file-id: signing-pubkey
+              variable: SIGNING_PUBKEY
       - lf-infra-create-netrc:
           server-id: images-snapshots
       - shell: !include-raw:
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
+      - shell: !include-raw: ../global-jjb/shell/sigul-configuration.sh
+      - shell: !include-raw: ../global-jjb/shell/sigul-install.sh
       - shell: !include-raw:
           - ../shell/ta-iso-deploy.sh
       - shell: !include-raw:
