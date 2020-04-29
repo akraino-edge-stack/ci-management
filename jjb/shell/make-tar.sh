@@ -14,6 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+echo "---> make-tar.sh"
+
 sudo yum install -y dos2unix
 # shellcheck source="$WORKSPACE/version.properties" disable=SC1091
 dos2unix "${WORKSPACE}/version.properties"
@@ -47,25 +49,29 @@ then
     # Build the regional controller scripts tar ball
     ARTIFACT_NAME="onap-amsterdam-regional-controller-${STREAM}"
     TAR_NAME="${ARTIFACT_NAME}-${VERSION}.tgz"
-    echo "Making tar file ${TARDIR}/${TAR_NAME}"
+    echo "---> Making tar file ${TARDIR}/${TAR_NAME}"
     cd ./src/regional_controller_scripts/
     tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
 
     # Build the ONAP VM scripts tar ball
     ARTIFACT_NAME="onap-amsterdam-VM-${STREAM}"
     TAR_NAME="${ARTIFACT_NAME}-${VERSION}.tgz"
-    echo "Making tar file ${TARDIR}/${TAR_NAME}"
+    echo "---> Making tar file ${TARDIR}/${TAR_NAME}"
     cd ../onap_vm_scripts/
     tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
 
 else
 
     TAR_NAME="${PROJECT}-${VERSION}.tgz"
-    echo "Making tar file ${TARDIR}/${TAR_NAME}"
+    echo "---> Making tar file ${TARDIR}/${TAR_NAME}"
     # Put the file in /tmp initially to prevent it $TARDIR from going into the tar file
     tar -cvzf "/tmp/${TAR_NAME}" -- *
     mkdir "$TARDIR"
     cp "/tmp/${TAR_NAME}" "${TARDIR}/${TAR_NAME}"
 
 fi
+
+echo "-----> Sign all artifacts"
+lftools sign sigul "${TARDIR}"
+
 set +u +x

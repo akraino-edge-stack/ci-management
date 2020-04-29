@@ -63,6 +63,9 @@ for artifact in \
         fi
     done
 
+echo "-----> Sign all artifacts"
+lftools sign sigul "$repo_dir"
+
 echo "-----> Upload RPMs to Nexus"
 lftools deploy nexus "$nexus_repo_url" "$repo_dir"
 
