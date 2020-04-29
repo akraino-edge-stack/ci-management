@@ -40,9 +40,11 @@ usage() {
     echo "[-k <k8s_config_dir> k8s config dir">&2
     echo "[-j <cluster_master_ip> cluster master IP">&2
     echo "[-u <ssh_user> ssh user">&2
+    echo "[-p <ssh_password> ssh password">&2
     echo "[-s <ssh_key>] path to ssh key">&2
     echo "[-c <custmom_var_file> ] path to variables yaml file">&2
     echo "[-l <layer> ] blueprint layer">&2
+    echo "[-P ] pull docker images">&2
     echo "[-o ] run optional tests">&2
     echo "[-v <version> ] version">&2
 }
@@ -67,17 +69,18 @@ error () {
 }
 
 # Get options from shell
-while getopts "j:k:u:s:b:l:r:n:opv:" optchar; do
+while getopts "j:k:u:p:s:b:l:r:n:oPv:" optchar; do
     case "${optchar}" in
         j) cluster_master_ip=${OPTARG} ;;
         k) k8s_config_dir=${OPTARG} ;;
+        u) sh_user=${OPTARG} ;;
+        p) ssh_password=${OPTARG} ;;
         s) ssh_key=${OPTARG} ;;
         b) blueprint_yaml=${OPTARG} ;;
         l) blueprint_layer=${OPTARG} ;;
         n) blueprint_name=${OPTARG} ;;
-        u) sh_user=${OPTARG} ;;
         o) is_optional="true"  ;;
-        p) pull="true"  ;;
+        P) pull="true"  ;;
         v) version=${OPTARG} ;;
         *) echo "Non-option argument: '-${OPTARG}'" >&2
            usage
@@ -108,6 +111,7 @@ version=${version:-$VERSION}
 results_dir=$cwd/results
 cluster_master_ip=${cluster_master_ip:-$CLUSTER_MASTER_IP}
 ssh_user=${sh_user:-$CLUSTER_SSH_USER}
+ssh_password=${ssh_password:-$CLUSTER_SSH_PASSWORD}
 blueprint_layer=${blueprint_layer:-$LAYER}
 
 if [ "$blueprint_layer" == "k8s" ] || [ -z "$blueprint_layer" ]
@@ -118,9 +122,9 @@ then
         error "Please provide valid IP address to access the k8s cluster."
     fi
     verify_connectivity "${cluster_master_ip}"
-    if [[ -n $CLUSTER_SSH_PASSWORD ]]
+    if [[ -n ${ssh_password} ]]
     then
-        sshpass -p "${CLUSTER_SSH_PASSWORD}" scp -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -r\
+        sshpass -p "${ssh_password}" scp -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -r\
              "${ssh_user}@${cluster_master_ip}:~/.kube/*" "$k8s_config_dir"
     else
         scp -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -i"$ssh_key" -r\
@@ -133,6 +137,9 @@ then
     cp "$blueprint_yaml" ./bluval/
 fi
 
+# create ssh_key_dir
+mkdir -p "$cwd/ssh_key_dir"
+
 volumes_path="$cwd/bluval/volumes.yaml"
 # update information in volumes yaml
 sed -i \
@@ -143,17 +150,19 @@ sed -i \
     -e "/results_dir/{n; s@local: ''@local: '$results_dir'@}" \
     "$volumes_path"
 
-# create ssh_key_dir
-mkdir -p "$cwd/ssh_key_dir"
-
-# copy ssh_key in ssh_key_dir
-cp "$ssh_key" "$cwd/ssh_key_dir/id_rsa"
+if [ -n "$ssh_key" ]
+then
+    cp $ssh_key $cwd/ssh_key_dir/id_rsa
+    ssh_keyfile=/root/.ssh/id_rsa
+fi
 
 variables_path="$cwd/tests/variables.yaml"
 # update information in variables yaml
 sed -i \
     -e "s@host: [0-9]*.[0-9]*.[0-9]*.[0-9]*@host: $cluster_master_ip@" \
     -e "s@username: [A-Za-z0-9_]* @username: $ssh_user@" \
+    -e "s@password: [A-Za-z0-9_]* @password: $ssh_password@" \
+    -e "s@ssh_keyfile: [A-Za-z0-9_]* @ssh_keyfile: $ssh_keyfile@" \
     "$variables_path"
 
 if [[ -n $blueprint_layer ]]
@@ -166,7 +175,7 @@ then
 fi
 if [ "$pull" == "true" ] || [ "$PULL" == "yes" ]
 then
-    options+=" -p"
+    options+=" -P"
 fi
 
 set +e
