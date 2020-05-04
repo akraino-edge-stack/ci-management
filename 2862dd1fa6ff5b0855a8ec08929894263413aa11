@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "05d39db0_e55c6d7b",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-05-04T16:54:29Z",
+      "side": 1,
+      "message": "the indentation here is not consistent with the rest of this file where it seems to use 4 spaces\nalso, it\u0027d be nice to quote the variables to silence shellcheck warnings while allowing paths with spaces in them",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 8
+      },
+      "revId": "2862dd1fa6ff5b0855a8ec08929894263413aa11",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
