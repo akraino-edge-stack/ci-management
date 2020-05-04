@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a5e635c4_68af8b9c",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 283
+      },
+      "writtenOn": "2020-05-04T11:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "461e9688_19fd7d85",
+      "range": {
+        "startLine": 43,
+        "startChar": 43,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fd5c339_58e7515b",
         "filename": "jjb/shell/run_bluval.sh",
         "patchSetId": 1
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "790e099e_cb1791e9",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 283
+      },
+      "writtenOn": "2020-05-04T11:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fd5c339_58e7515b",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 75,
+        "endChar": 12
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8731ea40_ef9db1bb",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 283
+      },
+      "writtenOn": "2020-05-04T11:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4af1d890_08a2c056",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 1
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "443d884c_6043f258",
         "filename": "jjb/shell/run_bluval.sh",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "1323171b_00316019",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 283
+      },
+      "writtenOn": "2020-05-04T11:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "443d884c_6043f258",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 26
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9670b5ac_704a852e",
         "filename": "jjb/shell/run_bluval.sh",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2020-04-29T12:02:20Z",
       "side": 1,
       "message": "I think this dir should only be created if `$ssh_key` is not empty, i.e. move this inside the if condition block below.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 27
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c865a4a5_1c22cc0c",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 283
+      },
+      "writtenOn": "2020-05-04T11:02:21Z",
+      "side": 1,
+      "message": "Need to careate this directory for file sharing between jumpserver and test containers",
+      "parentUuid": "9670b5ac_704a852e",
       "range": {
         "startLine": 139,
         "startChar": 0,
@@ -160,6 +280,54 @@
       "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2c058c3_dfc0b6c8",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 283
+      },
+      "writtenOn": "2020-05-04T11:02:21Z",
+      "side": 1,
+      "message": "$cwd/ssh key dir/id_rsa is the ssh_key path in jumpserver and /root/.ssh/id_rsa is the ssh_key path in the os container",
+      "parentUuid": "86db1ed5_ce191e91",
+      "range": {
+        "startLine": 155,
+        "startChar": 25,
+        "endLine": 155,
+        "endChar": 42
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eb6c49d_726ac73f",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 283
+      },
+      "writtenOn": "2020-05-04T11:02:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eadc7e4d_2695a709",
+      "range": {
+        "startLine": 155,
+        "startChar": 8,
+        "endLine": 155,
+        "endChar": 22
+      },
+      "revId": "b8fcc5459aee7c503ae655d983c668680ebcdd9f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": false
     }
   ]
 }
