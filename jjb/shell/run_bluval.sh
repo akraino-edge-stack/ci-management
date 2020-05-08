@@ -125,10 +125,10 @@ then
     if [[ -n ${ssh_password} ]]
     then
         sshpass -p "${ssh_password}" scp -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -r\
-             "${ssh_user}@${cluster_master_ip}:~/.kube/*" "$k8s_config_dir"
+             "${ssh_user}@${cluster_master_ip}:~/.kube/config" "$k8s_config_dir"
     else
         scp -oUserKnownHostsFile=/dev/null -oStrictHostKeyChecking=no -i"$ssh_key" -r\
-            "${ssh_user}"@"${cluster_master_ip}":~/.kube/* "$k8s_config_dir"
+            "${ssh_user}"@"${cluster_master_ip}":~/.kube/config "$k8s_config_dir"
     fi
 fi
 
