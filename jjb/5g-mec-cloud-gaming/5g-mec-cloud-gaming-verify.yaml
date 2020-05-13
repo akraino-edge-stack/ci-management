@@ -8,4 +8,4 @@
       - master:
           branch: master
     jobs:
-      - akraino-project-stream-verify
+      - 5gc-project-stream-verify
