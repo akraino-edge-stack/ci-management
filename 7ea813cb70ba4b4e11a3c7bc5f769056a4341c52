@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "249c8112_c002834f",
+        "filename": "jjb/akraino-templates/akraino-5g-mec-templates.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-05-14T16:46:03Z",
+      "side": 1,
+      "message": "This seems unnecessarily limiting. I would recommend just adding INFO.yaml to the forbidden-file-paths, and testing for all other changes.",
+      "range": {
+        "startLine": 66,
+        "startChar": 14,
+        "endLine": 70,
+        "endChar": 38
+      },
+      "revId": "7ea813cb70ba4b4e11a3c7bc5f769056a4341c52",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8eab56d4_8f3ddfe2",
+        "filename": "jjb/akraino-templates/akraino-5g-mec-templates.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-05-14T16:46:03Z",
+      "side": 1,
+      "message": "If you do decide to keep the file-paths above, there is no need for forbidden-file-paths.",
+      "range": {
+        "startLine": 72,
+        "startChar": 14,
+        "endLine": 74,
+        "endChar": 36
+      },
+      "revId": "7ea813cb70ba4b4e11a3c7bc5f769056a4341c52",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
