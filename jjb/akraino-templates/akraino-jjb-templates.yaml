@@ -115,20 +115,6 @@
 
     builders:
       - lf-infra-pre-build
-      - config-file-provider:
-          files:
-            - file-id: lftoolsini
-              target: "$HOME/.config/lftools/lftools.ini"
-            - file-id: sigul-config
-              variable: SIGUL_CONFIG
-            - file-id: sigul-password
-              variable: SIGUL_PASSWORD
-            - file-id: sigul-pki
-              variable: SIGUL_PKI
-            - file-id: signing-pubkey
-              variable: SIGNING_PUBKEY
-      - shell: !include-raw-escape: ../global-jjb/shell/sigul-configuration.sh
-      - shell: !include-raw-escape: ../global-jjb/shell/sigul-install.sh
       - lf-maven-install:
           mvn-version: '{mvn-version}'
       - lf-update-java-alternatives:
@@ -257,20 +243,6 @@
 
     builders:
       - lf-infra-pre-build
-      - config-file-provider:
-          files:
-            - file-id: lftoolsini
-              target: "$HOME/.config/lftools/lftools.ini"
-            - file-id: sigul-config
-              variable: SIGUL_CONFIG
-            - file-id: sigul-password
-              variable: SIGUL_PASSWORD
-            - file-id: sigul-pki
-              variable: SIGUL_PKI
-            - file-id: signing-pubkey
-              variable: SIGNING_PUBKEY
-      - shell: !include-raw-escape: ../global-jjb/shell/sigul-configuration.sh
-      - shell: !include-raw-escape: ../global-jjb/shell/sigul-install.sh
       - lf-jacoco-nojava-workaround
       - lf-maven-install:
           mvn-version: '{mvn-version}'
