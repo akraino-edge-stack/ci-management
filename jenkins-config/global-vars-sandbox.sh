@@ -10,3 +10,4 @@ SIGUL_BRIDGE_IP=10.30.216.9
 SIGUL_KEY=akraino-sandbox
 SILO=sandbox
 SONAR_URL=https://sonar.akraino.org
+S3_BUCKET=
