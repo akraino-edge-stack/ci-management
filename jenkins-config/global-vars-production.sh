@@ -11,3 +11,4 @@ SIGUL_BRIDGE_IP=10.30.216.9
 SIGUL_KEY=akraino-release-2018
 SILO=production
 SONAR_URL=https://sonar.akraino.org
+S3_BUCKET=
