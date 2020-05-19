@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7910cc46_52fc65f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-05-19T12:18:36Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 9,
+        "startChar": 41,
+        "endLine": 9,
+        "endChar": 49
+      },
+      "revId": "e770f38545cd947fafe79948657582503ffad49f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bcc28be3_303d730c",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-05-19T12:18:36Z",
+      "side": 1,
+      "message": "trailing ws",
+      "range": {
+        "startLine": 191,
+        "startChar": 61,
+        "endLine": 191,
+        "endChar": 62
+      },
+      "revId": "e770f38545cd947fafe79948657582503ffad49f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c75fe235_15d674a1",
+        "filename": "jjb/shell/run_bluval.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-05-19T12:18:36Z",
+      "side": 1,
+      "message": "since the below block tests for \"$?\" (the return code of the last executed command), this new block with be one evaluted in \"$?\", instead of running bluval/blucon.\n\nwe could either move this block after the below invocation of change_res_owner function, or better yet perform this chown in change_res_owner, next to the other chown (we can actually call chown only once for both problematic directories)",
+      "range": {
+        "startLine": 194,
+        "startChar": 4,
+        "endLine": 194,
+        "endChar": 51
+      },
+      "revId": "e770f38545cd947fafe79948657582503ffad49f",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
