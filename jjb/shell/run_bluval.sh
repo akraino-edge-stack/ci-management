@@ -188,6 +188,12 @@ else
         bluval/blucon.sh $options "$blueprint_name"
 fi
 
+# for cleanup we need to change the owner for kube_config_dir 
+if [ -d "$k8s_config_dir" ]
+then
+    sudo chown -R "$current_user" "$k8s_config_dir"
+fi
+
 # even if the script fails we need to change the owner of results
 # shellcheck disable=SC2181
 if [ $? -ne 0 ]; then
