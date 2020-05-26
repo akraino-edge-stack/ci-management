@@ -29,7 +29,7 @@ change_res_owner() {
 # change owner of results created by root in container
     if [ -d "$results_dir" ]
     then
-        sudo chown -R "$current_user" "$results_dir"
+        sudo chown -R "$current_user" "$results_dir" "$k8s_config_dir"
     fi
 }
 
