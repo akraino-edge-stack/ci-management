@@ -1,0 +1,9 @@
+Verified+1: Akraino Jobbuilder <collab-it+akraino-jobbuilder@linuxfoundation.org>
+Code-Review+1: Alexandru Avadanii <Alexandru.Avadanii@enea.com>
+Code-Review+1: Tapio Tallgren <tapio.tallgren@nokia.com>
+Code-Review+2: Eric Ball <eball@linuxfoundation.org>
+Submitted-by: Eric Ball <eball@linuxfoundation.org>
+Submitted-at: Tue, 26 May 2020 20:51:10 +0000
+Reviewed-on: https://gerrit.akraino.org/r/c/ci-management/+/3486
+Project: ci-management
+Branch: refs/heads/master
