@@ -25,6 +25,7 @@
           stream: '{stream}'
           branch: '{branch}'
       - '{project}-{slave-label}-defaults'
+      - '{project}-defaults'
 
     builders:
       - description-setter:
@@ -33,6 +34,16 @@
           - project: 'rec-{slave-label}-install-rec-{job-frequency}-{stream}'
             current-parameters: true
             same-node: true
+            block: true
+      - trigger-builds:
+          - project: 'validation-unh-daily-{stream}'
+            same-node: true
+            current-parameters: true
+            predefined-parameters: |
+              BLUEPRINT={project-name}
+              VERSION=master
+              OPTIONAL=false
+              PULL=yes
             block: true
 
     publishers: &rec-publishers
@@ -58,6 +69,7 @@
           stream: '{stream}'
           branch: '{branch}'
       - '{project}-{slave-label}-defaults'
+      - '{project}-defaults'
 
     scm:
       - ta-lf-infra-gerrit-scm:

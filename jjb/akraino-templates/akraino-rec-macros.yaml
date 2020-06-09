@@ -26,6 +26,22 @@
           default: 'refs/heads/master'
           description: 'remote-installer custom git refspec'
 
+- parameter:
+    name: 'rec-defaults'
+    parameters:
+      - string:
+          name: CLUSTER_MASTER_IP
+          default: '192.167.10.211'
+          description: 'IP address to connect to the K8s master'
+      - string:
+          name: CLUSTER_SSH_USER
+          default: 'cloudadmin'
+          description: 'SSH username to connect to the K8s master '
+      - string:
+          name: CLUSTER_SSH_PASSWORD
+          default: 'admin'
+          description: 'SSH password to connect to the K8s master'
+
 ########################
 # trigger macros
 ########################
@@ -33,4 +49,3 @@
     name: 'rec-weekly-master-trigger'
     triggers:
       - timed: '0 1 * * 6,7'
-
