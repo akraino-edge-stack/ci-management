@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffdee59b_dbe44ae4",
+        "filename": "jjb/akraino-templates/akraino-rec-macros.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-06-10T01:52:52Z",
+      "side": 1,
+      "message": "Please fix this unnecessary whitespace.",
+      "range": {
+        "startLine": 39,
+        "startChar": 65,
+        "endLine": 39,
+        "endChar": 66
+      },
+      "revId": "4728b599181fc95f6139f39bf976fcf08beb5a32",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80dea247_3357640b",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-06-10T01:52:52Z",
+      "side": 1,
+      "message": "Do you intend to add more projects? I don\u0027t see any reason that this shouldn\u0027t be hardcoded to \"rec\", given that it is hardcoded in other places in this template.",
+      "range": {
+        "startLine": 28,
+        "startChar": 9,
+        "endLine": 28,
+        "endChar": 18
+      },
+      "revId": "4728b599181fc95f6139f39bf976fcf08beb5a32",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3eed5527_fb38643f",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-06-10T01:52:52Z",
+      "side": 1,
+      "message": "Same question as line 28.",
+      "range": {
+        "startLine": 72,
+        "startChar": 9,
+        "endLine": 72,
+        "endChar": 18
+      },
+      "revId": "4728b599181fc95f6139f39bf976fcf08beb5a32",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
