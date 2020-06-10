@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "c81c053e_618ceb60",
+        "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-06-10T10:29:29Z",
+      "side": 1,
+      "message": "No, this job will strictly be dealing with REC, so we can use \u0027rec\u0027 instead of \u0027{project}\u0027.",
+      "parentUuid": "80dea247_3357640b",
+      "range": {
+        "startLine": 28,
+        "startChar": 9,
+        "endLine": 28,
+        "endChar": 18
+      },
+      "revId": "4728b599181fc95f6139f39bf976fcf08beb5a32",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3eed5527_fb38643f",
         "filename": "jjb/akraino-templates/akraino-rec-templates.yaml",
         "patchSetId": 1
