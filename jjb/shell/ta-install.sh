@@ -60,6 +60,7 @@ _cleanup() {
     set +e
     sudo chown -R jenkins:jenkins "$WORKDIR"
     docker cp 'remote-installer':/var/log/remote-installer.log "$BASEDIR/"
+    docker stop 'remote-installer'
     docker rm -f 'remote-installer'
     trap - EXIT ERR HUP INT QUIT TERM
     exit $exit_status
