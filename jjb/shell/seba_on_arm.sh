@@ -69,6 +69,11 @@ case "${JOB_NAME}" in
     IEC_DIR="/${K8S_SSH_USER}/iec"
     KUBE_DIR="~${K8S_SSH_USER}/.kube"
     ;;
+  *rec*)
+    # K8S_{MASTER_IP,SSH_USER,SSH_PASSWORD} are already set by job params
+    IEC_DIR="/var/lib/akraino/iec"
+    KUBE_DIR="~${K8S_SSH_USER}/.kube"
+    ;;
   *)
     echo "Cannot determine installer from ${JOB_NAME}"
     exit 1
@@ -76,11 +81,11 @@ case "${JOB_NAME}" in
 esac
 
 case "${JOB_NAME}" in
-  iec-*-install-seba_on_arm*)
+  *-install-seba_on_arm*)
     INSTALL_CMD="'cd ${IEC_DIR}/src/use_cases/seba_on_arm/install; ./install.sh'"
     run_on_k8s_master ssh "${INSTALL_CMD}"
     ;;
-  iec-*-test-seba_on_arm*)
+  *-test-seba_on_arm*)
 
     case "${PON_TYPE}" in
       *ponsim*)
