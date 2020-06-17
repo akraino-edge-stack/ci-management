@@ -43,10 +43,10 @@
     # -------------------------------
     deploy_type:
       - baremetal:
-          slave-label: 'aarch64_baremetal_dev'
+          slave_label: 'aarch64_baremetal_dev'
           scenario: 'k8-calico-iec-noha'
       - virtual:
-          slave-label: 'aarch64_dev'
+          slave_label: 'aarch64_dev'
           scenario: 'k8-calico-iec-noha'
 
     exclude:
@@ -84,7 +84,7 @@
       - akraino-iec-install
       - akraino-iec-deploy
       - akraino-iec-destroy
-      - akraino-iec-phase-usecase
+      - akraino-seba_on_arm-phase-iec
       - gerrit-sonar:
           sonar-project-file: ""
           build-node: centos7-builder-2c-1g

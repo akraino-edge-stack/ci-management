@@ -79,14 +79,6 @@
           <<: *k8s_ssh_key
           default: ''
 
-# IEC usecase(s) parameters
-- parameter:
-    name: 'seba_on_arm-defaults'
-    parameters:
-      - string:
-          name: PON_TYPE
-          default: 'ponsim'
-
 ########################
 # publisher macros
 ########################
@@ -96,21 +88,6 @@
       - email:
           recipients: armband@enea.com
       - lf-infra-publish
-
-- publisher:
-    name: 'iec-install-usecase-publisher'
-    publishers:
-      - iec-default-publisher
-
-- publisher:
-    name: 'iec-test-usecase-publisher'
-    publishers:
-      - iec-default-publisher
-      - robot:
-          output-path: 'results'
-          report-html: '**/report.html'
-          log-html: '**/log.html'
-          output-xml: '**/output.xml'
 
 ########################
 # trigger macros

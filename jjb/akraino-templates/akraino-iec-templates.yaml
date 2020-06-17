@@ -4,7 +4,7 @@
     name: 'iec-{iecType}-{installer}-{deploy_type}-{os}-daily-{stream}'
     disabled: '{obj:disabled}'
     concurrent: false
-    node: '{slave-label}'
+    node: '{slave_label}'
     properties:
       - throttle:
           enabled: true
@@ -95,7 +95,7 @@
     id: akraino-iec-deploy
     name: 'iec-{iecType}-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
     concurrent: true
-    node: '{slave-label}'
+    node: '{slave_label}'
     properties: &properties
       - throttle:
           enabled: true
@@ -171,7 +171,7 @@
     id: akraino-iec-destroy
     name: 'iec-{iecType}-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
     concurrent: true
-    node: '{slave-label}'
+    node: '{slave_label}'
     properties: *properties
     parameters:
       - lf-infra-parameters:
@@ -201,32 +201,3 @@
 
     publishers:
       - iec-default-publisher
-
-- job-template:
-    id: akraino-iec-phase-usecase
-    name: 'iec-{iecType}-{phase}-{usecase}-{installer}-{deploy_type}-{os}-daily-{stream}'
-    concurrent: true
-    node: '{slave-label}'
-    properties: *properties
-
-    parameters:
-      - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-      - '{project}-defaults'
-      - '{installer}-{os}-defaults'
-      - '{usecase}-defaults'
-
-    wrappers:
-      - build-name:
-          name: '$BUILD_NUMBER - Usecase: ${usecase} DeployType: ${installer}-${deploy_type}'
-
-    scm: *scm
-
-    builders:
-      - shell:
-          !include-raw-escape: ../iec/iec-{usecase}.sh
-
-    publishers:
-      - 'iec-{phase}-usecase-publisher'

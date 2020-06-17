@@ -1,0 +1,51 @@
+---
+- job-template: &akraino-seba_on_arm-phase-rec
+    id: akraino-seba_on_arm-phase-rec
+    name: 'rec-{slave_label}-{phase}-seba_on_arm-{job_frequency}-{stream}'
+    concurrent: true
+    node: '{slave_label}'
+    properties:
+      - throttle:
+          enabled: true
+          max-total: 4
+          max-per-node: 1
+          option: 'project'
+
+    parameters: &akraino-seba_on_arm-phase-rec-parameters
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-defaults'
+      - 'seba_on_arm-defaults'
+
+    scm:
+      - lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/iec.git'
+          refspec: '$GERRIT_REFSPEC'
+          branch: '$GERRIT_BRANCH'
+          submodule-recursive: false
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: true
+          choosing-strategy: default
+
+    builders:
+      - shell:
+          !include-raw-escape: ../shell/seba_on_arm.sh
+
+    publishers:
+      - 'seba_on_arm-{phase}-publisher'
+
+- job-template:
+    <<: *akraino-seba_on_arm-phase-rec
+    id: akraino-seba_on_arm-phase-iec
+    name: 'iec-{iecType}-{phase}-seba_on_arm-{installer}-{deploy_type}-{os}-daily-{stream}'
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          stream: '{stream}'
+          branch: '{branch}'
+      - '{project}-defaults'
+      - '{installer}-{os}-defaults'
+      - 'seba_on_arm-defaults'

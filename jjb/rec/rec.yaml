@@ -14,15 +14,25 @@
           disabled: false
 
     # -------------------------------
+    # USECASE DEFINITIONS
+    # -------------------------------
+    usecase:
+      - seba_on_arm
+
+    phase:
+      - install
+      - test
+
+    # -------------------------------
     # POD DEFINITIONS
     # -------------------------------
-
-    slave-label:
+    slave_label:
       - aarch64_baremetal
 
-    job-frequency:
+    job_frequency:
       - weekly
 
     jobs:
-       - akraino-rec-deploy
-       - akraino-rec-install-rec
+      - akraino-rec-deploy
+      - akraino-rec-install-rec
+      - akraino-seba_on_arm-phase-rec
