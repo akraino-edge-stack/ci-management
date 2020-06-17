@@ -1,10 +1,10 @@
 ---
 - job-template:
     id: akraino-rec-deploy
-    name: 'rec-{slave-label}-{job-frequency}-{stream}'
+    name: 'rec-{slave_label}-{job_frequency}-{stream}'
     disabled: '{obj:disabled}'
     concurrent: false
-    node: '{slave-label}'
+    node: '{slave_label}'
     properties:
       - throttle:
           enabled: true
@@ -17,21 +17,21 @@
           name: '$BUILD_NUMBER - Install REC Blueprint'
 
     triggers:
-      - 'rec-{job-frequency}-{stream}-trigger'
+      - 'rec-{job_frequency}-{stream}-trigger'
 
     parameters:
       - lf-infra-parameters:
           project: '{project}'
           stream: '{stream}'
           branch: '{branch}'
-      - 'rec-{slave-label}-defaults'
+      - 'rec-{slave_label}-defaults'
       - 'rec-defaults'
 
     builders:
       - description-setter:
           description: "SLAVE: $NODE_NAME"
       - trigger-builds:
-          - project: 'rec-{slave-label}-install-rec-{job-frequency}-{stream}'
+          - project: 'rec-{slave_label}-install-rec-{job_frequency}-{stream}'
             current-parameters: true
             same-node: true
             block: true
@@ -45,6 +45,22 @@
               OPTIONAL=false
               PULL=yes
             block: true
+          - project:
+              !j2: |
+                {%- for uc in usecase -%}
+                {%- for ph in phase -%}
+                rec-{{ slave_label }}-{{ ph }}-{{ uc }}-{{ job_frequency }}-{{ stream }}
+                {%- if not loop.last -%},{%- endif -%}
+                {%- endfor %}
+                {%- if not loop.last -%},{%- endif -%}
+                {%- endfor %}
+            current-parameters: true
+            same-node: true
+            block: true
+            block-thresholds:
+              build-step-failure-threshold: 'never'
+              failure-threshold: 'never'
+              unstable-threshold: 'FAILURE'
 
     publishers: &rec-publishers
       - email:
@@ -53,9 +69,9 @@
 
 - job-template:
     id: akraino-rec-install-rec
-    name: 'rec-{slave-label}-install-rec-{job-frequency}-{stream}'
+    name: 'rec-{slave_label}-install-rec-{job_frequency}-{stream}'
     concurrent: true
-    node: '{slave-label}'
+    node: '{slave_label}'
     properties:
       - throttle:
           enabled: true
@@ -68,7 +84,7 @@
           project: '{project}'
           stream: '{stream}'
           branch: '{branch}'
-      - 'rec-{slave-label}-defaults'
+      - 'rec-{slave_label}-defaults'
       - 'rec-defaults'
 
     scm:

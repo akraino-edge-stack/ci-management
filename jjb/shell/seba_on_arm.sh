@@ -49,12 +49,6 @@ run_on_k8s_master () {
   fi
 }
 
-if [ -z "$K8S_SSH_USER" ]
-then
-  echo "K8S_SSH_USER not set, cannot ssh to K8S master, aborting"
-  exit 1
-fi
-
 case "${JOB_NAME}" in
   *fuel*)
     K8S_MASTER_IP=$(docker exec fuel cat /etc/hosts | grep iec01 \
@@ -69,18 +63,34 @@ case "${JOB_NAME}" in
     IEC_DIR="/${K8S_SSH_USER}/iec"
     KUBE_DIR="~${K8S_SSH_USER}/.kube"
     ;;
+  *rec*)
+    # CLUSTER_{MASTER_IP,SSH_USER,SSH_PASSWORD} are already set by job params
+    K8S_MASTER_IP=${CLUSTER_MASTER_IP}
+    K8S_SSH_USER=${CLUSTER_SSH_USER}
+    K8S_SSH_PASSWORD=${CLUSTER_SSH_PASSWORD}
+    IEC_DIR="/var/lib/akraino/iec"
+    KUBE_DIR="~${K8S_SSH_USER}/.kube"
+    ;;
   *)
     echo "Cannot determine installer from ${JOB_NAME}"
     exit 1
     ;;
 esac
 
+if [ -z "$K8S_SSH_USER" ]
+then
+  echo "K8S_SSH_USER not set, cannot ssh to K8S master, aborting"
+  exit 1
+fi
+
+export K8S_MASTER_IP
+
 case "${JOB_NAME}" in
-  iec-*-install-seba_on_arm*)
+  *-install-seba_on_arm*)
     INSTALL_CMD="'cd ${IEC_DIR}/src/use_cases/seba_on_arm/install; ./install.sh'"
     run_on_k8s_master ssh "${INSTALL_CMD}"
     ;;
-  iec-*-test-seba_on_arm*)
+  *-test-seba_on_arm*)
 
     case "${PON_TYPE}" in
       *ponsim*)

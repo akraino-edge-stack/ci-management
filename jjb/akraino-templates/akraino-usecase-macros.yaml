@@ -1,0 +1,30 @@
+---
+##############
+# PARAMETERS #
+##############
+- parameter:
+    name: 'seba_on_arm-defaults'
+    parameters:
+      - string:
+          name: PON_TYPE
+          default: 'ponsim'
+
+########################
+# publisher macros
+########################
+- publisher:
+    name: 'seba_on_arm-install-publisher'
+    publishers:
+      - email:
+          recipients: armband@enea.com
+      - lf-infra-publish
+
+- publisher:
+    name: 'seba_on_arm-test-publisher'
+    publishers:
+      - seba_on_arm-install-publisher
+      - robot:
+          output-path: 'results'
+          report-html: '**/report.html'
+          log-html: '**/log.html'
+          output-xml: '**/output.xml'
