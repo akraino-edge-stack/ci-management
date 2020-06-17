@@ -1,6 +1,7 @@
 .tox/
 archives/
 jenkins.ini
+*.sw?
 
 # Packer
 .galaxy/
