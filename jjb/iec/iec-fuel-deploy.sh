@@ -20,6 +20,10 @@ if [ "$(uname -m)" = 'aarch64' ]; then
     if [[ ! "$POD_NAME" =~ virtual ]]; then
         POD_NAME=${NODE_NAME/*ubuntu1804-dev-96c-256g-/baremetal}
     fi
+    if [[ ! "$POD_NAME" =~ (virtual|baremetal) ]]; then
+        POD_NAME=${NODE_NAME/*ubuntu1804-dev-32c-128g-/baremetal}
+        LAB_NAME='unh'
+    fi
 fi
 if [[ ! "$POD_NAME" =~ (virtual|baremetal) ]]; then
     echo "Unavailable hardware. Cannot continue!"
