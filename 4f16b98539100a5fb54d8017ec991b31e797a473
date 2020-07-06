@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a1a9c93_0b0afe64",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-07-06T14:01:55Z",
+      "side": 1,
+      "message": "Please put the subject in the imperative mood.\n\nhttps://chris.beams.io/posts/git-commit/",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 18
+      },
+      "revId": "4f16b98539100a5fb54d8017ec991b31e797a473",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cc916f0_fc60899e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-07-06T14:01:55Z",
+      "side": 1,
+      "message": "Commit message body should not be indented. Please remove the leading spaces from these lines.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 26
+      },
+      "revId": "4f16b98539100a5fb54d8017ec991b31e797a473",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
