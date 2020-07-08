@@ -1,0 +1,8 @@
+Code-Review+1: Yolanda Robla Mota <yroblamo@redhat.com>
+Code-Review+2: Eric Ball <eball@linuxfoundation.org>
+Verified+1: Akraino Jobbuilder <collab-it+akraino-jobbuilder@linuxfoundation.org>
+Submitted-by: Eric Ball <eball@linuxfoundation.org>
+Submitted-at: Wed, 08 Jul 2020 18:04:00 +0000
+Reviewed-on: https://gerrit.akraino.org/r/c/ci-management/+/3608
+Project: ci-management
+Branch: refs/heads/master
