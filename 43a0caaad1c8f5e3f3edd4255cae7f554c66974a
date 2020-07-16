@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f6d5134_35b25654",
+        "filename": "jjb/shell/seba_on_arm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-07-16T16:14:50Z",
+      "side": 1,
+      "message": "To avoid `sudo git`, how about `sudo chown` first, then running git without sudo?",
+      "range": {
+        "startLine": 95,
+        "startChar": 22,
+        "endLine": 95,
+        "endChar": 101
+      },
+      "revId": "43a0caaad1c8f5e3f3edd4255cae7f554c66974a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7e3d25f_7de98194",
+        "filename": "jjb/shell/seba_on_arm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 137
+      },
+      "writtenOn": "2020-07-16T16:14:50Z",
+      "side": 1,
+      "message": "Since the seba test job also uses files from the IEC repo, it would make sense moving the newly added code outside this case statement.",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "43a0caaad1c8f5e3f3edd4255cae7f554c66974a",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
