@@ -88,7 +88,14 @@ export K8S_MASTER_IP UPSTREAM_PROJECT="${UPSTREAM_PROJECT:-${PROJECT}}"
 
 case "${JOB_NAME}" in
   *-install-seba_on_arm*)
-    INSTALL_CMD="'cd ${IEC_DIR}/src/use_cases/seba_on_arm/install; ./install.sh ${UPSTREAM_PROJECT}'"
+    IEC_REPO="https://gerrit.akraino.org/r/iec.git"
+    IEC_CLONE_CMD="'if ! [ -d "$IEC_DIR" ];\
+                    then\
+                      sudo mkdir -p $IEC_DIR;\
+                      sudo git clone $IEC_REPO $IEC_DIR; sudo chown -R "$(id -u)":"$(id -g)" $IEC_DIR;\
+                    fi'"
+    run_on_k8s_master ssh "${IEC_CLONE_CMD}"
+    INSTALL_CMD="'cd ${IEC_DIR}/src/use_cases/seba_on_arm/install; K8S_MASTER_IP=${K8S_MASTER_IP} ./install.sh ${UPSTREAM_PROJECT}'"
     run_on_k8s_master ssh "${INSTALL_CMD}"
     ;;
   *-test-seba_on_arm*)
