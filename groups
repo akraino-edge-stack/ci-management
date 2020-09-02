@@ -1,7 +1,8 @@
 # UUID                                                                           	Group Name
 #
 0706f97cf3b2243094a8f24452092769b1065db0                                         	GitHub Replication
+b9af28fdbc5c73d832a7059b680c78fdea873c31                                         	saml/lf-releng
+f1316105a64e188cc37f7c73288d01573b440338                                         	saml/akraino-gerrit-ci-management-committers
 global:Anonymous-Users                                                           	Anonymous Users
-ldap:cn=akraino-gerrit-att-early-access,ou=Groups,dc=freestandards,dc=org        	ldap/akraino-gerrit-att-early-access
 ldap:cn=akraino-gerrit-ci-management-committers,ou=Groups,dc=freestandards,dc=org	ldap/akraino-gerrit-ci-management-committers
 ldap:cn=lf-releng,ou=Groups,dc=freestandards,dc=org                              	ldap/lf-releng
