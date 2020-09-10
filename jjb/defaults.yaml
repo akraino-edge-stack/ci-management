@@ -15,6 +15,10 @@
     nexus-snapshot-repo: snapshots
     staging-profile-id: a7925c009cb5d
 
+    # openstack-cron notification defaults
+    failure-notification: "releng+akraino@linuxfoundation.org"
+    failure-notification-prefix: "[releng]"
+
     # Sonarcloud
     sonarcloud_project_organization: akraino-edge-stack
     sonarcloud_api_token: 6864256050596cb8f0cb689d599687f5de46f414
