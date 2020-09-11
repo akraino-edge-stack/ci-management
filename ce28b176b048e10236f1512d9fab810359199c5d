@@ -22,6 +22,30 @@
       "revId": "ce28b176b048e10236f1512d9fab810359199c5d",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baa5bb76_5fea7984",
+        "filename": "jjb/defaults.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 73
+      },
+      "writtenOn": "2020-09-11T01:50:14Z",
+      "side": 1,
+      "message": "I thought I fixed it. updated now",
+      "parentUuid": "3441b4aa_321f3eb7",
+      "range": {
+        "startLine": 19,
+        "startChar": 34,
+        "endLine": 19,
+        "endChar": 41
+      },
+      "revId": "ce28b176b048e10236f1512d9fab810359199c5d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
