@@ -7,7 +7,6 @@
     branch: master
     jobs:
       - kni-installer-verify-installer
-      - kni-installer-verify-binary
 
 - project:
     name: kni-blueprint-pae
