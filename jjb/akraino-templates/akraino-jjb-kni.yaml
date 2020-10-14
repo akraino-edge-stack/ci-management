@@ -149,7 +149,7 @@
 - job-template:
     id: kni-verify-deploy-aws
     name: 'kni-{project-name}-verify-deploy-aws'
-    build-node: kni-job
+    build-node: kni-cloud
     <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
@@ -173,7 +173,7 @@
 - job-template:
     id: kni-verify-deploy-gcp
     name: 'kni-{project-name}-verify-deploy-gcp'
-    build-node: kni-job
+    build-node: kni-cloud
     <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
@@ -199,7 +199,7 @@
     name: 'kni-{project-name}-verify-deploy-baremetal'
     <<: *kni_common_deploy
     build-timeout: 120
-    build-node: kni-job
+    build-node: kni-baremetal
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
