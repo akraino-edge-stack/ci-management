@@ -129,6 +129,7 @@
           submodule-disable: false
           choosing-strategy: default
           basedir: 'installer'
+    publishers: []
 
 - job-template:
     id: kni-installer-verify-installer
