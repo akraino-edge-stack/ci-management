@@ -283,4 +283,4 @@
               target: akraino-secrets/coreos-pull-secret
             - file-id: kni-ssh-pub-key
               target: akraino-secrets/ssh-pub-key
-      - shell: sudo -E ./installer/ci/kni_deploy_baremetal.sh
+      - shell: ./installer/ci/kni_deploy_baremetal.sh
