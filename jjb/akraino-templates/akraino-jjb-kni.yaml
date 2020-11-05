@@ -14,6 +14,28 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+# A builder to ship logs from a bare metal Akraino deploy test node.
+# Similar to lf-infra-ship-logs without python-tools-install.sh and
+# job-cost.sh.
+- builder:
+    name: kni-deploy-ship-logs
+    builders:
+      # Ensure no pre-existing .netrc files are overriding logs config
+      - lf-provide-maven-settings-cleanup
+      - config-file-provider:
+          files:
+            - file-id: "jenkins-log-archives-settings"
+              variable: "SETTINGS_FILE"
+      - lf-infra-create-netrc:
+          server-id: logs
+      - shell: !include-raw:
+          - ../../global-jjb/shell/logs-deploy.sh
+      - shell: !include-raw:
+          - ../../global-jjb/shell/logs-clear-credentials.sh
+      - description-setter:
+          regexp: "(^(Nexus|S3) build logs: .*)"
+
 - kni_common: &kni_common
     name: kni-common
 
@@ -129,6 +151,26 @@
           submodule-disable: false
           choosing-strategy: default
           basedir: 'installer'
+
+    publishers:
+      - postbuildscript:
+          builders:
+            - role: BOTH
+              build-on:
+                - ABORTED
+                - FAILURE
+                - NOT_BUILT
+                - SUCCESS
+                - UNSTABLE
+              build-steps:
+                - kni-deploy-ship-logs
+          mark-unstable-if-failed: true
+      - workspace-cleanup:
+          exclude:
+            # Do not clean up *.jenkins-trigger files for jobs that use a
+            # properties file as input for triggering another build.
+            - "**/*.jenkins-trigger"
+          fail-build: false
 
 - job-template:
     id: kni-installer-verify-installer
