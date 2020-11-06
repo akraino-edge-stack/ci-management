@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d882d4cd_8af1f7d6",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 368
+      },
+      "writtenOn": "2020-11-06T22:26:01Z",
+      "side": 1,
+      "message": "IIUC, this is configuring the gerrit trigger to run the job on changes to the site directory in the blueprint-pae repo.  I don\u0027t see a dir entry matching that (or what was here before), but there is one for edge-sites-testing.gcp.devcluster.openshift.com\n\nhttps://gerrit.akraino.org/r/gitweb?p\u003dkni/blueprint-pae.git;a\u003dtree;f\u003dsites;h\u003d39fbe78c7bd423656166993b088c28bb3ddf8b87;hb\u003dHEAD\n\nSo I think this probably wasn\u0027t matching before, but since you\u0027re updating it, we should probably update this too?",
+      "revId": "5c3fd81e92d49f1fc1f1f62d2b6ff1f14dfacb68",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
