@@ -215,14 +215,15 @@
 - job-template:
     id: kni-verify-deploy-gcp
     name: 'kni-{project-name}-verify-deploy-gcp'
+    site: edge-sites-testing.gcp.devcluster.openshift.com
     build-node: kni-cloud
     <<: *kni_common_deploy
-
+                             
     gerrit_trigger_file_paths:
       - compare-type: ANT
         pattern: 'profiles/production.gcp/**'
       - compare-type: ANT
-        pattern: 'sites/testing.gcp.edge-sites.net/**'
+        pattern: 'sites/edge-sites-testing.gcp.edge-sites.net/**'
       - compare-type: ANT
         pattern: 'base/**'
 
@@ -234,7 +235,32 @@
               target: akraino-secrets/coreos-pull-secret
       - shell: !include-raw-escape:
           - ../shell/install_go.sh
-      - shell: ./installer/ci/kni_deploy_gcp.sh
+      - shell: ./installer/ci/kni_deploy_gcp.sh {site}
+
+- job-template:
+    id: kni-verify-deploy-gcp-hub
+    name: 'kni-{project-name}-verify-deploy-gcp'
+    site: kni-mgmt-hub.gcp.devcluster.openshift.com
+    build-node: kni-cloud
+    <<: *kni_common_deploy
+
+    gerrit_trigger_file_paths:
+      - compare-type: ANT
+        pattern: 'profiles/production.gcp/**'
+      - compare-type: ANT
+        pattern: 'sites/kni-mgmt-hub.gcp.devcluster.openshift.com/**'
+      - compare-type: ANT
+        pattern: 'base/**'
+
+    builders:
+      - lf-infra-pre-build
+      - config-file-provider:
+          files:
+            - file-id: kni-coreos-pull-secret
+              target: akraino-secrets/coreos-pull-secret
+      - shell: !include-raw-escape:
+          - ../shell/install_go.sh
+      - shell: ./installer/ci/kni_deploy_gcp.sh {site}
 
 - job-template:
     id: kni-verify-deploy-baremetal

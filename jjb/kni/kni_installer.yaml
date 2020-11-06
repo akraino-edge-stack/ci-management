@@ -29,3 +29,12 @@
       - kni-verify-deploy-aws
       - kni-verify-deploy-gcp
       - kni-verify-deploy-baremetal
+
+- project:
+    name: kni-blueprint-management-hub
+    project: 'kni/blueprint-management-hub'
+    project-name: blueprint-management-hub
+    stream: master
+    branch: master
+    jobs:
+      - kni-verify-deploy-gcp-hub
