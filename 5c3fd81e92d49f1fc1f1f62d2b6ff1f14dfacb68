@@ -16,6 +16,24 @@
       "revId": "5c3fd81e92d49f1fc1f1f62d2b6ff1f14dfacb68",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e1c4014_97710d12",
+        "filename": "jjb/akraino-templates/akraino-jjb-kni.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 154
+      },
+      "writtenOn": "2020-11-10T11:11:05Z",
+      "side": 1,
+      "message": "Yes, very good catch James. Thanks! I\u0027ll update it",
+      "parentUuid": "d882d4cd_8af1f7d6",
+      "revId": "5c3fd81e92d49f1fc1f1f62d2b6ff1f14dfacb68",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
     }
   ]
 }
