@@ -80,7 +80,7 @@
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
-          choosing-strategy: default
+          choosing-strategy: gerrit
 
     gerrit_verify_triggers:
       - patchset-created-event:
@@ -139,7 +139,7 @@
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
-          choosing-strategy: default
+          choosing-strategy: gerrit
           basedir: '{project-name}'
       - akraino-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
@@ -286,7 +286,7 @@
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
-          choosing-strategy: default
+          choosing-strategy: gerrit
           basedir: 'kni-blueprint-pae'
       - akraino-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
