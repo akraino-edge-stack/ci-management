@@ -263,6 +263,31 @@
       - shell: ./installer/ci/kni_deploy_gcp.sh {site}
 
 - job-template:
+    id: kni-verify-deploy-gcp-ie
+    name: 'kni-{project-name}-verify-deploy-gcp'
+    site: kni-ie.gcp.devcluster.openshift.com
+    build-node: kni-cloud
+    <<: *kni_common_deploy
+
+    gerrit_trigger_file_paths:
+      - compare-type: ANT
+        pattern: 'profiles/production.gcp/**'
+      - compare-type: ANT
+        pattern: 'sites/kni-ie.gcp.devcluster.openshift.com/**'
+      - compare-type: ANT
+        pattern: 'base/**'
+
+    builders:
+      - lf-infra-pre-build
+      - config-file-provider:
+          files:
+            - file-id: kni-coreos-pull-secret
+              target: akraino-secrets/coreos-pull-secret
+      - shell: !include-raw-escape:
+          - ../shell/install_go.sh
+      - shell: ./installer/ci/kni_deploy_gcp.sh {site}
+
+- job-template:
     id: kni-verify-deploy-baremetal
     name: 'kni-{project-name}-verify-deploy-baremetal'
     <<: *kni_common_deploy
