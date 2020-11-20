@@ -38,3 +38,12 @@
     branch: master
     jobs:
       - kni-verify-deploy-gcp-hub
+
+- project:
+    name: kni-blueprint-ie
+    project: 'kni/blueprint-ie
+    project-name: blueprint-ie
+    stream: master
+    branch: master
+    jobs:
+      - kni-verify-deploy-gcp-ie
