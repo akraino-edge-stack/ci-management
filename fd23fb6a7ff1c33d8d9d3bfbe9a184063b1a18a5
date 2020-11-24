@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "503b4947_c8165bc4",
+        "filename": "jjb/kni/kni_installer.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-11-24T20:00:32Z",
+      "side": 1,
+      "message": "Close quotes here.",
+      "range": {
+        "startLine": 44,
+        "startChar": 14,
+        "endLine": 44,
+        "endChar": 30
+      },
+      "revId": "fd23fb6a7ff1c33d8d9d3bfbe9a184063b1a18a5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
