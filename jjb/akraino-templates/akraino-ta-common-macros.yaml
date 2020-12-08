@@ -132,7 +132,7 @@
             #  Skip RPM build in case no *.spec file is found within the {project-to-build}
             if [ -n "$(find {project-to-build} -name '*.spec')" ]
             then
-                if apt --version 2>1 >/dev/null; then
+                if apt --version >/dev/null 2>&1; then
                     # We need a specific version of mock (1.4.14) and devtools
                     # not available in Ubuntu/Debian repos, so fetch them from RHEL mirrors
                     if [ "$(mock --version 2>/dev/null)" != '1.4.14' ]; then
@@ -141,17 +141,17 @@
                         sudo apt update
                         # Explicitly install mock dependencies
                         sudo apt install -y createrepo alien systemd-container python-pip \
-                                            python-decoratortools yum-utils usermode pigz
+                                            python-peak.util.decorators yum-utils usermode pigz
                         wget http://vault.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
                              https://kojipkgs.fedoraproject.org/packages/mock/1.4.14/2.el7/noarch/mock-1.4.14-2.el7.noarch.rpm
                         sudo alien -d *.rpm
-                        sudo dpkg -i *.deb
+                        sudo dpkg --force-overwrite -i *.deb
                         rm -rf *.rpm *.deb
                         # RHEL tools hardcode the full path for certain distro tools
                         sudo ln -sf /bin/tar /usr/bin/gtar
                         sudo ln -sf /bin/machinectl /bin/df /usr/bin/
                         # Some mock dependencies are only available via pip
-                        sudo pip install distro pyroute2
+                        sudo pip install distro pyroute2 lxml urllib3
                     fi
                 else
                     sudo yum install -y createrepo
