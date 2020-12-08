@@ -141,11 +141,11 @@
                         sudo apt update
                         # Explicitly install mock dependencies
                         sudo apt install -y createrepo alien systemd-container python-pip \
-                                            python-decoratortools yum-utils usermode pigz
+                                            python-peak.util.decorators yum-utils usermode pigz
                         wget http://vault.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
                              https://kojipkgs.fedoraproject.org/packages/mock/1.4.14/2.el7/noarch/mock-1.4.14-2.el7.noarch.rpm
                         sudo alien -d *.rpm
-                        sudo dpkg -i *.deb
+                        sudo dpkg --force-overwrite -i *.deb
                         rm -rf *.rpm *.deb
                         # RHEL tools hardcode the full path for certain distro tools
                         sudo ln -sf /bin/tar /usr/bin/gtar
@@ -156,6 +156,9 @@
                 else
                     sudo yum install -y createrepo
                 fi
+                echo "List installed Python modules"
+                pip list
+                pip install lxml
                 ta/build-tools/build_rpms.sh \
                  -m ta/manifest \
                  -r ta/rpmbuilder \
