@@ -1,0 +1,14 @@
+---
+- project:
+    name: tami-project-view
+    project-name: tami
+    views:
+      - project-view
+
+- project:
+    name: tami-info
+    project: tami
+    project-name: tami
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
