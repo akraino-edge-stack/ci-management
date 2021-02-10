@@ -31,7 +31,8 @@ mkdir -p "$upload_dir2"
 
 platform_arch=$(uname -m)
 if [ "${platform_arch}" != 'x86_64' ]; then
-    # On non-x86 architecture, rename the artifacts appropiately
+    # On non-x86 architecture, rename the artifacts appropriately
+    sudo apt install -y rename # "rename" disappeared in Ubuntu 18.04
     pushd "$WORKSPACE/work/results/images/"
     rename "s/\./.${platform_arch}./" *.*
     sed -i "s/\./.${platform_arch}./" *."${platform_arch}".iso.*
