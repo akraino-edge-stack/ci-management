@@ -318,7 +318,7 @@
           if apt --version 2>1 >/dev/null; then
               if ! createrepo --version 2>1 >/dev/null; then
                   sudo apt update
-                  sudo apt install -y createrepo libguestfs-tools jq
+                  sudo apt install -y createrepo libguestfs-tools jq libvirt-daemon-system
               fi
           else
               sudo yum -y install createrepo libguestfs-tools-c jq
