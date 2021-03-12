@@ -81,10 +81,10 @@
       - test
 
     jobs:
-      - akraino-iec-install
-      - akraino-iec-deploy
-      - akraino-iec-destroy
-      - akraino-usecase-phase-iec
+      # - akraino-iec-install
+      # - akraino-iec-deploy
+      # - akraino-iec-destroy
+      # - akraino-usecase-phase-iec
       - gerrit-sonar:
           sonar-project-file: ""
           build-node: centos7-builder-2c-1g
