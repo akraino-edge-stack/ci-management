@@ -22,6 +22,7 @@
     templates: builder
     platforms:
       - centos-7
+      - centos-8
 
 - project:
     name: packer-docker-jobs
@@ -36,7 +37,7 @@
 
     templates: docker
     platforms:
-      - ubuntu-16.04
+      - ubuntu-18.04
       - ubuntu-18.04-arm64
 
 - project:
