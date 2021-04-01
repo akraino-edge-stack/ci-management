@@ -27,8 +27,8 @@
           description: Artifacts to archive to the logs server.
 
 # Usecase params are both installer and OS specific
-- parameter: &k8s_fuel_ubuntu1604_parameter
-    name: 'fuel-ubuntu1604-defaults'
+- parameter: &k8s_fuel_ubuntu1804_parameter
+    name: 'fuel-ubuntu1804-parameters'
     parameters:
       - string: &k8s_master_ip
           name: K8S_MASTER_IP
@@ -48,7 +48,7 @@
           description: 'SSH key to connect to the K8s master'
 
 - parameter:
-    <<: *k8s_fuel_ubuntu1604_parameter
+    <<: *k8s_fuel_ubuntu1804_parameter
     name: 'fuel-ubuntu1804-defaults'
 - parameter:
     name: 'fuel-centos7-defaults'
@@ -64,7 +64,7 @@
           <<: *k8s_ssh_key
 
 - parameter:
-    name: 'compass-ubuntu1604-defaults'
+    name: 'compass-ubuntu1804-defaults'
     parameters:
       - string:
           <<: *k8s_master_ip
@@ -97,11 +97,11 @@
 # Akraino IEC CI Baremetal Triggers running against master branch
 # ----------------------------------------------------------------
 - trigger:
-    name: 'iec-type2-fuel-virtual-ubuntu1604-daily-master-trigger'
+    name: 'iec-type2-fuel-virtual-ubuntu1804-daily-master-trigger'
     triggers:
       - timed: '0 1 * * 1,3,5'
 - trigger:
-    name: 'iec-type2-compass-virtual-ubuntu1604-daily-master-trigger'
+    name: 'iec-type2-compass-virtual-ubuntu1804-daily-master-trigger'
     triggers:
       - timed: '0 13 * * *'
 - trigger:
@@ -117,6 +117,6 @@
     triggers:
       - timed: '0 1 * * 4,7'
 - trigger:
-    name: 'iec-type1-compass-virtual-ubuntu1604-daily-master-trigger'
+    name: 'iec-type1-compass-virtual-ubuntu1804-daily-master-trigger'
     triggers:
       - timed: '0 19 * * *'
