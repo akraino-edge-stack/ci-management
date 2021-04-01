@@ -1,3 +1,4 @@
+---
 - project:
 
     name: validation-docker
@@ -32,7 +33,7 @@
 
     arch_tag:
       - 'amd64':
-          slave_label: 'ubuntu1604-docker-8c-8g'
+          slave_label: 'ubuntu1804-docker-8c-8g'
       - 'arm64':
           slave_label: 'aarch64_build'
 
