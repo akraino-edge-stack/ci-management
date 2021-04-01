@@ -91,7 +91,7 @@
 - job-template:
     id: akraino-validation-docker-manifest
     name: 'validation-docker-manifest-{stream}'
-    node: 'ubuntu1604-docker-8c-8g'
+    node: 'ubuntu1804-docker-8c-8g'
     build-timeout: 15
 
     parameters:

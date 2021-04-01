@@ -19,7 +19,7 @@
     project: 'portal_user_interface/portal-onapsdk'
     name: portal_user_interface-portal-onapsdk-docker
     global-settings-file: global-settings
-    build-node: ubuntu1604-docker-8c-8g
+    build-node: ubuntu1804-docker-8c-8g
     stream: master
     java-version: openjdk8
     mvn-version: mvn35

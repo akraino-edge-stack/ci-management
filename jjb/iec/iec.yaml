@@ -27,7 +27,6 @@
     # OPERATING SYSTEM DEFINITIONS
     # -------------------------------
     os:
-      - ubuntu1604
       - ubuntu1804
       - centos7
     #--------------------------------
@@ -65,7 +64,7 @@
         os: centos7
       - installer: fuel
         deploy_type: baremetal
-        os: ubuntu1604
+        os: ubuntu1804
       # SEBA on virtual PODs should be excluded
       - deploy_type: virtual
         usecase: seba_on_arm
