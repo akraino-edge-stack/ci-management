@@ -14,4 +14,4 @@
       - akraino-project-stream-stage-config
     views:
       - project-view
-    cron: 'H H * * 0'  # push fresh snapshot weekly
+    cron: '@weekly'  # push fresh snapshot weekly

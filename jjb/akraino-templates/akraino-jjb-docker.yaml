@@ -51,7 +51,7 @@
           - ../shell/build-docker.sh
 
     triggers:
-      - timed: '@hourly'
+      - timed: '@daily'
 
 - job-template:
     id: 'akraino-project-stream-stage-docker'
