@@ -105,9 +105,50 @@
     publishers:
       - lf-infra-publish
 
+- kni_installer: &kni_installer
+    name: kni-installer
+    <<: *kni_common
+    archive-artifacts: >
+      **/*.log
+
+    parameters:
+      - lf-infra-parameters:
+          project: '{project}'
+          branch: '{branch}'
+          stream: '{stream}'
+          lftools-version: '{lftools-version}'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+      - credentials-binding:
+          - ssh-user-private-key:
+              credential-id: kni-secrets
+              key-file-variable: KNI_KEY_PATH
+
+    scm:
+      - akraino-lf-infra-gerrit-scm:
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          git-url: '{git-url}/kni/installer.git'
+          refspec: 'refs/heads/master'
+          branch: 'master'
+          submodule-recursive: '{submodule-recursive}'
+          submodule-timeout: '{submodule-timeout}'
+          submodule-disable: false
+          choosing-strategy: default
+          basedir: 'installer'
+
+    publishers:
+      - lf-infra-publish
+
 - kni_common_deploy: &kni_common_deploy
     name: kni-common-deploy
-    <<: *kni_common
+    <<: *kni_installer
     archive-artifacts: >
       **/*.log
 
@@ -141,16 +182,6 @@
           submodule-disable: false
           choosing-strategy: gerrit
           basedir: '{project-name}'
-      - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/kni/installer.git'
-          refspec: 'refs/heads/master'
-          branch: 'master'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          submodule-disable: false
-          choosing-strategy: default
-          basedir: 'installer'
 
     publishers:
       - postbuildscript:
