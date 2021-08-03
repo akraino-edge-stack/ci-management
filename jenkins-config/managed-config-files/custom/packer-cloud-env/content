@@ -1,0 +1,8 @@
+{
+  "cloud_auth_url": "https://auth.vexxhost.net/v3/",
+  "cloud_tenant": "5b48ce73-f848-4bfa-b06b-c33c21f37acc",
+  "cloud_user": "$PACKER_CLOUD_USR",
+  "cloud_pass": "$PACKER_CLOUD_PSW",
+  "cloud_network": "e84c8d94-1d74-4593-b24f-9a091cd3b9bf",
+  "ssh_proxy_host": ""
+}
