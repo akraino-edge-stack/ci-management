@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24cc988d_5b2fb212",
+        "filename": "jenkins-config/managed-config-files/custom/dockerconfig/content",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2021-08-04T15:06:01Z",
+      "side": 1,
+      "message": "Should these really be tabs? This looks like a json file so tab or space shouldn\u0027t matter. However, since our common standard is expanded tabs, this probably should be maintained.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 1
+      },
+      "revId": "18c72d1a59444d572b9ab821f011d0a526d618f5",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
