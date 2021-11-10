@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b68af522_7672e044",
+        "filename": "jenkins-config/clouds/openstack/cattle/cloud.cfg",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 475
+      },
+      "writtenOn": "2021-11-10T05:18:53Z",
+      "side": 1,
+      "message": "Is going back to a very old image intended?",
+      "revId": "dbbab065379aaae024161bb5e0edd99ccc60777d",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
