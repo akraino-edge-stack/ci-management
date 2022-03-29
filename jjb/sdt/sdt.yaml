@@ -1,0 +1,14 @@
+---
+- project:
+    name: sdt-project-view
+    project-name: sdt
+    views:
+      - project-view
+
+- project:
+    name: sdt-info
+    project: sdt
+    project-name: sdt
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - gerrit-info-yaml-verify
