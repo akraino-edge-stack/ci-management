@@ -16,6 +16,24 @@
       "message": "Thanks Anil. We\u0027re holding off on merging this until the community has had a chance to offer feedback, since these are all community templates.",
       "revId": "4c4a98f89de1535dec8cbf821155cd773c8d4d33",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c65eb249_d85fe491",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 73
+      },
+      "writtenOn": "2022-07-26T22:15:15Z",
+      "side": 1,
+      "message": "Cool, the community should be encouraged to use S3 log server to view logs instead of the Jenkins console logs, since it reduces the load Jenkins. So adding the lf-infra-publish in the home grown job templates makes it imperative. :-)",
+      "parentUuid": "9ebd770c_ecc27386",
+      "revId": "4c4a98f89de1535dec8cbf821155cd773c8d4d33",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9"
     }
   ]
 }
