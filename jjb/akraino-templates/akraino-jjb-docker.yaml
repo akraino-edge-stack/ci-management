@@ -53,6 +53,9 @@
     triggers:
       - timed: '@daily'
 
+    publishers:
+      - lf-infra-publish
+
 - job-template:
     id: 'akraino-project-stream-stage-docker'
     name: '{project-name}-{stream}-stage-docker'
@@ -99,3 +102,6 @@
           jobs:
             - '{project}-maven-stage-{stream}'
             - 'yaml_builds-{stream}-stage-config'
+
+    publishers:
+      - lf-infra-publish

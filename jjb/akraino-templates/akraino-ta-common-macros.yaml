@@ -389,6 +389,7 @@
 - publisher:
     name: ta-publisher-job-merge
     publishers:
+      - lf-infra-publish
       - ta-publisher-ci-build:
           arch: '{arch}'
       - trigger-parameterized-builds:

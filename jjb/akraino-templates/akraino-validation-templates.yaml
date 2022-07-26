@@ -43,6 +43,7 @@
               <<: *docker-build-job-settings
 
     publishers:
+      - lf-infra-publish
       - email:
           recipients: >
             cristina.pauna@enea.com
@@ -88,6 +89,9 @@
           make -k -C docker push-all
           docker system prune -af
 
+    publishers:
+      - lf-infra-publish
+
 - job-template:
     id: akraino-validation-docker-manifest
     name: 'validation-docker-manifest-{stream}'
@@ -110,6 +114,9 @@
           if [ "{branch}" != "{stream}" ]; then export TAG_VER=$STREAM; fi
           for sd in docker/*/.; do make -k -C $sd .push_manifest; done
 
+    publishers:
+      - lf-infra-publish
+
 - job-template:
     id: akraino-validation-lab-daily
     name: 'validation-{validation_lab}-daily-{stream}'
@@ -125,6 +132,9 @@
             same-node: true
             current-parameters: true
             block: true
+
+    publishers:
+      - lf-infra-publish
 
 - job-template:
     id: bluval-run-daily-tests
@@ -158,6 +168,7 @@
         - ../shell/run_bluval.sh
 
     publishers:
+      - lf-infra-publish
       - robot:
           output-path: 'results'
           report-html: '**/report.html'
