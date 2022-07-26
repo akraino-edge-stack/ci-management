@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ebd770c_ecc27386",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2022-07-26T20:38:39Z",
+      "side": 1,
+      "message": "Thanks Anil. We\u0027re holding off on merging this until the community has had a chance to offer feedback, since these are all community templates.",
+      "revId": "4c4a98f89de1535dec8cbf821155cd773c8d4d33",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9"
+    }
+  ]
+}
