@@ -59,7 +59,7 @@
 # SETTINGS #
 ############
 # settings for jobs run in multijob phases
-- docker-build-job-settings: &docker-build-job-settings
+- _docker-build-job-settings: &docker-build-job-settings
     name: docker_build_job_settings
     current-parameters: true
     git-revision: false

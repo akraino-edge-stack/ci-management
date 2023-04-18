@@ -19,7 +19,7 @@
     name: lab
     project-name: validation
     project: validation
-    build-node: '{build-node}'
+    build-node: centos7-builder-2c-1g
     stream:
       - master:
           branch: '{stream}'

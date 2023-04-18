@@ -19,7 +19,7 @@
     name: bluval
     project-name: validation
     project: validation
-    build-node: '{build-node}'
+    build-node: centos7-builder-2c-1g
     group-id: org.akraino.validation
     refspec: refs/heads/master
     branch: master

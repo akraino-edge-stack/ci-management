@@ -36,14 +36,14 @@
       - description-setter:
           regexp: "(^(Nexus|S3) build logs: .*)"
 
-- kni_common: &kni_common
+- _kni_common: &kni_common
     name: kni-common
 
     ######################
     # Default parameters #
     ######################
 
-    build-node: "{build-node}"
+    build-node: ""
     build-days-to-keep: 30
     build-timeout: 60
     submodule-recursive: true
@@ -105,7 +105,7 @@
     publishers:
       - lf-infra-publish
 
-- kni_common_deploy: &kni_common_deploy
+- _kni_common_deploy: &kni_common_deploy
     name: kni-common-deploy
     <<: *kni_common
     archive-artifacts: >

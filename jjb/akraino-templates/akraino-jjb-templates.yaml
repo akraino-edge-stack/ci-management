@@ -348,7 +348,8 @@
 - job-template:
     id: akraino-project-build-node-init
     name: '{project-name}-{build-node}-init'
-    disabled: '{obj:disabled}'
+    # disable_job: false
+    disabled: '{obj:disable_job}'
     concurrent: true
 
     parameters:

@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-- daaas_job_boiler_plate: &daaas_job_boiler_plate
+- _daaas_job_boiler_plate: &daaas_job_boiler_plate
     name: daaas_job_boiler_plate
     archive-artifacts: >
       **/*.log

@@ -12,7 +12,7 @@
     # -------------------------------
     stream:
       - master:
-          branch: '{stream}'
+          branch: 'master'
           gs-pathname: ''
           disabled: false
 

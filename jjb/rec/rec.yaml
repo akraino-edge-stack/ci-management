@@ -10,7 +10,7 @@
     # -------------------------------
     stream:
       - master:
-          branch: '{stream}'
+          branch: master
           disabled: false
 
     # -------------------------------
