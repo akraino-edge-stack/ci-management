@@ -29,7 +29,7 @@
     os:
       - ubuntu1804
       - centos7
-    #--------------------------------
+    # -------------------------------
     # IEC TYPE DEFINITINONS
     # type1 Mcbin embeded board
     # type2 Arm Server
