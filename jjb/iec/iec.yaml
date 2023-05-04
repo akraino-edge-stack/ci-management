@@ -1,19 +1,19 @@
 ---
 - project:
-    name: 'iec'
-    project-name: 'iec'
-    project: '{project-name}'
+    name: "iec"
+    project-name: "iec"
+    project: "{project-name}"
     views:
       - common-view:
           view-name: iec
-          view-regex: '^{project-name}-(sonar|(tox|type1|type2)-(verify|fuel|compass)-.*)'
+          view-regex: "^{project-name}-(sonar|(tox|type1|type2)-(verify|fuel|compass)-.*)"
     # -------------------------------
     # BRANCH DEFINITIONS
     # -------------------------------
     stream:
       - master:
-          branch: 'master'
-          gs-pathname: ''
+          branch: "master"
+          gs-pathname: ""
           disabled: false
 
     # -------------------------------
@@ -42,11 +42,11 @@
     # -------------------------------
     deploy_type:
       - baremetal:
-          slave_label: 'aarch64_baremetal_dev'
-          scenario: 'k8-calico-iec-noha'
+          slave_label: "aarch64_baremetal_dev"
+          scenario: "k8-calico-iec-noha"
       - virtual:
-          slave_label: 'aarch64_dev'
-          scenario: 'k8-calico-iec-noha'
+          slave_label: "aarch64_dev"
+          scenario: "k8-calico-iec-noha"
 
     exclude:
       # Compass does not run against baremetal PODs yet

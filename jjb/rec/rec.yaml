@@ -1,8 +1,8 @@
 ---
 - project:
-    name: 'rec'
-    project-name: 'rec'
-    project: '{project-name}'
+    name: "rec"
+    project-name: "rec"
+    project: "{project-name}"
     views:
       - project-view
     # -------------------------------

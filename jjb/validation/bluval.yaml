@@ -30,8 +30,8 @@
       - rec
     stream:
       - master:
-          branch: '{stream}'
-          gs-pathname: ''
+          branch: "{stream}"
+          gs-pathname: ""
           disabled: false
     jobs:
       - bluval-run-daily-tests

@@ -1,7 +1,7 @@
 ---
 - project:
     name: kni-installer
-    project: 'kni/installer'
+    project: "kni/installer"
     project-name: kni-installer
     stream: master
     branch: master
@@ -10,7 +10,7 @@
 
 - project:
     name: kni-blueprint-pae
-    project: 'kni/blueprint-pae'
+    project: "kni/blueprint-pae"
     project-name: blueprint-pae
     stream: master
     branch: master
@@ -21,7 +21,7 @@
 
 - project:
     name: kni-blueprint-basic-3-masters
-    project: 'kni/blueprint-basic-3-masters'
+    project: "kni/blueprint-basic-3-masters"
     project-name: blueprint-basic-3-masters
     stream: master
     branch: master
@@ -32,7 +32,7 @@
 
 - project:
     name: kni-blueprint-management-hub
-    project: 'kni/blueprint-management-hub'
+    project: "kni/blueprint-management-hub"
     project-name: blueprint-management-hub
     stream: master
     branch: master
@@ -41,7 +41,7 @@
 
 - project:
     name: kni-blueprint-ie
-    project: 'kni/blueprint-ie'
+    project: "kni/blueprint-ie"
     project-name: blueprint-ie
     stream: master
     branch: master
