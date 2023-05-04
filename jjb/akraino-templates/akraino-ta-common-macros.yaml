@@ -4,54 +4,33 @@
 # PARAMETERS #
 ##############
 - parameter:
-    name: ta-parameters-manifest
+    name: ta-parameters
     parameters:
       - string:
-        default: refs/heads/master
-        description: ''
-        name: SCM_REFSPEC_MANIFEST
-        trim: 'false'
-
-- parameter:
-    name: ta-parameters-build-tools
-    parameters:
+          name: SCM_REFSPEC_MANIFEST
+          default: refs/heads/master
+          description: ""
+          trim: "false"
       - string:
-        default: refs/heads/master
-        description: ''
-        name: SCM_REFSPEC_BUILD_TOOLS
-        trim: 'false'
-
-- parameter:
-    name: ta-parameters-rpmbuilder
-    parameters:
+          name: SCM_REFSPEC_BUILD_TOOLS
+          default: refs/heads/master
+          description: ""
+          trim: "false"
       - string:
-        default: refs/heads/master
-        description: ''
-        name: SCM_REFSPEC_RPMBUILDER
-        trim: 'false'
-
-- parameter:
-    name: ta-parameters-ci
-    parameters:
-      - ta-parameters-manifest
-      - ta-parameters-build-tools
-      - ta-parameters-rpmbuilder
-
-- parameter:
-    name: ta-parameters-ci-ta/rpmbuilder
-    parameters:
-      - ta-parameters-manifest
-      - ta-parameters-build-tools
+          name: SCM_REFSPEC_RPMBUILDER
+          default: refs/heads/master
+          description: ""
+          trim: "false"
       - string:
-        default: ta/yarf
-        description: ''
-        name: SCM_PROJECT_TO_BUILD
-        trim: 'false'
+          name: SCM_PROJECT_TO_BUILD
+          default: ta/yarf
+          description: ""
+          trim: "false"
       - string:
-        default: refs/heads/master
-        description: ''
-        name: SCM_PROJECT_TO_BUILD_REFSPEC
-        trim: 'false'
+          name: SCM_PROJECT_TO_BUILD_REFSPEC
+          default: refs/heads/master
+          description: ""
+          trim: "false"
 
 #######
 # SCM #
@@ -61,43 +40,43 @@
     name: ta-lf-infra-gerrit-scm
     scm:
       - git:
-          credentials-id: '{jenkins-ssh-credential}'
-          url: '{git-url}'
-          refspec: '{refspec}'
+          credentials-id: "{jenkins-ssh-credential}"
+          url: "{git-url}"
+          refspec: "{refspec}"
           branches:
-            - 'refs/heads/{branch}'
+            - "refs/heads/{branch}"
           skip-tag: true
           wipe-workspace: true
           submodule:
-            recursive: '{submodule-recursive}'
-            timeout: '{submodule-timeout}'
-          choosing-strategy: '{choosing-strategy}'
-          basedir: '{basedir}'
+            recursive: "{submodule-recursive}"
+            timeout: "{submodule-timeout}"
+          choosing-strategy: "{choosing-strategy}"
+          basedir: "{basedir}"
 
 - scm:
     name: ta-lf-infra-gerrit-scm-merge
     scm:
       - ta-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}'
-          refspec: '{refspec}'
-          branch: '{branch}'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          basedir: '{basedir}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}"
+          refspec: "{refspec}"
+          branch: "{branch}"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
+          basedir: "{basedir}"
           choosing-strategy: default
 
 - scm:
     name: ta-lf-infra-gerrit-scm-verify
     scm:
       - ta-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}'
-          refspec: '{refspec}'
-          branch: '{branch}'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          basedir: '{basedir}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}"
+          refspec: "{refspec}"
+          branch: "{branch}"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
+          basedir: "{basedir}"
           choosing-strategy: gerrit
 
 ###########
@@ -106,9 +85,11 @@
 - builder:
     name: lf-display-node-uuid
     builders:
+      # yamllint disable rule:line-length
       - shell: |2-
             echo "---> Node UUID:"
             curl -s http://169.254.169.254/openstack/latest/meta_data.json | python -c 'import sys, json; data = json.load(sys.stdin); print(data["uuid"])' || true
+      # yamllint enable rule:line-length
 
 - builder:
     name: ta-builder-tox
@@ -129,56 +110,56 @@
     name: ta-builder-rpm
     builders:
       - shell: |2-
-        #!/bin/bash -ex
-        #  Skip RPM build in case no *.spec file is found within the {project-to-build}
-        if [ -n "$(find {project-to-build} -name '*.spec')" ]; then
-            if apt --version >/dev/null 2>&1; then
-                # We need a specific version of mock (1.4.14) and devtools
-                # not available in Ubuntu/Debian repos, so fetch them from RHEL mirrors
-                if [ "$(mock --version 2>/dev/null)" != '1.4.14' ]; then
-                    sudo groupadd mock || true
-                    sudo usermod -aG mock $USER
-                    sudo apt update
-                    # Explicitly install mock dependencies
-                    sudo apt install -y createrepo alien systemd-container python-pip \
-                                        python-peak.util.decorators yum-utils usermode pigz
-                    wget http://vault.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
-                         https://kojipkgs.fedoraproject.org/packages/mock/1.4.14/2.el7/noarch/mock-1.4.14-2.el7.noarch.rpm
-                    sudo alien -d *.rpm
-                    sudo dpkg --force-overwrite -i *.deb
-                    rm -rf *.rpm *.deb
-                    # RHEL tools hardcode the full path for certain distro tools
-                    sudo ln -sf /bin/tar /usr/bin/gtar
-                    sudo ln -sf /bin/machinectl /bin/df /usr/bin/
-                    # Some mock dependencies are only available via pip
-                    sudo pip install distro pyroute2 lxml urllib3
-                fi
-            else
-                sudo yum install -y createrepo
-            fi
-            ta/build-tools/build_rpms.sh \
-             -m ta/manifest \
-             -r ta/rpmbuilder \
-             -w work \
-             {project-to-build}
-            find work/
-        fi
+          #!/bin/bash -ex
+          #  Skip RPM build in case no *.spec file is found within the {project-to-build}
+          if [ -n "$(find {project-to-build} -name '*.spec')" ]; then
+              if apt --version >/dev/null 2>&1; then
+                  # We need a specific version of mock (1.4.14) and devtools
+                  # not available in Ubuntu/Debian repos, so fetch them from RHEL mirrors
+                  if [ "$(mock --version 2>/dev/null)" != '1.4.14' ]; then
+                      sudo groupadd mock || true
+                      sudo usermod -aG mock $USER
+                      sudo apt update
+                      # Explicitly install mock dependencies
+                      sudo apt install -y createrepo alien systemd-container python-pip \
+                                          python-peak.util.decorators yum-utils usermode pigz
+                      wget http://vault.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
+                           https://kojipkgs.fedoraproject.org/packages/mock/1.4.14/2.el7/noarch/mock-1.4.14-2.el7.noarch.rpm
+                      sudo alien -d *.rpm
+                      sudo dpkg --force-overwrite -i *.deb
+                      rm -rf *.rpm *.deb
+                      # RHEL tools hardcode the full path for certain distro tools
+                      sudo ln -sf /bin/tar /usr/bin/gtar
+                      sudo ln -sf /bin/machinectl /bin/df /usr/bin/
+                      # Some mock dependencies are only available via pip
+                      sudo pip install distro pyroute2 lxml urllib3
+                  fi
+              else
+                  sudo yum install -y createrepo
+              fi
+              ta/build-tools/build_rpms.sh \
+               -m ta/manifest \
+               -r ta/rpmbuilder \
+               -w work \
+               {project-to-build}
+              find work/
+          fi
 
 - builder:
     name: ta-builder-scm
     builders:
       - shell: |2-
-        #!/bin/bash -ex
-        rm -rf {project}
-        git clone {git-url}/{project} {project}
-        pushd {project}
-        if echo {ref} | grep -q "refs/"; then
-            git fetch origin {ref}
-            git checkout FETCH_HEAD
-        else
-            git checkout {ref}
-        fi
-        popd
+          #!/bin/bash -ex
+          rm -rf {project}
+          git clone {git-url}/{project} {project}
+          pushd {project}
+          if echo {ref} | grep -q "refs/"; then
+              git fetch origin {ref}
+              git checkout FETCH_HEAD
+          else
+              git checkout {ref}
+          fi
+          popd
 
 - builder:
     name: ta-lf-infra-ship-rpms
@@ -187,10 +168,10 @@
       - lf-provide-maven-settings-cleanup
       - config-file-provider:
           files:
-            - file-id: 'ta-settings'
-              variable: 'SETTINGS_FILE'
+            - file-id: "ta-settings"
+              variable: "SETTINGS_FILE"
       - inject:
-          properties-content: 'ALT_NEXUS_URL=https://nexus3.akraino.org'
+          properties-content: "ALT_NEXUS_URL=https://nexus3.akraino.org"
       - lf-infra-create-netrc:
           server-id: rpm.snapshots
       - inject:
@@ -213,8 +194,8 @@
       - lf-provide-maven-settings-cleanup
       - config-file-provider:
           files:
-            - file-id: 'ta-settings'
-              variable: 'SETTINGS_FILE'
+            - file-id: "ta-settings"
+              variable: "SETTINGS_FILE"
       - lf-infra-create-netrc:
           server-id: images-snapshots
       - shell: !include-raw:
@@ -229,60 +210,60 @@
 - builder:
     name: ta-builder-job-verify
     builders:
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: 'ta/manifest'
-              ref: '$SCM_REFSPEC_MANIFEST'
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: 'ta/build-tools'
-              ref: '$SCM_REFSPEC_BUILD_TOOLS'
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: 'ta/rpmbuilder'
-              ref: '$SCM_REFSPEC_RPMBUILDER'
-        - ta-builder-tox
-        - ta-builder-rpm:
-              project-to-build: '$GERRIT_PROJECT'
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "ta/manifest"
+          ref: "$SCM_REFSPEC_MANIFEST"
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "ta/build-tools"
+          ref: "$SCM_REFSPEC_BUILD_TOOLS"
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "ta/rpmbuilder"
+          ref: "$SCM_REFSPEC_RPMBUILDER"
+      - ta-builder-tox
+      - ta-builder-rpm:
+          project-to-build: "$GERRIT_PROJECT"
 
 - builder:
     name: ta-builder-job-verify-ta/rpmbuilder
     builders:
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: 'ta/manifest'
-              ref: '$SCM_REFSPEC_MANIFEST'
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: 'ta/build-tools'
-              ref: '$SCM_REFSPEC_BUILD_TOOLS'
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: '$SCM_PROJECT_TO_BUILD'
-              ref: '$SCM_PROJECT_TO_BUILD_REFSPEC'
-        - ta-builder-tox
-        - ta-builder-rpm:
-              # Just package some random project to verify "rpmbuilder" changes
-              project-to-build: '$SCM_PROJECT_TO_BUILD'
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "ta/manifest"
+          ref: "$SCM_REFSPEC_MANIFEST"
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "ta/build-tools"
+          ref: "$SCM_REFSPEC_BUILD_TOOLS"
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "$SCM_PROJECT_TO_BUILD"
+          ref: "$SCM_PROJECT_TO_BUILD_REFSPEC"
+      - ta-builder-tox
+      - ta-builder-rpm:
+          # Just package some random project to verify "rpmbuilder" changes
+          project-to-build: "$SCM_PROJECT_TO_BUILD"
 
 - builder:
     name: ta-builder-job-merge
     builders:
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: 'ta/manifest'
-              ref: '$SCM_REFSPEC_MANIFEST'
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: 'ta/build-tools'
-              ref: '$SCM_REFSPEC_BUILD_TOOLS'
-        - ta-builder-scm:
-              git-url: '{git-url}'
-              project: 'ta/rpmbuilder'
-              ref: '$SCM_REFSPEC_RPMBUILDER'
-        - ta-builder-rpm:
-              project-to-build: '$GERRIT_PROJECT'
-        - ta-lf-infra-ship-rpms
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "ta/manifest"
+          ref: "$SCM_REFSPEC_MANIFEST"
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "ta/build-tools"
+          ref: "$SCM_REFSPEC_BUILD_TOOLS"
+      - ta-builder-scm:
+          git-url: "{git-url}"
+          project: "ta/rpmbuilder"
+          ref: "$SCM_REFSPEC_RPMBUILDER"
+      - ta-builder-rpm:
+          project-to-build: "$GERRIT_PROJECT"
+      - ta-lf-infra-ship-rpms
 
 - builder:
     name: ta-builder-install-docker
@@ -334,47 +315,47 @@
     name: ta-trigger-job-verify
     triggers:
       - gerrit:
-          server-name: '{gerrit-server-name}'
+          server-name: "{gerrit-server-name}"
           trigger-on:
             - patchset-created-event:
-                exclude-drafts: 'false'
-                exclude-trivial-rebase: 'false'
-                exclude-no-code-change: 'false'
+                exclude-drafts: "false"
+                exclude-trivial-rebase: "false"
+                exclude-no-code-change: "false"
             - draft-published-event
             - comment-added-contains-event:
-                comment-contains-value: 'recheck'
+                comment-contains-value: "recheck"
             - comment-added-contains-event:
-                comment-contains-value: 'reverify'
+                comment-contains-value: "reverify"
           projects:
-            - project-compare-type: 'ANT'
-              project-pattern: '{project}'
+            - project-compare-type: "ANT"
+              project-pattern: "{project}"
               branches:
-                - branch-compare-type: 'ANT'
-                  branch-pattern: '**/{branch}'
+                - branch-compare-type: "ANT"
+                  branch-pattern: "**/{branch}"
           readable-message: true
           skip-vote:
-            successful: '{gerrit-skip-vote}'
-            failed: '{gerrit-skip-vote}'
-            unstable: '{gerrit-skip-vote}'
-            notbuilt: '{gerrit-skip-vote}'
+            successful: "{gerrit-skip-vote}"
+            failed: "{gerrit-skip-vote}"
+            unstable: "{gerrit-skip-vote}"
+            notbuilt: "{gerrit-skip-vote}"
 
 - trigger:
     name: ta-trigger-job-merge
     triggers:
       - gerrit:
-          server-name: '{gerrit-server-name}'
+          server-name: "{gerrit-server-name}"
           trigger-on:
             # Not sure if it would be better to use "change-merged" here and just clone the master
             # branch. With the current approach the SCM can be identical in verify and merge jobs.
             - ref-updated-event
             - comment-added-contains-event:
-                comment-contains-value: 'remerge'
+                comment-contains-value: "remerge"
           projects:
-            - project-compare-type: 'ANT'
-              project-pattern: '{project}'
+            - project-compare-type: "ANT"
+              project-pattern: "{project}"
               branches:
-                - branch-compare-type: 'ANT'
-                  branch-pattern: '**/{branch}'
+                - branch-compare-type: "ANT"
+                  branch-pattern: "**/{branch}"
           readable-message: true
 
 #############
@@ -391,9 +372,9 @@
     publishers:
       - lf-infra-publish
       - ta-publisher-ci-build:
-          arch: '{arch}'
+          arch: "{arch}"
       - trigger-parameterized-builds:
-          - project: 'ta-ci-build-{arch}'
+          - project: "ta-ci-build-{arch}"
             condition: UNSTABLE_OR_BETTER
             trigger-with-no-params: true
 

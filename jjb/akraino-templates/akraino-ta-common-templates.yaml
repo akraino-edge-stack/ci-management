@@ -20,6 +20,7 @@
     node: "{build-node}"
     arch: amd64
     gerrit-skip-vote: false
+    default-refspec: refs/heads/master
 
     properties:
       - lf-infra-properties:
@@ -33,7 +34,10 @@
           branch: "{branch}"
           lftools-version: "{lftools-version}"
 
-      - ta-parameters-ci
+      - ta-parameters:
+          scm-refspec-manifest: "{default-refspec}"
+          scm-refspec-build-tools: "{default-refspec}"
+          scm-refspec-rpmbuilder: "{default-refspec}"
 
       - string:
           name: ARCHIVE_ARTIFACTS
@@ -91,6 +95,8 @@
     submodule-recursive: true
     node: "{build-node}"
     gerrit-skip-vote: false
+    default-refspec: refs/heads/master
+    project-to-build: "ta/yarf"
 
     properties:
       - lf-infra-properties:
@@ -104,7 +110,11 @@
           branch: "{branch}"
           lftools-version: "{lftools-version}"
 
-      - ta-parameters-ci-{project}
+      - ta-parameters:
+          scm-refspec-manifest: "{default-refspec}"
+          scm-refspec-build-tools: "{default-refspec}"
+          scm-project-to-build-refspec: "{default-refspec}"
+          scm-project-to-build: "{project-to-build}"
 
       - string:
           name: ARCHIVE_ARTIFACTS
@@ -232,6 +242,7 @@
     project-type: freestyle
     submodule-recursive: true
     node: "{build-node}"
+    default-refspec: refs/heads/master
 
     properties:
       - lf-infra-properties:
@@ -245,8 +256,9 @@
           branch: "{branch}"
           lftools-version: "{lftools-version}"
 
-      - ta-parameters-manifest
-      - ta-parameters-build-tools
+      - ta-parameters:
+          scm-refspec-manifest: "{default-refspec}"
+          scm-refspec-build-tools: "{default-refspec}"
 
       - string:
           name: ARCHIVE_ARTIFACTS

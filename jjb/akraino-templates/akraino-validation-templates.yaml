@@ -1,45 +1,60 @@
 ---
+############
+# SETTINGS #
+############
+# settings for jobs run in multijob phases
+- _docker-build-job-settings: &docker-build-job-settings
+    name: docker_build_job_settings
+    current-parameters: true
+    git-revision: false
+    node-parameters: false
+    kill-phase-on: FAILURE
+    abort-all-jobs: false
+
+#############
+# TEMPLATES #
+#############
 - job-template:
     id: akraino-validation-docker-multiarch
-    name: 'validation-{stream}-docker'
+    name: "validation-{stream}-docker"
     project-type: multijob
-    disabled: '{obj:disabled}'
-    node: 'centos7-builder-2c-1g'
+    disabled: "{obj:disabled}"
+    node: "centos7-builder-2c-1g"
     build-timeout: 90
 
     parameters:
       - lf-infra-parameters: &validation_lf_infra_parameters
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
+          project: "{project}"
+          branch: "{branch}"
+          stream: "{stream}"
 
     properties:
       - throttle:
           max-per-node: 1
-          option: 'project'
+          option: "project"
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - 'validation-docker-.*'
-          block-level: 'NODE'
+            - "validation-docker-.*"
+          block-level: "NODE"
 
-    triggers: '{obj:triggers}'
+    triggers: "{obj:triggers}"
 
     builders:
       - multijob:
-          name: 'build validation images'
+          name: "build validation images"
           execution-type: PARALLEL
           projects:
-            - name: 'validation-docker-build-amd64-{stream}'
+            - name: "validation-docker-build-amd64-{stream}"
               <<: *docker-build-job-settings
-            - name: 'validation-docker-build-arm64-{stream}'
+            - name: "validation-docker-build-arm64-{stream}"
               <<: *docker-build-job-settings
       - multijob:
-          name: 'publish validation manifests'
+          name: "publish validation manifests"
           condition: SUCCESSFUL
           execution-type: PARALLEL
           projects:
-            - name: 'validation-docker-manifest-{stream}'
+            - name: "validation-docker-manifest-{stream}"
               <<: *docker-build-job-settings
 
     publishers:
@@ -49,12 +64,11 @@
             cristina.pauna@enea.com
             juha.kosonen@nokia.com
 
-
 - job-template:
     id: akraino-validation-docker-specific-arch
-    name: 'validation-docker-build-{arch_tag}-{stream}'
-    disabled: '{obj:disabled}'
-    node: '{slave_label}'
+    name: "validation-docker-build-{arch_tag}-{stream}"
+    disabled: "{obj:disabled}"
+    node: "{slave_label}"
     build-timeout: 75
 
     parameters:
@@ -64,25 +78,25 @@
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - 'validation-docker-build-.*'
-          block-level: 'NODE'
+            - "validation-docker-build-.*"
+          block-level: "NODE"
     scm: &validation_scm
       # lf-infra-gerrit-scm hardcodes branch specifier to refs/heads; while
       # lf-infra-github-scm does not, allowing us to pass a fully custom '{branch}'
       - lf-infra-github-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$STREAM'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$STREAM"
           submodule-recursive: false
-          submodule-timeout: '{submodule-timeout}'
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: default
 
     builders:
       - lf-infra-docker-login:
           global-settings-file: global-settings
-          settings-file: '{mvn-settings}'
+          settings-file: "{mvn-settings}"
       - shell: |
           #!/bin/bash -ex
           if [ "{branch}" != "{stream}" ]; then export TAG_VER=$STREAM; fi
@@ -94,21 +108,21 @@
 
 - job-template:
     id: akraino-validation-docker-manifest
-    name: 'validation-docker-manifest-{stream}'
-    node: 'ubuntu1804-docker-8c-8g'
+    name: "validation-docker-manifest-{stream}"
+    node: "ubuntu1804-docker-8c-8g"
     build-timeout: 15
 
     parameters:
       - lf-infra-parameters: *validation_lf_infra_parameters
 
-    disabled: '{obj:disabled}'
+    disabled: "{obj:disabled}"
 
     scm: *validation_scm
 
     builders:
       - lf-infra-docker-login:
           global-settings-file: global-settings
-          settings-file: '{mvn-settings}'
+          settings-file: "{mvn-settings}"
       - shell: |
           #!/bin/bash -ex
           if [ "{branch}" != "{stream}" ]; then export TAG_VER=$STREAM; fi
@@ -119,16 +133,15 @@
 
 - job-template:
     id: akraino-validation-lab-daily
-    name: 'validation-{validation_lab}-daily-{stream}'
+    name: "validation-{validation_lab}-daily-{stream}"
     concurrent: true
-    node: '{build-node}'
+    node: "{build-node}"
     parameters:
-      - {'lab_params'}
+      - lab_params
     builders:
       - trigger-builds:
-          - project: 'bluval-daily-{stream}'
-            predefined-parameters:
-              LAB_SILO={validation_lab}
+          - project: "bluval-daily-{stream}"
+            predefined-parameters: LAB_SILO={validation_lab}
             same-node: true
             current-parameters: true
             block: true
@@ -138,24 +151,26 @@
 
 - job-template:
     id: bluval-run-daily-tests
-    name: 'bluval-daily-{stream}'
+    name: "bluval-daily-{stream}"
     concurrent: true
-    node: '{build-node}'
+    node: "{build-node}"
+    lab-silo: ""
     parameters:
       - lf-infra-parameters: *validation_lf_infra_parameters
       - string:
           name: DEPLOY_SCENARIO
-          default: ''
-      - {'bluval-defaults'}
+          default: ""
+      - bluval-defaults:
+          lab-silo: "{lab-silo}"
 
     scm:
       - lf-infra-github-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
           submodule-recursive: false
-          submodule-timeout: '{submodule-timeout}'
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: true
           choosing-strategy: default
 
@@ -165,15 +180,15 @@
       - lf-infra-create-netrc:
           server-id: logs
       - shell: !include-raw-escape:
-        - ../shell/run_bluval.sh
+          - ../shell/run_bluval.sh
 
     publishers:
       - lf-infra-publish
       - robot:
-          output-path: 'results'
-          report-html: '**/report.html'
-          log-html: '**/log.html'
-          output-xml: '**/output.xml'
+          output-path: "results"
+          report-html: "**/report.html"
+          log-html: "**/log.html"
+          output-xml: "**/output.xml"
       - logparser:
           use-project-rules: true
           parse-rules: "./bluval/rules.txt"
