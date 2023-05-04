@@ -36,7 +36,7 @@
         url: https://storage.googleapis.com/kubernetes-release/release/v{{kubectl_version}}/bin/linux/amd64/kubectl
         dest: /usr/local/bin/kubectl
         mode: 0775
-      become: yes
+      become: true
 
     - name: "Install Helm {{helm_version}}"
       block:
@@ -49,10 +49,10 @@
             src: /tmp/helm-v{{helm_version}}-linux-amd64.tar.gz
             dest: /tmp
             remote_src: true
-          become: yes
+          become: true
         - name: "Move helm to /usr/local/bin and set as executable"
           command: "mv /tmp/linux-amd64/helm /usr/local/bin/helm"
-          become: yes
+          become: true
         - name: "Check helm."
           command: "which helm"
         - name: "Check kubectl."

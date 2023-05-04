@@ -7,10 +7,12 @@
     parameters:
       - string:
           name: REC_ISO_IMAGE_NAME
+          # yamllint disable-line rule:line-length
           default: "https://nexus.akraino.org/content/repositories/images-snapshots/TA/images/arm64/latest/install.aarch64.iso"
           description: "REC install image"
       - string:
           name: REC_PROVISIONING_ISO_NAME
+          # yamllint disable-line rule:line-length
           default: "https://nexus.akraino.org/content/repositories/images-snapshots/TA/images/arm64/latest/bootcd.aarch64.iso"
           description: "REC provisioning image"
       - string:
