@@ -19,16 +19,16 @@
     project: camunda_workflow
     project-name: camunda_workflow
     mvn-settings: camunda_workflow-settings
-    mvn-params: '-f akraino'
-    nexus-iq-namespace: 'akraino-'
+    mvn-params: "-f akraino"
+    nexus-iq-namespace: "akraino-"
     sonarcloud: true
-    sonarcloud-project-organization: '{sonarcloud_project_organization}'
-    sonarcloud-api-token: '{sonarcloud_api_token}'
-    sonarcloud-project-key: '{sonarcloud_project_organization}_{project-name}'
+    sonarcloud-project-organization: "{sonarcloud_project_organization}"
+    sonarcloud-api-token: "{sonarcloud_api_token}"
+    sonarcloud-project-key: "{sonarcloud_project_organization}_{project-name}"
     build-node: centos7-builder-2c-1g
     stream: master
     jobs:
-      - '{project-name}-maven-jobs'
+      - "{project-name}-maven-jobs"
       - gerrit-maven-sonar
     views:
       - project-view

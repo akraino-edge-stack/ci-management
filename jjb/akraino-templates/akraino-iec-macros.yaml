@@ -3,87 +3,87 @@
 # PARAMETERS #
 ##############
 - parameter:
-    name: 'iec-defaults'
+    name: "iec-defaults"
     parameters:
       - string:
           name: INSTALLER_IP
-          default: '10.20.0.2'
-          description: 'IP of the installer'
+          default: "10.20.0.2"
+          description: "IP of the installer"
       - string:
           name: SSH_KEY
-          default: '/var/lib/opnfv/mcp.rsa'
-          description: 'Path to private SSH key to access environment nodes'
+          default: "/var/lib/opnfv/mcp.rsa"
+          description: "Path to private SSH key to access environment nodes"
       - string:
           name: EXTERNAL_NETWORK
-          default: 'floating_net'
-          description: 'external network for test'
+          default: "floating_net"
+          description: "external network for test"
       - string:
           name: CI_DEBUG
-          default: 'false'
-          description: 'Show debug output information'
+          default: "false"
+          description: "Show debug output information"
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '**/*.log'
+          default: "**/*.log"
           description: Artifacts to archive to the logs server.
 
 # Usecase params are both installer and OS specific
 - parameter: &k8s_fuel_ubuntu1804_parameter
-    name: 'fuel-ubuntu1804-parameters'
+    name: "fuel-ubuntu1804-parameters"
     parameters:
       - string: &k8s_master_ip
           name: K8S_MASTER_IP
-          default: '172.16.10.36'
-          description: 'IP address to connect to the K8s master'
+          default: "172.16.10.36"
+          description: "IP address to connect to the K8s master"
       - string: &k8s_ssh_user
           name: K8S_SSH_USER
-          default: 'ubuntu'
-          description: 'SSH username to connect to the K8s master '
+          default: "ubuntu"
+          description: "SSH username to connect to the K8s master "
       - string: &k8s_ssh_password
           name: K8S_SSH_PASSWORD
-          default: ''
-          description: 'SSH password to connect to the K8s master'
+          default: ""
+          description: "SSH password to connect to the K8s master"
       - string: &k8s_ssh_key
           name: K8S_SSH_KEY
-          default: '/var/lib/opnfv/mcp.rsa'
-          description: 'SSH key to connect to the K8s master'
+          default: "/var/lib/opnfv/mcp.rsa"
+          description: "SSH key to connect to the K8s master"
 
 - parameter:
     <<: *k8s_fuel_ubuntu1804_parameter
-    name: 'fuel-ubuntu1804-defaults'
+    name: "fuel-ubuntu1804-defaults"
 - parameter:
-    name: 'fuel-centos7-defaults'
+    name: "fuel-centos7-defaults"
     parameters:
       - string:
           <<: *k8s_master_ip
       - string:
           <<: *k8s_ssh_user
-          default: 'centos'
+          default: "centos"
       - string:
           <<: *k8s_ssh_password
       - string:
           <<: *k8s_ssh_key
 
 - parameter:
-    name: 'compass-ubuntu1804-defaults'
+    name: "compass-ubuntu1804-defaults"
     parameters:
       - string:
           <<: *k8s_master_ip
-          default: '10.1.0.50'
+          default: "10.1.0.50"
       - string:
           <<: *k8s_ssh_user
-          default: 'root'
+          default: "root"
       - string:
           <<: *k8s_ssh_password
-          default: 'root'
+          default: "root"
       - string:
           <<: *k8s_ssh_key
-          default: ''
+          default: ""
 
 ########################
 # publisher macros
 ########################
 - publisher:
-    name: 'iec-default-publisher'
+    name: "iec-default-publisher"
     publishers:
       - email:
           recipients: armband@enea.com
@@ -97,18 +97,18 @@
 # Akraino IEC CI Baremetal Triggers running against master branch
 # ----------------------------------------------------------------
 - trigger:
-    name: 'iec-type2-fuel-virtual-ubuntu1804-daily-master-trigger'
+    name: "iec-type2-fuel-virtual-ubuntu1804-daily-master-trigger"
     triggers:
-      - timed: '0 1 * * 2,6'
+      - timed: "0 1 * * 2,6"
 - trigger:
-    name: 'iec-type2-fuel-baremetal-ubuntu1804-daily-master-trigger'
+    name: "iec-type2-fuel-baremetal-ubuntu1804-daily-master-trigger"
     triggers:
-      - timed: '0 1 * * *'
+      - timed: "0 1 * * *"
 - trigger:
-    name: 'iec-type2-fuel-virtual-centos7-daily-master-trigger'
+    name: "iec-type2-fuel-virtual-centos7-daily-master-trigger"
     triggers:
-      - timed: '0 1 * * 4,7'
+      - timed: "0 1 * * 4,7"
 - trigger:
-    name: 'iec-type1-compass-virtual-ubuntu1804-daily-master-trigger'
+    name: "iec-type1-compass-virtual-ubuntu1804-daily-master-trigger"
     triggers:
-      - timed: '0 19 * * *'
+      - timed: "0 19 * * *"

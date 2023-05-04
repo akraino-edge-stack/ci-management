@@ -22,8 +22,8 @@
     build-node: centos7-builder-2c-1g
     stream:
       - master:
-          branch: '{stream}'
-          gs-pathname: ''
+          branch: "{stream}"
+          gs-pathname: ""
           disabled: false
     validation_lab:
       - enea

@@ -1,7 +1,7 @@
 ---
 - job-template:
     id: akraino-project-stream-type-ta
-    name: '{project-name}-{stream}-{project-type}'
+    name: "{project-name}-{stream}-{project-type}"
     archive-artifacts: >
       work/**/*.spec
       work/**/*.repo
@@ -17,63 +17,67 @@
     stream: master
     project-type: freestyle
     submodule-recursive: true
-    node: '{build-node}'
+    node: "{build-node}"
     arch: amd64
     gerrit-skip-vote: false
+    default-refspec: refs/heads/master
 
     properties:
       - lf-infra-properties:
-          project: '{project}'
-          build-days-to-keep: '{build-days-to-keep}'
+          project: "{project}"
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+          lftools-version: "{lftools-version}"
 
-      - ta-parameters-ci
+      - ta-parameters:
+          scm-refspec-manifest: "{default-refspec}"
+          scm-refspec-build-tools: "{default-refspec}"
+          scm-refspec-rpmbuilder: "{default-refspec}"
 
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     scm:
       - ta-lf-infra-gerrit-scm-{project-type}:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          basedir: '$GERRIT_PROJECT'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
+          basedir: "$GERRIT_PROJECT"
 
     triggers:
       - ta-trigger-job-{project-type}:
-          gerrit-server-name: '{gerrit-server-name}'
-          gerrit-skip-vote: '{gerrit-skip-vote}'
-          project: '{project}'
-          branch: '{branch}'
+          gerrit-server-name: "{gerrit-server-name}"
+          gerrit-skip-vote: "{gerrit-skip-vote}"
+          project: "{project}"
+          branch: "{branch}"
 
     builders:
       - ta-builder-install-docker
       - ta-builder-job-{project-type}:
-          git-url: '{git-url}'
+          git-url: "{git-url}"
 
     publishers:
       - ta-publisher-job-{project-type}:
-          arch: '{arch}'
+          arch: "{arch}"
 
 - job-template:
     id: akraino-project-stream-type-ta-rpmbuilder
-    name: '{project-name}-{stream}-{project-type}'
+    name: "{project-name}-{stream}-{project-type}"
     archive-artifacts: >
       work/**/*.spec
       work/**/*.repo
@@ -89,61 +93,67 @@
     stream: master
     project-type: freestyle
     submodule-recursive: true
-    node: '{build-node}'
+    node: "{build-node}"
     gerrit-skip-vote: false
+    default-refspec: refs/heads/master
+    project-to-build: "ta/yarf"
 
     properties:
       - lf-infra-properties:
-          project: '{project}'
-          build-days-to-keep: '{build-days-to-keep}'
+          project: "{project}"
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+          lftools-version: "{lftools-version}"
 
-      - ta-parameters-ci-{project}
+      - ta-parameters:
+          scm-refspec-manifest: "{default-refspec}"
+          scm-refspec-build-tools: "{default-refspec}"
+          scm-project-to-build-refspec: "{default-refspec}"
+          scm-project-to-build: "{project-to-build}"
 
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     scm:
       - ta-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          choosing-strategy: 'gerrit'
-          basedir: '$GERRIT_PROJECT'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
+          choosing-strategy: "gerrit"
+          basedir: "$GERRIT_PROJECT"
 
     triggers:
       - ta-trigger-job-{project-type}:
-          gerrit-server-name: '{gerrit-server-name}'
-          gerrit-skip-vote: '{gerrit-skip-vote}'
-          project: '{project}'
-          branch: '{branch}'
+          gerrit-server-name: "{gerrit-server-name}"
+          gerrit-skip-vote: "{gerrit-skip-vote}"
+          project: "{project}"
+          branch: "{branch}"
 
     builders:
       - ta-builder-job-{project-type}-{project}:
-          git-url: '{git-url}'
+          git-url: "{git-url}"
 
     publishers:
       - lf-infra-publish
 
 - job-template:
     id: akraino-project-stream-type-ta-build
-    name: '{project-name}-{stream}-{project-type}'
+    name: "{project-name}-{stream}-{project-type}"
     archive-artifacts: >
       work/**/*.spec
       work/**/*.repo
@@ -159,48 +169,48 @@
     stream: master
     project-type: freestyle
     submodule-recursive: true
-    node: '{build-node}'
+    node: "{build-node}"
     gerrit-skip-vote: false
 
     properties:
       - lf-infra-properties:
-          project: '{project}'
-          build-days-to-keep: '{build-days-to-keep}'
+          project: "{project}"
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+          lftools-version: "{lftools-version}"
 
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     scm:
       - ta-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
-          choosing-strategy: 'gerrit'
-          basedir: '$GERRIT_PROJECT'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
+          choosing-strategy: "gerrit"
+          basedir: "$GERRIT_PROJECT"
 
     triggers:
       - ta-trigger-job-{project-type}:
-          gerrit-server-name: '{gerrit-server-name}'
-          gerrit-skip-vote: '{gerrit-skip-vote}'
-          project: '{project}'
-          branch: '{branch}'
+          gerrit-server-name: "{gerrit-server-name}"
+          gerrit-skip-vote: "{gerrit-skip-vote}"
+          project: "{project}"
+          branch: "{branch}"
 
     builders:
       - ta-builder-tox
@@ -211,7 +221,7 @@
 
 - job-template:
     id: akraino-project-release-ta-build
-    name: '{name}'
+    name: "{name}"
     archive-artifacts: >
       work/**/*.spec
       work/**/*.repo
@@ -231,60 +241,62 @@
     stream: master
     project-type: freestyle
     submodule-recursive: true
-    node: '{build-node}'
+    node: "{build-node}"
+    default-refspec: refs/heads/master
 
     properties:
       - lf-infra-properties:
-          project: '{project}'
-          build-days-to-keep: '{build-days-to-keep}'
+          project: "{project}"
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+          lftools-version: "{lftools-version}"
 
-      - ta-parameters-manifest
-      - ta-parameters-build-tools
+      - ta-parameters:
+          scm-refspec-manifest: "{default-refspec}"
+          scm-refspec-build-tools: "{default-refspec}"
 
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     triggers:
       - gerrit:
-          server-name: '{gerrit-server-name}'
+          server-name: "{gerrit-server-name}"
           trigger-on:
             - ref-updated-event
           projects:
-            - project-compare-type: 'ANT'
-              project-pattern: 'ta/manifest'
+            - project-compare-type: "ANT"
+              project-pattern: "ta/manifest"
               branches:
-                - branch-compare-type: 'ANT'
-                  branch-pattern: '**/{branch}'
-            - project-compare-type: 'ANT'
-              project-pattern: 'ta/build-tools'
+                - branch-compare-type: "ANT"
+                  branch-pattern: "**/{branch}"
+            - project-compare-type: "ANT"
+              project-pattern: "ta/build-tools"
               branches:
-                - branch-compare-type: 'ANT'
-                  branch-pattern: '**/{branch}'
+                - branch-compare-type: "ANT"
+                  branch-pattern: "**/{branch}"
 
     builders:
       - lf-display-node-uuid
       - ta-builder-scm:
-          git-url: '{git-url}'
-          project: 'ta/manifest'
-          ref: '$SCM_REFSPEC_MANIFEST'
+          git-url: "{git-url}"
+          project: "ta/manifest"
+          ref: "$SCM_REFSPEC_MANIFEST"
       - ta-builder-scm:
-          git-url: '{git-url}'
-          project: 'ta/build-tools'
-          ref: '$SCM_REFSPEC_BUILD_TOOLS'
+          git-url: "{git-url}"
+          project: "ta/build-tools"
+          ref: "$SCM_REFSPEC_BUILD_TOOLS"
       - ta-builder-install-docker
       - ta-builder-install-build-tools
       - shell: |2-
@@ -294,4 +306,4 @@
 
     publishers:
       - ta-publisher-ci-build:
-          arch: '{name}'
+          arch: "{name}"

@@ -16,19 +16,19 @@
 #
 - project:
     name: regional_controller-api-server
-    project: 'regional_controller/api-server'
+    project: "regional_controller/api-server"
     project-name: regional_controller-api-server
     mvn-settings: regional_controller-settings
-    mvn-params: ''
-    nexus-iq-namespace: 'akraino-'
+    mvn-params: ""
+    nexus-iq-namespace: "akraino-"
     sonarcloud: true
-    sonarcloud-project-organization: '{sonarcloud_project_organization}'
-    sonarcloud-api-token: '{sonarcloud_api_token}'
-    sonarcloud-project-key: '{sonarcloud_project_organization}_regional_controller'
+    sonarcloud-project-organization: "{sonarcloud_project_organization}"
+    sonarcloud-api-token: "{sonarcloud_api_token}"
+    sonarcloud-project-key: "{sonarcloud_project_organization}_regional_controller"
     build-node: centos7-builder-2c-1g
     stream: master
     jobs:
-      - '{project-name}-maven-jobs'
+      - "{project-name}-maven-jobs"
       - gerrit-maven-sonar
     views:
       - project-view

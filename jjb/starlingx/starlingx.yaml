@@ -11,4 +11,4 @@
       - akraino-project-stream-verify
     views:
       - project-view
-    cron: '@weekly'  # push fresh snapshot weekly
+    cron: "@weekly" # push fresh snapshot weekly
