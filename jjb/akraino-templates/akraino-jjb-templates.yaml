@@ -16,7 +16,7 @@
 #
 - job-template:
     id: akraino-project-stream-release-config
-    name: '{project-name}-{stream}-release-config'
+    name: "{project-name}-{stream}-release-config"
 
     ######################
     # Default parameters #
@@ -31,14 +31,14 @@
     build-days-to-keep: 30
     build-timeout: 60
     java-version: openjdk8
-    maven-repo-url: '$NEXUS_URL/content/repositories/snapshots'
+    maven-repo-url: "$NEXUS_URL/content/repositories/snapshots"
     mvn-global-settings: global-settings
-    mvn-opts: ''
-    mvn-params: ''
+    mvn-opts: ""
+    mvn-params: ""
     mvn-version: mvn35
     nexus-shapshot-repo: snapshots
     repo-id: snapshots
-    staging-profile-id: ''  # Unused by this job.
+    staging-profile-id: "" # Unused by this job.
     stream: master
     submodule-recursive: true
     upload-files-dir: /tmp/tardir
@@ -48,37 +48,37 @@
     #####################
 
     project-type: freestyle
-    node: '{build-node}'
+    node: "{build-node}"
 
     properties:
       - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          branch: "{branch}"
+          stream: "{stream}"
+          lftools-version: "{lftools-version}"
       - lf-infra-maven-parameters:
-          mvn-opts: '{mvn-opts}'
-          mvn-params: '{mvn-params}'
-          mvn-version: '{mvn-version}'
+          mvn-opts: "{mvn-opts}"
+          mvn-params: "{mvn-params}"
+          mvn-version: "{mvn-version}"
           # Staging repos do not make sense for CLM jobs so set it blank.
-          staging-profile-id: '{staging-profile-id}'
+          staging-profile-id: "{staging-profile-id}"
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
       - string:
           name: UPLOAD_FILES_PATH
-          default: '{upload-files-dir}'
+          default: "{upload-files-dir}"
           description: File path to generate tarball and upload to repository.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     gerrit_merge_triggers:
       - change-merged-event
@@ -87,59 +87,58 @@
 
     gerrit_trigger_file_paths:
       - compare-type: REG_EXP
-        pattern: '.*'
+        pattern: ".*"
 
     scm:
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '{refspec}'
-          branch: '{branch}'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "{refspec}"
+          branch: "{branch}"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: default
 
     triggers:
-      - timed: '{obj:cron}'
+      - timed: "{obj:cron}"
       - gerrit:
-          server-name: '{gerrit-server-name}'
-          trigger-on: '{obj:gerrit_merge_triggers}'
+          server-name: "{gerrit-server-name}"
+          trigger-on: "{obj:gerrit_merge_triggers}"
           projects:
             - project-compare-type: ANT
-              project-pattern: '{project}'
+              project-pattern: "{project}"
               branches:
                 - branch-compare-type: ANT
-                  branch-pattern: '**/{branch}'
-              file-paths: '{obj:gerrit_trigger_file_paths}'
+                  branch-pattern: "**/{branch}"
+              file-paths: "{obj:gerrit_trigger_file_paths}"
 
     builders:
       - lf-infra-pre-build
       - lf-maven-install:
-          mvn-version: '{mvn-version}'
+          mvn-version: "{mvn-version}"
       - lf-update-java-alternatives:
-          java-version: '{java-version}'
+          java-version: "{java-version}"
       - lf-provide-maven-settings:
-          global-settings-file: '{mvn-global-settings}'
-          settings-file: '{mvn-settings}'
+          global-settings-file: "{mvn-global-settings}"
+          settings-file: "{mvn-settings}"
       - shell: !include-raw-escape:
           - ../shell/make-tar.sh
       - lf-infra-deploy-maven-file:
-          global-settings-file: '{mvn-global-settings}'
-          settings-file: '{mvn-settings}'
-          mvn-version: '{mvn-version}'
-          repo-id: '{repo-id}'
-          group-id: '{group-id}'
-          upload-files-dir: '{upload-files-dir}'
-          maven-repo-url: '{maven-repo-url}'
+          global-settings-file: "{mvn-global-settings}"
+          settings-file: "{mvn-settings}"
+          mvn-version: "{mvn-version}"
+          repo-id: "{repo-id}"
+          group-id: "{group-id}"
+          upload-files-dir: "{upload-files-dir}"
+          maven-repo-url: "{maven-repo-url}"
 
     publishers:
       - lf-infra-publish
 
-
 - job-template:
     id: akraino-project-stream-stage-config
-    name: '{project-name}-{stream}-stage-config'
+    name: "{project-name}-{stream}-stage-config"
 
     ######################
     # Default parameters #
@@ -153,111 +152,111 @@
       **/target/surefire-reports/*-output.txt
     build-days-to-keep: 14
     build-timeout: 60
-    cron: '@daily'
+    cron: "@daily"
     disable-job: false
-    git-url: '$GIT_URL/$PROJECT'
-    github-url: 'https://github.com'
+    git-url: "$GIT_URL/$PROJECT"
+    github-url: "https://github.com"
     java-version: openjdk8
     mvn-global-settings: global-settings
     mvn-goals: clean deploy
-    mvn-opts: ''
-    mvn-params: ''
+    mvn-opts: ""
+    mvn-params: ""
     mvn-version: mvn35
     sign-artifacts: false
     stream: master
     submodule-recursive: true
-    upload-files-dir: m2repo  # expected by "lftools deploy nexus-stage"
+    upload-files-dir: m2repo # expected by "lftools deploy nexus-stage"
 
     #####################
     # Job Configuration #
     #####################
 
     project-type: freestyle
-    node: '{build-node}'
+    node: "{build-node}"
 
     properties:
       - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          branch: "{branch}"
+          stream: "{stream}"
+          lftools-version: "{lftools-version}"
       - lf-infra-maven-parameters:
-          mvn-opts: '{mvn-opts}'
-          mvn-params: '{mvn-params}'
-          mvn-version: '{mvn-version}'
-          staging-profile-id: '{staging-profile-id}'
+          mvn-opts: "{mvn-opts}"
+          mvn-params: "{mvn-params}"
+          mvn-version: "{mvn-version}"
+          staging-profile-id: "{staging-profile-id}"
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
       - string:
           name: UPLOAD_FILES_PATH
-          default: '{upload-files-dir}'
+          default: "{upload-files-dir}"
           description: File path to generate tarball and upload to repository.
       - string:
           name: STAGING_PROFILE_ID
-          default: '{staging-profile-id}'
+          default: "{staging-profile-id}"
           description: Nexus staging profile ID.
       - string:
           name: STAGING_BUILD
-          default: 'true'
+          default: "true"
           description: Mark this as a staging build.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     gerrit_release_triggers:
       - comment-added-contains-event:
           comment-contains-value: stage-release$
 
-    disabled: '{disable-job}'
+    disabled: "{disable-job}"
 
     scm:
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: default
 
     triggers:
-      - timed: '{obj:cron}'
+      - timed: "{obj:cron}"
       - gerrit:
-          server-name: '{gerrit-server-name}'
-          trigger-on: '{obj:gerrit_release_triggers}'
+          server-name: "{gerrit-server-name}"
+          trigger-on: "{obj:gerrit_release_triggers}"
           projects:
             - project-compare-type: ANT
-              project-pattern: '{project}'
+              project-pattern: "{project}"
               branches:
                 - branch-compare-type: ANT
-                  branch-pattern: '**/{branch}'
+                  branch-pattern: "**/{branch}"
 
     builders:
       - lf-infra-pre-build
       - lf-jacoco-nojava-workaround
       - lf-maven-install:
-          mvn-version: '{mvn-version}'
+          mvn-version: "{mvn-version}"
       - lf-update-java-alternatives:
-          java-version: '{java-version}'
+          java-version: "{java-version}"
       - lf-provide-maven-settings:
-          global-settings-file: '{mvn-global-settings}'
-          settings-file: '{mvn-settings}'
+          global-settings-file: "{mvn-global-settings}"
+          settings-file: "{mvn-settings}"
       - lf-infra-create-netrc:
-          server-id: '{mvn-staging-id}'
+          server-id: "{mvn-staging-id}"
       - shell: !include-raw-escape:
           - ../shell/make-tar.sh
       - lf-sigul-sign-dir:
-          sign-artifacts: '{sign-artifacts}'
-          sign-dir: '$WORKSPACE/m2repo'
+          sign-artifacts: "{sign-artifacts}"
+          sign-dir: "$WORKSPACE/m2repo"
           sign-mode: serial
       - lf-maven-stage
       - lf-provide-maven-settings-cleanup
@@ -267,7 +266,7 @@
 
 - job-template:
     id: akraino-project-stream-verify
-    name: '{project-name}-{stream}-verify'
+    name: "{project-name}-{stream}-verify"
     archive-artifacts: >
       **/*.log
     build-days-to-keep: 30
@@ -275,67 +274,67 @@
     stream: master
     project-type: freestyle
     submodule-recursive: true
-    node: '{build-node}'
+    node: "{build-node}"
 
     properties:
       - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+          lftools-version: "{lftools-version}"
 
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     scm:
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
-          choosing-strategy: 'gerrit'
+          choosing-strategy: "gerrit"
 
     triggers:
       - gerrit:
-          server-name: '{gerrit-server-name}'
+          server-name: "{gerrit-server-name}"
           trigger-on:
             - patchset-created-event:
-                exclude-drafts: 'false'
-                exclude-trivial-rebase: 'false'
-                exclude-no-code-change: 'false'
+                exclude-drafts: "false"
+                exclude-trivial-rebase: "false"
+                exclude-no-code-change: "false"
             - change-merged-event
             - draft-published-event
             - comment-added-contains-event:
-                comment-contains-value: 'recheck'
+                comment-contains-value: "recheck"
             - comment-added-contains-event:
-                comment-contains-value: 'reverify'
+                comment-contains-value: "reverify"
           projects:
-            - project-compare-type: 'ANT'
-              project-pattern: '{project}'
+            - project-compare-type: "ANT"
+              project-pattern: "{project}"
               branches:
-                - branch-compare-type: 'ANT'
-                  branch-pattern: '**/{branch}'
+                - branch-compare-type: "ANT"
+                  branch-pattern: "**/{branch}"
               file-paths:
                 - compare-type: ANT
-                  pattern: '**/*'
-              disable-strict-forbidden-file-verification: 'true'
+                  pattern: "**/*"
+              disable-strict-forbidden-file-verification: "true"
               forbidden-file-paths:
                 - compare-type: ANT
-                  pattern: 'docs/**'
+                  pattern: "docs/**"
           readable-message: true
 
     builders:
@@ -347,20 +346,20 @@
 
 - job-template:
     id: akraino-project-build-node-init
-    name: '{project-name}-{build-node}-init'
+    name: "{project-name}-{build-node}-init"
     # disable_job: false
-    disabled: '{obj:disable_job}'
+    disabled: "{obj:disable_job}"
     concurrent: true
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
       - label:
-          name: '{build-node}'
-          default: '{build-node}'
-          node-eligibility: 'all'
+          name: "{build-node}"
+          default: "{build-node}"
+          node-eligibility: "all"
           all-nodes: true
 
     gerrit_merge_triggers:
@@ -370,30 +369,30 @@
 
     gerrit_trigger_file_paths:
       - compare-type: REG_EXP
-        pattern: 'global-jjb'
+        pattern: "global-jjb"
 
     scm:
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
           submodule-recursive: true
-          submodule-timeout: '{submodule-timeout}'
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: default
 
     triggers:
       - gerrit:
-          server-name: '{gerrit-server-name}'
-          trigger-on: '{obj:gerrit_merge_triggers}'
+          server-name: "{gerrit-server-name}"
+          trigger-on: "{obj:gerrit_merge_triggers}"
           projects:
             - project-compare-type: ANT
-              project-pattern: '{project}'
+              project-pattern: "{project}"
               branches:
                 - branch-compare-type: ANT
-                  branch-pattern: '**/{branch}'
-              file-paths: '{obj:gerrit_trigger_file_paths}'
+                  branch-pattern: "**/{branch}"
+              file-paths: "{obj:gerrit_trigger_file_paths}"
 
     builders:
       - description-setter:

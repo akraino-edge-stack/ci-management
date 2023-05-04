@@ -1,11 +1,12 @@
 ---
+# yamllint disable-file
 ##############
 # PARAMETERS #
 ##############
 - parameter:
     name: ta-parameters-manifest
     parameters:
-     - string:
+      - string:
         default: refs/heads/master
         description: ''
         name: SCM_REFSPEC_MANIFEST
@@ -14,7 +15,7 @@
 - parameter:
     name: ta-parameters-build-tools
     parameters:
-     - string:
+      - string:
         default: refs/heads/master
         description: ''
         name: SCM_REFSPEC_BUILD_TOOLS
@@ -23,7 +24,7 @@
 - parameter:
     name: ta-parameters-rpmbuilder
     parameters:
-     - string:
+      - string:
         default: refs/heads/master
         description: ''
         name: SCM_REFSPEC_RPMBUILDER
@@ -32,21 +33,21 @@
 - parameter:
     name: ta-parameters-ci
     parameters:
-     - ta-parameters-manifest
-     - ta-parameters-build-tools
-     - ta-parameters-rpmbuilder
+      - ta-parameters-manifest
+      - ta-parameters-build-tools
+      - ta-parameters-rpmbuilder
 
 - parameter:
     name: ta-parameters-ci-ta/rpmbuilder
     parameters:
-     - ta-parameters-manifest
-     - ta-parameters-build-tools
-     - string:
+      - ta-parameters-manifest
+      - ta-parameters-build-tools
+      - string:
         default: ta/yarf
         description: ''
         name: SCM_PROJECT_TO_BUILD
         trim: 'false'
-     - string:
+      - string:
         default: refs/heads/master
         description: ''
         name: SCM_PROJECT_TO_BUILD_REFSPEC
@@ -105,80 +106,79 @@
 - builder:
     name: lf-display-node-uuid
     builders:
-        - shell: |2-
+      - shell: |2-
             echo "---> Node UUID:"
             curl -s http://169.254.169.254/openstack/latest/meta_data.json | python -c 'import sys, json; data = json.load(sys.stdin); print(data["uuid"])' || true
 
 - builder:
     name: ta-builder-tox
     builders:
-        - shell: |2-
-            #!/bin/bash -ex
-            source ~/lf-env.sh
+      - shell: |2-
+          #!/bin/bash -ex
+          source ~/lf-env.sh
 
-            lf-activate-venv tox
-            tox --version
-            for f in $(find $GERRIT_PROJECT -name tox.ini); do
-                pushd $(dirname $f)
-                tox
-                popd
-            done
+          lf-activate-venv tox
+          tox --version
+          for f in $(find $GERRIT_PROJECT -name tox.ini); do
+              pushd $(dirname $f)
+              tox
+              popd
+          done
 
 - builder:
     name: ta-builder-rpm
     builders:
-        - shell: |2-
-            #!/bin/bash -ex
-            #  Skip RPM build in case no *.spec file is found within the {project-to-build}
-            if [ -n "$(find {project-to-build} -name '*.spec')" ]
-            then
-                if apt --version >/dev/null 2>&1; then
-                    # We need a specific version of mock (1.4.14) and devtools
-                    # not available in Ubuntu/Debian repos, so fetch them from RHEL mirrors
-                    if [ "$(mock --version 2>/dev/null)" != '1.4.14' ]; then
-                        sudo groupadd mock || true
-                        sudo usermod -aG mock $USER
-                        sudo apt update
-                        # Explicitly install mock dependencies
-                        sudo apt install -y createrepo alien systemd-container python-pip \
-                                            python-peak.util.decorators yum-utils usermode pigz
-                        wget http://vault.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
-                             https://kojipkgs.fedoraproject.org/packages/mock/1.4.14/2.el7/noarch/mock-1.4.14-2.el7.noarch.rpm
-                        sudo alien -d *.rpm
-                        sudo dpkg --force-overwrite -i *.deb
-                        rm -rf *.rpm *.deb
-                        # RHEL tools hardcode the full path for certain distro tools
-                        sudo ln -sf /bin/tar /usr/bin/gtar
-                        sudo ln -sf /bin/machinectl /bin/df /usr/bin/
-                        # Some mock dependencies are only available via pip
-                        sudo pip install distro pyroute2 lxml urllib3
-                    fi
-                else
-                    sudo yum install -y createrepo
+      - shell: |2-
+        #!/bin/bash -ex
+        #  Skip RPM build in case no *.spec file is found within the {project-to-build}
+        if [ -n "$(find {project-to-build} -name '*.spec')" ]; then
+            if apt --version >/dev/null 2>&1; then
+                # We need a specific version of mock (1.4.14) and devtools
+                # not available in Ubuntu/Debian repos, so fetch them from RHEL mirrors
+                if [ "$(mock --version 2>/dev/null)" != '1.4.14' ]; then
+                    sudo groupadd mock || true
+                    sudo usermod -aG mock $USER
+                    sudo apt update
+                    # Explicitly install mock dependencies
+                    sudo apt install -y createrepo alien systemd-container python-pip \
+                                        python-peak.util.decorators yum-utils usermode pigz
+                    wget http://vault.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
+                         https://kojipkgs.fedoraproject.org/packages/mock/1.4.14/2.el7/noarch/mock-1.4.14-2.el7.noarch.rpm
+                    sudo alien -d *.rpm
+                    sudo dpkg --force-overwrite -i *.deb
+                    rm -rf *.rpm *.deb
+                    # RHEL tools hardcode the full path for certain distro tools
+                    sudo ln -sf /bin/tar /usr/bin/gtar
+                    sudo ln -sf /bin/machinectl /bin/df /usr/bin/
+                    # Some mock dependencies are only available via pip
+                    sudo pip install distro pyroute2 lxml urllib3
                 fi
-                ta/build-tools/build_rpms.sh \
-                 -m ta/manifest \
-                 -r ta/rpmbuilder \
-                 -w work \
-                 {project-to-build}
-                find work/
+            else
+                sudo yum install -y createrepo
             fi
+            ta/build-tools/build_rpms.sh \
+             -m ta/manifest \
+             -r ta/rpmbuilder \
+             -w work \
+             {project-to-build}
+            find work/
+        fi
 
 - builder:
     name: ta-builder-scm
     builders:
-        - shell: |2-
-            #!/bin/bash -ex
-            rm -rf {project}
-            git clone {git-url}/{project} {project}
-            pushd {project}
-            if echo {ref} | grep -q "refs/"; then
-                git fetch origin {ref}
-                git checkout FETCH_HEAD
-            else
-                git checkout {ref}
-            fi
-            popd
+      - shell: |2-
+        #!/bin/bash -ex
+        rm -rf {project}
+        git clone {git-url}/{project} {project}
+        pushd {project}
+        if echo {ref} | grep -q "refs/"; then
+            git fetch origin {ref}
+            git checkout FETCH_HEAD
+        else
+            git checkout {ref}
+        fi
+        popd
 
 - builder:
     name: ta-lf-infra-ship-rpms

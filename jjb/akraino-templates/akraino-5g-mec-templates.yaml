@@ -1,7 +1,7 @@
 ---
 - job-template:
     id: 5g-mec-project-stream-verify
-    name: '{project-name}-{stream}-verify'
+    name: "{project-name}-{stream}-verify"
     archive-artifacts: >
       **/*.log
     build-days-to-keep: 30
@@ -9,66 +9,66 @@
     stream: master
     project-type: freestyle
     submodule-recursive: true
-    node: '{build-node}'
+    node: "{build-node}"
 
     properties:
       - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+          lftools-version: "{lftools-version}"
 
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     scm:
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
-          choosing-strategy: 'gerrit'
+          choosing-strategy: "gerrit"
 
     triggers:
       - gerrit:
-          server-name: '{gerrit-server-name}'
+          server-name: "{gerrit-server-name}"
           trigger-on:
             - patchset-created-event:
-                exclude-drafts: 'false'
-                exclude-trivial-rebase: 'false'
-                exclude-no-code-change: 'false'
+                exclude-drafts: "false"
+                exclude-trivial-rebase: "false"
+                exclude-no-code-change: "false"
             - change-merged-event
             - draft-published-event
             - comment-added-contains-event:
-                comment-contains-value: 'recheck'
+                comment-contains-value: "recheck"
             - comment-added-contains-event:
-                comment-contains-value: 'reverify'
+                comment-contains-value: "reverify"
           projects:
-            - project-compare-type: 'ANT'
-              project-pattern: '{project}'
+            - project-compare-type: "ANT"
+              project-pattern: "{project}"
               branches:
-                - branch-compare-type: 'ANT'
-                  branch-pattern: '**/{branch}'
-              disable-strict-forbidden-file-verification: 'true'
+                - branch-compare-type: "ANT"
+                  branch-pattern: "**/{branch}"
+              disable-strict-forbidden-file-verification: "true"
               forbidden-file-paths:
                 - compare-type: ANT
-                  pattern: 'docs/**'
+                  pattern: "docs/**"
                 - compare-type: REG_EXP
-                  pattern: 'INFO.yaml'
+                  pattern: "INFO.yaml"
           readable-message: true
 
     builders:
