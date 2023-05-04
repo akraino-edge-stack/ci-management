@@ -1,3 +1,4 @@
+---
 - project:
     name: ta-ci-build-amd64
     project: none

@@ -1,10 +1,11 @@
+---
 - project:
     name: ta-openstack-ansible-os_keystone-amd64
     project: ta/openstack-ansible-os_keystone
     project-name: ta-openstack-ansible-os_keystone-amd64
     project-type:
-        - merge
-        - verify
+      - merge
+      - verify
     build-node: centos7-builder-2c-1g
     stream: master
     jobs:
@@ -15,8 +16,8 @@
     project: ta/openstack-ansible-os_keystone
     project-name: ta-openstack-ansible-os_keystone-arm64
     project-type:
-        - merge
-        - verify
+      - merge
+      - verify
     build-node: aarch64_build
     arch: arm64
     stream: master

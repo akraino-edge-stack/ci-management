@@ -8,12 +8,12 @@
     stream: master
     java-version: openjdk8
     mvn-version: mvn35
-    mvn-opts: ''
-    mvn-params: ''
+    mvn-opts: ""
+    mvn-params: ""
     mvn-settings: ta-settings
     build-timeout: 60
     branch: master
     submodule-recursive: true
     jobs:
-      - 'akraino-project-stream-docker'
-      - 'akraino-project-stream-stage-docker'
+      - "akraino-project-stream-docker"
+      - "akraino-project-stream-stage-docker"
