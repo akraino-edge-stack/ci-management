@@ -1,9 +1,10 @@
+---
 - project:
     name: ta-rpmbuilder-amd64
     project: ta/rpmbuilder
     project-name: ta-rpmbuilder-amd64
     project-type:
-        - verify
+      - verify
     build-node: centos7-builder-2c-1g
     stream: master
     jobs:
@@ -14,7 +15,7 @@
     project: ta/rpmbuilder
     project-name: ta-rpmbuilder-arm64
     project-type:
-        - verify
+      - verify
     build-node: aarch64_build
     stream: master
     jobs:
