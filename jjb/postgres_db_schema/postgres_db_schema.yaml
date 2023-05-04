@@ -23,14 +23,14 @@
     stream: master
     java-version: openjdk8
     mvn-version: mvn35
-    mvn-opts: ''
-    mvn-params: ''
+    mvn-opts: ""
+    mvn-params: ""
     mvn-settings: postgres_db_schema-settings
     build-timeout: 60
     submodule-recursive: true
     branch: master
     jobs:
-      - 'akraino-project-stream-docker'
-      - 'akraino-project-stream-stage-docker'
+      - "akraino-project-stream-docker"
+      - "akraino-project-stream-stage-docker"
     views:
       - project-view

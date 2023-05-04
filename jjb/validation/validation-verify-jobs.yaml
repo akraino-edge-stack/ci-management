@@ -5,11 +5,11 @@
     name: validation-tox-verify
     stream:
       - master:
-          branch: '{stream}'
-          gs-pathname: ''
+          branch: "{stream}"
+          gs-pathname: ""
           disabled: false
     jobs:
-      - 'gerrit-tox-verify':
+      - "gerrit-tox-verify":
           parallel: false
           submodule-disable: true
     build-node: centos7-builder-2c-1g

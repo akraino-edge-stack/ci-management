@@ -16,19 +16,19 @@
 #
 - project:
     name: regional_controller-api-server-docker
-    project: 'regional_controller/api-server'
+    project: "regional_controller/api-server"
     project-name: regional_controller-api-server
     global-settings-file: global-settings
     build-node: ubuntu1804-docker-8c-8g
     stream: master
     java-version: openjdk8
     mvn-version: mvn35
-    mvn-opts: ''
-    mvn-params: ''
+    mvn-opts: ""
+    mvn-params: ""
     mvn-settings: regional_controller-settings
     build-timeout: 60
     submodule-recursive: true
     branch: master
     jobs:
-      - 'akraino-project-stream-docker'
-      - 'akraino-project-stream-stage-docker'
+      - "akraino-project-stream-docker"
+      - "akraino-project-stream-stage-docker"

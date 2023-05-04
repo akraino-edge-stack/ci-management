@@ -1,41 +1,40 @@
 ---
 - project:
-
     name: validation-docker
     project: validation
     mvn-settings: validation-settings
     stream:
       - master:
-          branch: '{stream}'
+          branch: "{stream}"
           disabled: false
           triggers:
             # Build nigtly at 12:10 AM
-            - timed: '10 0 * * *'
+            - timed: "10 0 * * *"
       - 3.0.0:
-          branch: 'master'
+          branch: "master"
           disabled: false
           triggers:
             - gerrit:
-                server-name: '{gerrit-server-name}'
+                server-name: "{gerrit-server-name}"
                 trigger-on:
                   - change-merged-event
                   - comment-added-contains-event:
                       comment-contains-value: remerge$
                 projects:
                   - project-compare-type: ANT
-                    project-pattern: 'ci-management'
+                    project-pattern: "ci-management"
                     branches:
                       - branch-compare-type: ANT
-                        branch-pattern: '**/master'
+                        branch-pattern: "**/master"
                     file-paths:
                       - compare-type: REG_EXP
-                        pattern: 'jjb/validation/validation-docker.yaml'
+                        pattern: "jjb/validation/validation-docker.yaml"
 
     arch_tag:
-      - 'amd64':
-          slave_label: 'ubuntu1804-docker-8c-8g'
-      - 'arm64':
-          slave_label: 'aarch64_build'
+      - "amd64":
+          slave_label: "ubuntu1804-docker-8c-8g"
+      - "arm64":
+          slave_label: "aarch64_build"
 
     jobs:
       - akraino-validation-docker-multiarch

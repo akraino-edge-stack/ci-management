@@ -3,17 +3,17 @@
     project: iec
     project-name: iec
     name: iec-tox-verify
-    tox-envs: 'coala'
+    tox-envs: "coala"
     stream:
       - master:
-          branch: '{stream}'
-          gs-pathname: ''
+          branch: "{stream}"
+          gs-pathname: ""
           disabled: false
     jobs:
-      - 'gerrit-tox-verify':
+      - "gerrit-tox-verify":
           parallel: false
           submodule-disable: true
     parameters:
       - lf-infra-tox-parameters:
-          tox-envs: '{tox-envs}'
+          tox-envs: "{tox-envs}"
     build-node: centos7-builder-2c-1g
