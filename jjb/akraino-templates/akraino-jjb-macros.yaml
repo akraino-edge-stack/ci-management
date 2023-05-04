@@ -3,15 +3,15 @@
     name: akraino-lf-infra-gerrit-scm
     scm:
       - git:
-          credentials-id: '{jenkins-ssh-credential}'
-          url: '{git-url}'
-          refspec: '{refspec}'
+          credentials-id: "{jenkins-ssh-credential}"
+          url: "{git-url}"
+          refspec: "{refspec}"
           branches:
-            - 'refs/heads/{branch}'
+            - "refs/heads/{branch}"
           skip-tag: true
           wipe-workspace: true
           submodule:
-            recursive: '{submodule-recursive}'
-            timeout: '{submodule-timeout}'
-          choosing-strategy: '{choosing-strategy}'
-          basedir: '{basedir}'
+            recursive: "{submodule-recursive}"
+            timeout: "{submodule-timeout}"
+          choosing-strategy: "{choosing-strategy}"
+          basedir: "{basedir}"

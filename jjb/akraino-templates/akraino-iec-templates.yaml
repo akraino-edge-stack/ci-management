@@ -1,54 +1,53 @@
 ---
 - job-template:
     id: akraino-iec-install
-    name: 'iec-{iecType}-{installer}-{deploy_type}-{os}-daily-{stream}'
-    disabled: '{obj:disabled}'
+    name: "iec-{iecType}-{installer}-{deploy_type}-{os}-daily-{stream}"
+    disabled: "{obj:disabled}"
     concurrent: false
-    node: '{slave_label}'
+    node: "{slave_label}"
     properties:
       - throttle:
           enabled: true
           max-total: 4
           max-per-node: 1
-          option: 'project'
+          option: "project"
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-fuel-{deploy_type}-.*'
-            - '.*-compass-{deploy_type}-.*'
-          block-level: 'NODE'
+            - ".*-fuel-{deploy_type}-.*"
+            - ".*-compass-{deploy_type}-.*"
+          block-level: "NODE"
 
     wrappers:
       - build-name:
-          name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO $IEC_TYPE'
+          name: "$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO $IEC_TYPE"
 
     triggers:
-      - 'iec-{iecType}-{installer}-{deploy_type}-{os}-daily-{stream}-trigger'
+      - "iec-{iecType}-{installer}-{deploy_type}-{os}-daily-{stream}-trigger"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-      - '{project}-defaults'
-      - '{installer}-{os}-defaults'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+      - "{project}-defaults"
+      - "{installer}-{os}-defaults"
       - string:
           name: DEPLOY_SCENARIO
-          default: '{scenario}'
+          default: "{scenario}"
       - string:
           name: IEC_TYPE
-          default: '{iecType}'
+          default: "{iecType}"
 
     builders:
       - trigger-builds:
-          - project: 'iec-{iecType}-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
+          - project: "iec-{iecType}-deploy-{installer}-{deploy_type}-{os}-daily-{stream}"
             current-parameters: true
-            predefined-parameters:
-              DEPLOY_SCENARIO={scenario}
+            predefined-parameters: DEPLOY_SCENARIO={scenario}
             same-node: true
             block: true
       - trigger-builds:
-          - project: 'validation-enea-daily-{stream}'
+          - project: "validation-enea-daily-{stream}"
             same-node: true
             current-parameters: true
             predefined-parameters: |
@@ -61,29 +60,27 @@
               OPTIONAL=false
               PULL=yes
             block: true
-          - project:
-              !j2: |
-                {%- if deploy_type not in ['virtual'] -%}
-                {%- for uc in usecase -%}
-                {%- for ph in phase -%}
-                iec-{{ iecType }}-{{ ph }}-{{ uc }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
-                {%- if not loop.last -%},{%- endif -%}
-                {%- endfor %}
-                {%- if not loop.last -%},{%- endif -%}
-                {%- endfor %}
-                {%- endif -%}
+          - project: !j2: |
+              {%- if deploy_type not in ['virtual'] -%}
+              {%- for uc in usecase -%}
+              {%- for ph in phase -%}
+              iec-{{ iecType }}-{{ ph }}-{{ uc }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
+              {%- if not loop.last -%},{%- endif -%}
+              {%- endfor %}
+              {%- if not loop.last -%},{%- endif -%}
+              {%- endfor %}
+              {%- endif -%}
             current-parameters: true
             same-node: true
             block: true
             block-thresholds:
-              build-step-failure-threshold: 'never'
-              failure-threshold: 'never'
-              unstable-threshold: 'FAILURE'
-          - project:
-              !j2: |
-                {%- if deploy_type in ['virtual'] -%}
-                iec-{{ iecType }}-destroy-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
-                {%- endif -%}
+              build-step-failure-threshold: "never"
+              failure-threshold: "never"
+              unstable-threshold: "FAILURE"
+          - project: !j2: |
+              {%- if deploy_type in ['virtual'] -%}
+              iec-{{ iecType }}-destroy-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
+              {%- endif -%}
             current-parameters: false
             predefined-parameters: |
               DEPLOY_SCENARIO={scenario}
@@ -93,52 +90,52 @@
 
 - job-template:
     id: akraino-iec-deploy
-    name: 'iec-{iecType}-deploy-{installer}-{deploy_type}-{os}-daily-{stream}'
+    name: "iec-{iecType}-deploy-{installer}-{deploy_type}-{os}-daily-{stream}"
     concurrent: true
-    node: '{slave_label}'
+    node: "{slave_label}"
     properties: &properties
       - throttle:
           enabled: true
           max-total: 4
           max-per-node: 1
-          option: 'project'
+          option: "project"
       - build-blocker:
           use-build-blocker: true
           blocking-jobs:
-            - '.*-{iecType}-deploy-{installer}-{deploy_type}-.*'
-            - '.*-{iecType}-destroy-{installer}-{deploy_type}-.*'
-            - '.*-{iecType}-install-.*-{installer}-{deploy_type}-.*'
-          block-level: 'NODE'
+            - ".*-{iecType}-deploy-{installer}-{deploy_type}-.*"
+            - ".*-{iecType}-destroy-{installer}-{deploy_type}-.*"
+            - ".*-{iecType}-install-.*-{installer}-{deploy_type}-.*"
+          block-level: "NODE"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-      - '{project}-defaults'
-      - '{installer}-{os}-defaults'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+      - "{project}-defaults"
+      - "{installer}-{os}-defaults"
       - string:
           name: DEPLOY_SCENARIO
-          default: '{scenario}'
+          default: "{scenario}"
       - string:
           name: IEC_TYPE
-          default: '{iecType}'
+          default: "{iecType}"
       - string:
           name: EXTRA_ARGS
-          default: '-o {os}'
+          default: "-o {os}"
 
     wrappers: &wrappers
       - build-name:
-          name: '$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO $IEC_TYPE'
+          name: "$BUILD_NUMBER - Scenario: $DEPLOY_SCENARIO $IEC_TYPE"
 
     scm: &scm
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
           submodule-recursive: false
-          submodule-timeout: '{submodule-timeout}'
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: true
           choosing-strategy: default
 
@@ -147,48 +144,44 @@
           description: "POD: $NODE_NAME"
       - conditional-step:
           condition-kind: regex-match
-          regex: 'compass'
-          label: '{installer}'
+          regex: "compass"
+          label: "{installer}"
           steps:
-            - shell:
-                !include-raw-escape: ../iec/iec-compass-build.sh
-            - shell:
-                !include-raw-escape: ../iec/iec-compass-deploy.sh
-            - shell:
-                !include-raw-escape: ../iec/iec-fdn-install.sh
+            - shell: !include-raw-escape: ../iec/iec-compass-build.sh
+            - shell: !include-raw-escape: ../iec/iec-compass-deploy.sh
+            - shell: !include-raw-escape: ../iec/iec-fdn-install.sh
       - conditional-step:
           condition-kind: regex-match
-          regex: 'fuel'
-          label: '{installer}'
+          regex: "fuel"
+          label: "{installer}"
           steps:
-            - shell:
-                !include-raw-escape: ../iec/iec-fuel-deploy.sh
+            - shell: !include-raw-escape: ../iec/iec-fuel-deploy.sh
 
     publishers:
       - iec-default-publisher
 
 - job-template:
     id: akraino-iec-destroy
-    name: 'iec-{iecType}-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
+    name: "iec-{iecType}-destroy-{installer}-{deploy_type}-{os}-daily-{stream}"
     concurrent: true
-    node: '{slave_label}'
+    node: "{slave_label}"
     properties: *properties
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-      - '{project}-defaults'
-      - '{installer}-{os}-defaults'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+      - "{project}-defaults"
+      - "{installer}-{os}-defaults"
       - string:
           name: DEPLOY_SCENARIO
-          default: '{scenario}'
+          default: "{scenario}"
       - string:
           name: IEC_TYPE
-          default: '{iecType}'
+          default: "{iecType}"
       - string:
           name: EXTRA_ARGS
-          default: '-EEE -o {os}'
+          default: "-EEE -o {os}"
 
     wrappers: *wrappers
     scm: *scm
@@ -196,8 +189,7 @@
     builders:
       - description-setter:
           description: "POD: $NODE_NAME"
-      - shell:
-          !include-raw-escape: ../iec/iec-{installer}-destroy.sh
+      - shell: !include-raw-escape: ../iec/iec-{installer}-destroy.sh
 
     publishers:
       - iec-default-publisher

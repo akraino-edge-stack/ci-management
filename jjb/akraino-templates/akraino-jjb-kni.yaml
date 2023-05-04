@@ -57,28 +57,28 @@
     node: "{build-node}"
     properties:
       - lf-infra-properties:
-          build-days-to-keep: '{build-days-to-keep}'
+          build-days-to-keep: "{build-days-to-keep}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          branch: "{branch}"
+          stream: "{stream}"
+          lftools-version: "{lftools-version}"
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
 
     scm:
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: gerrit
 
@@ -93,15 +93,15 @@
 
     triggers:
       - gerrit:
-          server-name: '{gerrit-server-name}'
-          trigger-on: '{obj:gerrit_verify_triggers}'
+          server-name: "{gerrit-server-name}"
+          trigger-on: "{obj:gerrit_verify_triggers}"
           projects:
             - project-compare-type: ANT
-              project-pattern: '{project}'
+              project-pattern: "{project}"
               branches:
                 - branch-compare-type: ANT
-                  branch-pattern: '**/{branch}'
-              file-paths: '{obj:gerrit_trigger_file_paths}'
+                  branch-pattern: "**/{branch}"
+              file-paths: "{obj:gerrit_trigger_file_paths}"
     publishers:
       - lf-infra-publish
 
@@ -113,44 +113,44 @@
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          branch: "{branch}"
+          stream: "{stream}"
+          lftools-version: "{lftools-version}"
       - string:
           name: ARCHIVE_ARTIFACTS
-          default: '{archive-artifacts}'
+          default: "{archive-artifacts}"
           description: Artifacts to archive to the logs server.
 
     wrappers:
       - lf-infra-wrappers:
-          build-timeout: '{build-timeout}'
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+          build-timeout: "{build-timeout}"
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
       - credentials-binding:
           - ssh-user-private-key:
               credential-id: kni-secrets
               key-file-variable: KNI_KEY_PATH
     scm:
       - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: gerrit
-          basedir: '{project-name}'
+          basedir: "{project-name}"
       - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/kni/installer.git'
-          refspec: 'refs/heads/master'
-          branch: 'master'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/kni/installer.git"
+          refspec: "refs/heads/master"
+          branch: "master"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: default
-          basedir: 'installer'
+          basedir: "installer"
 
     publishers:
       - postbuildscript:
@@ -174,10 +174,10 @@
 
 - job-template:
     id: kni-installer-verify-installer
-    name: '{project-name}-verify-installer'
+    name: "{project-name}-verify-installer"
     gerrit_trigger_file_paths:
       - compare-type: ANT
-        pattern: '**'
+        pattern: "**"
     <<: *kni_common
     build-node: centos7-builder-2c-1g
 
@@ -190,17 +190,17 @@
 
 - job-template:
     id: kni-verify-deploy-aws
-    name: 'kni-{project-name}-verify-deploy-aws'
+    name: "kni-{project-name}-verify-deploy-aws"
     build-node: kni-cloud
     <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
-        pattern: 'profiles/production.aws/**'
+        pattern: "profiles/production.aws/**"
       - compare-type: ANT
-        pattern: 'sites/testing.aws.edge-sites.net/**'
+        pattern: "sites/testing.aws.edge-sites.net/**"
       - compare-type: ANT
-        pattern: 'base/**'
+        pattern: "base/**"
 
     builders:
       - lf-infra-pre-build
@@ -214,18 +214,18 @@
 
 - job-template:
     id: kni-verify-deploy-gcp
-    name: 'kni-{project-name}-verify-deploy-gcp'
+    name: "kni-{project-name}-verify-deploy-gcp"
     site: edge-sites-testing.gcp.devcluster.openshift.com
     build-node: kni-cloud
     <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
-        pattern: 'profiles/production.gcp/**'
+        pattern: "profiles/production.gcp/**"
       - compare-type: ANT
-        pattern: 'sites/edge-sites-testing.gcp.devcluster.openshift.com/**'
+        pattern: "sites/edge-sites-testing.gcp.devcluster.openshift.com/**"
       - compare-type: ANT
-        pattern: 'base/**'
+        pattern: "base/**"
 
     builders:
       - lf-infra-pre-build
@@ -239,18 +239,18 @@
 
 - job-template:
     id: kni-verify-deploy-gcp-hub
-    name: 'kni-{project-name}-verify-deploy-gcp'
+    name: "kni-{project-name}-verify-deploy-gcp"
     site: kni-mgmt-hub.gcp.devcluster.openshift.com
     build-node: kni-cloud
     <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
-        pattern: 'profiles/production.gcp/**'
+        pattern: "profiles/production.gcp/**"
       - compare-type: ANT
-        pattern: 'sites/kni-mgmt-hub.gcp.devcluster.openshift.com/**'
+        pattern: "sites/kni-mgmt-hub.gcp.devcluster.openshift.com/**"
       - compare-type: ANT
-        pattern: 'base/**'
+        pattern: "base/**"
 
     builders:
       - lf-infra-pre-build
@@ -264,18 +264,18 @@
 
 - job-template:
     id: kni-verify-deploy-gcp-ie
-    name: 'kni-{project-name}-verify-deploy-gcp'
+    name: "kni-{project-name}-verify-deploy-gcp"
     site: kni-ie.gcp.devcluster.openshift.com
     build-node: kni-cloud
     <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
-        pattern: 'profiles/production.gcp/**'
+        pattern: "profiles/production.gcp/**"
       - compare-type: ANT
-        pattern: 'sites/kni-ie.gcp.devcluster.openshift.com/**'
+        pattern: "sites/kni-ie.gcp.devcluster.openshift.com/**"
       - compare-type: ANT
-        pattern: 'base/**'
+        pattern: "base/**"
 
     builders:
       - lf-infra-pre-build
@@ -289,40 +289,40 @@
 
 - job-template:
     id: kni-verify-deploy-baremetal
-    name: 'kni-{project-name}-verify-deploy-baremetal'
+    name: "kni-{project-name}-verify-deploy-baremetal"
     <<: *kni_common_deploy
     build-timeout: 120
     build-node: kni-baremetal
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
-        pattern: 'profiles/production.baremetal/**'
+        pattern: "profiles/production.baremetal/**"
       - compare-type: ANT
-        pattern: 'sites/testing.baremetal.edge-sites.net/**'
+        pattern: "sites/testing.baremetal.edge-sites.net/**"
       - compare-type: ANT
-        pattern: 'base/**'
+        pattern: "base/**"
 
     scm:
       - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: 'https://gerrit.akraino.org/r/kni/blueprint-pae'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "https://gerrit.akraino.org/r/kni/blueprint-pae"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: gerrit
-          basedir: 'kni-blueprint-pae'
+          basedir: "kni-blueprint-pae"
       - akraino-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/kni/installer.git'
-          refspec: 'refs/heads/master'
-          branch: 'master'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/kni/installer.git"
+          refspec: "refs/heads/master"
+          branch: "master"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: default
-          basedir: 'installer'
+          basedir: "installer"
 
     builders:
       - lf-infra-pre-build

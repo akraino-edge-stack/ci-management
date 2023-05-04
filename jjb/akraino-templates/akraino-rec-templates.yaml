@@ -1,42 +1,42 @@
 ---
 - job-template:
     id: akraino-rec-deploy
-    name: 'rec-{slave_label}-{job_frequency}-{stream}'
-    disabled: '{obj:disabled}'
+    name: "rec-{slave_label}-{job_frequency}-{stream}"
+    disabled: "{obj:disabled}"
     concurrent: false
-    node: '{slave_label}'
+    node: "{slave_label}"
     properties:
       - throttle:
           enabled: true
           max-total: 4
           max-per-node: 1
-          option: 'project'
+          option: "project"
 
     wrappers:
       - build-name:
-          name: '$BUILD_NUMBER - Install REC Blueprint'
+          name: "$BUILD_NUMBER - Install REC Blueprint"
 
     triggers:
-      - 'rec-{job_frequency}-{stream}-trigger'
+      - "rec-{job_frequency}-{stream}-trigger"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-      - 'rec-{slave_label}-defaults'
-      - 'rec-defaults'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+      - "rec-{slave_label}-defaults"
+      - "rec-defaults"
 
     builders:
       - description-setter:
           description: "SLAVE: $NODE_NAME"
       - trigger-builds:
-          - project: 'rec-{slave_label}-install-rec-{job_frequency}-{stream}'
+          - project: "rec-{slave_label}-install-rec-{job_frequency}-{stream}"
             current-parameters: true
             same-node: true
             block: true
       - trigger-builds:
-          - project: 'validation-unh-daily-{stream}'
+          - project: "validation-unh-daily-{stream}"
             same-node: true
             current-parameters: true
             predefined-parameters: |
@@ -45,22 +45,21 @@
               OPTIONAL=false
               PULL=yes
             block: true
-          - project:
-              !j2: |
-                {%- for uc in usecase -%}
-                {%- for ph in phase -%}
-                rec-{{ slave_label }}-{{ ph }}-{{ uc }}-{{ job_frequency }}-{{ stream }}
-                {%- if not loop.last -%},{%- endif -%}
-                {%- endfor %}
-                {%- if not loop.last -%},{%- endif -%}
-                {%- endfor %}
+          - project: !j2: |
+              {%- for uc in usecase -%}
+              {%- for ph in phase -%}
+              rec-{{ slave_label }}-{{ ph }}-{{ uc }}-{{ job_frequency }}-{{ stream }}
+              {%- if not loop.last -%},{%- endif -%}
+              {%- endfor %}
+              {%- if not loop.last -%},{%- endif -%}
+              {%- endfor %}
             current-parameters: true
             same-node: true
             block: true
             block-thresholds:
-              build-step-failure-threshold: 'never'
-              failure-threshold: 'never'
-              unstable-threshold: 'FAILURE'
+              build-step-failure-threshold: "never"
+              failure-threshold: "never"
+              unstable-threshold: "FAILURE"
 
     publishers: &rec-publishers
       - email:
@@ -69,34 +68,34 @@
 
 - job-template:
     id: akraino-rec-install-rec
-    name: 'rec-{slave_label}-install-rec-{job_frequency}-{stream}'
+    name: "rec-{slave_label}-install-rec-{job_frequency}-{stream}"
     concurrent: true
-    node: '{slave_label}'
+    node: "{slave_label}"
     properties:
       - throttle:
           enabled: true
           max-total: 4
           max-per-node: 1
-          option: 'project'
+          option: "project"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          stream: '{stream}'
-          branch: '{branch}'
-      - 'rec-{slave_label}-defaults'
-      - 'rec-defaults'
+          project: "{project}"
+          stream: "{stream}"
+          branch: "{branch}"
+      - "rec-{slave_label}-defaults"
+      - "rec-defaults"
 
     scm:
       - ta-lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/ta/remote-installer.git'
-          branch: '{branch}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/ta/remote-installer.git"
+          branch: "{branch}"
           submodule-recursive: false
           submodule-timeout: 10
-          choosing-strategy: 'gerrit'
-          basedir: 'git/remote-installer'
-          refspec: '$SCM_REFSPEC_REMOTE_INSTALLER'
+          choosing-strategy: "gerrit"
+          basedir: "git/remote-installer"
+          refspec: "$SCM_REFSPEC_REMOTE_INSTALLER"
     builders:
       - description-setter:
           description: "SLAVE: $NODE_NAME"

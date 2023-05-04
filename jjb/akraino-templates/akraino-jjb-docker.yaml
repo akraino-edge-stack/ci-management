@@ -15,84 +15,84 @@
 # limitations under the License.
 #
 - job-template:
-    id: 'akraino-project-stream-docker'
-    name: '{project-name}-{stream}-docker'
+    id: "akraino-project-stream-docker"
+    name: "{project-name}-{stream}-docker"
     project-type: freestyle
-    node: '{build-node}'
+    node: "{build-node}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          branch: "{branch}"
+          stream: "{stream}"
+          lftools-version: "{lftools-version}"
 
     scm:
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: default
 
     builders:
       - lf-update-java-alternatives:
-          java-version: '{java-version}'
+          java-version: "{java-version}"
       - lf-infra-docker-login:
-          global-settings-file: '{global-settings-file}'
-          settings-file: '{mvn-settings}'
+          global-settings-file: "{global-settings-file}"
+          settings-file: "{mvn-settings}"
       - inject:
           properties-content: |
-              PROJECT={project}
+            PROJECT={project}
       - shell: !include-raw-escape:
           - ../shell/build-docker.sh
 
     triggers:
-      - timed: '@daily'
+      - timed: "@daily"
 
     publishers:
       - lf-infra-publish
 
 - job-template:
-    id: 'akraino-project-stream-stage-docker'
-    name: '{project-name}-{stream}-stage-docker'
+    id: "akraino-project-stream-stage-docker"
+    name: "{project-name}-{stream}-stage-docker"
     project-type: freestyle
-    node: '{build-node}'
+    node: "{build-node}"
 
     parameters:
       - lf-infra-parameters:
-          project: '{project}'
-          branch: '{branch}'
-          stream: '{stream}'
-          lftools-version: '{lftools-version}'
+          project: "{project}"
+          branch: "{branch}"
+          stream: "{stream}"
+          lftools-version: "{lftools-version}"
       - string:
           name: STAGING_BUILD
-          default: 'true'
+          default: "true"
           description: Mark this as a staging build.
 
     scm:
       - lf-infra-gerrit-scm:
-          jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: '{git-url}/{project}.git'
-          refspec: '$GERRIT_REFSPEC'
-          branch: '$GERRIT_BRANCH'
-          submodule-recursive: '{submodule-recursive}'
-          submodule-timeout: '{submodule-timeout}'
+          jenkins-ssh-credential: "{jenkins-ssh-credential}"
+          git-url: "{git-url}/{project}.git"
+          refspec: "$GERRIT_REFSPEC"
+          branch: "$GERRIT_BRANCH"
+          submodule-recursive: "{submodule-recursive}"
+          submodule-timeout: "{submodule-timeout}"
           submodule-disable: false
           choosing-strategy: default
 
     builders:
       - lf-update-java-alternatives:
-          java-version: '{java-version}'
+          java-version: "{java-version}"
       - lf-infra-docker-login:
-          global-settings-file: '{global-settings-file}'
-          settings-file: '{mvn-settings}'
+          global-settings-file: "{global-settings-file}"
+          settings-file: "{mvn-settings}"
       - inject:
           properties-content: |
-              PROJECT={project}
+            PROJECT={project}
       - shell: !include-raw-escape:
           - ../shell/get-upstream-autostage.sh
           - ../shell/build-docker.sh
@@ -100,8 +100,8 @@
     triggers:
       - reverse:
           jobs:
-            - '{project}-maven-stage-{stream}'
-            - 'yaml_builds-{stream}-stage-config'
+            - "{project}-maven-stage-{stream}"
+            - "yaml_builds-{stream}-stage-config"
 
     publishers:
       - lf-infra-publish
