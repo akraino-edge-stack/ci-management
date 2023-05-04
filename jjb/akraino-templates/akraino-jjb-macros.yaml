@@ -1,3 +1,4 @@
+---
 - scm:
     # enhanced version of the global-jjb, based on ta-common-macros
     name: akraino-lf-infra-gerrit-scm

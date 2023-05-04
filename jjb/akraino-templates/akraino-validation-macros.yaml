@@ -54,15 +54,3 @@
           name: PULL
           default: "false"
           description: "If set to yes pull docker images before run"
-
-############
-# SETTINGS #
-############
-# settings for jobs run in multijob phases
-- _docker-build-job-settings: &docker-build-job-settings
-    name: docker_build_job_settings
-    current-parameters: true
-    git-revision: false
-    node-parameters: false
-    kill-phase-on: FAILURE
-    abort-all-jobs: false
