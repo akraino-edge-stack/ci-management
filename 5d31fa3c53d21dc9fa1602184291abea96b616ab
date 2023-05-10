@@ -16,6 +16,23 @@
       "message": "recheck",
       "revId": "5d31fa3c53d21dc9fa1602184291abea96b616ab",
       "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "893e4d27_f0b3d252",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 73
+      },
+      "writtenOn": "2023-05-10T22:47:50Z",
+      "side": 1,
+      "message": "I think its a good idea to separate out the global-jjb updates and the pre-commit / config updates and linting updates into separate changes.",
+      "revId": "5d31fa3c53d21dc9fa1602184291abea96b616ab",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9"
     }
   ]
 }
