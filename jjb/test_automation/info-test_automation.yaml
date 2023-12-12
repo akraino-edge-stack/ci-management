@@ -1,9 +1,0 @@
----
-- project:
-    name: test_automation-info
-    project-name: test_automation
-    build-node: centos7-builder-2c-1g
-    jobs:
-      - gerrit-info-yaml-verify
-    project: test_automation
-    branch: master
