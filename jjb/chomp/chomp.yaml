@@ -1,6 +1,0 @@
----
-- project:
-    name: chomp-project-view
-    project-name: chomp
-    views:
-      - project-view

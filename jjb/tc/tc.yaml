@@ -1,6 +1,0 @@
----
-- project:
-    name: tc-project-view
-    project-name: tc
-    views:
-      - project-view
