@@ -178,13 +178,13 @@
           properties-content: |
             ALT_NEXUS_URL=
             SERVER_ID=
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../shell/ta-rpm-deploy.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../../global-jjb/shell/logs-clear-credentials.sh
 
 - builder:
@@ -198,13 +198,13 @@
               variable: "SETTINGS_FILE"
       - lf-infra-create-netrc:
           server-id: images-snapshots
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../shell/ta-iso-deploy.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../../global-jjb/shell/logs-clear-credentials.sh
 
 - builder:
