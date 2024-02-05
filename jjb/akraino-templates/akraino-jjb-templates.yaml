@@ -258,7 +258,10 @@
           sign-artifacts: "{sign-artifacts}"
           sign-dir: "$WORKSPACE/m2repo"
           sign-mode: serial
-      - lf-maven-stage
+      - lf-maven-stage:
+          mvn-global-settings: "global-settings"
+          mvn-settings: ""
+          mvn-staging-id: ""
       - lf-provide-maven-settings-cleanup
 
     publishers:
