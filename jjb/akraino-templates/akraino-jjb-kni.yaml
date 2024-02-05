@@ -29,9 +29,9 @@
               variable: "SETTINGS_FILE"
       - lf-infra-create-netrc:
           server-id: logs
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../../global-jjb/shell/logs-deploy.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../../global-jjb/shell/logs-clear-credentials.sh
       - description-setter:
           regexp: "(^(Nexus|S3) build logs: .*)"
