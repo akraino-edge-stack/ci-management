@@ -178,13 +178,13 @@
           properties-content: |
             ALT_NEXUS_URL=
             SERVER_ID=
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../shell/ta-rpm-deploy.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../../global-jjb/shell/logs-clear-credentials.sh
 
 - builder:
@@ -198,13 +198,13 @@
               variable: "SETTINGS_FILE"
       - lf-infra-create-netrc:
           server-id: images-snapshots
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../shell/ta-iso-deploy.sh
-      - shell: !include-raw:
+      - shell: !include-raw-escape:
           - ../../global-jjb/shell/logs-clear-credentials.sh
 
 - builder:
@@ -268,44 +268,12 @@
 - builder:
     name: ta-builder-install-docker
     builders:
-      - shell: |2-
-          #!/bin/bash -ex
-          if apt --version 2>1 >/dev/null; then
-              sudo chmod +r /boot/vmlinuz*
-              if ! docker --version 2>1 >/dev/null; then
-                  sudo apt update
-                  sudo apt install -y apt-transport-https ca-certificates curl software-properties-common rename
-                  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-                  sudo add-apt-repository -y "deb http://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-                  sudo apt update
-                  sudo apt install -y docker-ce
-              fi
-          else
-              sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-              sudo yum -y install docker-ce docker-ce-cli containerd.io
-          fi
-          sudo mkdir -p /etc/docker/
-          echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
-          sudo systemctl start docker
-          # Ugly hack to make docker usable for non-root
-          # (adding to the group would require re-login)
-          sudo chmod 777 /var/run/docker.sock
+      - include-raw-escape: ../shell/ta-install-docker.sh
 
 - builder:
     name: ta-builder-install-build-tools
     builders:
-      - shell: |2-
-          #!/bin/bash -ex
-          if apt --version 2>1 >/dev/null; then
-              if ! createrepo --version 2>1 >/dev/null; then
-                  sudo apt update
-                  sudo apt install -y createrepo libguestfs-tools jq libvirt-daemon-system
-              fi
-          else
-              sudo yum -y install createrepo libguestfs-tools-c jq
-          fi
-          sudo systemctl start libvirtd
-          systemctl status libvirtd
+      - include-raw-escape: ../shell/ta-install-build-tools.sh
 
 ###########
 # TRIGGER #
