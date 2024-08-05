@@ -58,7 +58,7 @@ permissions: read-all
 jobs:
   call-composed-ci-man-verify:
     # yamllint disable-line rule:line-length
-    uses: lfit/releng-reusable-workflows/.github/workflows/composed-ci-management-verify.yaml@25511233afffc28b7dcb71c89ccc1b66acba2449 # v0.2.0
+    uses: lfit/releng-reusable-workflows/.github/workflows/composed-ci-management-verify.yaml@b041cbaaa3e8b132e8f7cf3d8eab4fb4519f7c1c
     with:
       GERRIT_BRANCH: ${{ inputs.GERRIT_BRANCH }}
       GERRIT_CHANGE_ID: ${{ inputs.GERRIT_CHANGE_ID }}
